@@ -6,3 +6,6 @@ node_modules/
 
 # Ignore webpack generated file
 public/js/app.js
+
+# Ignore gulp sass generated file
+public/css/main.min.css
