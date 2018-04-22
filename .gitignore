@@ -1,0 +1,8 @@
+# Mac OS enviroment
+.DS_Store
+
+# Node specific
+node_modules/
+
+# Ignore webpack generated file
+public/js/app.js
