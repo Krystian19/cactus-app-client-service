@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --progress --colors",
-    "watch": "webpack --progress --colors --watch",
+    "build_js": "webpack --progress --colors",
+    "watch_js": "webpack --progress --colors --watch",
+    "build_scss": "gulp build",
+    "watch_scss": "gulp",
     "start": "node server.js"
   },
   "author": "",
