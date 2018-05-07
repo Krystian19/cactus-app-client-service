@@ -20,7 +20,7 @@ RUN npm install
 RUN npm run build
 
 # Install service manager
-RUN npm install -g forever
+RUN npm install -g forever webpack@4.6.0 gulp@3.9.1
 
 # ADD setup.sh /app
 RUN ["chmod", "+x", "/app/setup.sh"]
