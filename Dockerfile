@@ -23,7 +23,7 @@ RUN npm install -g forever webpack@4.6.0 gulp@3.9.1
 # Avoid a sass build bug
 RUN npm rebuild node-sass --force
 
-# Build js scripts
+# Build js scripts  
 RUN npm run build_scss
 
 # Build js scripts
@@ -31,4 +31,7 @@ RUN npm run build_js
 
 # ADD setup.sh /app
 RUN ["chmod", "+x", "/app/setup.sh"]
+
+# Modifying permissions of setup.sh (windows bug, no idea why)
+RUN sed -i -e 's/\r$//' /app/setup.sh
 ENTRYPOINT ["/app/setup.sh"]
