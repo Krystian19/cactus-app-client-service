@@ -12,7 +12,7 @@
     "build": "npm-run-series build_js build_scss",
     "start": "node server.js"
   },
-  "author": "",
+  "author": "Jan Guzman <janfrancisco19@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1",
