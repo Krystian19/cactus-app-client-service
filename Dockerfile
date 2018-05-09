@@ -21,13 +21,10 @@ RUN npm install
 RUN npm install -g forever webpack@4.6.0 gulp@3.9.1
 
 # Avoid a sass build bug
-RUN npm rebuild node-sass --force
+RUN npm rebuild node-sass
 
-# Build js scripts  
-RUN npm run build_scss
-
-# Build js scripts
-RUN npm run build_js
+# Build js and sass scripts  
+RUN npm run build
 
 # ADD setup.sh /app
 RUN ["chmod", "+x", "/app/setup.sh"]
