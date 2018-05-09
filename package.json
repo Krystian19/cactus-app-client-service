@@ -8,6 +8,8 @@
     "watch_js": "webpack --progress --colors --watch",
     "build_scss": "gulp build",
     "watch_scss": "gulp",
+    "watch": "concurrently --kill-others \"npm run watch_js\" \"npm run watch_scss\"",
+    "build": "npm-run-series build_js build_scss",
     "start": "node server.js"
   },
   "author": "",
@@ -30,7 +32,9 @@
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
+    "concurrently": "^3.5.1",
     "express": "^4.16.3",
+    "npm-run-series": "^1.0.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-router": "^4.2.0",
