@@ -10,11 +10,6 @@ Docker version 18.03.0-ce
 
 # Setup the project
 
-Clone repository
-```
-git clone https://github.com/Krystian19/ReactDockerBoilerplate.git
-```
-
 Inside the project's directory ...
 
 Build the docker image
