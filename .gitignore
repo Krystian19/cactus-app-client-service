@@ -9,3 +9,6 @@ public/js/app.js
 
 # Ignore gulp sass generated file
 public/css/main.min.css
+
+# In case the is a permission error with the setup.sh file
+setup.sh-e

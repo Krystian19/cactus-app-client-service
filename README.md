@@ -21,7 +21,7 @@ docker build --no-cache -t janguzman/react_docker_boilerplate .
 
 Make sure setup.sh has the right permissions
 ```sh
-chmod +x setup.sh
+chmod +x setup.sh # If you are in linux
 
 sed -i -e 's/\r$//' setup.sh # If you are in windows
 ```
