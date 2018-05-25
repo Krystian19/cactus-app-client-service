@@ -14,17 +14,8 @@ RUN apt-get install -y nodejs
 COPY . /app
 EXPOSE 3000
 
-# Install dependencies
-RUN npm install
-
 # Install service manager
 RUN npm install -g forever webpack@4.6.0 gulp@3.9.1
-
-# Avoid a sass build bug
-RUN npm rebuild node-sass
-
-# Build js and sass scripts  
-RUN npm run build
 
 # ADD setup.sh /app
 RUN ["chmod", "+x", "/app/setup.sh"]
