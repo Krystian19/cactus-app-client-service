@@ -4,7 +4,7 @@
 yarn install
 
 # Avoid a sass build bug
-npm rebuild node-sass
+yarn add node-sass --force
 
 # Build js and sass scripts  
 yarn run build
