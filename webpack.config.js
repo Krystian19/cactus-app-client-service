@@ -11,5 +11,9 @@ module.exports = {
     rules: [
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' }
     ]
+  },
+  watchOptions: {
+    aggregateTimeout: 300,
+    poll: 400
   }
 }
