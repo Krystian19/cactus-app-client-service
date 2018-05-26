@@ -3,9 +3,6 @@
 # Install dependencies
 yarn install
 
-# Avoid a sass build bug
-yarn add node-sass --force
-
 # Build js and sass scripts  
 yarn run build
 

@@ -15,7 +15,9 @@ COPY . /app
 EXPOSE 3000
 
 # Install service manager
-RUN npm install -g yarn forever webpack@4.6.0 gulp@3.9.1
+RUN npm install -g yarn
+
+RUN yarn global add forever webpack@4.6.0 gulp@3.9.1
 
 # ADD setup.sh /app
 RUN ["chmod", "+x", "/app/setup.sh"]

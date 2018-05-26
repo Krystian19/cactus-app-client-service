@@ -3,6 +3,7 @@
 
 # Node specific
 node_modules/
+yarn-error.log
 
 # Ignore webpack generated file
 public/js/app.js
