@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Install dependencies
-npm install
+yarn install
 
 # Avoid a sass build bug
 npm rebuild node-sass
 
 # Build js and sass scripts  
-npm run build
+yarn run build
 
 # Run the server with forever
 forever start server.js
