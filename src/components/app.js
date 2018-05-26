@@ -7,7 +7,11 @@ export default class App extends Component {
     }
 
     render() {
-        return <h1>App component</h1>;
+        return (
+            <div>
+                <h1>ReactDockerBoilerplate running</h1>
+            </div>
+        );
     }
 }
 
