@@ -12,7 +12,7 @@ Docker version 18.03.0-ce
 
 Inside the project's directory ...
 
-Add ignore options to your local repo
+Before we start, add these ignore options to your local repo:
 ```sh
 # Tell git to ignore file permission changes
 git config core.filemode false
@@ -21,14 +21,14 @@ git config core.filemode false
 git config core.autocrlf false
 ```
 
-Build the docker image
+Build the docker image:
 ```
 docker build --no-cache -t janguzman/react_docker_boilerplate .
 ```
 
 ### For development deployment
 
-Make sure setup.sh has the right permissions (if you are in linux)
+Make sure setup.sh has the right permissions:
 ```sh
 # Only if you are in linux
 chmod +x setup.sh
@@ -37,7 +37,7 @@ chmod +x setup.sh
 sed -i -e 's/\r$//' setup.sh
 ```
 
-Create docker container. (Note: where "$(pwd)" is the absolute path to your cloned repo)
+Create docker container. (Note: where "$(pwd)" is the absolute path to your local repo):
 ```sh
 docker run -ti --name=react_docker -d -v $(pwd):/app -p 3000:3000 janguzman/react_docker_boilerplate
 ```
@@ -46,24 +46,24 @@ The project should be running @ ```http://localhost:3000/```.
 
 To work inside the container ...
 
-Access container
+Access container:
 ```sh
 docker exec -ti react_docker /bin/bash
 ```
 
-Start watch of js changes
+Start watch of js changes:
 ```sh
 yarn watch_js
 ```
 
-Start watch of sass changes
+Start watch of sass changes:
 ```sh
 yarn watch_scss
 ```
 
 ### For production deployment
 
-Create docker container
+Create docker container:
 ```
 docker run -ti -p 3000:3000 --name react_docker -d janguzman/react_docker_boilerplate
 ```
@@ -72,7 +72,7 @@ The project should be running @ ```http://localhost:3000/```
 
 In case you need to access the container ...
 
-Access container
+Access container:
 ```sh
 docker exec -ti react_docker /bin/bash
 ```
