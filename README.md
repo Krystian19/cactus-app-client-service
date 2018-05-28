@@ -19,20 +19,34 @@ docker build --no-cache -t janguzman/react_docker_boilerplate .
 
 ### For development deployment
 
-Make sure setup.sh has the right permissions
+Make sure setup.sh has the right permissions (if you are in linux)
 ```sh
-chmod +x setup.sh # If you are in linux
-
-sed -i -e 's/\r$//' setup.sh # If you are in windows
+chmod +x setup.sh
 ```
 
 Create docker container
-```
+```sh
 docker run -ti --name=react_docker -d -v $(pwd):/app -p 3000:3000 janguzman/react_docker_boilerplate
 ```
 
-The project should be running @ ```http://localhost:3000/```. To work using this container's environment
-remember to stop the ```forever``` service and start the node server and watch scripts.
+The project should be running @ ```http://localhost:3000/```.
+
+To work inside the container ...
+
+Access container
+```sh
+docker exec -ti react_docker /bin/bash
+```
+
+Start watch of js changes
+```sh
+yarn watch_js
+```
+
+Start watch of sass changes
+```sh
+yarn watch_scss
+```
 
 ### For production deployment
 
@@ -43,11 +57,10 @@ docker run -ti -p 3000:3000 --name react_docker -d janguzman/react_docker_boiler
 
 The project should be running @ ```http://localhost:3000/```
 
+In case you need to access the container ...
 
-## Access container
-
-Enter the container working directory
-```
+Access container
+```sh
 docker exec -ti react_docker /bin/bash
 ```
 
