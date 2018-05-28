@@ -37,7 +37,7 @@ chmod +x setup.sh
 sed -i -e 's/\r$//' setup.sh
 ```
 
-Create docker container
+Create docker container. (Note: where "$(pwd)" is the absolute path to your cloned repo)
 ```sh
 docker run -ti --name=react_docker -d -v $(pwd):/app -p 3000:3000 janguzman/react_docker_boilerplate
 ```
