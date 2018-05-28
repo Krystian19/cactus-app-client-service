@@ -12,6 +12,15 @@ Docker version 18.03.0-ce
 
 Inside the project's directory ...
 
+Add ignore options to your local repo
+```sh
+# Tell git to ignore file permission changes
+git config core.filemode false
+
+# (If you are in windows). Tell git to ignore file line endings
+git config core.autocrlf false
+```
+
 Build the docker image
 ```
 docker build --no-cache -t janguzman/react_docker_boilerplate .
@@ -21,7 +30,11 @@ docker build --no-cache -t janguzman/react_docker_boilerplate .
 
 Make sure setup.sh has the right permissions (if you are in linux)
 ```sh
+# Only if you are in linux
 chmod +x setup.sh
+
+# Only if you are in windows
+sed -i -e 's/\r$//' setup.sh
 ```
 
 Create docker container
