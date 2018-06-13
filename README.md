@@ -17,7 +17,7 @@ Before we start, add these ignore options to your local repo:
 # Tell git to ignore file permission changes
 git config core.filemode false
 
-# (If you are in windows). Tell git to ignore file line endings
+# (Only if you are in windows). Tell git to ignore file line endings
 git config core.autocrlf false
 ```
 
