@@ -22,6 +22,6 @@ RUN yarn global add forever webpack@4.6.0 gulp@3.9.1
 # ADD setup.sh /app
 RUN ["chmod", "+x", "/app/setup.sh"]
 
-# Modifying permissions of setup.sh (windows bug, no idea why)
+# Modifying permissions of setup.sh (avoid windows bug related to file line endings (CRLF))
 RUN sed -i -e 's/\r$//' /app/setup.sh
 ENTRYPOINT ["/app/setup.sh"]
