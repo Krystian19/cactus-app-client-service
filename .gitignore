@@ -7,6 +7,7 @@ yarn-error.log
 
 # Ignore webpack generated file
 public/js/app.js
+public/js/app.js.map
 
 # Ignore gulp sass generated file
 public/css/main.min.css
