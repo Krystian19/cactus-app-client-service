@@ -1,3 +1,8 @@
+/**
+ * @author Jan Guzman <janfrancisco19@gmail.com>
+ * @desc Webpack module bundler configuration for development
+ */
+
 const path = require('path');
 
 module.exports = {

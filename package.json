@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "build_js": "webpack --progress --colors",
-    "watch_js": "webpack --progress --colors --watch",
+    "build_js": "webpack --progress --colors --config webpack.config.prod.js",
+    "watch_js": "webpack --progress --colors --watch --config webpack.config.dev.js",
     "build_scss": "gulp build",
     "watch_scss": "gulp",
     "build": "yarn build_scss; yarn build_js;",
