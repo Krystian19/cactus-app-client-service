@@ -1,6 +1,6 @@
 # ReactDockerBoilerplate
 
-React app running on a express.js server inside a ubuntu container in docker.
+React app running on a express.js server inside a docker ubuntu container.
 
 ## Requirements
 ```
