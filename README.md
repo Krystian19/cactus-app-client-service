@@ -33,7 +33,7 @@ Make sure setup.sh has the right permissions:
 # Only if you are in linux
 chmod +x setup.sh
 
-# Only if you are in windows
+# Only if you are in windows (bulk replaces line endings from CRLF to LF)
 sed -i -e 's/\r$//' setup.sh
 ```
 
