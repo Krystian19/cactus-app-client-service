@@ -26,55 +26,30 @@ Build the docker image:
 docker build --no-cache -t janguzman/react_docker_boilerplate .
 ```
 
-### For development deployment
-
+### Run the project
 Make sure setup.sh has the right permissions:
 ```sh
 # Only if you are in linux
 chmod +x setup.sh
-
-# Only if you are in windows (bulk replaces line endings from CRLF to LF)
-sed -i -e 's/\r$//' setup.sh
 ```
 
-Create docker container. (Note: where "$(pwd)" is the absolute path to your local repo):
+Then create docker container. (Note: where "$(pwd)" is the absolute path to your local repo):
 ```sh
 docker run -ti --name=react_docker -d -v $(pwd):/app -p 3000:3000 janguzman/react_docker_boilerplate
 ```
 
-The project should be running @ ```http://localhost:3000/```.
+Wait a couple seconds and then the project should be running @ ```http://localhost:3000/```.
 
-To work inside the container ...
-
-Access container:
-```sh
-docker exec -ti react_docker /bin/bash
-```
+How to work with the project ...
 
 Start watch of js changes:
 ```sh
-yarn watch_js
+docker exec -ti react_docker yarn watch_js
 ```
 
 Start watch of sass changes:
 ```sh
-yarn watch_scss
-```
-
-### For production deployment
-
-Create docker container:
-```
-docker run -ti -p 3000:3000 --name react_docker -d janguzman/react_docker_boilerplate
-```
-
-The project should be running @ ```http://localhost:3000/```
-
-In case you need to access the container ...
-
-Access container:
-```sh
-docker exec -ti react_docker /bin/bash
+docker exec -ti react_docker yarn watch_scss
 ```
 
 ## License
