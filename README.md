@@ -16,7 +16,7 @@ version: '3'
 services:
   client: # React client
     build:
-      ./ ReactDockerBoilerplate
+      ./ReactDockerBoilerplate
     volumes:
       - ./ReactDockerBoilerplate:/app
     ports: ['3000:3000']
