@@ -18,7 +18,7 @@ services:
     build:
       ./ ReactDockerBoilerplate
     volumes:
-    - ./ReactDockerBoilerplate:/app
+      - ./ReactDockerBoilerplate:/app
     ports: ['3000:3000']
 ```
 
