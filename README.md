@@ -1,6 +1,6 @@
-# ReactDockerBoilerplate
+# Cactus app web client service
 
-React app running on a express.js server inside a docker ubuntu container.
+Cactus app web client service repo.
 
 ## Requirements
 ```
@@ -16,9 +16,9 @@ version: '3'
 services:
   client: # React client
     build:
-      ./ReactDockerBoilerplate
+      ./cactus-app-client-service
     volumes:
-      - ./ReactDockerBoilerplate:/app
+      - ./cactus-app-client-service:/app
     ports: ['3000:3000']
 ```
 
@@ -37,7 +37,7 @@ git config core.autocrlf false
 
 Build the docker image:
 ```
-docker build --no-cache -t janguzman/react_docker_boilerplate .
+docker build --no-cache -t cactus_app/cactus-app-client-service .
 ```
 
 ### Run the project
@@ -52,7 +52,7 @@ sed -i -e 's/\r$//' setup.sh
 
 Then create docker container. (Note: where "$(pwd)" is the absolute path to your local repo):
 ```sh
-docker run -ti --name=react_docker -d -v $(pwd):/app -p 3000:3000 janguzman/react_docker_boilerplate
+docker run -ti --name=cactus_app_client -d -v $(pwd):/app -p 3000:3000 cactus_app/cactus-app-client-service
 ```
 
 Wait a couple seconds and then the project should be running @ ```http://localhost:3000/```.
@@ -61,12 +61,12 @@ How to work with the project ...
 
 Start watch of js changes:
 ```sh
-docker exec -ti react_docker yarn watch_js
+docker exec -ti cactus_app_client yarn watch_js
 ```
 
 Start watch of sass changes:
 ```sh
-docker exec -ti react_docker yarn watch_scss
+docker exec -ti cactus_app_client yarn watch_scss
 ```
 
 ## License
