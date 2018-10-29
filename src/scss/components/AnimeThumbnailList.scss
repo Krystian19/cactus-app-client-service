@@ -1,0 +1,104 @@
+.anime-thumbnail-list {
+  display: grid;
+  grid-template-columns: 15.8% 15.8% 15.8% 15.8% 15.8% 15.8%;
+  grid-gap: 1em 0.8%;
+  color: #444;
+  justify-content: center;
+}
+
+.anime-thumbnail {
+  color: #fff;
+  font-size: 150%;
+}
+
+.anime-thumbnail .cover {
+  position: relative;
+  padding-top: 140%;
+  margin-bottom: .4em;
+}
+
+.anime-thumbnail .cover .score {
+  position: absolute;
+  top: 0.75em;
+  left: .3875em;
+  font-weight: 700;
+  font-size: .6rem;
+  background-color: rgba(0, 0, 0, .5);
+  min-width: 5em;
+  text-align: center;
+  border-radius: 5em;
+  z-index: 100;
+  padding: .3em 0;
+}
+
+.anime-thumbnail .cover .score i {
+  font-size: .5rem;
+  color: #ffbb00;
+}
+
+.anime-thumbnail .cover .overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.anime-thumbnail .cover .overlay.darken {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, .5) 0, rgba(0, 0, 0, .05) 50%, rgba(0, 0, 0, .05) 50%, rgba(0, 0, 0, .5) 100%);
+}
+
+.anime-thumbnail .cover .overlay.hover_hidden {
+  opacity: 0;
+}
+
+.anime-thumbnail .cover .overlay.hover_hidden:hover {
+  opacity: 1;
+}
+
+.anime-thumbnail .cover .overlay {
+  -webkit-transition: opacity .2s ease-in;
+  transition: opacity .2s ease-in;
+}
+
+.anime-thumbnail .cover .overlay svg.play {
+  fill: #ff6c00;
+  background: rgba(0, 0, 0, .75);
+  width: 2em;
+  height: 2em;
+  border-radius: 5em;
+  margin: 0;
+}
+
+.anime-thumbnail .cover img.anime-thumbnail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  /* border-radius: 5px; */
+}
+
+.anime-thumbnail .info {
+  height: 30px;
+}
+
+.anime-thumbnail .info .title {
+  font-size: .8rem;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.anime-thumbnail .info .year {
+  font-size: .6rem;
+}

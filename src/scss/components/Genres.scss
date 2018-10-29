@@ -1,0 +1,25 @@
+.genres {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.genres a.genre-tag {
+  transition: color .15s ease;
+  color: #b9b9b9;
+  border: 1px solid;
+  border-radius: 2px;
+  font-size: .7rem;
+  padding: .45rem .7rem;
+  flex: 1;
+  max-width: 3em;
+  text-align: center;
+  margin-right: 5px;
+  margin-bottom: 3px;
+}
+
+.genres a.genre-tag:hover {
+  color: #ff6c00;
+}

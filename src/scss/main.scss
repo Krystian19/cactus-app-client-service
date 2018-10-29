@@ -1,1 +1,19 @@
-@import "./components/dummy_component";
+
+// Main styles
+@import "./components/main";
+
+// Components
+@import "./components/Button";
+@import "./components/Sidebar";
+@import "./components/AnimeThumbnailList";
+@import "./components/SmallAnimeThumbnailList";
+@import "./components/BigSearchBox";
+@import "./components/VideoBlock";
+@import "./components/Genres";
+@import "./components/AnimeInfo";
+@import "./components/AnimeSeasons";
+@import "./components/AnimeWatchEpisode";
+@import "./components/AnimeScheduleList";
+
+// Responsive styles
+@import "./components/responsive/responsive_styles.scss";
