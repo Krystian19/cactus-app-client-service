@@ -4,6 +4,7 @@ const requestProxy = require('express-request-proxy');
 
 const app = express();
 const port = process.env.SERVER_PORT || 3000;
+const backendServiceUrl = process.env.BACKEND_SERVICE_URL || 'http://backend:3000/';
 
 app.use(express.static(path.resolve(__dirname, 'public')));
 app.use(express.static(path.resolve(__dirname, 'node_modules')));
@@ -11,7 +12,7 @@ app.use(express.static(path.resolve(__dirname, 'node_modules')));
 app.post(
   '/graphql',
   requestProxy({
-    url: 'http://backend:3000/',
+    url: backendServiceUrl,
     query: {},
     headers: {},
   }),

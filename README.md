@@ -19,6 +19,9 @@ services:
       ./cactus-app-client-service
     volumes:
       - ./cactus-app-client-service:/app
+    environment:
+      # URL of the service that is running a backend instance
+      BACKEND_SERVICE_URL: "http://backend:3000/"
     ports: ['3000:3000']
 ```
 
