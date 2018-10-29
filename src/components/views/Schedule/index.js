@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import Routes from './views';
 
-export default class App extends Component {
+export default class ScheduleView extends Component {
   // constructor() {
   //   super()
   // }
@@ -9,7 +8,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <Routes />
+        <h1>This is the schedule view</h1>
       </div>
     );
   }
