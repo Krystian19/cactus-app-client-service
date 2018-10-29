@@ -6,7 +6,8 @@ module.exports = {
     "react/prefer-stateless-function": "off",
     "import/prefer-default-export": "off",
     "strict": 0,
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "no-console": "off",
   },
   "globals": {
     "window": true,
