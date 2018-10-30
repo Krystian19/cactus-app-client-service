@@ -46,6 +46,10 @@
     bottom: 0;
     background: transparent;
     cursor: pointer;
+
+    &:focus {
+      outline: 0;
+    }
   }
 }
 
