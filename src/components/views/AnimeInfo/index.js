@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import {
+  Link,
+} from 'react-router-dom';
 import Sidebar from '../../shared_components/Sidebar';
 
 export default class AnimeInfoView extends Component {
@@ -84,18 +87,20 @@ export default class AnimeInfoView extends Component {
 
                           {/* Start of row */}
                           <div className="anime-small-thumbnail">
-                            <div className="cover">
-                              <img
-                                src="https://cdn.masterani.me/episodes/208Zrv8MtN.jpg"
-                                alt="thumbnail"
-                                className="anime-small-thumbnail"
-                              />
-                              <div className="overlay hover_hidden darken">
-                                <svg className="play" viewBox="0 0 24 24">
-                                  <path d="M8,5.14V19.14L19,12.14L8,5.14Z" />
-                                </svg>
+                            <Link to="/anime/video/1">
+                              <div className="cover">
+                                <img
+                                  src="https://cdn.masterani.me/episodes/208Zrv8MtN.jpg"
+                                  alt="thumbnail"
+                                  className="anime-small-thumbnail"
+                                />
+                                <div className="overlay hover_hidden darken">
+                                  <svg className="play" viewBox="0 0 24 24">
+                                    <path d="M8,5.14V19.14L19,12.14L8,5.14Z" />
+                                  </svg>
+                                </div>
                               </div>
-                            </div>
+                            </Link>
                             <div className="info">
                               <div className="title">
                                 <div className="title-container">Tragedy</div>
