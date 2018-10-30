@@ -7,9 +7,10 @@ export default class ScheduleView extends Component {
   // }
 
   render() {
+    const { history } = this.props;
     return (
       <div className="main-container">
-        <Sidebar />
+        <Sidebar props={{ history }} />
         <div className="main-content">
 
 

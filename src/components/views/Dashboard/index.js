@@ -7,9 +7,10 @@ export default class DashboardView extends Component {
   // }
 
   render() {
+    const { history } = this.props;
     return (
       <div className="main-container">
-        <Sidebar />
+        <Sidebar props={{ history }} />
         <div className="main-content no-padding">
           {/* Block start */}
           <div className="video-block">
