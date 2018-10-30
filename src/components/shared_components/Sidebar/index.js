@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import {
+  Link,
+} from 'react-router-dom';
 
 export default class Sidebar extends Component {
   // constructor() {
@@ -15,17 +18,19 @@ export default class Sidebar extends Component {
         </div>
         <div className="sidebar-center-options">
           <div className="sidebar-option">
-            <a href="./search.html">
+            <Link to="/anime">
               <i className="fas fa-search" />
-            </a>
+            </Link>
           </div>
           <div className="sidebar-option">
-            <a href="./anime-schedule.html">
+            <Link to="/schedule">
               <i className="fas fa-calendar-alt" />
-            </a>
+            </Link>
           </div>
           <div className="sidebar-option">
-            <i className="fas fa-random" />
+            <Link to="/anime">
+              <i className="fas fa-random" />
+            </Link>
           </div>
         </div>
         <div className="sidebar-bottom-options">
