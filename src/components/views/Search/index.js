@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import {
+  Link,
+} from 'react-router-dom';
 import Sidebar from '../../shared_components/Sidebar';
 
 export default class SearchView extends Component {
@@ -21,18 +24,20 @@ export default class SearchView extends Component {
 
             {/* Start of row */}
             <div className="anime-thumbnail">
-              <div className="cover">
-                <span className="score">
-                  4.5/5
-                  <i className="fas fa-star" />
-                </span>
-                <img src="https://cdn.masterani.me/poster/1/226mhyBWAID.jpg" alt="thumbnail" className="anime-thumbnail" />
-                <div className="overlay hover_hidden darken">
-                  <svg className="play" viewBox="0 0 24 24">
-                    <path d="M8,5.14V19.14L19,12.14L8,5.14Z" />
-                  </svg>
+              <Link to="/anime/info/1">
+                <div className="cover">
+                  <span className="score">
+                    4.5/5
+                    <i className="fas fa-star" />
+                  </span>
+                  <img src="https://cdn.masterani.me/poster/1/226mhyBWAID.jpg" alt="thumbnail" className="anime-thumbnail" />
+                  <div className="overlay hover_hidden darken">
+                    <svg className="play" viewBox="0 0 24 24">
+                      <path d="M8,5.14V19.14L19,12.14L8,5.14Z" />
+                    </svg>
+                  </div>
                 </div>
-              </div>
+              </Link>
               <div className="info">
                 <div className="title">
                   Full Metal Cook
