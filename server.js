@@ -1,6 +1,13 @@
 import path from 'path';
+import fs from 'fs';
 import express from 'express';
 import requestProxy from 'express-request-proxy';
+import { renderToString } from 'react-dom/server';
+import { StaticRouter } from 'react-router-dom';
+import React from 'react';
+
+// Import app elements
+import App from './src/components/app';
 
 const app = express();
 const port = process.env.SERVER_PORT || 3000;
@@ -18,8 +25,16 @@ app.post(
   }),
 );
 
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+app.get('**', (req, res) => {
+  const markUp = renderToString(
+    <StaticRouter location={req.path} context={{}}>
+      <App />
+    </StaticRouter>,
+  );
+  const indexFile = fs.readFileSync(path.join(__dirname, 'resources', 'index.html'), 'utf8');
+  const finalMarkUpFile = indexFile.replace('<!-- ::APP:: -->', markUp);
+
+  return res.send(finalMarkUpFile);
 });
 
 app.listen(port, () => console.log(`App listening on port ${port}`));
