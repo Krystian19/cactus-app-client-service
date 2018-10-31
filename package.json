@@ -9,7 +9,7 @@
     "build_scss": "gulp build",
     "watch_scss": "gulp",
     "build": "yarn build_scss; yarn build_js;",
-    "start": "node server.js"
+    "start": "nodemon --exec babel-node server.js"
   },
   "author": "Jan Guzman <janfrancisco19@gmail.com>",
   "license": "ISC",

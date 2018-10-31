@@ -17,7 +17,11 @@ EXPOSE 3000
 # Install service manager
 RUN npm install -g yarn
 
-RUN yarn global add forever webpack@4.6.0 gulp@3.9.1
+# Install global dependencies
+RUN yarn global add webpack@4.6.0 gulp@3.9.1 nodemon
+
+# Install global babel dependencies
+RUN yarn global add @babel/core @babel/register @babel/node babel-cli
 
 # Make sure /app/setup.sh has the right persmissions inside the container
 RUN ["chmod", "+x", "/app/setup.sh"]

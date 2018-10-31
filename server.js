@@ -1,6 +1,6 @@
-const path = require('path');
-const express = require('express');
-const requestProxy = require('express-request-proxy');
+import path from 'path';
+import express from 'express';
+import requestProxy from 'express-request-proxy';
 
 const app = express();
 const port = process.env.SERVER_PORT || 3000;
