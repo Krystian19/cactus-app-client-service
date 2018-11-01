@@ -1,7 +1,6 @@
 {
   "ignore": [
     "public/",
-    "src/",
     "node_modules/",
     ".eslintrc.js",
     "webpack.config.*"
