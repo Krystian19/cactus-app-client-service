@@ -2,7 +2,7 @@ import React from 'react';
 
 // ({ Episodes }) => (
 const VideoBlock = (props) => {
-  const { props: { episodes } } = props;
+  const { props: { episodes, title } } = props;
 
   return (
     <div className="video-block">
