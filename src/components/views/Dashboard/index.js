@@ -25,6 +25,7 @@ const DashboardQuery = gql`
         id,
         seasonOrder,
         title,
+        background,
         Anime {
           id,
           title

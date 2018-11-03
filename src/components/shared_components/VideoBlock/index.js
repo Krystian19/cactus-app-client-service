@@ -19,7 +19,7 @@ const VideoBlock = (props) => {
           {episodes.map(episode => (
             <div key={episode.id} className="anime-small-thumbnail">
               <div className="cover">
-                <img src={episode.thumbnail} alt="thumbnail" className="anime-small-thumbnail" />
+                <img src={episode.Season.background} alt="thumbnail" className="anime-small-thumbnail" />
                 <div className="overlay hover_hidden darken">
                   <svg className="play" viewBox="0 0 24 24">
                     <path d="M8,5.14V19.14L19,12.14L8,5.14Z" />
