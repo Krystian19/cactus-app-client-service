@@ -8,11 +8,13 @@ module.exports = {
     "strict": 0,
     "react/prop-types": 0,
     "no-console": "off",
+    "no-underscore-dangle": [2, { "allow": ['__APOLLO_STATE__'] }]
   },
   "globals": {
     "window": true,
     "document": true,
     "console": true,
     "localStorage": true,
+    "window.__APOLLO_STATE__": true,
   }
 };
