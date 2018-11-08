@@ -71,6 +71,9 @@ Start watch of sass changes:
 ```sh
 docker exec -ti cactus_app_client yarn watch_scss
 ```
+### Todo list
+- [ ] Implement a browser-cache avoidance mechanism.
+- [ ] Clean unused dependencies.
 
 ## License
 MIT © Jan Guzman
