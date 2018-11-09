@@ -1,5 +1,6 @@
 import path from 'path';
 import fs from 'fs';
+import sha256 from 'sha256';
 import express from 'express';
 import requestProxy from 'express-request-proxy';
 import { renderToString } from 'react-dom/server';
@@ -58,10 +59,20 @@ app.get('**', (req, res) => {
     const content = renderToString(markUp);
     const initialState = client.extract();
 
+    // index.html file
     const indexFile = fs.readFileSync(path.join(__dirname, 'resources', 'index.html'), 'utf8');
+
+    // App's app.js file
+    const mainJsFile = fs.readFileSync(path.join(__dirname, 'public', 'js', 'app.js'), 'utf8');
+
+    // App's app.css file
+    const mainCssFile = fs.readFileSync(path.join(__dirname, 'public', 'css', 'main.min.css'), 'utf8');
+
     const finalMarkUpFile = indexFile
       .replace('<!-- ::APP:: -->', content)
-      .replace('/* ::APOLLO_CACHE:: */', `window.__APOLLO_STATE__ = ${JSON.stringify(initialState)};`);
+      .replace('/* ::APOLLO_CACHE:: */', `window.__APOLLO_STATE__ = ${JSON.stringify(initialState)};`)
+      .replace('app.js"', `app.js?q=${sha256(mainJsFile).slice(0, 5)}"`)
+      .replace('main.min.css"', `main.min.css?q=${sha256(mainCssFile).slice(0, 5)}"`);
 
     return res.send(finalMarkUpFile);
   });
