@@ -11,19 +11,19 @@ const destination = './public/css';
 
 // Compile scss
 gulp.task('build', () => {
-	gulp.src(originTarget)
-		.pipe(sass({
-			includePaths: ['node_modules'],
-		}).on('error', sass.logError))
-		.pipe(minifyCSS())
-		.pipe(rename({ suffix: '.min' }))
-		.pipe(gulp.dest(destination));
+  gulp.src(originTarget)
+    .pipe(sass({
+      includePaths: ['node_modules'],
+    }).on('error', sass.logError))
+    .pipe(minifyCSS())
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(gulp.dest(destination));
 });
 
 // Detect changes in scss
 gulp.task('watch', () => {
-	gulp.start('build');
-	gulp.watch(originWatch, ['build']);
+  gulp.start('build');
+  gulp.watch(originWatch, ['build']);
 });
 
 // Run tasks
