@@ -3,6 +3,7 @@
     "public/",
     "node_modules/",
     ".eslintrc.js",
-    "webpack.config.*"
+    "webpack.config.*",
+    "gulpfile.js"
   ]
 }
