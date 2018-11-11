@@ -21,6 +21,7 @@ const app = express();
 const port = process.env.SERVER_PORT || 3000;
 const backendServiceUrl = process.env.BACKEND_SERVICE_URL || 'http://backend:3000/';
 const imageServiceUrl = process.env.IMG_CDN_SERVICE_URL || 'http://img_cdn:3000/';
+const videoServiceUrl = process.env.VIDEO_CDN_SERVICE_URL || 'http://video_cdn:3000/';
 
 app.use(express.static(path.resolve(__dirname, 'public')));
 app.use(express.static(path.resolve(__dirname, 'node_modules')));
@@ -41,6 +42,21 @@ app.get(
 
     const proxy = requestProxy({
       url: imageServiceUrl + imgName,
+      query: {},
+      headers: {},
+    });
+
+    proxy(req, res, next);
+  },
+);
+
+app.get(
+  '/video_cdn/:video_name',
+  (req, res, next) => {
+    const videoName = req.params.video_name;
+
+    const proxy = requestProxy({
+      url: videoServiceUrl + videoName,
       query: {},
       headers: {},
     });
