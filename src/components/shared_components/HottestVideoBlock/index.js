@@ -23,7 +23,7 @@ const HottestVideoBlock = (props) => {
             >
               <div className="cover">
                 <img
-                  src={episode.Season.background}
+                  src={`/img_cdn/${episode.Season.background}`}
                   alt="thumbnail"
                   className="anime-small-thumbnail"
                 />
