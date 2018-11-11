@@ -38,7 +38,8 @@ const HottestVideoBlock = (props) => {
               <div className="info">
                 <div className="title">
                   <div
-                    className="title-container">
+                    className="title-container"
+                  >
                     {`${episode.Season.title} (Season ${episode.Season.seasonOrder})`}
                   </div>
                   <div className="detail-container">
