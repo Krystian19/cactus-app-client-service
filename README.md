@@ -74,6 +74,7 @@ docker exec -ti cactus_app_client yarn watch_scss
 ### Todo list
 - [x] Implement a browser-cache avoidance mechanism.
 - [x] Clean unused dependencies.
+- [ ] Remove nodemon as the server's script runner
 
 ## License
 MIT © Jan Guzman

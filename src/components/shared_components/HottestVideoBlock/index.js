@@ -17,10 +17,19 @@ const HottestVideoBlock = (props) => {
       <div className="video-block-content">
         <div className="anime-small-thumbnail-list">
           {episodes.map((episode, index) => (
-            <div key={episode.id} className={`anime-small-thumbnail ${(index === 0) ? 'big' : 'small'}`}>
+            <div
+              key={episode.id}
+              className={`anime-small-thumbnail ${(index === 0) ? 'big' : 'small'}`}
+            >
               <div className="cover">
-                <img src={episode.Season.background} alt="thumbnail" className="anime-small-thumbnail" />
-                <div className="overlay hover_hidden darken">
+                <img
+                  src={episode.Season.background}
+                  alt="thumbnail"
+                  className="anime-small-thumbnail"
+                />
+                <div
+                  className="overlay hover_hidden darken"
+                >
                   <svg className="play" viewBox="0 0 24 24">
                     <path d="M8,5.14V19.14L19,12.14L8,5.14Z" />
                   </svg>
@@ -28,8 +37,13 @@ const HottestVideoBlock = (props) => {
               </div>
               <div className="info">
                 <div className="title">
-                  <div className="title-container">{`${episode.Season.title} (Season ${episode.Season.seasonOrder})`}</div>
-                  <div className="detail-container">{`Ep. ${episode.episodeOrder}`}</div>
+                  <div
+                    className="title-container">
+                    {`${episode.Season.title} (Season ${episode.Season.seasonOrder})`}
+                  </div>
+                  <div className="detail-container">
+                    {`Ep. ${episode.episodeOrder}`}
+                  </div>
                 </div>
               </div>
             </div>

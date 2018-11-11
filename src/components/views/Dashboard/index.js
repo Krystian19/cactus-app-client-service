@@ -20,15 +20,6 @@ const DashboardQuery = gql`
     id,
     thumbnail,
     episodeOrder,
-    EpisodeVersions {
-      id,
-      episode_url,
-      Language {
-        id,
-        name,
-        iso_code
-      }
-    },
     Season {
       id,
       seasonOrder,
@@ -60,8 +51,16 @@ export default class DashboardView extends Component {
             console.log(data);
             return (
               <div className="main-content no-padding">
-                <HottestVideoBlock props={{ title: '🔥 right now', episodes: data.getHottestEpisodes }} />
-                <VideoBlock props={{ title: 'New episodes', episodes: data.getNewestEpisodes }} />
+                <HottestVideoBlock props={{
+                  title: '🔥 right now',
+                  episodes: data.getHottestEpisodes,
+                }}
+                />
+                <VideoBlock props={{
+                  title: 'New episodes',
+                  episodes: data.getNewestEpisodes,
+                }}
+                />
                 <CategoriesBlock />
               </div>
             );
