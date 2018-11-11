@@ -20,6 +20,7 @@ import App from './src/components/views';
 const app = express();
 const port = process.env.SERVER_PORT || 3000;
 const backendServiceUrl = process.env.BACKEND_SERVICE_URL || 'http://backend:3000/';
+const imageServiceUrl = process.env.IMG_CDN_SERVICE_URL || 'http://img_cdn:3000/';
 
 app.use(express.static(path.resolve(__dirname, 'public')));
 app.use(express.static(path.resolve(__dirname, 'node_modules')));
@@ -31,6 +32,21 @@ app.post(
     query: {},
     headers: {},
   }),
+);
+
+app.get(
+  '/img_cdn/:img_name',
+  (req, res, next) => {
+    const imgName = req.params.img_name;
+
+    const proxy = requestProxy({
+      url: imageServiceUrl + imgName,
+      query: {},
+      headers: {},
+    });
+
+    proxy(req, res, next);
+  },
 );
 
 app.get('**', (req, res) => {
