@@ -18,7 +18,13 @@ export default class Sidebar extends Component {
       <div className="sidebar">
         <div className="sidebar-top-options">
           <div className="sidebar-option">
-            <div className="clickable" onClick={this.goToIndex} onKeyPress={this.goToIndex} role="menuitem" tabIndex="0" />
+            <div
+              className="clickable"
+              onClick={this.goToIndex}
+              onKeyPress={this.goToIndex}
+              role="menuitem"
+              tabIndex="0"
+            />
             <embed src="/img/logo.svg" className="logo" />
           </div>
         </div>

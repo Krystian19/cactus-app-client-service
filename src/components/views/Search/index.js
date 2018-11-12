@@ -18,7 +18,11 @@ export default class SearchView extends Component {
           {/* Start of main content */}
 
           <div className="big-search-box-container">
-            <input type="text" className="big-search-box-input" placeholder="Search by ..." />
+            <input
+              type="text"
+              className="big-search-box-input"
+              placeholder="Search by ..."
+            />
           </div>
           <div className="anime-thumbnail-list">
 
