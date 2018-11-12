@@ -2,7 +2,7 @@ import React from 'react';
 
 // ({ Episodes }) => (
 const HottestVideoBlock = (props) => {
-  const { props: { episodes, title } } = props;
+  const { props: { episodes, title, history } } = props;
 
   return (
     <div className="video-block">
@@ -20,6 +20,10 @@ const HottestVideoBlock = (props) => {
             <div
               key={episode.id}
               className={`anime-small-thumbnail ${(index === 0) ? 'big' : 'small'}`}
+              onClick={() => history.push(`/anime/video/${episode.id}`)}
+              onKeyPress={() => history.push(`/anime/video/${episode.id}`)}
+              role="menuitem"
+              tabIndex={index}
             >
               <div className="cover">
                 <img
@@ -51,7 +55,7 @@ const HottestVideoBlock = (props) => {
           ))}
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

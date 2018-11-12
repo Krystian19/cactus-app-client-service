@@ -59,11 +59,13 @@ export default class DashboardView extends Component {
                 <HottestVideoBlock props={{
                   title: '🔥 right now',
                   episodes: data.getHottestEpisodes,
+                  history,
                 }}
                 />
                 <VideoBlock props={{
                   title: 'New episodes',
                   episodes: data.getNewestEpisodes,
+                  history,
                 }}
                 />
                 <CategoriesBlock props={{

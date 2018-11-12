@@ -2,7 +2,7 @@ import React from 'react';
 
 // ({ Episodes }) => (
 const VideoBlock = (props) => {
-  const { props: { episodes, title } } = props;
+  const { props: { episodes, title, history } } = props;
 
   return (
     <div className="video-block">
@@ -16,8 +16,15 @@ const VideoBlock = (props) => {
       </div>
       <div className="video-block-content">
         <div className="anime-small-thumbnail-list">
-          {episodes.map(episode => (
-            <div key={episode.id} className="anime-small-thumbnail">
+          {episodes.map((episode, index) => (
+            <div
+              key={episode.id}
+              className="anime-small-thumbnail"
+              onClick={() => history.push(`/anime/video/${episode.id}`)}
+              onKeyPress={() => history.push(`/anime/video/${episode.id}`)}
+              role="menuitem"
+              tabIndex={index}
+            >
               <div className="cover">
                 <img
                   src={`/img_cdn/${episode.Season.background}`}
