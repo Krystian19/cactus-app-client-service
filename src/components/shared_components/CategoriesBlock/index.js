@@ -1,92 +1,121 @@
 import React from 'react';
 
 // ({ Categories }) => (
-const CategoriesBlock = () => (
-  <div className="video-block">
-    <div className="video-block-title">
-      <div className="video-block-title-head">
-        <span>Categories</span>
+const CategoriesBlock = (props) => {
+  const { props: { categories, title } } = props;
+
+  return (
+    <div className="video-block">
+      <div className="video-block-title">
+        <div className="video-block-title-head">
+          <span>{title}</span>
+        </div>
+        <div className="video-block-title-options">
+          <a href="http://www.google.com" className="button">View all</a>
+        </div>
       </div>
-      <div className="video-block-title-options">
-        <a href="http://www.google.com" className="button">View all</a>
-      </div>
-    </div>
-    <div className="video-block-content">
-      <div className="anime-small-thumbnail-list">
+      <div className="video-block-content">
+        <div className="anime-small-thumbnail-list">
 
-        {/* Start of row */}
-        <div className="anime-small-thumbnail small category">
-          <div className="cover">
-            <img src="img/categories/Action.png" alt="thumbnail" className="anime-small-thumbnail" />
-            <div className="overlay">
-              <span className="category_title">Action</span>
+          {categories.map(category => (
+            <div
+              key={category.id}
+              className="anime-small-thumbnail small category"
+            >
+              <div className="cover">
+                <img
+                  src={`/img_cdn/${category.thumbnail}`}
+                  alt="thumbnail"
+                  className="anime-small-thumbnail"
+                />
+                <div className="overlay">
+                  <span className="category_title">{category.title}</span>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div className="anime-small-thumbnail small category">
-          <div className="cover">
-            <img src="img/categories/Adventure.png" alt="thumbnail" className="anime-small-thumbnail" />
-            <div className="overlay">
-              <span className="category_title">Adventure</span>
-            </div>
-          </div>
-        </div>
-        <div className="anime-small-thumbnail small category">
-          <div className="cover">
-            <img src="img/categories/Comedy.png" alt="thumbnail" className="anime-small-thumbnail" />
-            <div className="overlay">
-              <span className="category_title">Comedy</span>
-            </div>
-          </div>
-        </div>
-        <div className="anime-small-thumbnail small category">
-          <div className="cover">
-            <img src="img/categories/DailyLife.png" alt="thumbnail" className="anime-small-thumbnail" />
-            <div className="overlay">
-              <span className="category_title">Daily Life</span>
-            </div>
-          </div>
-        </div>
-        {/* End of row */}
+          ))}
 
-        {/* Start of row */}
-        <div className="anime-small-thumbnail small category">
-          <div className="cover">
-            <img src="img/categories/Fantasy.png" alt="thumbnail" className="anime-small-thumbnail" />
-            <div className="overlay">
-              <span className="category_title">Fantasy</span>
-            </div>
-          </div>
         </div>
-        <div className="anime-small-thumbnail small category">
-          <div className="cover">
-            <img src="img/categories/Romance.png" alt="thumbnail" className="anime-small-thumbnail" />
-            <div className="overlay">
-              <span className="category_title">Romance</span>
-            </div>
-          </div>
-        </div>
-        <div className="anime-small-thumbnail small category">
-          <div className="cover">
-            <img src="img/categories/ScienceFiction.png" alt="thumbnail" className="anime-small-thumbnail" />
-            <div className="overlay">
-              <span className="category_title">Science Fiction</span>
-            </div>
-          </div>
-        </div>
-        <div className="anime-small-thumbnail small category">
-          <div className="cover">
-            <img src="img/categories/Sports.png" alt="thumbnail" className="anime-small-thumbnail" />
-            <div className="overlay">
-              <span className="category_title">Sports</span>
-            </div>
-          </div>
-        </div>
-        {/* End of row */}
-
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default CategoriesBlock;
+
+// {/* Start of row */}
+// <div className="anime-small-thumbnail small category">
+//   <div className="cover">
+//     <img src="img/categories/Action.png"
+//       alt="thumbnail" className="anime-small-thumbnail" />
+//     <div className="overlay">
+//       <span className="category_title">Action</span>
+//     </div>
+//   </div>
+// </div>
+//   <div className="anime-small-thumbnail small category">
+//     <div className="cover">
+//       <img src="img/categories/Adventure.png"
+//         alt="thumbnail" className="anime-small-thumbnail" />
+//       <div className="overlay">
+//         <span className="category_title">Adventure</span>
+//       </div>
+//     </div>
+//   </div>
+//   <div className="anime-small-thumbnail small category">
+//     <div className="cover">
+//       <img src="img/categories/Comedy.png" alt="thumbnail" className="anime-small-thumbnail" />
+//       <div className="overlay">
+//         <span className="category_title">Comedy</span>
+//       </div>
+//     </div>
+//   </div>
+//   <div className="anime-small-thumbnail small category">
+//     <div className="cover">
+//       <img src="img/categories/DailyLife.png"
+//         alt="thumbnail" className="anime-small-thumbnail" />
+//       <div className="overlay">
+//         <span className="category_title">Daily Life</span>
+//       </div>
+//     </div>
+//   </div>
+// {/* End of row */ }
+
+// {/* Start of row */ }
+// <div className="anime-small-thumbnail small category">
+//   <div className="cover">
+//     <img src="img/categories/Fantasy.png"
+//       alt="thumbnail" className="anime-small-thumbnail" />
+//     <div className="overlay">
+//       <span className="category_title">Fantasy</span>
+//     </div>
+//   </div>
+// </div>
+//   <div className="anime-small-thumbnail small category">
+//     <div className="cover">
+//       <img src="img/categories/Romance.png"
+//         alt="thumbnail" className="anime-small-thumbnail" />
+//       <div className="overlay">
+//         <span className="category_title">Romance</span>
+//       </div>
+//     </div>
+//   </div>
+//   <div className="anime-small-thumbnail small category">
+//     <div className="cover">
+//       <img src="img/categories/ScienceFiction.png"
+//         alt="thumbnail" className="anime-small-thumbnail" />
+//       <div className="overlay">
+//         <span className="category_title">Science Fiction</span>
+//       </div>
+//     </div>
+//   </div>
+//   <div className="anime-small-thumbnail small category">
+//     <div className="cover">
+//       <img src="img/categories/Sports.png"
+//         alt="thumbnail" className="anime-small-thumbnail" />
+//       <div className="overlay">
+//         <span className="category_title">Sports</span>
+//       </div>
+//     </div>
+//   </div>
+// {/* End of row */ }

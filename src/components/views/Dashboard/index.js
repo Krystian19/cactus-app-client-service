@@ -14,6 +14,11 @@ const DashboardQuery = gql`
     getNewestEpisodes {
       ...episodeThumbnailFields
     }
+    getGenres {
+      id,
+      title,
+      thumbnail
+    }
   }
     
   fragment episodeThumbnailFields on Episode {
@@ -61,7 +66,11 @@ export default class DashboardView extends Component {
                   episodes: data.getNewestEpisodes,
                 }}
                 />
-                <CategoriesBlock />
+                <CategoriesBlock props={{
+                  title: 'Categories',
+                  categories: data.getGenres,
+                }}
+                />
               </div>
             );
           }}
