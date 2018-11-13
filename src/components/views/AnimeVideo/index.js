@@ -2,6 +2,9 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import React, { Component } from 'react';
 import { Player } from 'video-react';
+import {
+  Link,
+} from 'react-router-dom';
 import Sidebar from '../../shared_components/Sidebar';
 
 const AnimeVideoQuery = gql`
@@ -14,6 +17,10 @@ const AnimeVideoQuery = gql`
         id,
         poster,
         title
+        Anime {
+          id,
+          title
+        }
       },
       EpisodeVersions {
         id,
@@ -76,10 +83,12 @@ export default class AnimeVideoView extends Component {
                     <div className="anime-watch-episode-description">
                       <div className="left-side">
                         <div className="cover">
-                          <img
-                            src={`/img_cdn/${getEpisode.Season.poster}`}
-                            alt="cover"
-                          />
+                          <Link to={`/anime/info/${getEpisode.Season.Anime.id}`}>
+                            <img
+                              src={`/img_cdn/${getEpisode.Season.poster}`}
+                              alt="cover"
+                            />
+                          </Link>
                         </div>
                         <div className="info">
                           <h1>
