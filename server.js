@@ -118,8 +118,8 @@ app.get('**', (req, res) => {
 });
 
 // We ignore error stack traces for the moment
-app.use((err, req, res, next) => {
-
+// app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   // Ignores the express-request-proxy related errors
   if (err.message === 'API call timed out') {
     return res.end();
