@@ -57,8 +57,8 @@ app.get(
 
     const proxy = requestProxy({
       url: videoServiceUrl + videoName,
-      query: {},
-      headers: {},
+      query: req.query,
+      headers: req.headers,
     });
 
     proxy(req, res, next);
