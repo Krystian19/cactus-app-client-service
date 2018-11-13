@@ -1,6 +1,7 @@
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import React, { Component } from 'react';
+import { Player } from 'video-react';
 import Sidebar from '../../shared_components/Sidebar';
 
 const AnimeVideoQuery = gql`
@@ -56,7 +57,7 @@ export default class AnimeVideoView extends Component {
                 <div className="anime-watch-episode">
                   <div className="anime-watch-episode-container">
                     <div className="anime-watch-episode-video">
-                      <iframe
+                      {/* <iframe
                         src="https://streamango.com/embed/brbamcadtlcnmttr"
                         width="100%"
                         height="100%"
@@ -64,6 +65,12 @@ export default class AnimeVideoView extends Component {
                         scrolling="no"
                         allowFullScreen="allowfullscreen"
                         title="episode-video"
+                      /> */}
+                      <Player
+                        playsInline
+                        poster={`/img_cdn/${getEpisode.thumbnail}`}
+                        // src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
+                        src="/video_cdn/test"
                       />
                     </div>
                     <div className="anime-watch-episode-description">
