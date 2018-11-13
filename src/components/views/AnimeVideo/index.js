@@ -92,7 +92,9 @@ export default class AnimeVideoView extends Component {
                         </div>
                         <div className="info">
                           <h1>
-                            {getEpisode.Season.title}
+                            <Link to={`/anime/info/${getEpisode.Season.Anime.id}`}>
+                              {getEpisode.Season.title}
+                            </Link>
                           </h1>
                           <h2>
                             Episode
