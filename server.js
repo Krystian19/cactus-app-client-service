@@ -119,15 +119,21 @@ app.get('**', (req, res) => {
 
 // We ignore error stack traces for the moment
 // app.use((err, req, res, next) => {
-app.use((err, req, res) => {
-  // Ignores the express-request-proxy related errors
-  if (err.message === 'API call timed out') {
+app.use((error, req, res, next) => {
+  // If error has type "API call timed out", just ignore it ...
+  // This error is related to the video proxy when the client is buffering ...
+  if (error && error.message === 'API call timed out') {
+    // console.log(error);
     return res.end();
   }
 
-  console.log(err);
-  return res.end();
-});
+  // If error is present, log it in the console
+  if (error) {
+    console.log(error);
+  }
 
+  // No error present ?, keep going ...
+  return next();
+});
 
 app.listen(port, () => console.log(`App listening on port ${port}`));
