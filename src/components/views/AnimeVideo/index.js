@@ -70,7 +70,7 @@ export default class AnimeVideoView extends Component {
                         playsInline
                         poster={`/img_cdn/${getEpisode.thumbnail}`}
                         // src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
-                        src="/video_cdn/test"
+                        src="/video_cdn/FQ4FXVX3X5"
                       />
                     </div>
                     <div className="anime-watch-episode-description">
