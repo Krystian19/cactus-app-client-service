@@ -13,6 +13,12 @@ const AnimeVideoQuery = gql`
       id,
       thumbnail,
       episodeOrder,
+      EarlierEpisode {
+        id
+      },
+      LaterEpisode {
+        id
+      },
       Season {
         id,
         poster,
@@ -97,30 +103,71 @@ export default class AnimeVideoView extends Component {
                             </Link>
                           </h1>
                           <h2>
-                            Episode
-                            {getEpisode.episodeOrder}
+                            {`Episode ${getEpisode.episodeOrder}`}
                           </h2>
                         </div>
                       </div>
                       <div className="right-side">
                         <div className="controls">
-                          <div className="previous-option">
-                            <div className="icon">
-                              <i className="fas fa-chevron-left" />
-                            </div>
-                            <div className="text"> Prev </div>
-                          </div>
-                          <div className="list-option">
+                          {
+                            getEpisode.EarlierEpisode
+                            && (
+                              <div
+                                className="previous-option"
+                                onClick={
+                                  () => history.push(
+                                    `/anime/video/${getEpisode.EarlierEpisode.id}`)}
+                                onKeyPress={
+                                  () => history.push(
+                                    `/anime/video/${getEpisode.EarlierEpisode.id}`)}
+                                role="menuitem"
+                                tabIndex={-1}
+                              >
+                                <div className="icon">
+                                  <i className="fas fa-chevron-left" />
+                                </div>
+                                <div className="text"> Prev </div>
+                              </div>
+                            )
+                          }
+                          <div
+                            className="list-option"
+                            onClick={
+                              () => history.push(
+                                `/anime/info/${getEpisode.Season.Anime.id}`,
+                              )}
+                            onKeyPress={
+                              () => history.push(
+                                `/anime/info/${getEpisode.Season.Anime.id}`,
+                              )}
+                            role="menuitem"
+                            tabIndex={-2}
+                          >
                             <div className="icon">
                               <i className="fas fa-list-ul" />
                             </div>
                           </div>
-                          <div className="next-option">
-                            <div className="text"> Next </div>
-                            <div className="icon">
-                              <i className="fas fa-chevron-right" />
-                            </div>
-                          </div>
+                          {
+                            getEpisode.LaterEpisode
+                            && (
+                              <div
+                                className="next-option"
+                                onClick={
+                                  () => history.push(
+                                    `/anime/video/${getEpisode.LaterEpisode.id}`)}
+                                onKeyPress={
+                                  () => history.push(
+                                    `/anime/video/${getEpisode.LaterEpisode.id}`)}
+                                role="menuitem"
+                                tabIndex={-3}
+                              >
+                                <div className="text"> Next </div>
+                                <div className="icon">
+                                  <i className="fas fa-chevron-right" />
+                                </div>
+                              </div>
+                            )
+                          }
                         </div>
                       </div>
                     </div>
