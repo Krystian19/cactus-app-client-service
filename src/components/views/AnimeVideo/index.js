@@ -14,10 +14,12 @@ const AnimeVideoQuery = gql`
       thumbnail,
       episodeOrder,
       EarlierEpisode {
-        id
+        id,
+        episodeOrder
       },
       LaterEpisode {
-        id
+        id,
+        episodeOrder
       },
       Season {
         id,
@@ -114,12 +116,15 @@ export default class AnimeVideoView extends Component {
                             && (
                               <div
                                 className="previous-option"
+                                data-tippy-content="Tooltip C"
                                 onClick={
                                   () => history.push(
-                                    `/anime/video/${getEpisode.EarlierEpisode.id}`)}
+                                    `/anime/video/${getEpisode.EarlierEpisode.id}`,
+                                  )}
                                 onKeyPress={
                                   () => history.push(
-                                    `/anime/video/${getEpisode.EarlierEpisode.id}`)}
+                                    `/anime/video/${getEpisode.EarlierEpisode.id}`,
+                                  )}
                                 role="menuitem"
                                 tabIndex={-1}
                               >
@@ -154,10 +159,12 @@ export default class AnimeVideoView extends Component {
                                 className="next-option"
                                 onClick={
                                   () => history.push(
-                                    `/anime/video/${getEpisode.LaterEpisode.id}`)}
+                                    `/anime/video/${getEpisode.LaterEpisode.id}`,
+                                  )}
                                 onKeyPress={
                                   () => history.push(
-                                    `/anime/video/${getEpisode.LaterEpisode.id}`)}
+                                    `/anime/video/${getEpisode.LaterEpisode.id}`,
+                                  )}
                                 role="menuitem"
                                 tabIndex={-3}
                               >
