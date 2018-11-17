@@ -5,6 +5,7 @@ import Sidebar from '../../shared_components/Sidebar';
 import HottestVideoBlock from '../../shared_components/HottestVideoBlock';
 import VideoBlock from '../../shared_components/VideoBlock';
 import CategoriesBlock from '../../shared_components/CategoriesBlock';
+import LoadingSpinner from '../../shared_components/LoadingSpinner';
 
 const DashboardQuery = gql`
   query {
@@ -50,7 +51,14 @@ export default class DashboardView extends Component {
         <Sidebar props={{ history }} />
         <Query query={DashboardQuery}>
           {({ loading, error, data }) => {
-            if (loading) return <p>Loading...</p>;
+            if (loading) {
+              return (
+                <div className="main-content no-padding">
+                  <LoadingSpinner />
+                </div>
+              );
+            }
+
             if (error) return <p>Error :(</p>;
 
             console.log(data);

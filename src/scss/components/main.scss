@@ -35,6 +35,31 @@ h1, h2, h3, h4, h5, h6 {
   display: none !important;
 }
 
+.loader-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader-container .loader {
+  border: .3rem solid #767676; /* Light grey */
+  border-top: .3rem solid #ff6c00;
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+  animation: spin .7s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 form {
   padding: 0;
   margin: 0;
