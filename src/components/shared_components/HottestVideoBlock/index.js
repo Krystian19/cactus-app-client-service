@@ -55,7 +55,7 @@ const HottestVideoBlock = (props) => {
           ))}
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 
