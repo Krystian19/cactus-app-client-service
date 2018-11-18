@@ -6,6 +6,7 @@ import {
   Link,
 } from 'react-router-dom';
 import Sidebar from '../../shared_components/Sidebar';
+import LoadingSpinner from '../../shared_components/LoadingSpinner';
 
 const AnimeVideoQuery = gql`
   query ($id:Int) {
@@ -62,7 +63,14 @@ export default class AnimeVideoView extends Component {
 
           <Query query={AnimeVideoQuery} variables={{ id: Number(params.id) }}>
             {({ loading, error, data }) => {
-              if (loading) return <p>Loading...</p>;
+              if (loading) {
+                return (
+                  <div className="main-content no-padding">
+                    <LoadingSpinner />
+                  </div>
+                );
+              }
+
               if (error) return <p>Error :(</p>;
 
               console.log(data);

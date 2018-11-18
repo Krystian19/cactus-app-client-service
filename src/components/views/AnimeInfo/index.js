@@ -1,8 +1,9 @@
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import React, { Component } from 'react';
-import Sidebar from '../../shared_components/Sidebar';
 import AnimeSeason from './components/AnimeSeason';
+import Sidebar from '../../shared_components/Sidebar';
+import LoadingSpinner from '../../shared_components/LoadingSpinner';
 
 const AnimeInfoQuery = gql`
 query($id:Int) {
@@ -81,7 +82,14 @@ export default class AnimeInfoView extends Component {
 
           <Query query={AnimeInfoQuery} variables={{ id: Number(params.id) }}>
             {({ loading, error, data }) => {
-              if (loading) return <p>Loading...</p>;
+              if (loading) {
+                return (
+                  <div className="main-content no-padding">
+                    <LoadingSpinner />
+                  </div>
+                );
+              }
+
               if (error) return <p>Error :(</p>;
 
               console.log(data);

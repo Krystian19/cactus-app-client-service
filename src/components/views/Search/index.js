@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import React, { Component } from 'react';
 import Sidebar from '../../shared_components/Sidebar';
 import AnimeThumbnailList from '../../shared_components/AnimeThumbnailList';
+import LoadingSpinner from '../../shared_components/LoadingSpinner';
 
 const SearchViewQuery = gql`
   query {
@@ -40,7 +41,14 @@ export default class SearchView extends Component {
 
           <Query query={SearchViewQuery}>
             {({ loading, error, data }) => {
-              if (loading) return <p>Loading...</p>;
+              if (loading) {
+                return (
+                  <div className="main-content no-padding">
+                    <LoadingSpinner />
+                  </div>
+                );
+              }
+
               if (error) return <p>Error :(</p>;
 
               console.log(data);
