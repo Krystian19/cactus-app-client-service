@@ -117,8 +117,7 @@ app.get('**', (req, res) => {
   });
 });
 
-// We ignore error stack traces for the moment
-// app.use((err, req, res, next) => {
+// Filter error stacktraces
 app.use((error, req, res, next) => {
   // If error has type "API call timed out", just ignore it ...
   // This error is related to the video proxy when the client is buffering ...
@@ -132,7 +131,7 @@ app.use((error, req, res, next) => {
     console.log(error);
   }
 
-  // No error present ?, keep going ...
+  // Then keep going ...
   return next();
 });
 
