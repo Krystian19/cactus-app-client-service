@@ -11,24 +11,10 @@ const SearchViewQuery = gql`
       id,
       title,
       poster,
-      Episodes {
-        id
-      }
+      episodeCount
     }
   }
 `;
-
-
-// query($title: String) {
-//   findSeasons(title:$title) {
-//     id,
-//     title,
-//     poster,
-//     Episodes {
-//       id
-//     }
-//   }
-// }
 
 export default class SearchView extends Component {
   constructor() {

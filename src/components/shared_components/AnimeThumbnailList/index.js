@@ -40,7 +40,7 @@ const AnimeThumbnailList = (props) => {
               {anime.title}
             </div>
             <div className="year">
-              {`2018 - ${anime.Episodes.length} episodes`}
+              {`2018 - ${anime.episodeCount} episodes`}
             </div>
           </div>
         </div>
