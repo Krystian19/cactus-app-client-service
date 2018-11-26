@@ -1,7 +1,18 @@
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
 import React, { Component } from 'react';
 import {
   Link,
 } from 'react-router-dom';
+
+const RandomAnimeQuery = gql`
+ query {
+    getRandomAnime {
+      id,
+      title
+    }
+  }
+`;
 
 export default class Sidebar extends Component {
   // constructor() {
@@ -39,11 +50,26 @@ export default class Sidebar extends Component {
               <i className="fas fa-calendar-alt" />
             </Link>
           </div>
-          <div className="sidebar-option">
-            <Link to="/anime" tabIndex="-3">
-              <i className="fas fa-random" />
-            </Link>
-          </div>
+
+          <Query query={RandomAnimeQuery}>
+            {({ loading, error, data }) => {
+              // While request is loading no option is shown
+              if (loading) return false;
+
+              // If there was an error in the request no option is shown
+              if (error) return false;
+
+              console.log(data);
+
+              return (
+                <div className="sidebar-option">
+                  <Link to={`/anime/info/${data.getRandomAnime.id}`} tabIndex="-3">
+                    <i className="fas fa-random" />
+                  </Link>
+                </div>
+              );
+            }}
+          </Query>
         </div>
         <div className="sidebar-bottom-options">
           <div className="sidebar-option">
