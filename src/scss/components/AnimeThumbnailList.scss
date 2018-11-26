@@ -4,6 +4,27 @@
   grid-gap: 1em 0.8%;
   color: #444;
   justify-content: center;
+
+  &.no-grid {
+    display: block;
+  }
+
+  & .nothing-found {
+    color: rgba(255,255,255,.9);
+    margin-top: 30px;
+
+    & h1.text-emoji {
+      text-align: center;
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+
+    & .nothing-found-title {
+      text-align: center;
+      font-size: 4em;
+      margin-bottom: 20px;
+    }
+  }
 }
 
 .anime-thumbnail {
@@ -14,25 +35,25 @@
 .anime-thumbnail .cover {
   position: relative;
   padding-top: 140%;
-  margin-bottom: .4em;
+  margin-bottom: 0.4em;
 }
 
 .anime-thumbnail .cover .score {
   position: absolute;
   top: 0.75em;
-  left: .3875em;
+  left: 0.3875em;
   font-weight: 700;
-  font-size: .6rem;
-  background-color: rgba(0, 0, 0, .5);
+  font-size: 0.6rem;
+  background-color: rgba(0, 0, 0, 0.5);
   min-width: 5em;
   text-align: center;
   border-radius: 5em;
   z-index: 100;
-  padding: .3em 0;
+  padding: 0.3em 0;
 }
 
 .anime-thumbnail .cover .score i {
-  font-size: .5rem;
+  font-size: 0.5rem;
   color: #ffbb00;
 }
 
@@ -51,7 +72,13 @@
 }
 
 .anime-thumbnail .cover .overlay.darken {
-  background: linear-gradient(to bottom, rgba(0, 0, 0, .5) 0, rgba(0, 0, 0, .05) 50%, rgba(0, 0, 0, .05) 50%, rgba(0, 0, 0, .5) 100%);
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.5) 0,
+    rgba(0, 0, 0, 0.05) 50%,
+    rgba(0, 0, 0, 0.05) 50%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
 }
 
 .anime-thumbnail .cover .overlay.hover_hidden {
@@ -63,13 +90,13 @@
 }
 
 .anime-thumbnail .cover .overlay {
-  -webkit-transition: opacity .2s ease-in;
-  transition: opacity .2s ease-in;
+  -webkit-transition: opacity 0.2s ease-in;
+  transition: opacity 0.2s ease-in;
 }
 
 .anime-thumbnail .cover .overlay svg.play {
   fill: #ff6c00;
-  background: rgba(0, 0, 0, .75);
+  background: rgba(0, 0, 0, 0.75);
   width: 2em;
   height: 2em;
   border-radius: 5em;
@@ -92,7 +119,7 @@
 }
 
 .anime-thumbnail .info .title {
-  font-size: .8rem;
+  font-size: 0.8rem;
   font-weight: 700;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -100,5 +127,5 @@
 }
 
 .anime-thumbnail .info .year {
-  font-size: .6rem;
+  font-size: 0.6rem;
 }

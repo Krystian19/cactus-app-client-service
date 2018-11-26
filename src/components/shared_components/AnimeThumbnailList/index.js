@@ -3,16 +3,33 @@ import {
   Link,
 } from 'react-router-dom';
 
+import RandomTextEmoji from '../RandomTextEmoji';
+
 // ({ Categories }) => (
 const AnimeThumbnailList = (props) => {
   const { props: { animes } } = props;
 
   console.log(animes);
 
+  // If no animes were received
+  if (!animes || animes.length === 0) {
+    return (
+      <div className="anime-thumbnail-list no-grid">
+        <div className="nothing-found">
+          <h1 className="text-emoji">
+            {RandomTextEmoji()}
+          </h1>
+          <h2 className="nothing-found-title">
+            No results
+          </h2>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="anime-thumbnail-list">
-
-      {animes && animes.map(anime => (
+      {animes.map(anime => (
         <div
           key={anime.id}
           className="anime-thumbnail"
