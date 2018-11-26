@@ -6,8 +6,8 @@ import AnimeThumbnailList from '../../shared_components/AnimeThumbnailList';
 import LoadingSpinner from '../../shared_components/LoadingSpinner';
 
 const SearchViewQuery = gql`
-  query {
-    getSeasons {
+ query($title: String) {
+   findSeasons(title:$title) {
       id,
       title,
       poster,
@@ -18,13 +18,30 @@ const SearchViewQuery = gql`
   }
 `;
 
+
+// query($title: String) {
+//   findSeasons(title:$title) {
+//     id,
+//     title,
+//     poster,
+//     Episodes {
+//       id
+//     }
+//   }
+// }
+
 export default class SearchView extends Component {
-  // constructor() {
-  //   super()
-  // }
+  constructor() {
+    super();
+
+    this.state = {
+      searchFieldText: '',
+    };
+  }
 
   render() {
     const { history } = this.props;
+    const { searchFieldText } = this.state;
     return (
       <div className="main-container">
         <Sidebar props={{ history }} />
@@ -36,10 +53,14 @@ export default class SearchView extends Component {
               type="text"
               className="big-search-box-input"
               placeholder="Search by ..."
+              value={searchFieldText}
+              onChange={
+                ({ target: { value } }) => this.setState({ searchFieldText: value })
+              }
             />
           </div>
 
-          <Query query={SearchViewQuery}>
+          <Query query={SearchViewQuery} variables={{ title: searchFieldText }}>
             {({ loading, error, data }) => {
               if (loading) {
                 return (
@@ -55,7 +76,7 @@ export default class SearchView extends Component {
               return (
 
                 <AnimeThumbnailList props={{
-                  animes: data.getSeasons,
+                  animes: data.findSeasons,
                 }}
                 />
 

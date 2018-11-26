@@ -7,10 +7,12 @@ import {
 const AnimeThumbnailList = (props) => {
   const { props: { animes } } = props;
 
+  console.log(animes);
+
   return (
     <div className="anime-thumbnail-list">
 
-      {animes.map(anime => (
+      {animes && animes.map(anime => (
         <div
           key={anime.id}
           className="anime-thumbnail"
