@@ -2,7 +2,14 @@ import React from 'react';
 
 // ({ Episodes }) => (
 const HottestVideoBlock = (props) => {
-  const { props: { episodes, title, history } } = props;
+  const {
+    props: {
+      episodes,
+      title,
+      history,
+      viewAllLink,
+    },
+  } = props;
 
   return (
     <div className="video-block">
@@ -11,7 +18,7 @@ const HottestVideoBlock = (props) => {
           <span>{title}</span>
         </div>
         <div className="video-block-title-options">
-          <a href="/hottest_episodes" className="button">View all</a>
+          <a href={viewAllLink} className="button">View all</a>
         </div>
       </div>
       <div className="video-block-content">

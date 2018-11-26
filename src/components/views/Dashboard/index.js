@@ -68,6 +68,7 @@ export default class DashboardView extends Component {
                   title: '🔥 right now',
                   episodes: data.getHottestEpisodes,
                   history,
+                  viewAllLink: '/hottest_episodes',
                 }}
                 />
                 <VideoBlock props={{
