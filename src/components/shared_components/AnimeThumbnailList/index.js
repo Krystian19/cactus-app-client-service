@@ -20,7 +20,7 @@ const AnimeThumbnailList = (props) => {
             {RandomTextEmoji()}
           </h1>
           <h2 className="nothing-found-title">
-            No results
+            Nothing found
           </h2>
         </div>
       </div>

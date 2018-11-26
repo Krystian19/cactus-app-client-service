@@ -11,7 +11,7 @@ const HottestVideoBlock = (props) => {
           <span>{title}</span>
         </div>
         <div className="video-block-title-options">
-          <a href="http://www.google.com" className="button">View all</a>
+          <a href="/hottest_episodes" className="button">View all</a>
         </div>
       </div>
       <div className="video-block-content">
