@@ -6,7 +6,7 @@ import Sidebar from '../../shared_components/Sidebar';
 import LoadingSpinner from '../../shared_components/LoadingSpinner';
 
 const AnimeInfoQuery = gql`
-query($id:Int) {
+  query($id:Int) {
     getAnime(id: $id) {
       id,
       title,

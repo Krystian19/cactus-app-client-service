@@ -53,7 +53,7 @@ export default class HottestEpisodes extends Component {
               <div className="main-content no-padding">
                 <EpisodeList
                   props={{
-                    title: 'Hottest episodes',
+                    title: 'Hottest episodes of today',
                     episodes: data.getHottestEpisodes,
                     history,
                   }}

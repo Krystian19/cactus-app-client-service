@@ -11,7 +11,11 @@ const SearchViewQuery = gql`
       id,
       title,
       poster,
-      episodeCount
+      episodeCount,
+      Anime {
+        id,
+        title
+      }
     }
   }
 `;
@@ -62,7 +66,7 @@ export default class SearchView extends Component {
               return (
 
                 <AnimeThumbnailList props={{
-                  animes: data.findSeasons,
+                  seasons: data.findSeasons,
                 }}
                 />
 

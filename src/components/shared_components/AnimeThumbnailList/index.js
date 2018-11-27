@@ -7,12 +7,12 @@ import RandomTextEmoji from '../RandomTextEmoji';
 
 // ({ Categories }) => (
 const AnimeThumbnailList = (props) => {
-  const { props: { animes } } = props;
+  const { props: { seasons } } = props;
 
-  console.log(animes);
+  console.log(seasons);
 
-  // If no animes were received
-  if (!animes || animes.length === 0) {
+  // If no seasons were received
+  if (!seasons || seasons.length === 0) {
     return (
       <div className="anime-thumbnail-list no-grid">
         <div className="nothing-found">
@@ -29,19 +29,19 @@ const AnimeThumbnailList = (props) => {
 
   return (
     <div className="anime-thumbnail-list">
-      {animes.map(anime => (
+      {seasons.map(season => (
         <div
-          key={anime.id}
+          key={season.id}
           className="anime-thumbnail"
         >
-          <Link to={`/anime/info/${anime.id}`}>
+          <Link to={`/anime/info/${season.Anime.id}`}>
             <div className="cover">
               <span className="score">
                 4.5/5
                 <i className="fas fa-star" />
               </span>
               <img
-                src={`/img_cdn/${anime.poster}`}
+                src={`/img_cdn/${season.poster}`}
                 alt="thumbnail"
                 className="anime-thumbnail"
               />
@@ -54,10 +54,10 @@ const AnimeThumbnailList = (props) => {
           </Link>
           <div className="info">
             <div className="title">
-              {anime.title}
+              {season.title}
             </div>
             <div className="year">
-              {`2018 - ${anime.episodeCount} episodes`}
+              {`2018 - ${season.episodeCount} episodes`}
             </div>
           </div>
         </div>
