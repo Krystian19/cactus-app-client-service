@@ -61,6 +61,9 @@ export default class Sidebar extends Component {
 
               console.log(data);
 
+              // If no data received
+              if (!data.getRandomAnime) return false;
+
               return (
                 <div className="sidebar-option">
                   <Link to={`/anime/info/${data.getRandomAnime.id}`} tabIndex="-3">
