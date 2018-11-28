@@ -7,7 +7,7 @@ import LoadingSpinner from '../../shared_components/LoadingSpinner';
 
 const HottestEpisodesQuery = gql`
   query {
-    getHottestEpisodes {
+    getHottestEpisodes(limit: 20) {
       id,
       thumbnail,
       episodeOrder,
