@@ -52,7 +52,9 @@ export default class Sidebar extends Component {
           </div>
 
           <Query query={RandomAnimeQuery}>
-            {({ loading, error, data }) => {
+            {({
+              loading, error, data, refetch,
+            }) => {
               // While request is loading no option is shown
               if (loading) return false;
 
@@ -66,7 +68,11 @@ export default class Sidebar extends Component {
 
               return (
                 <div className="sidebar-option">
-                  <Link to={`/anime/info/${data.getRandomAnime.id}`} tabIndex="-3">
+                  <Link
+                    onClick={() => refetch()}
+                    to={`/anime/info/${data.getRandomAnime.id}`}
+                    tabIndex="-3"
+                  >
                     <i className="fas fa-random" />
                   </Link>
                 </div>
