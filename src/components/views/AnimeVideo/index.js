@@ -25,7 +25,8 @@ const AnimeVideoQuery = gql`
       Season {
         id,
         poster,
-        title
+        title,
+        seasonOrder
         Anime {
           id,
           title
@@ -109,7 +110,10 @@ export default class AnimeVideoView extends Component {
                         <div className="info">
                           <h1>
                             <Link to={`/anime/info/${getEpisode.Season.Anime.id}`}>
-                              {getEpisode.Season.title}
+                              {
+                                `${getEpisode.Season.title}
+                                (Season ${getEpisode.Season.seasonOrder})`
+                              }
                             </Link>
                           </h1>
                           <h2>
