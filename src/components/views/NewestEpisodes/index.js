@@ -1,45 +1,31 @@
-import React, { Component } from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import React, { Component } from 'react';
 import Sidebar from '../../shared_components/Sidebar';
-import HottestVideoBlock from '../../shared_components/HottestVideoBlock';
 import VideoBlock from '../../shared_components/VideoBlock';
-import CategoriesBlock from '../../shared_components/CategoriesBlock';
 import LoadingSpinner from '../../shared_components/LoadingSpinner';
 
-const DashboardQuery = gql`
+const NewestEpisodesQuery = gql`
   query {
-    getHottestEpisodes {
-      ...episodeThumbnailFields
-    }
-    getNewestEpisodes {
-      ...episodeThumbnailFields
-    }
-    getGenres {
+    getNewestEpisodes(limit: 30) {
       id,
-      title,
-      thumbnail
-    }
-  }
-    
-  fragment episodeThumbnailFields on Episode {
-    id,
-    thumbnail,
-    episodeOrder,
-    Season {
-      id,
-      seasonOrder,
-      title,
-      background,
-      Anime {
+      thumbnail,
+      episodeOrder,
+      Season {
         id,
-        title
+        seasonOrder,
+        title,
+        background,
+        Anime {
+          id,
+          title
+        }
       }
     }
   }
 `;
 
-export default class DashboardView extends Component {
+export default class NewestEpisodes extends Component {
   // constructor() {
   //   super()
   // }
@@ -49,7 +35,8 @@ export default class DashboardView extends Component {
     return (
       <div className="main-container">
         <Sidebar props={{ history }} />
-        <Query query={DashboardQuery}>
+
+        <Query query={NewestEpisodesQuery}>
           {({ loading, error, data }) => {
             if (loading) {
               return (
@@ -64,23 +51,10 @@ export default class DashboardView extends Component {
             console.log(data);
             return (
               <div className="main-content no-padding">
-                <HottestVideoBlock props={{
-                  title: '🔥 right now',
-                  episodes: data.getHottestEpisodes,
-                  history,
-                  viewAllLink: '/hottest_episodes',
-                }}
-                />
                 <VideoBlock props={{
                   title: 'New episodes',
                   episodes: data.getNewestEpisodes,
                   history,
-                  viewAllLink: '/newest_episodes',
-                }}
-                />
-                <CategoriesBlock props={{
-                  title: 'Categories',
-                  categories: data.getGenres,
                 }}
                 />
               </div>

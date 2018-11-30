@@ -2,7 +2,14 @@ import React from 'react';
 
 // ({ Episodes }) => (
 const VideoBlock = (props) => {
-  const { props: { episodes, title, history } } = props;
+  const {
+    props: {
+      episodes,
+      title,
+      history,
+      viewAllLink,
+    },
+  } = props;
 
   return (
     <div className="video-block">
@@ -10,9 +17,11 @@ const VideoBlock = (props) => {
         <div className="video-block-title-head">
           <span>{title}</span>
         </div>
-        <div className="video-block-title-options">
-          <a href="http://www.google.com" className="button">View all</a>
-        </div>
+        {viewAllLink && (
+          <div className="video-block-title-options">
+            <a href={viewAllLink} className="button">View all</a>
+          </div>
+        )}
       </div>
       <div className="video-block-content">
         <div className="anime-small-thumbnail-list">
