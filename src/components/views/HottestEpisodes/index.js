@@ -2,12 +2,12 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import React, { Component } from 'react';
 import Sidebar from '../../shared_components/Sidebar';
-import EpisodeList from '../../shared_components/EpisodeList';
+import HottestVideoBlock from '../../shared_components/HottestVideoBlock';
 import LoadingSpinner from '../../shared_components/LoadingSpinner';
 
 const HottestEpisodesQuery = gql`
   query {
-    getHottestEpisodes(limit: 20) {
+    getHottestEpisodes(limit: 30) {
       id,
       thumbnail,
       episodeOrder,
@@ -51,12 +51,11 @@ export default class HottestEpisodes extends Component {
             console.log(data);
             return (
               <div className="main-content no-padding">
-                <EpisodeList
-                  props={{
-                    title: 'Hottest episodes of today',
-                    episodes: data.getHottestEpisodes,
-                    history,
-                  }}
+                <HottestVideoBlock props={{
+                  title: '🔥 right now',
+                  episodes: data.getHottestEpisodes,
+                  history,
+                }}
                 />
               </div>
             );
