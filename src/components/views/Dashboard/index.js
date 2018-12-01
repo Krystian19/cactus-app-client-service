@@ -81,6 +81,7 @@ export default class DashboardView extends Component {
                 <CategoriesBlock props={{
                   title: 'Categories',
                   categories: data.getGenres,
+                  viewAllLink: '/categories',
                 }}
                 />
               </div>

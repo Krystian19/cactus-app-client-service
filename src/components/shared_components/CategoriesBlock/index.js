@@ -2,7 +2,7 @@ import React from 'react';
 
 // ({ Categories }) => (
 const CategoriesBlock = (props) => {
-  const { props: { categories, title } } = props;
+  const { props: { categories, title, viewAllLink } } = props;
 
   return (
     <div className="video-block">
@@ -10,9 +10,11 @@ const CategoriesBlock = (props) => {
         <div className="video-block-title-head">
           <span>{title}</span>
         </div>
-        <div className="video-block-title-options">
-          <a href="http://www.google.com" className="button">View all</a>
-        </div>
+        {viewAllLink && (
+          <div className="video-block-title-options">
+            <a href={viewAllLink} className="button">View all</a>
+          </div>
+        )}
       </div>
       <div className="video-block-content">
         <div className="anime-small-thumbnail-list">

@@ -12,6 +12,7 @@ import AnimeInfo from './AnimeInfo';
 import AnimeVideo from './AnimeVideo';
 import HottestEpisodes from './HottestEpisodes';
 import NewestEpisodes from './NewestEpisodes';
+import Categories from './Categories';
 
 export default () => (
   <Switch>
@@ -20,6 +21,7 @@ export default () => (
     <Route path="/anime" exact component={Search} />
     <Route path="/hottest_episodes" exact component={HottestEpisodes} />
     <Route path="/newest_episodes" exact component={NewestEpisodes} />
+    <Route path="/categories" exact component={Categories} />
     <Route path="/anime/info/:id" exact component={AnimeInfo} />
     <Route path="/anime/video/:id" exact component={AnimeVideo} />
     <Redirect from="/*" to="/" />
