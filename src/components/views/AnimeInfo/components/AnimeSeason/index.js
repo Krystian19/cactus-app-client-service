@@ -35,9 +35,10 @@ const AnimeSeason = (props) => {
                 <div className="info">
                   <div className="title">
                     <div className="title-container">
-                      {(episode.EpisodeTitles[0] && episode.EpisodeTitles[0].text) && (
-                        episode.EpisodeTitles[0].text
-                      )}
+                      {(episode.EpisodeVersions[0] && episode.EpisodeVersions[0].title)
+                        && (
+                          episode.EpisodeVersions[0].title
+                        )}
                     </div>
                     <div className="detail-container">
                       Ep.

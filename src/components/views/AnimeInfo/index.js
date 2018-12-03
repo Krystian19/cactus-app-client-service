@@ -39,18 +39,10 @@ const AnimeInfoQuery = gql`
           id,
           thumbnail,
           episodeOrder,
-          EpisodeTitles {
-            id,
-            text,
-            Language {
-              id,
-              name,
-              iso_code,
-            }
-          },
           EpisodeVersions {
             id,
-            episode_url
+            episode_url,
+            title,
             Language {
               id,
               name,
