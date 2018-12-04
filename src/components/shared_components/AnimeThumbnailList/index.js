@@ -41,11 +41,6 @@ const AnimeThumbnailList = (props) => {
                 4.5/5
                 <i className="fas fa-star" />
               </span>
-              {/* <img
-                src={`/img_cdn/${season.poster}`}
-                alt="thumbnail"
-                className="anime-thumbnail"
-              /> */}
               <LazyImage
                 src={`/img_cdn/${season.poster}`}
                 errorSrc="/img_cdn/test.jpg"

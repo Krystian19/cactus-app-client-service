@@ -1,4 +1,5 @@
 import React from 'react';
+import LazyImage from '../LazyImage';
 
 // ({ Episodes }) => (
 const HottestVideoBlock = (props) => {
@@ -35,11 +36,17 @@ const HottestVideoBlock = (props) => {
               tabIndex={index}
             >
               <div className="cover">
-                <img
+                <LazyImage
+                  src={`/img_cdn/${episode.Season.background}`}
+                  errorSrc="/img_cdn/test.jpg"
+                  alt="thumbnail"
+                  className="anime-small-thumbnail fade-in"
+                />
+                {/* <img
                   src={`/img_cdn/${episode.Season.background}`}
                   alt="thumbnail"
                   className="anime-small-thumbnail"
-                />
+                /> */}
                 <div
                   className="overlay hover_hidden darken"
                 >
