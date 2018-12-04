@@ -12,6 +12,7 @@ module.exports = {
     'max-len': ["error", { "code": 88, "comments": 88, "ignoreUrls": true, "ignoreRegExpLiterals": true }]
   },
   "globals": {
+    "Image": true,
     "window": true,
     "document": true,
     "console": true,

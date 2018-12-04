@@ -5,19 +5,36 @@ export default class LazyThumbnailImage extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { isMounted: false };
+    this.state = {
+      isMounted: false,
+      isLoaded: false,
+    };
   }
 
   componentDidMount() {
+    const { src } = this.props;
+
+    // Set component state to mounted
     this.setState({ isMounted: true });
+
+    // Force browser to load the requested image
+    // and call onload event when/if done
+    const img = new Image();
+    img.src = src;
+    img.onload = this.imageDidLoad;
+  }
+
+  imageDidLoad = () => {
+    this.setState({ isLoaded: true });
   }
 
   render() {
     const { src, errorSrc } = this.props;
-    const { isMounted } = this.state;
+    const { isMounted, isLoaded } = this.state;
 
-    // Element is not mounted yet
-    if (!isMounted) {
+    // If element is not mounted yet or
+    // image has not loaded yet
+    if ((!isMounted) || (!isLoaded)) {
       return <LoadingSpinner />;
     }
 
