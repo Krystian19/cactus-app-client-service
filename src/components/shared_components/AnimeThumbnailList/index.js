@@ -4,7 +4,7 @@ import {
 } from 'react-router-dom';
 
 import RandomTextEmoji from '../RandomTextEmoji';
-import LazyThumbnailImage from './components/LazyThumbnailImage';
+import LazyImage from '../LazyImage';
 
 // ({ Categories }) => (
 const AnimeThumbnailList = (props) => {
@@ -46,7 +46,7 @@ const AnimeThumbnailList = (props) => {
                 alt="thumbnail"
                 className="anime-thumbnail"
               /> */}
-              <LazyThumbnailImage
+              <LazyImage
                 src={`/img_cdn/${season.poster}`}
                 errorSrc="/img_cdn/test.jpg"
                 alt="thumbnail"
