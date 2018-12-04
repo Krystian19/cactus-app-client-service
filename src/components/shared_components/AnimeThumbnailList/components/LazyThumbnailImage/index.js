@@ -29,7 +29,12 @@ export default class LazyThumbnailImage extends Component {
   }
 
   render() {
-    const { src, errorSrc } = this.props;
+    const {
+      src,
+      errorSrc,
+      className,
+      alt,
+    } = this.props;
     const { isMounted, isLoaded } = this.state;
 
     // If element is not mounted yet or
@@ -42,8 +47,8 @@ export default class LazyThumbnailImage extends Component {
     return (
       <img
         src={isMounted ? src : errorSrc}
-        alt="thumbnail"
-        className="anime-thumbnail fade-in"
+        alt={alt}
+        className={className}
       />
     );
   }

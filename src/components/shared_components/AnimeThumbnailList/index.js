@@ -49,6 +49,8 @@ const AnimeThumbnailList = (props) => {
               <LazyThumbnailImage
                 src={`/img_cdn/${season.poster}`}
                 errorSrc="/img_cdn/test.jpg"
+                alt="thumbnail"
+                className="anime-thumbnail fade-in"
               />
               <div className="overlay hover_hidden darken">
                 <svg className="play" viewBox="0 0 24 24">
