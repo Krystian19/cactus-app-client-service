@@ -4,6 +4,7 @@ import {
 } from 'react-router-dom';
 
 import RandomTextEmoji from '../RandomTextEmoji';
+import LazyThumbnailImage from './components/LazyThumbnailImage';
 
 // ({ Categories }) => (
 const AnimeThumbnailList = (props) => {
@@ -40,10 +41,14 @@ const AnimeThumbnailList = (props) => {
                 4.5/5
                 <i className="fas fa-star" />
               </span>
-              <img
+              {/* <img
                 src={`/img_cdn/${season.poster}`}
                 alt="thumbnail"
                 className="anime-thumbnail"
+              /> */}
+              <LazyThumbnailImage
+                src={`/img_cdn/${season.poster}`}
+                errorSrc="/img_cdn/test.jpg"
               />
               <div className="overlay hover_hidden darken">
                 <svg className="play" viewBox="0 0 24 24">
