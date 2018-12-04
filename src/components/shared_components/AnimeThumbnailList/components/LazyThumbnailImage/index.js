@@ -43,7 +43,7 @@ export default class LazyThumbnailImage extends Component {
       <img
         src={isMounted ? src : errorSrc}
         alt="thumbnail"
-        className="anime-thumbnail"
+        className="anime-thumbnail fade-in"
       />
     );
   }

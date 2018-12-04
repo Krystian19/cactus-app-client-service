@@ -10,7 +10,7 @@
   }
 
   & .nothing-found {
-    color: rgba(255,255,255,.9);
+    color: rgba(255, 255, 255, 0.9);
     margin-top: 30px;
 
     & h1.text-emoji {
@@ -41,8 +41,8 @@
   & .loader-container .loader {
     width: 1em;
     height: 1em;
-    border: .2rem solid #767676;
-    border-top: .2rem solid #ff6c00;
+    border: 0.2rem solid #767676;
+    border-top: 0.2rem solid #ff6c00;
   }
 }
 
