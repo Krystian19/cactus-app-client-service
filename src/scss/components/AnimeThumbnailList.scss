@@ -36,6 +36,12 @@
   position: relative;
   padding-top: 140%;
   margin-bottom: 0.4em;
+  background-color: rgba(0, 0, 0, 0.3);
+
+  & .loader-container .loader {
+    width: 1em;
+    height: 1em;
+  }
 }
 
 .anime-thumbnail .cover .score {
