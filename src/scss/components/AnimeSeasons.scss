@@ -22,6 +22,10 @@
   grid-gap: 8px;
 }
 
+.anime-season-videos .anime-small-thumbnail .cover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
 .anime-season-videos .anime-small-thumbnail .cover .overlay {
   -webkit-transition: none;
   transition: opacity none;

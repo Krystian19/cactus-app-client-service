@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import AnimeSeason from './components/AnimeSeason';
 import Sidebar from '../../shared_components/Sidebar';
 import LoadingSpinner from '../../shared_components/LoadingSpinner';
+import LazyImage from '../../shared_components/LazyImage';
 
 const AnimeInfoQuery = gql`
   query($id:Int) {
@@ -119,7 +120,17 @@ export default class AnimeInfoView extends Component {
                       <div className="small-side">
                         <div className="details">
                           <div className="cover">
-                            <img src={`/img_cdn/${latestSeason.poster}`} alt="cover" />
+                            <LazyImage
+                              src={`/img_cdn/${latestSeason.poster}`}
+                              errorSrc="/img_cdn/test.jpg"
+                              alt="cover"
+                              className="fade-in"
+                              noLoadingSpinner
+                            />
+                            {/* <img
+                              src={`/img_cdn/${latestSeason.poster}`}
+                              alt="cover"
+                            /> */}
                           </div>
                           <div className="cover-details">
 

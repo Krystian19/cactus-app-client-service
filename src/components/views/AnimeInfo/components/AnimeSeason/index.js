@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Link,
 } from 'react-router-dom';
+import LazyImage from '../../../../shared_components/LazyImage';
 
 // ({ season }) => (
 const AnimeSeason = (props) => {
@@ -20,8 +21,14 @@ const AnimeSeason = (props) => {
               <div key={episode.id} className="anime-small-thumbnail">
                 <Link to={`/anime/video/${episode.id}`}>
                   <div className="cover">
-                    <img
+                    {/* <img
                       src={`/img_cdn/${episode.thumbnail}`}
+                      alt="thumbnail"
+                      className="anime-small-thumbnail"
+                    /> */}
+                    <LazyImage
+                      src={`/img_cdn/${episode.thumbnail}`}
+                      errorSrc="/img_cdn/test.jpg"
                       alt="thumbnail"
                       className="anime-small-thumbnail"
                     />
