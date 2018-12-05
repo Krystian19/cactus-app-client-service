@@ -8,6 +8,7 @@ export default class LazyImage extends Component {
     this.state = {
       isMounted: false,
       isLoaded: false,
+      loadError: false,
     };
   }
 
@@ -20,12 +21,17 @@ export default class LazyImage extends Component {
     // Force browser to load the requested image
     // and call onload event when/if done
     const img = new Image();
-    img.src = src;
     img.onload = this.imageDidLoad;
+    img.onerror = this.imageDidHaveLoadError;
+    img.src = src;
   }
 
   imageDidLoad = () => {
     this.setState({ isLoaded: true });
+  }
+
+  imageDidHaveLoadError = () => {
+    this.setState({ loadError: true });
   }
 
   render() {
@@ -36,19 +42,31 @@ export default class LazyImage extends Component {
       alt,
       noLoadingSpinner,
     } = this.props;
-    const { isMounted, isLoaded } = this.state;
 
-    // If element is not mounted yet or
-    // image has not loaded yet
-    if ((!isMounted) || (!isLoaded)) {
+    const { isMounted, isLoaded, loadError } = this.state;
+
+    // If image encountered an error during the load process
+    // return the designated error image.
+    if (loadError) {
+      return (
+        <img
+          src={errorSrc}
+          alt={alt}
+          className={className}
+        />
+      );
+    }
+
+    if (
+      (!isMounted) // If element is not mounted yet
+      || (!isLoaded) // Or if image has not loaded yet
+    ) {
       // If no spinner animation is desired
       if (noLoadingSpinner) return (null);
 
       // Otherwise return the spinner
       return <LoadingSpinner />;
     }
-
-    // TODO: Handle load errors
 
     // Return proper image when is not mounted
     return (
