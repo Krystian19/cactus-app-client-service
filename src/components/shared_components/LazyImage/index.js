@@ -34,12 +34,17 @@ export default class LazyImage extends Component {
       errorSrc,
       className,
       alt,
+      noLoadingSpinner,
     } = this.props;
     const { isMounted, isLoaded } = this.state;
 
     // If element is not mounted yet or
     // image has not loaded yet
     if ((!isMounted) || (!isLoaded)) {
+      // If no spinner animation is desired
+      if (noLoadingSpinner) return (null);
+
+      // Otherwise return the spinner
       return <LoadingSpinner />;
     }
 

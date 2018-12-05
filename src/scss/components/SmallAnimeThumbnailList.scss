@@ -9,6 +9,13 @@
 
 .anime-small-thumbnail {
   color: #fff;
+
+  & .loader-container .loader {
+    width: 1em;
+    height: 1em;
+    border: 0.2rem solid #767676;
+    border-top: 0.2rem solid #ff6c00;
+  }
 }
 
 .anime-small-thumbnail.big {
@@ -22,6 +29,7 @@
 
 .anime-small-thumbnail.small.category .cover {
   border-radius: 10px;
+  background: rgba(0, 0, 0, .03);
 }
 
 .anime-small-thumbnail .cover {

@@ -1,4 +1,5 @@
 import React from 'react';
+import LazyImage from '../LazyImage';
 
 // ({ Categories }) => (
 const CategoriesBlock = (props) => {
@@ -25,10 +26,17 @@ const CategoriesBlock = (props) => {
               className="anime-small-thumbnail small category"
             >
               <div className="cover">
-                <img
+                {/* <img
                   src={`/img_cdn/${category.thumbnail}`}
                   alt="thumbnail"
                   className="anime-small-thumbnail"
+                /> */}
+                <LazyImage
+                  src={`/img_cdn/${category.thumbnail}`}
+                  errorSrc="/img_cdn/test.jpg"
+                  alt="thumbnail"
+                  className="anime-small-thumbnail fade-in"
+                  noLoadingSpinner
                 />
                 <div className="overlay">
                   <span className="category_title">{category.title}</span>
