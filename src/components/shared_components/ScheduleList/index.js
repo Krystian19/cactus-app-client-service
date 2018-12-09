@@ -1,4 +1,12 @@
 import React from 'react';
+import moment from 'moment';
+
+/**
+ * @author Jan Guzman <janfrancisco19@gmail.com>
+ * @desc Returns the current day of the week as an integer
+ * @returns Integer Day of the week. E.g: 1 for monday, 7 for sunday, etc ...
+ */
+const getDayOfTheWeek = () => moment().isoWeekday();
 
 // ({ WeekDays }) => (
 const ScheduleList = (props) => {
@@ -13,7 +21,28 @@ const ScheduleList = (props) => {
         return (
           <div className="anime-schedule-day" key={Day.id}>
             <div className="date">
-              <h3 className="day">{Day.name}</h3>
+              <h3 className="day">
+                {(() => {
+                  let DayName = '';
+
+                  // If this day corresponds to today's day of the week
+                  if (Day.id === getDayOfTheWeek()) {
+                    DayName = 'Today';
+                  } else if (
+                    // If this day corresponds to the day of tomorrow
+                    (Day.id === (getDayOfTheWeek() + 1))
+
+                    // If today is Sunday then monday should be marked as tomorrow
+                    || ((getDayOfTheWeek() === 7) && Day.id === 1)) {
+                    DayName = 'Tomorrow';
+                  } else {
+                    // Else, just return today's name
+                    DayName = Day.name;
+                  }
+
+                  return DayName;
+                })()}
+              </h3>
               <span className="split" />
             </div>
             <div className="anime-schedule-poster-list">
