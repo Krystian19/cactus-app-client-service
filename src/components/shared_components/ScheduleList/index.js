@@ -2,37 +2,60 @@ import React from 'react';
 
 // ({ WeekDays }) => (
 const ScheduleList = (props) => {
-  const { props: { WeekDays } } = props;
-  console.log('Injected WeekDays');
-  console.table(WeekDays);
-
+  const { props: { WeekDays, history } } = props;
   return (
     <div className="anime-schedule-list">
 
-      <div className="anime-schedule-day">
-        <div className="date">
-          <h3 className="day">Today</h3>
-          <span className="split" />
-        </div>
-        <div className="anime-schedule-poster-list">
+      {WeekDays.map((Day) => {
+        // If nothing is airing this day, don't show this tab
+        if (!Day.airingSeasons.length) return null;
 
-          <div className="anime-schedule-poster">
-            <div className="content fade-in" style={{ backgroundImage: 'url(https://cdn.masterani.me/poster/1/300490uqcZCe.jpg)' }}>
-              <div className="text">
-                <p>Ep 3 released</p>
-                <h1>
-                  <div className="limit">
-                    Tonari no Kyuuketsuki-san
+        return (
+          <div className="anime-schedule-day" key={Day.id}>
+            <div className="date">
+              <h3 className="day">{Day.name}</h3>
+              <span className="split" />
+            </div>
+            <div className="anime-schedule-poster-list">
+
+              {Day.airingSeasons.map((Season, index) => (
+                <div
+                  className="anime-schedule-poster"
+                  key={Season.id}
+                  onClick={
+                    () => history.push(
+                      `/anime/video/${Season.LatestEpisode.id}`,
+                    )}
+                  onKeyPress={
+                    () => history.push(
+                      `/anime/video/${Season.LatestEpisode.id}`,
+                    )}
+                  role="menuitem"
+                  tabIndex={index}
+                >
+                  <div
+                    className="content fade-in"
+                    style={{ backgroundImage: `url(/img_cdn/${Season.poster})` }}
+                  >
+                    <div className="text">
+                      <p>
+                        {`Ep ${Season.LatestEpisode.episodeOrder} released`}
+                      </p>
+                      <h1>
+                        <div className="limit">
+                          {Season.title}
+                        </div>
+                      </h1>
+                    </div>
+                    <div className="overlay" />
                   </div>
-                </h1>
-              </div>
-              <div className="overlay" />
+                </div>
+              ))}
+
             </div>
           </div>
-
-        </div>
-      </div>
-      {/* End of anime schedule day */}
+        );
+      })}
 
     </div>
 

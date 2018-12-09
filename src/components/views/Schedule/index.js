@@ -7,18 +7,23 @@ import LoadingSpinner from '../../shared_components/LoadingSpinner';
 
 const WeekDayScheduleQuery = gql`
   query {
-    getHottestEpisodes(limit: 30) {
+    getWeekDays {
       id,
-      thumbnail,
-      episodeOrder,
-      Season {
+      name,
+      airingSeasons {
         id,
         seasonOrder,
         title,
-        background,
-        Anime {
+        airingTime,
+        WeekDay {
           id,
-          title
+          name
+        },
+        poster,
+        LatestEpisode {
+          id,
+          thumbnail,
+          episodeOrder
         }
       }
     }
@@ -53,7 +58,8 @@ export default class ScheduleView extends Component {
               <div className="main-content">
                 <ScheduleList
                   props={{
-                    WeekDays: [],
+                    WeekDays: data.getWeekDays,
+                    history,
                   }}
                 />
               </div>
