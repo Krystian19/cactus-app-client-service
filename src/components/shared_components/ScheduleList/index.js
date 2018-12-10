@@ -35,15 +35,16 @@ const reorderWeekDays = (WeekDays, today = getDayOfTheWeek()) => {
 
 const ScheduleList = (props) => {
   const { props: { WeekDays, history } } = props;
+
   return (
     <div className="anime-schedule-list">
 
       <ClientRender>
+        {console.log(reorderWeekDays(WeekDays))}
         {/* {WeekDays.map((Day) => { */}
         {reorderWeekDays(WeekDays).map((Day) => {
           // If nothing is airing this day, don't show this tab
           if (!Day.airingSeasons.length) return null;
-
           return (
             <div className="anime-schedule-day" key={Day.id}>
               <div className="date">
