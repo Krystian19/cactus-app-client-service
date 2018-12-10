@@ -15,6 +15,7 @@ version: '3'
 
 services:
   client: # React client
+    container_name: cactus_app_client
     build:
       ./cactus-app-client-service
     volumes:
