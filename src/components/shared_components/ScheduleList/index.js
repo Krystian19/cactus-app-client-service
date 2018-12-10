@@ -10,20 +10,44 @@ import ClientRender from '../ClientRenderer';
 */
 const getDayOfTheWeek = () => moment().isoWeekday();
 
+const reorderWeekDays = (WeekDays, today = getDayOfTheWeek()) => {
+  // Orders WeekDays by ascending order with the 'id' field
+  const parsedWeekDays = WeekDays.sort((a, b) => (a.id < b.id));
+
+  // If this is a sunday
+  if (today === 7) {
+    // Set the first day in the array as the last
+    parsedWeekDays.unshift(parsedWeekDays.pop());
+    return parsedWeekDays;
+  }
+
+  // In the case of any other day in the week ...
+
+  // Get any days before today
+  const aftermathWeekDays = parsedWeekDays.filter(day => day.id < today);
+
+  // Remove those filtered days from the  array in their current order
+  parsedWeekDays.splice(0, aftermathWeekDays.length);
+
+  // Append filtered days at the end of the array
+  return [...parsedWeekDays, ...aftermathWeekDays];
+};
+
 const ScheduleList = (props) => {
   const { props: { WeekDays, history } } = props;
   return (
     <div className="anime-schedule-list">
 
-      {WeekDays.map((Day) => {
-        // If nothing is airing this day, don't show this tab
-        if (!Day.airingSeasons.length) return null;
+      <ClientRender>
+        {/* {WeekDays.map((Day) => { */}
+        {reorderWeekDays(WeekDays).map((Day) => {
+          // If nothing is airing this day, don't show this tab
+          if (!Day.airingSeasons.length) return null;
 
-        return (
-          <div className="anime-schedule-day" key={Day.id}>
-            <div className="date">
-              <h3 className="day">
-                <ClientRender>
+          return (
+            <div className="anime-schedule-day" key={Day.id}>
+              <div className="date">
+                <h3 className="day">
                   {(() => {
                     let DayName = '';
 
@@ -44,51 +68,50 @@ const ScheduleList = (props) => {
 
                     return DayName;
                   })()}
-                </ClientRender>
-              </h3>
-              <span className="split" />
-            </div>
-            <div className="anime-schedule-poster-list">
+                </h3>
+                <span className="split" />
+              </div>
+              <div className="anime-schedule-poster-list">
 
-              {Day.airingSeasons.map((Season, index) => (
-                <div
-                  className="anime-schedule-poster"
-                  key={Season.id}
-                  onClick={
-                    () => history.push(
-                      `/anime/video/${Season.LatestEpisode.id}`,
-                    )}
-                  onKeyPress={
-                    () => history.push(
-                      `/anime/video/${Season.LatestEpisode.id}`,
-                    )}
-                  role="menuitem"
-                  tabIndex={index}
-                >
+                {Day.airingSeasons.map((Season, index) => (
                   <div
-                    className="content"
-                    style={{ backgroundImage: `url(/img_cdn/${Season.poster})` }}
+                    className="anime-schedule-poster"
+                    key={Season.id}
+                    onClick={
+                      () => history.push(
+                        `/anime/video/${Season.LatestEpisode.id}`,
+                      )}
+                    onKeyPress={
+                      () => history.push(
+                        `/anime/video/${Season.LatestEpisode.id}`,
+                      )}
+                    role="menuitem"
+                    tabIndex={index}
                   >
-                    <div className="text">
-                      <p>
-                        {`Ep ${Season.LatestEpisode.episodeOrder} released`}
-                      </p>
-                      <h1>
-                        <div className="limit">
-                          {Season.title}
-                        </div>
-                      </h1>
+                    <div
+                      className="content"
+                      style={{ backgroundImage: `url(/img_cdn/${Season.poster})` }}
+                    >
+                      <div className="text">
+                        <p>
+                          {`Ep ${Season.LatestEpisode.episodeOrder} released`}
+                        </p>
+                        <h1>
+                          <div className="limit">
+                            {Season.title}
+                          </div>
+                        </h1>
+                      </div>
+                      <div className="overlay" />
                     </div>
-                    <div className="overlay" />
                   </div>
-                </div>
-              ))}
+                ))}
 
+              </div>
             </div>
-          </div>
-        );
-      })}
-
+          );
+        })}
+      </ClientRender>
     </div>
 
   );
