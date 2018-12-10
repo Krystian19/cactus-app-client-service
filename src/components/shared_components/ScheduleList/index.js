@@ -1,97 +1,107 @@
-import React from 'react';
+import React, { Component } from 'react';
 import moment from 'moment';
 
-/**
+export default class ScheduleList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { isMounted: false };
+  }
+
+  componentDidMount() {
+    this.setState({ isMounted: true });
+  }
+
+  /**
  * @author Jan Guzman <janfrancisco19@gmail.com>
  * @desc Returns the current day of the week as an integer
  * @returns Integer Day of the week. E.g: 1 for monday, 7 for sunday, etc ...
  */
-const getDayOfTheWeek = () => moment().isoWeekday();
+  getDayOfTheWeek = () => moment().isoWeekday();
 
-// ({ WeekDays }) => (
-const ScheduleList = (props) => {
-  const { props: { WeekDays, history } } = props;
-  return (
-    <div className="anime-schedule-list">
+  render() {
+    const { props: { WeekDays, history } } = this.props;
+    const { isMounted } = this.state;
+    return (
+      <div className="anime-schedule-list">
 
-      {WeekDays.map((Day) => {
-        // If nothing is airing this day, don't show this tab
-        if (!Day.airingSeasons.length) return null;
+        {WeekDays.map((Day) => {
+          // If nothing is airing this day, don't show this tab
+          if (!Day.airingSeasons.length) return null;
 
-        return (
-          <div className="anime-schedule-day" key={Day.id}>
-            <div className="date">
-              <h3 className="day">
-                {(() => {
-                  let DayName = '';
+          return (
+            <div className="anime-schedule-day" key={Day.id}>
+              <div className="date">
+                <h3 className="day">
+                  {isMounted && (() => {
+                    let DayName = '';
 
-                  // If this day corresponds to today's day of the week
-                  if (Day.id === getDayOfTheWeek()) {
-                    DayName = 'Today';
-                  } else if (
-                    // If this day corresponds to the day of tomorrow
-                    (Day.id === (getDayOfTheWeek() + 1))
+                    // If this day corresponds to today's day of the week
+                    if (Day.id === this.getDayOfTheWeek()) {
+                      DayName = 'Today';
+                    } else if (
+                      // If this day corresponds to the day of tomorrow
+                      (Day.id === (this.getDayOfTheWeek() + 1))
 
-                    // If today is Sunday then monday should be marked as tomorrow
-                    || ((getDayOfTheWeek() === 7) && Day.id === 1)) {
-                    DayName = 'Tomorrow';
-                  } else {
-                    // Else, just return today's name
-                    DayName = Day.name;
-                  }
+                      // If today is Sunday then monday should be marked as tomorrow
+                      || ((this.getDayOfTheWeek() === 7) && Day.id === 1)) {
+                      DayName = 'Tomorrow';
+                    } else {
+                      // Else, just return today's name
+                      DayName = Day.name;
+                    }
 
-                  return DayName;
-                })()}
-              </h3>
-              <span className="split" />
-            </div>
-            <div className="anime-schedule-poster-list">
+                    return DayName;
+                  })()}
+                </h3>
+                <span className="split" />
+              </div>
+              <div className="anime-schedule-poster-list">
 
-              {Day.airingSeasons.map((Season, index) => (
-                <div
-                  className="anime-schedule-poster"
-                  key={Season.id}
-                  onClick={
-                    () => history.push(
-                      `/anime/video/${Season.LatestEpisode.id}`,
-                    )}
-                  onKeyPress={
-                    () => history.push(
-                      `/anime/video/${Season.LatestEpisode.id}`,
-                    )}
-                  role="menuitem"
-                  tabIndex={index}
-                >
+                {Day.airingSeasons.map((Season, index) => (
                   <div
-                    className="content fade-in"
-                    style={{ backgroundImage: `url(/img_cdn/${Season.poster})` }}
+                    className="anime-schedule-poster"
+                    key={Season.id}
+                    onClick={
+                      () => history.push(
+                        `/anime/video/${Season.LatestEpisode.id}`,
+                      )}
+                    onKeyPress={
+                      () => history.push(
+                        `/anime/video/${Season.LatestEpisode.id}`,
+                      )}
+                    role="menuitem"
+                    tabIndex={index}
                   >
-                    <div className="text">
-                      <p>
-                        {`Ep ${Season.LatestEpisode.episodeOrder} released`}
-                      </p>
-                      <h1>
-                        <div className="limit">
-                          {Season.title}
-                        </div>
-                      </h1>
+                    <div
+                      className="content fade-in"
+                      style={{ backgroundImage: `url(/img_cdn/${Season.poster})` }}
+                    >
+                      <div className="text">
+                        <p>
+                          {`Ep ${Season.LatestEpisode.episodeOrder} released`}
+                        </p>
+                        <h1>
+                          <div className="limit">
+                            {Season.title}
+                          </div>
+                        </h1>
+                      </div>
+                      <div className="overlay" />
                     </div>
-                    <div className="overlay" />
                   </div>
-                </div>
-              ))}
+                ))}
 
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
 
-    </div>
+      </div>
 
-  );
-};
-
-export default ScheduleList;
+    );
+  }
+}
 
 
 // <div className="anime-schedule-list">
