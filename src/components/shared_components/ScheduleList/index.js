@@ -66,7 +66,7 @@ const ScheduleList = (props) => {
                   tabIndex={index}
                 >
                   <div
-                    className="content fade-in"
+                    className="content"
                     style={{ backgroundImage: `url(/img_cdn/${Season.poster})` }}
                   >
                     <div className="text">
