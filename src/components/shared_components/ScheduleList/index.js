@@ -16,6 +16,7 @@ const reorderWeekDays = (WeekDays, today = getDayOfTheWeek()) => {
 
   // If this is a sunday
   if (today === 7) {
+    // Prevent this section being executed multiple times
     if (WeekDays.length && WeekDays[0].id === 7) return WeekDays;
 
     // Set the first day in the array as the last
