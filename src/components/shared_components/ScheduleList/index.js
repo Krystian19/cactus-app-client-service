@@ -16,6 +16,8 @@ const reorderWeekDays = (WeekDays, today = getDayOfTheWeek()) => {
 
   // If this is a sunday
   if (today === 7) {
+    if (WeekDays.length && WeekDays[0].id === 7) return WeekDays;
+
     // Set the first day in the array as the last
     parsedWeekDays.unshift(parsedWeekDays.pop());
     return parsedWeekDays;
@@ -40,7 +42,6 @@ const ScheduleList = (props) => {
     <div className="anime-schedule-list">
 
       <ClientRender>
-        {console.log(reorderWeekDays(WeekDays))}
         {/* {WeekDays.map((Day) => { */}
         {reorderWeekDays(WeekDays).map((Day) => {
           // If nothing is airing this day, don't show this tab
