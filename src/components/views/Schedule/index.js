@@ -1,30 +1,23 @@
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import React, { Component } from 'react';
+import moment from 'moment';
 import Sidebar from '../../shared_components/Sidebar';
 import ScheduleList from '../../shared_components/ScheduleList';
 import LoadingSpinner from '../../shared_components/LoadingSpinner';
 
 const WeekDayScheduleQuery = gql`
   query {
-    getWeekDays {
+    getAiringSeasons {
       id,
-      name,
-      airingSeasons {
+      seasonOrder,
+      title,
+      poster,
+      startedAiring,
+      LatestEpisode {
         id,
-        seasonOrder,
-        title,
-        airingTime,
-        WeekDay {
-          id,
-          name
-        },
-        poster,
-        LatestEpisode {
-          id,
-          thumbnail,
-          episodeOrder
-        }
+        thumbnail,
+        episodeOrder
       }
     }
   }
@@ -34,6 +27,26 @@ export default class ScheduleView extends Component {
   // constructor() {
   //   super()
   // }
+
+  groupSeasonsByWeekDays = (Seasons) => {
+    const WeekDays = {
+      '1': [],
+      '2': [],
+      '3': [],
+      '4': [],
+      '5': [],
+      '6': [],
+      '7': [],
+    };
+
+    Seasons.map((Season) => {
+      const dayOfWeekInt = moment(Season.startedAiring).isoWeekday();
+      WeekDays[dayOfWeekInt.toString()].push(Season);
+      return true;
+    });
+
+    return WeekDays;
+  }
 
   render() {
     const { history } = this.props;
@@ -54,11 +67,13 @@ export default class ScheduleView extends Component {
             if (error) return <p>Error :(</p>;
 
             console.log(data);
+            console.log(this.groupSeasonsByWeekDays(data.getAiringSeasons));
             return (
               <div className="main-content">
                 <ScheduleList
                   props={{
-                    WeekDays: data.getWeekDays,
+                    // WeekDays: data.getWeekDays,
+                    WeekDays: [],
                     history,
                   }}
                 />
