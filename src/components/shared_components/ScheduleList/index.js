@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 
 import ClientRender from '../ClientRenderer';
+import JSTToLocalTime from '../../../utils/JSTtoLocalTime';
 
 /**
 * @author Jan Guzman <janfrancisco19@gmail.com>
@@ -52,12 +53,18 @@ const groupSeasonsByWeekDays = (Seasons) => {
   };
 
   Seasons.map((Season) => {
-    const dayOfWeekInt = moment(Season.startedAiring).isoWeekday();
+    const ParsedSeason = Season;
+
+    // Translate Original airingTime in JST to the local TimeZone
+    ParsedSeason.startedAiring = JSTToLocalTime(ParsedSeason.startedAiring);
+
+    // Get what day of the week this Season started Airing
+    const dayOfWeekInt = moment(ParsedSeason.startedAiring).isoWeekday();
 
     // Avoid Seasons with no episodes
-    if (!Season.LatestEpisode) return null;
+    if (!ParsedSeason.LatestEpisode) return null;
 
-    return WeekDays[dayOfWeekInt.toString()].push(Season);
+    return WeekDays[dayOfWeekInt.toString()].push(ParsedSeason);
   });
 
   const parsedWeekDays = Object.keys(WeekDays)
