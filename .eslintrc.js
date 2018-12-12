@@ -8,7 +8,7 @@ module.exports = {
     "strict": 0,
     "react/prop-types": 0,
     "no-console": "off",
-    "no-restricted-syntax": "off",
+    "quote-props": "off",
     "no-underscore-dangle": [2, { "allow": ['__APOLLO_STATE__'] }],
     'max-len': ["error", { "code": 88, "comments": 88, "ignoreUrls": true, "ignoreRegExpLiterals": true }]
   },

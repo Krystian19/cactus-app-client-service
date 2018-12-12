@@ -41,11 +41,44 @@ export default class ScheduleView extends Component {
 
     Seasons.map((Season) => {
       const dayOfWeekInt = moment(Season.startedAiring).isoWeekday();
-      WeekDays[dayOfWeekInt.toString()].push(Season);
-      return true;
+      return WeekDays[dayOfWeekInt.toString()].push(Season);
     });
 
-    return WeekDays;
+    const parsedWeekDays = Object.keys(WeekDays)
+      .map((dayOrder) => {
+        let dayName = '';
+
+        // Set the name of each day of the week
+        switch (dayOrder) {
+          case '1': // Monday
+            dayName = 'Monday';
+            break;
+          case '2': // Tuesday
+            dayName = 'Tuesday';
+            break;
+          case '3': // Wednesday
+            dayName = 'Wednesday';
+            break;
+          case '4': // Thursday
+            dayName = 'Thursday';
+            break;
+          case '5': // Friday
+            dayName = 'Friday';
+            break;
+          case '6': // Saturday
+            dayName = 'Saturday';
+            break;
+          case '7': // Sunday
+            dayName = 'Sunday';
+            break;
+          default:
+            dayName = '';
+        }
+
+        return ({ order: dayOrder, dayName, seasons: WeekDays[dayOrder] });
+      });
+
+    return parsedWeekDays;
   }
 
   render() {
@@ -67,13 +100,12 @@ export default class ScheduleView extends Component {
             if (error) return <p>Error :(</p>;
 
             console.log(data);
-            console.log(this.groupSeasonsByWeekDays(data.getAiringSeasons));
             return (
               <div className="main-content">
                 <ScheduleList
                   props={{
-                    // WeekDays: data.getWeekDays,
-                    WeekDays: [],
+                    WeekDays: this.groupSeasonsByWeekDays(data.getAiringSeasons),
+                    // WeekDays: [],
                     history,
                   }}
                 />

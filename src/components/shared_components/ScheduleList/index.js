@@ -11,15 +11,13 @@ import ClientRender from '../ClientRenderer';
 const getDayOfTheWeek = () => moment().isoWeekday();
 
 const reorderWeekDays = (WeekDays, today = getDayOfTheWeek()) => {
-  // If WeekDays are already in the desired order,
-  //  prevent further execution and just return the current WeekDays list.
-  if (WeekDays.length && WeekDays[0].id === today) return WeekDays;
-
-  // Orders WeekDays by ascending order with the 'id' field
-  const parsedWeekDays = WeekDays.sort((a, b) => (a.id < b.id));
+  // Set array WeekDay array as unmutable (avoids global mutability problem)
+  const WeekDaysList = WeekDays.map(day => day);
+  // Orders WeekDays by ascending order with the 'order' field
+  const parsedWeekDays = WeekDaysList.sort((a, b) => (a.order < b.order));
 
   // Get any days before today
-  const aftermathWeekDays = parsedWeekDays.filter(day => day.id < today);
+  const aftermathWeekDays = parsedWeekDays.filter(day => day.order < today);
 
   // Remove those filtered days from the  array in their current order
   parsedWeekDays.splice(0, aftermathWeekDays.length);
@@ -38,27 +36,27 @@ const ScheduleList = (props) => {
         {/* {WeekDays.map((Day) => { */}
         {reorderWeekDays(WeekDays).map((Day) => {
           // If nothing is airing this day, don't show this tab
-          if (!Day.airingSeasons.length) return null;
+          if (!Day.seasons.length) return null;
           return (
-            <div className="anime-schedule-day" key={Day.id}>
+            <div className="anime-schedule-day" key={Day.order}>
               <div className="date">
                 <h3 className="day">
                   {(() => {
                     let DayName = '';
 
                     // If this day corresponds to today's day of the week
-                    if (Day.id === getDayOfTheWeek()) {
+                    if (Day.order === getDayOfTheWeek().toString()) {
                       DayName = 'Today';
                     } else if (
                       // If this day corresponds to the day of tomorrow
-                      (Day.id === (getDayOfTheWeek() + 1))
+                      (Day.order === (getDayOfTheWeek() + 1).toString())
 
                       // If today is Sunday then monday should be marked as tomorrow
-                      || ((getDayOfTheWeek() === 7) && Day.id === 1)) {
+                      || ((getDayOfTheWeek() === '7') && Day.order === '1')) {
                       DayName = 'Tomorrow';
                     } else {
                       // Else, just return today's name
-                      DayName = Day.name;
+                      DayName = Day.dayName;
                     }
 
                     return DayName;
@@ -68,7 +66,7 @@ const ScheduleList = (props) => {
               </div>
               <div className="anime-schedule-poster-list">
 
-                {Day.airingSeasons.map((Season, index) => (
+                {Day.seasons.map((Season, index) => (
                   <div
                     className="anime-schedule-poster"
                     key={Season.id}
