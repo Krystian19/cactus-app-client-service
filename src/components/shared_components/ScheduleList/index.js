@@ -11,20 +11,12 @@ import ClientRender from '../ClientRenderer';
 const getDayOfTheWeek = () => moment().isoWeekday();
 
 const reorderWeekDays = (WeekDays, today = getDayOfTheWeek()) => {
+  // If WeekDays are already in the desired order,
+  //  prevent further execution and just return the current WeekDays list.
+  if (WeekDays.length && WeekDays[0].id === today) return WeekDays;
+
   // Orders WeekDays by ascending order with the 'id' field
   const parsedWeekDays = WeekDays.sort((a, b) => (a.id < b.id));
-
-  // If this is a sunday
-  if (today === 7) {
-    // Prevent this section being executed multiple times
-    if (WeekDays.length && WeekDays[0].id === 7) return WeekDays;
-
-    // Set the first day in the array as the last
-    parsedWeekDays.unshift(parsedWeekDays.pop());
-    return parsedWeekDays;
-  }
-
-  // In the case of any other day in the week ...
 
   // Get any days before today
   const aftermathWeekDays = parsedWeekDays.filter(day => day.id < today);
