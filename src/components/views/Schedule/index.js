@@ -33,7 +33,7 @@ export default class ScheduleView extends Component {
       <div className="main-container">
         <Sidebar props={{ history }} />
 
-        <Query query={WeekDayScheduleQuery}>
+        <Query query={WeekDayScheduleQuery} fetchPolicy="no-cache">
           {({ loading, error, data }) => {
             if (loading) {
               return (
