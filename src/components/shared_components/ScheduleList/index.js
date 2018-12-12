@@ -10,6 +10,14 @@ import ClientRender from '../ClientRenderer';
 */
 const getDayOfTheWeek = () => moment().isoWeekday();
 
+/**
+* @author Jan Guzman <janfrancisco19@gmail.com>
+* @desc Reorders an Array of days in ASC order
+* depending of the current client's timezone
+* @arg WeekDays Array [ { order: String, dayName: String, seasons: Array } ]
+* @arg today Integer Literal Represent day of the week 1 to 7
+* @returns Array of Day Objects organized by their order attribute
+*/
 const reorderWeekDays = (WeekDays, today = getDayOfTheWeek()) => {
   // Set array WeekDay array as unmutable (avoids global mutability problem)
   const WeekDaysList = WeekDays.map(day => day);
@@ -26,15 +34,74 @@ const reorderWeekDays = (WeekDays, today = getDayOfTheWeek()) => {
   return [...parsedWeekDays, ...aftermathWeekDays];
 };
 
+/**
+* @author Jan Guzman <janfrancisco19@gmail.com>
+* @desc Groups Seaons by their WeekDay 1 through 7
+* @arg Seasons Array of Season Objects
+* @returns WeekDays Array [ { order: String, dayName: String, seasons: Array } ]
+*/
+const groupSeasonsByWeekDays = (Seasons) => {
+  const WeekDays = {
+    '1': [],
+    '2': [],
+    '3': [],
+    '4': [],
+    '5': [],
+    '6': [],
+    '7': [],
+  };
+
+  Seasons.map((Season) => {
+    const dayOfWeekInt = moment(Season.startedAiring).isoWeekday();
+    return WeekDays[dayOfWeekInt.toString()].push(Season);
+  });
+
+  const parsedWeekDays = Object.keys(WeekDays)
+    .map((dayOrder) => {
+      let dayName = '';
+
+      // Set the name of each day of the week
+      switch (dayOrder) {
+        case '1': // Monday
+          dayName = 'Monday';
+          break;
+        case '2': // Tuesday
+          dayName = 'Tuesday';
+          break;
+        case '3': // Wednesday
+          dayName = 'Wednesday';
+          break;
+        case '4': // Thursday
+          dayName = 'Thursday';
+          break;
+        case '5': // Friday
+          dayName = 'Friday';
+          break;
+        case '6': // Saturday
+          dayName = 'Saturday';
+          break;
+        case '7': // Sunday
+          dayName = 'Sunday';
+          break;
+        default:
+          dayName = '';
+      }
+
+      return ({ order: dayOrder, dayName, seasons: WeekDays[dayOrder] });
+    });
+
+  return parsedWeekDays;
+};
+
 const ScheduleList = (props) => {
   const { props: { WeekDays, history } } = props;
-
+  const parsedWeekDays = groupSeasonsByWeekDays(WeekDays);
   return (
     <div className="anime-schedule-list">
 
       <ClientRender>
         {/* {WeekDays.map((Day) => { */}
-        {reorderWeekDays(WeekDays).map((Day) => {
+        {reorderWeekDays(parsedWeekDays).map((Day) => {
           // If nothing is airing this day, don't show this tab
           if (!Day.seasons.length) return null;
           return (
