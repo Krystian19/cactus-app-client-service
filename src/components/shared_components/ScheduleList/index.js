@@ -53,6 +53,10 @@ const groupSeasonsByWeekDays = (Seasons) => {
 
   Seasons.map((Season) => {
     const dayOfWeekInt = moment(Season.startedAiring).isoWeekday();
+
+    // Avoid Seasons with no episodes
+    if (!Season.LatestEpisode) return null;
+
     return WeekDays[dayOfWeekInt.toString()].push(Season);
   });
 
