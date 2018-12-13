@@ -159,7 +159,7 @@ const ScheduleList = (props) => {
                     >
                       <div className="text">
                         <p>
-                          {`Ep ${Season.LatestEpisode.episodeOrder} released`}
+                          {`${Season.episodeCount} episodes released`}
                         </p>
                         <h1>
                           <div className="limit">
