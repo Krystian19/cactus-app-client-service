@@ -51,7 +51,7 @@ export default class Sidebar extends Component {
             </Link>
           </div>
 
-          <Query query={RandomAnimeQuery}>
+          <Query query={RandomAnimeQuery} fetchPolicy="no-cache">
             {({
               loading, error, data, refetch,
             }) => {
