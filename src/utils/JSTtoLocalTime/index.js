@@ -13,8 +13,14 @@ export default (dateString) => {
     throw new Error('Provided date string value, is not valid.');
   }
 
+  // Parses full date and full time ignoring the timezone.
+  // (it's a bad practice, but it works).
+  const parsedString = `${dateString.substring(0, 10)} ${dateString.substr(11, 8)}`;
+
+  const parsedDateTime = moment(parsedString);
+
   // Transform UTC time into the Tokyo timezone
-  const tokyoTime = moment(dateString).tz('Asia/Tokyo').format();
+  const tokyoTime = parsedDateTime.tz('Asia/Tokyo').format();
 
   // Parse Tokyo DateTime String into the local timezone
   return moment(tokyoTime).tz(moment.tz.guess())
