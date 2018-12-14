@@ -4,6 +4,7 @@ import moment from 'moment';
 import ClientRender from '../ClientRenderer';
 import JSTToLocalTime from '../../../utils/JSTtoLocalTime';
 import getDayOfTheWeek from '../../../utils/getDayOfTheWeek';
+import DateTimeToTime from '../../../utils/DateTimeToTime';
 
 /**
 * @author Jan Guzman <janfrancisco19@gmail.com>
@@ -159,7 +160,8 @@ const ScheduleList = (props) => {
                     >
                       <div className="text">
                         <p>
-                          {`${Season.episodeCount} episodes released`}
+                          {`${DateTimeToTime(Season.startedAiring)}`}
+                          {/* {`${Season.episodeCount} episodes released`} */}
                         </p>
                         <h1>
                           <div className="limit">

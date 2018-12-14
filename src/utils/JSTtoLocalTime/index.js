@@ -13,12 +13,10 @@ export default (dateString) => {
     throw new Error('Provided date string value, is not valid.');
   }
 
-  // Transform provided DateTime String with to the Japan TimeZone
-  const JSTDateTime = moment(dateString).tz('Japan');
+  // Transform UTC time into the Tokyo timezone
+  const tokyoTime = moment(dateString).tz('Asia/Tokyo').format();
 
-  // Transform JST DateTime to UTC
-  const JSTTimeToUTC = JSTDateTime.utc();
-
-  // Transform UTC to the client's Time Zone equivalent
-  return moment(JSTTimeToUTC.format()).tz(moment.tz.guess()).format();
+  // Parse Tokyo DateTime String into the local timezone
+  return moment(tokyoTime).tz(moment.tz.guess())
+    .format();
 };
