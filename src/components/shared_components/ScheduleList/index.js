@@ -145,11 +145,11 @@ const ScheduleList = (props) => {
                     key={Season.id}
                     onClick={
                       () => history.push(
-                        `/anime/video/${Season.LatestEpisode.id}`,
+                        `/anime/info/${Season.Anime.id}`,
                       )}
                     onKeyPress={
                       () => history.push(
-                        `/anime/video/${Season.LatestEpisode.id}`,
+                        `/anime/info/${Season.Anime.id}`,
                       )}
                     role="menuitem"
                     tabIndex={index}
@@ -160,7 +160,10 @@ const ScheduleList = (props) => {
                     >
                       <div className="text">
                         <p>
-                          {`${DateTimeToTime(Season.startedAiring)}`}
+                          {`
+                          ${DateTimeToTime(Season.startedAiring)}
+                           - EPISODE ${Season.episodeCount + 1}
+                          `}
                           {/* {`${Season.episodeCount} episodes released`} */}
                         </p>
                         <h1>
