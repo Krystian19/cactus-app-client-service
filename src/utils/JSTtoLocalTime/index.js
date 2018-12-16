@@ -21,5 +21,5 @@ export default (dateString) => {
   // ${TokyoTime}`);
 
   // Translate provided UTC time into the local time
-  return moment.tz(dateString, moment.tz.guess()).format('YYYY-MM-DD hh:mm:ss A');
+  return moment.tz(dateString, moment.tz.guess()).format();
 };
