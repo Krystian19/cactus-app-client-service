@@ -72,10 +72,12 @@ Start watch of sass changes:
 ```sh
 docker exec -ti cactus_app_client yarn watch_scss
 ```
+### Translate's Japan's Date and time to UTC with moment.js timezone
+```js
+moment.tz('2018-10-07 00:30', 'Japan').utc().format('YYYY-MM-DD HH:mm:ss A');
+```
+
 ### Todo list
-- [x] Implement a browser-cache avoidance mechanism.
-- [x] Clean unused dependencies.
-- [ ] Remove nodemon as the server's script runner
 - [ ] Setup props validation in all the view components
 
 ## License
