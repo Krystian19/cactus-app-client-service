@@ -26,33 +26,43 @@ const AnimeInfoQuery = gql`
       },
       Seasons {
         id,
-        seasonOrder,
         title,
-        startedAiring,
-        stoppedAiring,
         poster,
         background,
-        AlternativeTitles {
+      }
+    }
+  }
+`;
+
+const SeasonQuery = gql`
+  query($id: Int) {
+    getSeason(id: $id) {
+      id,
+      seasonOrder,
+      title,
+      startedAiring,
+      stoppedAiring,
+      poster,
+      background,
+      AlternativeTitles {
+        id,
+        title
+      },
+      Episodes {
+        id,
+        thumbnail,
+        episodeOrder,
+        EpisodeVersions {
           id,
-          title
-        },
-        Episodes {
-          id,
-          thumbnail,
-          episodeOrder,
-          EpisodeVersions {
+          episode_url,
+          title,
+          Language {
             id,
-            episode_url,
-            title,
-            Language {
-              id,
-              name,
-              iso_code
-            },
-          }
+            name,
+            iso_code
+          },
         }
       }
-      
     }
   }
 `;
@@ -168,7 +178,18 @@ export default class AnimeInfoView extends Component {
                         <div className="anime-seasons">
                           {
                             getAnime.Seasons.map(season => (
-                              <AnimeSeason key={season.id} props={{ season }} />
+                              <Query query={SeasonQuery} variables={{ id: season.id }}>
+                                {(status) => {
+                                  // Only show this Season if data is available
+                                  if (!status.data) return '';
+                                  return (
+                                    <AnimeSeason
+                                      key={status.data.getSeason.id}
+                                      props={{ season: status.data.getSeason }}
+                                    />
+                                  );
+                                }}
+                              </Query>
                             ))
                           }
                         </div>
