@@ -178,13 +178,19 @@ export default class AnimeInfoView extends Component {
                         <div className="anime-seasons">
                           {
                             getAnime.Seasons.map(season => (
-                              <Query query={SeasonQuery} variables={{ id: season.id }}>
+                              <Query
+                                key={season.id}
+                                query={SeasonQuery}
+                                variables={{ id: season.id }}
+                              >
                                 {(status) => {
-                                  // Only show this Season if data is available
-                                  if (!status.data) return '';
+                                  // Only show this Season when/if data is available
+                                  if (status.error
+                                    || status.loading
+                                    || (!status.data)) { return ''; }
+
                                   return (
                                     <AnimeSeason
-                                      key={status.data.getSeason.id}
                                       props={{ season: status.data.getSeason }}
                                     />
                                   );
