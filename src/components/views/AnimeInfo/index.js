@@ -168,7 +168,7 @@ export default class AnimeInfoView extends Component {
                         <div className="anime-seasons">
                           {
                             getAnime.Seasons.map(season => (
-                              <AnimeSeason key={season.id} props={{ season }} />
+                              <AnimeSeason key={season.id} season={season} />
                             ))
                           }
                         </div>
