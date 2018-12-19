@@ -26,43 +26,33 @@ const AnimeInfoQuery = gql`
       },
       Seasons {
         id,
+        seasonOrder,
         title,
+        startedAiring,
+        stoppedAiring,
         poster,
         background,
-      }
-    }
-  }
-`;
-
-const SeasonQuery = gql`
-  query($id: Int) {
-    getSeason(id: $id) {
-      id,
-      seasonOrder,
-      title,
-      startedAiring,
-      stoppedAiring,
-      poster,
-      background,
-      AlternativeTitles {
-        id,
-        title
-      },
-      Episodes {
-        id,
-        thumbnail,
-        episodeOrder,
-        EpisodeVersions {
+        AlternativeTitles {
           id,
-          episode_url,
-          title,
-          Language {
+          title
+        },
+        Episodes {
+          id,
+          thumbnail,
+          episodeOrder,
+          EpisodeVersions {
             id,
-            name,
-            iso_code
-          },
+            episode_url,
+            title,
+            Language {
+              id,
+              name,
+              iso_code
+            },
+          }
         }
       }
+      
     }
   }
 `;
@@ -178,18 +168,7 @@ export default class AnimeInfoView extends Component {
                         <div className="anime-seasons">
                           {
                             getAnime.Seasons.map(season => (
-                              <Query query={SeasonQuery} variables={{ id: season.id }}>
-                                {(status) => {
-                                  // Only show this Season if data is available
-                                  if (!status.data) return '';
-                                  return (
-                                    <AnimeSeason
-                                      key={status.data.getSeason.id}
-                                      props={{ season: status.data.getSeason }}
-                                    />
-                                  );
-                                }}
-                              </Query>
+                              <AnimeSeason key={season.id} props={{ season }} />
                             ))
                           }
                         </div>
