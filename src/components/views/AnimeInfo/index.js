@@ -32,27 +32,7 @@ const AnimeInfoQuery = gql`
         stoppedAiring,
         poster,
         background,
-        AlternativeTitles {
-          id,
-          title
-        },
-        Episodes {
-          id,
-          thumbnail,
-          episodeOrder,
-          EpisodeVersions {
-            id,
-            episode_url,
-            title,
-            Language {
-              id,
-              name,
-              iso_code
-            },
-          }
-        }
       }
-      
     }
   }
 `;
