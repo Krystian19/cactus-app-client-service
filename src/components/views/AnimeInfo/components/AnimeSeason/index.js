@@ -8,7 +8,7 @@ import LazyImage from '../../../../shared_components/LazyImage';
 import PaginationBox from '../../../../shared_components/PaginationBox';
 
 const GetSeasonQuery = gql`
-  query($id:Int) {
+  query($id:Int, $pageCount:Int, $currentPage:Int) {
     getSeason(id:$id) {
       id,
       seasonOrder,
@@ -22,7 +22,7 @@ const GetSeasonQuery = gql`
         id,
         title
       },
-      Episodes {
+      Episodes(limit:$pageCount, offset: $currentPage) {
         id,
         thumbnail,
         episodeOrder,
@@ -45,30 +45,40 @@ export default class AnimeSeason extends Component {
   constructor(props) {
     super(props);
     this.pageCount = 9;
+
     this.state = {
-      episodePage: 0,
+      currentPage: 0,
     };
   }
 
   PageForward = () => {
-    const { episodePage } = this.state;
-    this.setState({ episodePage: (episodePage + 1) });
+    const { currentPage } = this.state;
+    this.setState({ currentPage: (currentPage + 1) });
   }
 
   PageBackwards = () => {
-    const { episodePage } = this.state;
+    const { currentPage } = this.state;
 
     // Can't go backwards if page is already 0
-    if (episodePage === 0) return;
+    if (currentPage === 0) return;
 
-    this.setState({ episodePage: (episodePage - 1) });
+    this.setState({ currentPage: (currentPage - 1) });
   }
 
   render() {
     const { season } = this.props;
-    const { episodePage } = this.state;
+    const { currentPage } = this.state;
+    console.log(`This is the current page ${currentPage}`);
+
     return (
-      <Query query={GetSeasonQuery} variables={{ id: Number(season.id) }}>
+      <Query
+        query={GetSeasonQuery}
+        variables={{
+          id: Number(season.id),
+          pageCount: this.pageCount,
+          currentPage: (currentPage * this.pageCount),
+        }}
+      >
         {({ loading, error, data }) => {
           // Only show anything when data is available
           if (loading || error || (!data)) return null;
@@ -128,8 +138,18 @@ export default class AnimeSeason extends Component {
                 <PaginationBox
                   pageCount={this.pageCount}
                   itemCount={data.getSeason.episodeCount}
-                  goForwardCB={() => console.log('So ...  you wanna go forward ?')}
-                  goBackwardsCB={() => console.log('So ...  you wanna go backwards ?')}
+                  currentPage={currentPage}
+                  goForwardCB={() => {
+                    const lastPage = Math.ceil(
+                      data.getSeason.episodeCount / this.pageCount,
+                    );
+
+                    // If this is the last page, don't go forward
+                    if ((currentPage + 1) === lastPage) return;
+
+                    this.PageForward();
+                  }}
+                  goBackwardsCB={() => this.PageBackwards()}
                 />
               </div>
             </div>

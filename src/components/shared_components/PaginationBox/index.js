@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 
 class PaginationBox extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      currentPage: 1,
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   render() {
     const {
@@ -15,19 +11,18 @@ class PaginationBox extends Component {
       goBackwardsCB,
       pageCount,
       itemCount,
+      currentPage,
     } = this.props;
 
-    const { currentPage } = this.state;
-
-    console.log(`Item count ${itemCount}`);
-    console.log(`Page count ${pageCount}`);
-    console.log(`Rounded result is ${Math.ceil(itemCount / pageCount)}`);
+    // console.log(`Item count ${itemCount}`);
+    // console.log(`Page count ${pageCount}`);
+    // console.log(`Rounded result is ${Math.ceil(itemCount / pageCount)}`);
     return (
       <div className="pagination-box">
         <div
           className="item control"
-          onClick={goForwardCB}
-          onKeyPress={goForwardCB}
+          onClick={goBackwardsCB}
+          onKeyPress={goBackwardsCB}
           role="menuitem"
           tabIndex={-1}
         >
@@ -39,12 +34,12 @@ class PaginationBox extends Component {
         <div className="item">2</div>
         <div className="item">3</div>
         <div className="item mobile-control">
-          {`${currentPage} / ${Math.ceil(itemCount / pageCount)}`}
+          {`${currentPage + 1} / ${Math.ceil(itemCount / pageCount)}`}
         </div>
         <div
           className="item control"
-          onClick={goBackwardsCB}
-          onKeyPress={goBackwardsCB}
+          onClick={goForwardCB}
+          onKeyPress={goForwardCB}
           role="menuitem"
           tabIndex={-2}
         >
