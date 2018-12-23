@@ -5,6 +5,7 @@ import {
   Link,
 } from 'react-router-dom';
 import LazyImage from '../../../../shared_components/LazyImage';
+import PaginationBox from '../../../../shared_components/PaginationBox';
 
 const GetSeasonQuery = gql`
   query($id:Int) {
@@ -103,6 +104,7 @@ export default class AnimeSeason extends Component {
                   }
 
                 </div>
+                <PaginationBox />
               </div>
             </div>
           );

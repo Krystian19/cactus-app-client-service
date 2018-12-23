@@ -116,6 +116,16 @@
   .anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls {
     justify-content: center;
   }
+  
+  .pagination-box .item {
+    display: none;
+  }
+
+  .pagination-box .item.control,
+  .pagination-box .item.mobile-control
+  {
+    display: inline-block;
+  }
 }
 
 /* Small Tablet */
