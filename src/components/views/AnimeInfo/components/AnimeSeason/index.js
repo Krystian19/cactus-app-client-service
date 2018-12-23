@@ -17,6 +17,7 @@ const GetSeasonQuery = gql`
       stoppedAiring,
       poster,
       background,
+      episodeCount,
       AlternativeTitles {
         id,
         title
@@ -41,18 +42,38 @@ const GetSeasonQuery = gql`
 `;
 
 export default class AnimeSeason extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
+  constructor(props) {
+    super(props);
+    this.pageCount = 9;
+    this.state = {
+      episodePage: 0,
+    };
+  }
+
+  PageForward = () => {
+    const { episodePage } = this.state;
+    this.setState({ episodePage: (episodePage + 1) });
+  }
+
+  PageBackwards = () => {
+    const { episodePage } = this.state;
+
+    // Can't go backwards if page is already 0
+    if (episodePage === 0) return;
+
+    this.setState({ episodePage: (episodePage - 1) });
+  }
 
   render() {
     const { season } = this.props;
+    const { episodePage } = this.state;
     return (
       <Query query={GetSeasonQuery} variables={{ id: Number(season.id) }}>
         {({ loading, error, data }) => {
           // Only show anything when data is available
           if (loading || error || (!data)) return null;
 
+          console.log(data);
           return (
             <div className="anime-season">
               <span className="anime-season-title">
@@ -104,7 +125,12 @@ export default class AnimeSeason extends Component {
                   }
 
                 </div>
-                <PaginationBox />
+                <PaginationBox
+                  pageCount={this.pageCount}
+                  itemCount={data.getSeason.episodeCount}
+                  goForwardCB={() => console.log('So ...  you wanna go forward ?')}
+                  goBackwardsCB={() => console.log('So ...  you wanna go backwards ?')}
+                />
               </div>
             </div>
           );
