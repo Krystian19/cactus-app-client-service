@@ -1,4 +1,7 @@
 import React from 'react';
+import {
+  Link,
+} from 'react-router-dom';
 import LazyImage from '../LazyImage';
 
 // ({ Episodes }) => (
@@ -19,9 +22,12 @@ const HottestVideoBlock = (props) => {
           <span>{title}</span>
         </div>
         {viewAllLink && (
-          <div className="video-block-title-options">
-            <a href={viewAllLink} className="button">View all</a>
-          </div>
+          // <div className="video-block-title-options">
+          //   <a href={viewAllLink} className="button">View all</a>
+          // </div>
+          <Link to={viewAllLink} className="button" tabIndex="-1">
+            View all
+          </Link>
         )}
       </div>
       <div className="video-block-content">
