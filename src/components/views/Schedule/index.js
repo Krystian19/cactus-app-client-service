@@ -14,10 +14,6 @@ const WeekDayScheduleQuery = gql`
       poster,
       startedAiring,
       episodeCount,
-      Anime {
-        id,
-        title,
-      },
       LatestEpisode {
         id,
         thumbnail,

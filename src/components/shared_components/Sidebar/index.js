@@ -7,7 +7,7 @@ import {
 
 const RandomAnimeQuery = gql`
  query {
-    getRandomAnime {
+    getRandomSeason {
       id,
       title
     }
@@ -64,13 +64,13 @@ export default class Sidebar extends Component {
               console.log(data);
 
               // If no data received
-              if (!data.getRandomAnime) return false;
+              if (!data.getRandomSeason) return false;
 
               return (
                 <div className="sidebar-option">
                   <Link
                     onClick={() => refetch()}
-                    to={`/anime/info/${data.getRandomAnime.id}`}
+                    to={`/anime/info/${data.getRandomSeason.id}`}
                     tabIndex="-3"
                   >
                     <i className="fas fa-random" />

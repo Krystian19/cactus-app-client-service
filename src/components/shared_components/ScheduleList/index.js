@@ -145,11 +145,11 @@ const ScheduleList = (props) => {
                     key={Season.id}
                     onClick={
                       () => history.push(
-                        `/anime/info/${Season.Anime.id}`,
+                        `/anime/info/${Season.id}`,
                       )}
                     onKeyPress={
                       () => history.push(
-                        `/anime/info/${Season.Anime.id}`,
+                        `/anime/info/${Season.id}`,
                       )}
                     role="menuitem"
                     tabIndex={index}

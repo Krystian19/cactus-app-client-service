@@ -27,10 +27,6 @@ const AnimeVideoQuery = gql`
         poster,
         title,
         seasonOrder
-        Anime {
-          id,
-          title
-        }
       },
       EpisodeVersions {
         id,
@@ -100,7 +96,7 @@ export default class AnimeVideoView extends Component {
                     <div className="anime-watch-episode-description">
                       <div className="left-side">
                         <div className="cover">
-                          <Link to={`/anime/info/${getEpisode.Season.Anime.id}`}>
+                          <Link to={`/anime/info/${getEpisode.Season.id}`}>
                             <img
                               src={`/img_cdn/${getEpisode.Season.poster}`}
                               alt="cover"
@@ -109,11 +105,8 @@ export default class AnimeVideoView extends Component {
                         </div>
                         <div className="info">
                           <h1>
-                            <Link to={`/anime/info/${getEpisode.Season.Anime.id}`}>
-                              {
-                                `${getEpisode.Season.title}
-                                (Season ${getEpisode.Season.seasonOrder})`
-                              }
+                            <Link to={`/anime/info/${getEpisode.Season.id}`}>
+                              {getEpisode.Season.title}
                             </Link>
                           </h1>
                           <h2>
@@ -151,11 +144,11 @@ export default class AnimeVideoView extends Component {
                             className="list-option"
                             onClick={
                               () => history.push(
-                                `/anime/info/${getEpisode.Season.Anime.id}`,
+                                `/anime/info/${getEpisode.Season.id}`,
                               )}
                             onKeyPress={
                               () => history.push(
-                                `/anime/info/${getEpisode.Season.Anime.id}`,
+                                `/anime/info/${getEpisode.Season.id}`,
                               )}
                             role="menuitem"
                             tabIndex={-2}
