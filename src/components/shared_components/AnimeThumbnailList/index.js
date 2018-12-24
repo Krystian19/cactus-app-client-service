@@ -35,7 +35,7 @@ const AnimeThumbnailList = (props) => {
           key={season.id}
           className="anime-thumbnail"
         >
-          <Link to={`/anime/info/${season.Anime.id}`}>
+          <Link to={`/anime/info/${season.id}`}>
             <div className="cover">
               <span className="score">
                 4.5/5

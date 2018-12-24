@@ -8,8 +8,9 @@ import LazyImage from '../../shared_components/LazyImage';
 
 const AnimeInfoQuery = gql`
   query($id:Int) {
-    getAnime(id: $id) {
+    getSeason(id: $id) {
       id,
+      seasonOrder,
       title,
       Descriptions {
         id,
@@ -20,18 +21,17 @@ const AnimeInfoQuery = gql`
           iso_code
         }
       },
-      Genres {
+      startedAiring,
+      stoppedAiring,
+      poster,
+      background,
+      Anime {
         id,
-        title
-      },
-      Seasons {
-        id,
-        seasonOrder,
         title,
-        startedAiring,
-        stoppedAiring,
-        poster,
-        background,
+        Genres {
+          id,
+          title
+        },
       }
     }
   }
@@ -66,15 +66,14 @@ export default class AnimeInfoView extends Component {
               if (error) return <p>Error :(</p>;
 
               console.log(data);
-              const { getAnime } = data;
-              const latestSeason = getAnime.Seasons[getAnime.Seasons.length - 1];
+              const { getSeason } = data;
               return (
                 <div className="anime-info">
                   <div
                     className="head"
                     style={{
                       backgroundImage:
-                        `url(/img_cdn/${latestSeason.background})`,
+                        `url(/img_cdn/${getSeason.background})`,
                     }}
                   >
                     <div className="overlay" />
@@ -83,10 +82,10 @@ export default class AnimeInfoView extends Component {
                         <div className="small-side" />
                         <div className="big-side">
                           <h1 className="anime-title">
-                            {getAnime.title}
+                            {getSeason.title}
                           </h1>
                           <div className="genres">
-                            {getAnime.Genres.map(genre => (
+                            {getSeason.Anime.Genres.map(genre => (
                               <a key={genre.id} className="genre-tag" href="http://www.google.com">{genre.title}</a>
                             ))
                             }
@@ -101,14 +100,14 @@ export default class AnimeInfoView extends Component {
                         <div className="details">
                           <div className="cover">
                             <LazyImage
-                              src={`/img_cdn/${latestSeason.poster}`}
+                              src={`/img_cdn/${getSeason.poster}`}
                               errorSrc="/img_cdn/test.jpg"
                               alt="cover"
                               className="fade-in"
                               noLoadingSpinner
                             />
                             {/* <img
-                              src={`/img_cdn/${latestSeason.poster}`}
+                              src={`/img_cdn/${getSeason.poster}`}
                               alt="cover"
                             /> */}
                           </div>
@@ -142,15 +141,11 @@ export default class AnimeInfoView extends Component {
                       <div className="big-side">
                         <div className="sinopsis">
                           <p>
-                            {getAnime.Descriptions[0].description}
+                            {getSeason.Descriptions[0].description}
                           </p>
                         </div>
                         <div className="anime-seasons">
-                          {
-                            getAnime.Seasons.map(season => (
-                              <AnimeSeason key={season.id} season={season} />
-                            ))
-                          }
+                          <AnimeSeason key={getSeason.id} season={getSeason} />
                         </div>
 
                       </div>

@@ -11,17 +11,8 @@ const GetSeasonQuery = gql`
   query($id:Int, $pageCount:Int, $currentPage:Int) {
     getSeason(id:$id) {
       id,
-      seasonOrder,
       title,
-      startedAiring,
-      stoppedAiring,
-      poster,
-      background,
       episodeCount,
-      AlternativeTitles {
-        id,
-        title
-      },
       Episodes(limit:$pageCount, offset: $currentPage) {
         id,
         thumbnail,
@@ -86,9 +77,9 @@ export default class AnimeSeason extends Component {
           console.log(data);
           return (
             <div className="anime-season">
-              <span className="anime-season-title">
+              {/* <span className="anime-season-title">
                 {`${data.getSeason.title} (Season ${data.getSeason.seasonOrder})`}
-              </span>
+              </span> */}
               <div className="anime-season-videos">
                 <div className="anime-small-thumbnail-list">
 

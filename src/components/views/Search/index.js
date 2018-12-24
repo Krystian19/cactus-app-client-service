@@ -11,11 +11,7 @@ const SearchViewQuery = gql`
       id,
       title,
       poster,
-      episodeCount,
-      Anime {
-        id,
-        title
-      }
+      episodeCount
     }
   }
 `;
