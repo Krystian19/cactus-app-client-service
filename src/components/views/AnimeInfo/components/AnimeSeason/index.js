@@ -56,6 +56,13 @@ export default class AnimeSeason extends Component {
     this.setState({ currentPage: (currentPage - 1) });
   }
 
+  setCurrentPage = (page) => {
+    // If arg is null then ignore it
+    if ((page === null) || (page === undefined)) return;
+
+    this.setState({ currentPage: page });
+  }
+
   render() {
     const { season } = this.props;
     const { currentPage } = this.state;
@@ -141,6 +148,7 @@ export default class AnimeSeason extends Component {
                     this.PageForward();
                   }}
                   goBackwardsCB={() => this.PageBackwards()}
+                  setCurrentPageCB={this.setCurrentPage}
                 />
               </div>
             </div>
