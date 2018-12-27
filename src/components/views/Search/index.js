@@ -23,8 +23,7 @@ export default class SearchView extends Component {
     super();
 
     // How many records to are shown per page
-    // this.pageCount = 18;
-    this.pageCount = 3;
+    this.pageCount = 18;
 
     this.state = {
       searchFieldText: '',
@@ -107,23 +106,28 @@ export default class SearchView extends Component {
                   <AnimeThumbnailList
                     seasons={data.findSeasons}
                   />
-                  <PaginationBox
-                    pageCount={this.pageCount}
-                    itemCount={data.getSeasonCount}
-                    currentPage={currentPage}
-                    goForwardCB={() => {
-                      const lastPage = Math.ceil(
-                        data.getSeasonCount / this.pageCount,
-                      );
+                  {
+                    data.findSeasons.length !== 0
+                    && (
+                      <PaginationBox
+                        pageCount={this.pageCount}
+                        itemCount={data.getSeasonCount}
+                        currentPage={currentPage}
+                        goForwardCB={() => {
+                          const lastPage = Math.ceil(
+                            data.getSeasonCount / this.pageCount,
+                          );
 
-                      // If this is the last page, don't go forward
-                      if ((currentPage + 1) === lastPage) return;
+                          // If this is the last page, don't go forward
+                          if ((currentPage + 1) === lastPage) return;
 
-                      this.PageForward();
-                    }}
-                    goBackwardsCB={() => this.PageBackwards()}
-                    setCurrentPageCB={this.setCurrentPage}
-                  />
+                          this.PageForward();
+                        }}
+                        goBackwardsCB={() => this.PageBackwards()}
+                        setCurrentPageCB={this.setCurrentPage}
+                      />
+                    )
+                  }
                 </div>
 
               );
