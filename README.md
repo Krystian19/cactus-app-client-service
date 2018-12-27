@@ -72,7 +72,7 @@ Start watch of sass changes:
 ```sh
 docker exec -ti cactus_app_client yarn watch_scss
 ```
-### Translate's Japan's Date and time to UTC with moment.js timezone
+### Translates Japan's Date and time to UTC with moment-timezone.js
 ```js
 moment.tz('2018-10-07 00:30', 'Japan').utc().format('YYYY-MM-DD HH:mm:ss A');
 ```
