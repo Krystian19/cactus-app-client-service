@@ -4,15 +4,17 @@ import React, { Component } from 'react';
 import Sidebar from '../../shared_components/Sidebar';
 import AnimeThumbnailList from '../../shared_components/AnimeThumbnailList';
 import LoadingSpinner from '../../shared_components/LoadingSpinner';
+import PaginationBox from '../../shared_components/PaginationBox';
 
 const SearchViewQuery = gql`
- query($title: String) {
-   findSeasons(title:$title) {
-      id,
-      title,
-      poster,
-      episodeCount
-    }
+  query($title: String, $pageCount:Int, $currentPage:Int) {
+    findSeasons(title:$title, limit:$pageCount, offset: $currentPage) {
+        id,
+        title,
+        poster,
+        episodeCount
+    },
+    getSeasonCount(title:$title)
   }
 `;
 
@@ -20,14 +22,41 @@ export default class SearchView extends Component {
   constructor() {
     super();
 
+    // How many records to are shown per page
+    this.pageCount = 18;
+
     this.state = {
       searchFieldText: '',
+
+      // Pagination state values
+      currentPage: 0,
     };
+  }
+
+  PageForward = () => {
+    const { currentPage } = this.state;
+    this.setState({ currentPage: (currentPage + 1) });
+  }
+
+  PageBackwards = () => {
+    const { currentPage } = this.state;
+
+    // Can't go backwards if page is already 0
+    if (currentPage === 0) return;
+
+    this.setState({ currentPage: (currentPage - 1) });
+  }
+
+  setCurrentPage = (page) => {
+    // If arg is null then ignore it
+    if ((page === null) || (page === undefined)) return;
+
+    this.setState({ currentPage: page });
   }
 
   render() {
     const { history } = this.props;
-    const { searchFieldText } = this.state;
+    const { searchFieldText, currentPage } = this.state;
     return (
       <div className="main-container">
         <Sidebar props={{ history }} />
@@ -46,7 +75,14 @@ export default class SearchView extends Component {
             />
           </div>
 
-          <Query query={SearchViewQuery} variables={{ title: searchFieldText }}>
+          <Query
+            query={SearchViewQuery}
+            variables={{
+              title: searchFieldText,
+              pageCount: this.pageCount,
+              currentPage: (currentPage * this.pageCount),
+            }}
+          >
             {({ loading, error, data }) => {
               if (loading) {
                 return (
@@ -60,10 +96,28 @@ export default class SearchView extends Component {
 
               console.log(data);
               return (
+                <div className="util-container">
+                  <AnimeThumbnailList
+                    seasons={data.findSeasons}
+                  />
+                  <PaginationBox
+                    pageCount={this.pageCount}
+                    itemCount={data.getSeasonCount}
+                    currentPage={currentPage}
+                    goForwardCB={() => {
+                      const lastPage = Math.ceil(
+                        data.getSeasonCount / this.pageCount,
+                      );
 
-                <AnimeThumbnailList
-                  seasons={data.findSeasons}
-                />
+                      // If this is the last page, don't go forward
+                      if ((currentPage + 1) === lastPage) return;
+
+                      this.PageForward();
+                    }}
+                    goBackwardsCB={() => this.PageBackwards()}
+                    setCurrentPageCB={this.setCurrentPage}
+                  />
+                </div>
 
               );
             }}
