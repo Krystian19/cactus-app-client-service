@@ -61,9 +61,8 @@ export default class SearchView extends Component {
               console.log(data);
               return (
 
-                <AnimeThumbnailList props={{
-                  seasons: data.findSeasons,
-                }}
+                <AnimeThumbnailList
+                  seasons={data.findSeasons}
                 />
 
               );
