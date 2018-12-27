@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 class PaginationBox extends Component {
   // constructor(props) {
@@ -14,7 +14,9 @@ class PaginationBox extends Component {
     // Resolve the range of values below the currentPage value
     const leftRange = range(1, lastPageValue)
       .filter(el => (
-        (el < visibleCurrentPage) && el >= (visibleCurrentPage - pageRange)
+        (el < visibleCurrentPage)
+        && el >= (visibleCurrentPage - pageRange)
+        && el !== 1
       ));
 
     // Resolve the range of values above the currentPage value (ignoring the last page)
@@ -40,6 +42,12 @@ class PaginationBox extends Component {
       setCurrentPageCB,
     } = this.props;
 
+    // if no items are supposed to be shown,
+    // do not render the component
+    if (itemCount.length === 0) {
+      return null;
+    }
+
     // console.log(`Item count ${itemCount}`);
     // console.log(`Page count ${pageCount}`);
     // console.log(`Rounded result is ${Math.ceil(itemCount / pageCount)}`);
@@ -57,6 +65,28 @@ class PaginationBox extends Component {
             <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
           </svg>
         </div>
+        { // If the current page is the first page hide this one
+          currentPage !== 0
+          && (
+            <Fragment>
+              <div
+                key={0}
+                className={
+                  `item ${((currentPage + 1) === 1) ? 'active' : ''}`
+                }
+                onClick={() => setCurrentPageCB(Math.abs((0)))}
+                onKeyPress={() => setCurrentPageCB(Math.abs((0)))}
+                role="menuitem"
+                tabIndex={-1}
+              >
+                {1}
+              </div>
+              <div className="item">
+                ...
+              </div>
+            </Fragment>
+          )
+        }
         {
           this.fetchPageNumbers(lastPageValue, currentPage).map(num => (
             <div
@@ -74,18 +104,23 @@ class PaginationBox extends Component {
         { // If the current page is the last page hide this one
           lastPageValue !== (currentPage + 1)
           && (
-            <div
-              key={lastPageValue}
-              className={
-                `item ${(lastPageValue === (currentPage + 1)) ? 'active' : ''}`
-              }
-              onClick={() => setCurrentPageCB(Math.abs((lastPageValue - 1)))}
-              onKeyPress={() => setCurrentPageCB(Math.abs((lastPageValue - 1)))}
-              role="menuitem"
-              tabIndex={-1}
-            >
-              {lastPageValue}
-            </div>
+            <Fragment>
+              <div className="item">
+                ...
+              </div>
+              <div
+                key={lastPageValue}
+                className={
+                  `item ${(lastPageValue === (currentPage + 1)) ? 'active' : ''}`
+                }
+                onClick={() => setCurrentPageCB(Math.abs((lastPageValue - 1)))}
+                onKeyPress={() => setCurrentPageCB(Math.abs((lastPageValue - 1)))}
+                role="menuitem"
+                tabIndex={-1}
+              >
+                {lastPageValue}
+              </div>
+            </Fragment>
           )
         }
         {/* <div className="item active">1</div>
@@ -105,7 +140,7 @@ class PaginationBox extends Component {
             <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
           </svg>
         </div>
-      </div>
+      </div >
     );
   }
 }

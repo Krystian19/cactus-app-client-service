@@ -23,7 +23,8 @@ export default class SearchView extends Component {
     super();
 
     // How many records to are shown per page
-    this.pageCount = 18;
+    // this.pageCount = 18;
+    this.pageCount = 3;
 
     this.state = {
       searchFieldText: '',
@@ -70,7 +71,13 @@ export default class SearchView extends Component {
               placeholder="Search by ..."
               value={searchFieldText}
               onChange={
-                ({ target: { value } }) => this.setState({ searchFieldText: value })
+                ({ target: { value } }) => {
+                  this.setState(
+                    { searchFieldText: value },
+                    // When text fields are available set current page to 0
+                    () => this.setCurrentPage(0),
+                  );
+                }
               }
             />
           </div>
