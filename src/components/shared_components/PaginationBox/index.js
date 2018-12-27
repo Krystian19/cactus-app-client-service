@@ -5,10 +5,29 @@ class PaginationBox extends Component {
   //   super(props);
   // }
 
-  fetchPageNumbers = (lastPageValue) => {
-    // Generates a range of integers
+  fetchPageNumbers = (lastPageValue, currentPage) => {
+    const pageRange = 2;
+    const visibleCurrentPage = currentPage + 1;
+    // Generates an array that contains a specified range of integers
     const range = (start, end) => [...Array(end - start + 1)].map((_, i) => start + i);
-    return range(1, lastPageValue);
+
+    // Resolve the range of values below the currentPage value
+    const leftRange = range(1, lastPageValue)
+      .filter(el => (
+        (el < visibleCurrentPage) && el >= (visibleCurrentPage - pageRange)
+      ));
+
+    // Resolve the range of values above the currentPage value (ignoring the last page)
+    const rightRange = range(1, lastPageValue)
+      .filter(el => (
+        (el > visibleCurrentPage)
+        && el <= (visibleCurrentPage + pageRange)
+        && el !== lastPageValue
+      ));
+
+    return [...leftRange, visibleCurrentPage, ...rightRange];
+
+    // return range(1, lastPageValue);
   }
 
   render() {
@@ -39,7 +58,7 @@ class PaginationBox extends Component {
           </svg>
         </div>
         {
-          this.fetchPageNumbers(lastPageValue).map(num => (
+          this.fetchPageNumbers(lastPageValue, currentPage).map(num => (
             <div
               key={num}
               className={`item ${(num === (currentPage + 1)) ? 'active' : ''}`}
@@ -51,6 +70,23 @@ class PaginationBox extends Component {
               {num}
             </div>
           ))
+        }
+        { // If the current page is the last page hide this one
+          lastPageValue !== (currentPage + 1)
+          && (
+            <div
+              key={lastPageValue}
+              className={
+                `item ${(lastPageValue === (currentPage + 1)) ? 'active' : ''}`
+              }
+              onClick={() => setCurrentPageCB(Math.abs((lastPageValue - 1)))}
+              onKeyPress={() => setCurrentPageCB(Math.abs((lastPageValue - 1)))}
+              role="menuitem"
+              tabIndex={-1}
+            >
+              {lastPageValue}
+            </div>
+          )
         }
         {/* <div className="item active">1</div>
         <div className="item">2</div>
