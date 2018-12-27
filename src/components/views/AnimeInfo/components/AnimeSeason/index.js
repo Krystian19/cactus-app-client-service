@@ -92,7 +92,7 @@ export default class AnimeSeason extends Component {
 
                   {
                     data.getSeason.Episodes.map(episode => (
-                      <div key={episode.id} className="anime-small-thumbnail">
+                      <div key={episode.id} className="anime-small-thumbnail fade-in">
                         <Link to={`/anime/video/${episode.id}`}>
                           <div className="cover">
                             {/* <img
