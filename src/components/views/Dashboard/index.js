@@ -71,7 +71,7 @@ export default class DashboardView extends Component {
                   viewAllLink="/hottest_episodes"
                 />
                 <VideoBlock props={{
-                  title: 'New episodes',
+                  title: 'Newest episodes',
                   episodes: data.getNewestEpisodes,
                   history,
                   viewAllLink: '/newest_episodes',

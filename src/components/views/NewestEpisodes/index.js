@@ -90,7 +90,7 @@ export default class NewestEpisodes extends Component {
             return (
               <div className="main-content no-padding">
                 <VideoBlock props={{
-                  title: 'New episodes',
+                  title: 'Newest episodes',
                   episodes: data.getNewestEpisodes,
                   history,
                 }}
