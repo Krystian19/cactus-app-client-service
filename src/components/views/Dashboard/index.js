@@ -64,12 +64,11 @@ export default class DashboardView extends Component {
             console.log(data);
             return (
               <div className="main-content no-padding">
-                <HottestVideoBlock props={{
-                  title: '🔥 right now',
-                  episodes: data.getHottestEpisodes,
-                  history,
-                  viewAllLink: '/hottest_episodes',
-                }}
+                <HottestVideoBlock
+                  title="🔥 right now"
+                  episodes={data.getHottestEpisodes}
+                  history={history}
+                  viewAllLink="/hottest_episodes"
                 />
                 <VideoBlock props={{
                   title: 'New episodes',
