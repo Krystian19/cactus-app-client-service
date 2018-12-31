@@ -5,6 +5,8 @@ import AnimeSeason from './components/AnimeSeason';
 import Sidebar from '../../shared_components/Sidebar';
 import LoadingSpinner from '../../shared_components/LoadingSpinner';
 import LazyImage from '../../shared_components/LazyImage';
+import JSTtoLocalTime from '../../../utils/JSTtoLocalTime';
+import MonthYearExtractor from '../../../utils/MonthYearExtractor';
 
 const AnimeInfoQuery = gql`
   query($id:Int) {
@@ -12,6 +14,7 @@ const AnimeInfoQuery = gql`
       id,
       seasonOrder,
       title,
+      episodeCount
       Descriptions {
         id,
         description,
@@ -115,24 +118,54 @@ export default class AnimeInfoView extends Component {
 
                             <div className="cover-detail-row">
                               <span className="cover-detail-row-title">AVG. SCORE</span>
-                              <span className="cover-detail-row-detail">4.64/5</span>
-                            </div>
-
-                            <div className="cover-detail-row">
-                              <span className="cover-detail-row-title">type</span>
-                              <span className="cover-detail-row-detail">tv</span>
-                            </div>
-
-                            <div className="cover-detail-row">
-                              <span className="cover-detail-row-title">aired</span>
                               <span className="cover-detail-row-detail">
-                                APR 2009 - JUL 2010
+                                <i className="fas fa-star" />
+                                4.64/5&nbsp;
+                              </span>
+                            </div>
+
+                            <div className="cover-detail-row">
+                              <span className="cover-detail-row-title">EPS</span>
+                              <span className="cover-detail-row-detail">
+                                {data.getSeason.episodeCount}
+                              </span>
+                            </div>
+
+                            <div className="cover-detail-row">
+                              <span className="cover-detail-row-title">AIRED</span>
+                              <span className="cover-detail-row-detail">
+                                {/* If it hasn't been aired yet */}
+                                {!data.getSeason.startedAiring
+                                  && 'Not airing yet'
+                                }
+                                {/* If it started airing */}
+                                {data.getSeason.startedAiring
+                                  && `
+                                  ${
+                                  MonthYearExtractor(
+                                    JSTtoLocalTime(data.getSeason.startedAiring),
+                                  )
+                                  } 
+                                  - 
+                                  ${ // If stoppedAiring DateTime String is defined
+                                  data.getSeason.stoppedAiring
+                                    ? MonthYearExtractor(
+                                      JSTtoLocalTime(data.getSeason.stoppedAiring),
+                                    )
+                                    : 'PRESENT'
+                                  }`
+                                }
+                                {/* APR 2009 - JUL 2010 */}
                               </span>
                             </div>
 
                             <div className="cover-detail-row">
                               <span className="cover-detail-row-title">status</span>
-                              <span className="cover-detail-row-detail">completed</span>
+                              <span
+                                className="cover-detail-row-detail"
+                              >
+                                {data.getSeason.stoppedAiring ? 'COMPLETED' : 'AIRING'}
+                              </span>
                             </div>
 
                           </div>
