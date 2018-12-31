@@ -14,3 +14,6 @@ public/css/main.min.css
 
 # In case the is a permission error with the setup.sh file
 setup.sh-e
+
+# Ignore jest's snap files
+*.snap
