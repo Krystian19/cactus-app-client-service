@@ -12,7 +12,7 @@ before_install:
   - docker build -t cactus_app/cactus-app-client-service .
   - docker images
 install:
-  - docker run -ti --name=cactus_app_client -d -v $(pwd):/app -p 3000:3000 cactus_app/cactus-app-client-service
+  - docker run -ti --name=cactus_app_client -d -e CODECOV_TOKEN=$CODECOV_TOKEN -v $(pwd):/app -p 3000:3000 cactus_app/cactus-app-client-service
   - docker ps -a
 
 script:
@@ -20,4 +20,3 @@ script:
   - sleep 1m  
   # Run the normal test processes
   - docker exec -ti cactus_app_client yarn test
-## after_success: docker exec -ti cactus_backend yarn coverage
