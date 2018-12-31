@@ -10,7 +10,8 @@
     "watch_scss": "gulp",
     "build": "yarn build_scss; yarn build_js;",
     "start": "nodemon --exec babel-node server.js",
-    "test": "jest ./tests/ && codecov"
+    "test": "jest ./tests/",
+    "coverage": "codecov"
   },
   "jest": {
     "coverageDirectory": "./coverage/",
