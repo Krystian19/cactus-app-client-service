@@ -26,7 +26,7 @@ const episodes = [
   },
 ];
 
-test('Tests are working well', () => {
+test('VideoBlock component is rendering properly', () => {
   const component = renderer.create(
     <MemoryRouter>
       <VideoBlock

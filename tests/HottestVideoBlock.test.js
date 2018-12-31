@@ -26,7 +26,7 @@ const HottestEpisodes = [
   },
 ];
 
-test('Tests are working well', () => {
+test('HottestVideoBlock component is rendering properly', () => {
   const component = renderer.create(
     <MemoryRouter>
       <HottestVideoBlock

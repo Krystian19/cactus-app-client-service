@@ -4,7 +4,7 @@ import LazyImage from '../src/components/shared_components/LazyImage';
 
 const { test, expect } = window;
 
-test('Tests are working well', () => {
+test('LazyImage component is rendering properly', () => {
   const component = renderer.create(
     <LazyImage
       src="/img_cdn/test.jpg"
