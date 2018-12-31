@@ -1,4 +1,5 @@
 # Cactus app web client service
+![Build Status](https://travis-ci.org/Krystian19/cactus-app-client-service.svg?branch=master) [![Code Climate](https://codeclimate.com/github/Krystian19/cactus-app-client-service/badges/gpa.svg)](https://codeclimate.com/github/Krystian19/cactus-app-client-service)
 
 Cactus app web client service repo.
 
