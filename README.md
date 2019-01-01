@@ -62,7 +62,7 @@ docker run -ti --name=cactus_app_client -d -v $(pwd):/app -p 3000:3000 cactus_ap
 
 Wait a couple seconds and then the project should be running @ ```http://localhost:3000/```.
 
-How to work with the project ...
+## How to work with the project ?
 
 Start watch of js changes:
 ```sh
@@ -73,7 +73,11 @@ Start watch of sass changes:
 ```sh
 docker exec -ti cactus_app_client yarn watch_scss
 ```
-### Translates Japan's Date and time to UTC with moment-timezone.js
+## Run the tests
+```sh
+docker exec -ti cactus_app_client yarn test
+```
+## Translates Japan's Date and time to UTC with moment-timezone.js
 ```js
 moment.tz('2018-10-07 00:30', 'Japan').utc().format('YYYY-MM-DD HH:mm:ss A');
 ```
