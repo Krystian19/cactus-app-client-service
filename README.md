@@ -3,13 +3,13 @@
 
 Cactus app web client service repo.
 
-## Requirements
+# Requirements
 ```
 docker -v
 Docker version 18.03.0-ce
 ```
 
-## Docker-compose setup example
+# Docker-compose setup example
 How to use it inside a docker-compose file:
 ```yaml
 version: '3'
@@ -27,7 +27,7 @@ services:
     ports: ['3000:3000']
 ```
 
-## Standalone Setup
+# Standalone Setup
 
 Inside the project's directory ...
 
@@ -45,7 +45,7 @@ Build the docker image:
 docker build --no-cache -t cactus_app/cactus-app-client-service .
 ```
 
-### Run the project
+## Run the project
 Run these commands:
 ```sh
 # Make sure setup.sh has the right permissions
@@ -62,7 +62,7 @@ docker run -ti --name=cactus_app_client -d -v $(pwd):/app -p 3000:3000 cactus_ap
 
 Wait a couple seconds and then the project should be running @ ```http://localhost:3000/```.
 
-## How to work with the project ?
+# How to work with the project ?
 
 Start watch of js changes:
 ```sh
@@ -73,11 +73,13 @@ Start watch of sass changes:
 ```sh
 docker exec -ti cactus_app_client yarn watch_scss
 ```
-## Run the tests
+# Run the tests
 ```sh
 docker exec -ti cactus_app_client yarn test
 ```
-## Translates Japan's Date and time to UTC with moment-timezone.js
+# Utils
+
+### Translates Japan's Date and time to UTC with moment-timezone.js ...
 ```js
 moment.tz('2018-10-07 00:30', 'Japan').utc().format('YYYY-MM-DD HH:mm:ss A');
 ```
@@ -85,5 +87,5 @@ moment.tz('2018-10-07 00:30', 'Japan').utc().format('YYYY-MM-DD HH:mm:ss A');
 ### Todo list
 - [ ] Setup props validation in all the view components
 
-## License
-MIT © Jan Guzman
+# License
+MIT © [Jan Guzman](https://github.com/Krystian19)
