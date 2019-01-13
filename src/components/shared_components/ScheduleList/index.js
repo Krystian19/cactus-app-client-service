@@ -156,7 +156,12 @@ const ScheduleList = (props) => {
                   >
                     <div
                       className="content"
-                      style={{ backgroundImage: `url(/img_cdn/${Season.poster})` }}
+                      style={{
+                        backgroundImage:
+                          (Season.poster)
+                            ? `url(/img_cdn/${Season.poster})`
+                            : 'url(/img_cdn/test.jpg)',
+                      }}
                     >
                       <div className="text">
                         <p>

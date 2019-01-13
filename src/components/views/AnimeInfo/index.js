@@ -73,10 +73,14 @@ export default class AnimeInfoView extends Component {
               return (
                 <div className="anime-info">
                   <div
-                    className="head"
+                    className={`head 
+                      ${(!getSeason.background) ? 'missing-background' : ''}
+                    `}
                     style={{
                       backgroundImage:
-                        `url(/img_cdn/${getSeason.background})`,
+                        (getSeason.background)
+                          ? `url(/img_cdn/${getSeason.background})`
+                          : 'url(/img/default_background.jpg)',
                     }}
                   >
                     <div className="overlay" />

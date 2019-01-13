@@ -12,6 +12,12 @@
   background-position: 50% 10%;
   position: relative;
   z-index: 0;
+
+  &.missing-background {
+    background-repeat: initial;
+    background-size: initial;
+    background-position: initial;
+  }
 }
 
 .anime-info .head .overlay {
@@ -82,6 +88,7 @@
 .anime-info .main .content .small-side .cover-details {
   width: 100%;
   margin-top: 0.6rem;
+  position: relative;
 }
 
 .anime-info .main .content .small-side .cover-details .cover-detail-row {
