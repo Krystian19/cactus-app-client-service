@@ -123,8 +123,8 @@ export default class AnimeInfoView extends Component {
                             <div className="cover-detail-row">
                               <span className="cover-detail-row-title">AVG. SCORE</span>
                               <span className="cover-detail-row-detail">
+                                &nbsp;4.64/5
                                 <i className="fas fa-star" />
-                                4.64/5&nbsp;
                               </span>
                             </div>
 
