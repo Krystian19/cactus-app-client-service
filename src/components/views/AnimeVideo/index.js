@@ -88,7 +88,11 @@ export default class AnimeVideoView extends Component {
                       /> */}
                       <Player
                         playsInline
-                        poster={`/img_cdn/${getEpisode.thumbnail}`}
+                        poster={
+                          (getEpisode.thumbnail)
+                            ? `/img_cdn/${getEpisode.thumbnail}`
+                            : '/img_cdn/test.jpg'
+                        }
                         // src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
                         src={`/video_cdn/${getEpisode.EpisodeVersions[0].episode_url}`}
                       />
