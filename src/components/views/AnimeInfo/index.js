@@ -28,14 +28,10 @@ const AnimeInfoQuery = gql`
       stoppedAiring,
       poster,
       background,
-      Anime {
+      Genres {
         id,
-        title,
-        Genres {
-          id,
-          title
-        },
-      }
+        title
+      },
     }
   }
 `;
@@ -92,7 +88,7 @@ export default class AnimeInfoView extends Component {
                             {getSeason.title}
                           </h1>
                           <div className="genres">
-                            {getSeason.Anime.Genres.map(genre => (
+                            {getSeason.Genres.map(genre => (
                               <a key={genre.id} className="genre-tag" href="http://www.google.com">{genre.title}</a>
                             ))
                             }
