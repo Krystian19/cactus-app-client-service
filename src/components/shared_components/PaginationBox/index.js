@@ -51,7 +51,11 @@ class PaginationBox extends Component {
     // console.log(`Item count ${itemCount}`);
     // console.log(`Page count ${pageCount}`);
     // console.log(`Rounded result is ${Math.ceil(itemCount / pageCount)}`);
-    const lastPageValue = Math.ceil(itemCount / pageCount);
+    const pageLength = Math.ceil(itemCount / pageCount);
+
+    // Show the points if the page count exceeds X amount of pages
+    const showPoints = (pageLength > 4);
+
     return (
       <div className="pagination-box">
         <div
@@ -81,14 +85,16 @@ class PaginationBox extends Component {
               >
                 {1}
               </div>
-              <div className="item">
-                ...
-              </div>
+              {showPoints && (
+                <div className="item">
+                  ...
+                </div>
+              )}
             </Fragment>
           )
         }
         {
-          this.fetchPageNumbers(lastPageValue, currentPage).map(num => (
+          this.fetchPageNumbers(pageLength, currentPage).map(num => (
             <div
               key={num}
               className={`item ${(num === (currentPage + 1)) ? 'active' : ''}`}
@@ -102,23 +108,25 @@ class PaginationBox extends Component {
           ))
         }
         { // If the current page is the last page hide this one
-          lastPageValue !== (currentPage + 1)
+          pageLength !== (currentPage + 1)
           && (
             <Fragment>
-              <div className="item">
-                ...
-              </div>
+              {showPoints && (
+                <div className="item">
+                  ...
+                </div>
+              )}
               <div
-                key={lastPageValue}
+                key={pageLength}
                 className={
-                  `item ${(lastPageValue === (currentPage + 1)) ? 'active' : ''}`
+                  `item ${(pageLength === (currentPage + 1)) ? 'active' : ''}`
                 }
-                onClick={() => setCurrentPageCB(Math.abs((lastPageValue - 1)))}
-                onKeyPress={() => setCurrentPageCB(Math.abs((lastPageValue - 1)))}
+                onClick={() => setCurrentPageCB(Math.abs((pageLength - 1)))}
+                onKeyPress={() => setCurrentPageCB(Math.abs((pageLength - 1)))}
                 role="menuitem"
                 tabIndex={-1}
               >
-                {lastPageValue}
+                {pageLength}
               </div>
             </Fragment>
           )
@@ -127,7 +135,7 @@ class PaginationBox extends Component {
         <div className="item">2</div>
         <div className="item">3</div> */}
         <div className="item mobile-control">
-          {`${currentPage + 1} / ${lastPageValue}`}
+          {`${currentPage + 1} / ${pageLength}`}
         </div>
         <div
           className="item control"
