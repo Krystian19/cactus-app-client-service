@@ -9,21 +9,23 @@ import PaginationBox from '../../shared_components/PaginationBox';
 const NewestEpisodesQuery = gql`
   query($pageCount:Int, $currentPage:Int) {
     getNewestEpisodes(limit:$pageCount, offset: $currentPage) {
-      id,
-      thumbnail,
-      episodeOrder,
-      Season {
+      rows {
         id,
-        seasonOrder,
-        title,
-        background,
-        Anime {
+        thumbnail,
+        episodeOrder,
+        Season {
           id,
-          title
+          seasonOrder,
+          title,
+          background,
+          Anime {
+            id,
+            title
+          }
         }
-      }
+      },
+      count
     },
-    getNewestEpisodesCount
   }
 `;
 
@@ -91,20 +93,20 @@ export default class NewestEpisodes extends Component {
               <div className="main-content no-padding">
                 <VideoBlock props={{
                   title: 'Newest episodes',
-                  episodes: data.getNewestEpisodes,
+                  episodes: data.getNewestEpisodes.rows,
                   history,
                 }}
                 />
                 {
-                  data.getNewestEpisodes.length !== 0
+                  data.getNewestEpisodes.rows.length !== 0
                   && (
                     <PaginationBox
                       pageCount={this.pageCount}
-                      itemCount={data.getNewestEpisodesCount}
+                      itemCount={data.getNewestEpisodes.count}
                       currentPage={currentPage}
                       goForwardCB={() => {
                         const lastPage = Math.ceil(
-                          data.getNewestEpisodesCount / this.pageCount,
+                          data.getNewestEpisodes.count / this.pageCount,
                         );
 
                         // If this is the last page, don't go forward

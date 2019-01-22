@@ -9,12 +9,14 @@ import PaginationBox from '../../shared_components/PaginationBox';
 const SearchViewQuery = gql`
   query($title: String, $pageCount:Int, $currentPage:Int) {
     findSeasons(title:$title, limit:$pageCount, offset: $currentPage) {
+      rows {
         id,
         title,
         poster,
         episodeCount
+      },
+      count
     },
-    getSeasonCount(title:$title)
   }
 `;
 
@@ -104,18 +106,18 @@ export default class SearchView extends Component {
               return (
                 <div className="util-container">
                   <AnimeThumbnailList
-                    seasons={data.findSeasons}
+                    seasons={data.findSeasons.rows}
                   />
                   {
-                    data.findSeasons.length !== 0
+                    data.findSeasons.rows.length !== 0
                     && (
                       <PaginationBox
                         pageCount={this.pageCount}
-                        itemCount={data.getSeasonCount}
+                        itemCount={data.findSeasons.count}
                         currentPage={currentPage}
                         goForwardCB={() => {
                           const lastPage = Math.ceil(
-                            data.getSeasonCount / this.pageCount,
+                            data.findSeasons.count / this.pageCount,
                           );
 
                           // If this is the last page, don't go forward

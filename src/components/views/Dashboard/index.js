@@ -22,20 +22,23 @@ const DashboardQuery = gql`
     }
   }
     
-  fragment episodeThumbnailFields on Episode {
-    id,
-    thumbnail,
-    episodeOrder,
-    Season {
+  fragment episodeThumbnailFields on PaginatedEpisodes {
+    rows {
       id,
-      seasonOrder,
-      title,
-      background,
-      Anime {
+      thumbnail,
+      episodeOrder,
+      Season {
         id,
-        title
+        seasonOrder,
+        title,
+        background,
+        Anime {
+          id,
+          title
+        }
       }
-    }
+    },
+    count
   }
 `;
 
@@ -66,13 +69,13 @@ export default class DashboardView extends Component {
               <div className="main-content no-padding">
                 <HottestVideoBlock
                   title="🔥 right now"
-                  episodes={data.getHottestEpisodes}
+                  episodes={data.getHottestEpisodes.rows}
                   history={history}
                   viewAllLink="/hottest_episodes"
                 />
                 <VideoBlock props={{
                   title: 'Newest episodes',
-                  episodes: data.getNewestEpisodes,
+                  episodes: data.getNewestEpisodes.rows,
                   history,
                   viewAllLink: '/newest_episodes',
                 }}

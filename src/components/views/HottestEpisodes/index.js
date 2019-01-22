@@ -9,21 +9,23 @@ import PaginationBox from '../../shared_components/PaginationBox';
 const HottestEpisodesQuery = gql`
   query($pageCount:Int, $currentPage:Int) {
     getHottestEpisodes(limit:$pageCount, offset: $currentPage) {
-      id,
-      thumbnail,
-      episodeOrder,
-      Season {
+      rows {
         id,
-        seasonOrder,
-        title,
-        background,
-        Anime {
+        thumbnail,
+        episodeOrder,
+        Season {
           id,
-          title
+          seasonOrder,
+          title,
+          background,
+          Anime {
+            id,
+            title
+          }
         }
-      }
+      },
+      count
     },
-    getHottestEpisodesCount
   }
 `;
 
@@ -91,19 +93,19 @@ export default class HottestEpisodes extends Component {
               <div className="main-content no-padding">
                 <HottestVideoBlock
                   title="🔥 right now"
-                  episodes={data.getHottestEpisodes}
+                  episodes={data.getHottestEpisodes.rows}
                   history={history}
                 />
                 {
-                  data.getHottestEpisodes.length !== 0
+                  data.getHottestEpisodes.rows.length !== 0
                   && (
                     <PaginationBox
                       pageCount={this.pageCount}
-                      itemCount={data.getHottestEpisodesCount}
+                      itemCount={data.getHottestEpisodes.count}
                       currentPage={currentPage}
                       goForwardCB={() => {
                         const lastPage = Math.ceil(
-                          data.getHottestEpisodesCount / this.pageCount,
+                          data.getHottestEpisodes.count / this.pageCount,
                         );
 
                         // If this is the last page, don't go forward
