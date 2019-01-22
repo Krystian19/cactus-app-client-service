@@ -84,7 +84,7 @@ docker exec -ti cactus_app_client yarn test
 moment.tz('2018-10-07 00:30', 'Japan').utc().format('YYYY-MM-DD HH:mm:ss A');
 ```
 
-### Todo list
+# Todo list
 - [ ] Setup props validation in all the view components
 
 # License
