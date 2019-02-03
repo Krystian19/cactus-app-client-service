@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Link,
+  withRouter,
 } from 'react-router-dom';
 import LazyImage from '../LazyImage';
 
@@ -57,7 +58,7 @@ const CategoriesBlock = (props) => {
   );
 };
 
-export default CategoriesBlock;
+export default withRouter(CategoriesBlock);
 
 // {/* Start of row */}
 // <div className="anime-small-thumbnail small category">
@@ -80,7 +81,11 @@ export default CategoriesBlock;
 //   </div>
 //   <div className="anime-small-thumbnail small category">
 //     <div className="cover">
-//       <img src="img/categories/Comedy.png" alt="thumbnail" className="anime-small-thumbnail" />
+//       <img
+//           src="img/categories/Comedy.png"
+//           alt="thumbnail"
+//           className="anime-small-thumbnail"
+//         />
 //       <div className="overlay">
 //         <span className="category_title">Comedy</span>
 //       </div>

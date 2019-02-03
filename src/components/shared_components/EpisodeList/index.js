@@ -1,9 +1,9 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 // ({ Episodes }) => (
 const EpisodeList = (props) => {
-  const { props: { episodes, history, title } } = props;
-
+  const { props: { episodes, title }, history } = props;
   return (
     <div className="video-block">
       <div className="video-block-title">
@@ -52,7 +52,7 @@ const EpisodeList = (props) => {
   );
 };
 
-export default EpisodeList;
+export default withRouter(EpisodeList);
 
 // <div className="anime-small-thumbnail">
 //           <div className="cover">

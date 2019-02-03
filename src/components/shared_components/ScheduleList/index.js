@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import moment from 'moment';
 
 import ClientRender from '../ClientRenderer';
@@ -100,7 +101,7 @@ const groupSeasonsByWeekDays = (Seasons) => {
 };
 
 const ScheduleList = (props) => {
-  const { props: { WeekDays, history } } = props;
+  const { props: { WeekDays }, history } = props;
   const parsedWeekDays = groupSeasonsByWeekDays(WeekDays);
   return (
     <div className="anime-schedule-list">
@@ -192,7 +193,7 @@ const ScheduleList = (props) => {
   );
 };
 
-export default ScheduleList;
+export default withRouter(ScheduleList);
 
 
 // <div className="anime-schedule-list">

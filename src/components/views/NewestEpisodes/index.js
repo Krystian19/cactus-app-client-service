@@ -63,7 +63,6 @@ export default class NewestEpisodes extends Component {
   }
 
   render() {
-    const { history } = this.props;
     const { currentPage } = this.state;
     return (
       <Query
@@ -90,7 +89,6 @@ export default class NewestEpisodes extends Component {
               <VideoBlock props={{
                 title: 'Newest episodes',
                 episodes: data.getNewestEpisodes.rows,
-                history,
               }}
               />
               {

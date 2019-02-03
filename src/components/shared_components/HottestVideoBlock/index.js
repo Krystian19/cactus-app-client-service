@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import {
   Link,
+  withRouter,
 } from 'react-router-dom';
 import LazyImage from '../LazyImage';
 
-export default class HottestVideoBlock extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
+class HottestVideoBlock extends Component {
   render() {
     const {
       episodes,
@@ -83,6 +80,8 @@ export default class HottestVideoBlock extends Component {
     );
   }
 }
+
+export default withRouter(HottestVideoBlock);
 
 // 🔥 right now
 

@@ -24,7 +24,6 @@ const WeekDayScheduleQuery = gql`
 
 export default class ScheduleView extends Component {
   render() {
-    const { history } = this.props;
     return (
       <Query query={WeekDayScheduleQuery} fetchPolicy="no-cache">
         {({ loading, error, data }) => {
@@ -44,7 +43,6 @@ export default class ScheduleView extends Component {
               <ScheduleList
                 props={{
                   WeekDays: data.getAiringSeasons,
-                  history,
                 }}
               />
             </div>

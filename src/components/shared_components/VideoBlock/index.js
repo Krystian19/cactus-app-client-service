@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Link,
+  withRouter,
 } from 'react-router-dom';
 import LazyImage from '../LazyImage';
 
@@ -10,9 +11,9 @@ const VideoBlock = (props) => {
     props: {
       episodes,
       title,
-      history,
       viewAllLink,
     },
+    history,
   } = props;
 
   return (
@@ -76,6 +77,8 @@ const VideoBlock = (props) => {
     </div>
   );
 };
+
+export default withRouter(VideoBlock);
 
 // <div className="anime-small-thumbnail">
 //           <div className="cover">
@@ -206,6 +209,3 @@ const VideoBlock = (props) => {
 //             </div>
 //           </div>
 //         </div>
-
-
-export default VideoBlock;

@@ -63,7 +63,6 @@ export default class HottestEpisodes extends Component {
   }
 
   render() {
-    const { history } = this.props;
     const { currentPage } = this.state;
     return (
       <Query
@@ -90,7 +89,6 @@ export default class HottestEpisodes extends Component {
               <HottestVideoBlock
                 title="🔥 right now"
                 episodes={data.getHottestEpisodes.rows}
-                history={history}
               />
               {
                 data.getHottestEpisodes.rows.length !== 0

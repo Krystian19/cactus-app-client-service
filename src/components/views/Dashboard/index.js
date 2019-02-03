@@ -43,7 +43,6 @@ const DashboardQuery = gql`
 
 export default class DashboardView extends Component {
   render() {
-    const { history } = this.props;
     return (
       <Query query={DashboardQuery}>
         {({ loading, error, data }) => {
@@ -63,13 +62,11 @@ export default class DashboardView extends Component {
               <HottestVideoBlock
                 title="🔥 right now"
                 episodes={data.getHottestEpisodes.rows}
-                history={history}
                 viewAllLink="/hottest_episodes"
               />
               <VideoBlock props={{
                 title: 'Newest episodes',
                 episodes: data.getNewestEpisodes.rows,
-                history,
                 viewAllLink: '/newest_episodes',
               }}
               />
