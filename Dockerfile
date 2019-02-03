@@ -15,7 +15,7 @@ COPY . /app
 EXPOSE 3000
 
 # Install service manager
-RUN npm install -g yarn
+RUN npm install -g yarn@1.12.3
 
 # Install global dependencies
 RUN yarn global add webpack@4.6.0 gulp@3.9.1 nodemon@1.18.6
