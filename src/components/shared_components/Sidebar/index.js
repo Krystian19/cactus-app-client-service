@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import React, { Component } from 'react';
 import {
   Link,
+  withRouter,
 } from 'react-router-dom';
 
 const RandomAnimeQuery = gql`
@@ -14,13 +15,13 @@ const RandomAnimeQuery = gql`
   }
 `;
 
-export default class Sidebar extends Component {
+class Sidebar extends Component {
   // constructor() {
   //   super()
   // }
 
   goToIndex = () => {
-    const { props: { history } } = this.props;
+    const { history } = this.props;
     history.push('/');
   }
 
@@ -93,3 +94,6 @@ export default class Sidebar extends Component {
     );
   }
 }
+
+
+export default withRouter(Sidebar);
