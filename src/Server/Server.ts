@@ -17,7 +17,7 @@ class Server {
   constructor() {
     this.app = express();
 
-    // Run the configuration for the express app
+    // Configure the express app
     this.config();
   }
 
