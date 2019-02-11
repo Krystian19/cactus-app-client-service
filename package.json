@@ -5,7 +5,10 @@
   "author": "Jan Guzman <janfrancisco19@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node ./src/Server"
+    "start": "ts-node ./src/server",
+    "build_ts": "webpack --progress --colors --config webpack.config.dev.js",
+    "watch_ts": "webpack --progress --colors --watch --config webpack.config.dev.js",
+    "build": "yarn build_ts;"
   },
   "dependencies": {
     "@types/express": "^4.16.1",
