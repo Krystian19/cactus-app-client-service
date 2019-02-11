@@ -1,24 +1,23 @@
-/**
- * @author Jan Guzman <janfrancisco19@gmail.com>
- * @desc Webpack module bundler configuration for development
- */
-
 const path = require('path');
 
 module.exports = {
+  entry: './src/App/index.ts',
   mode: 'development',
-  entry: './src/index.js',
-  output: {
-    path: path.resolve(__dirname, './public/js'),
-    filename: 'app.js'
-  },
   module: {
     rules: [
-      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' }
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      }
     ]
   },
-  watchOptions: {
-    aggregateTimeout: 300,
-    poll: 400
-  }
-}
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js']
+  },
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist')
+  },
+  target: 'node',
+};
