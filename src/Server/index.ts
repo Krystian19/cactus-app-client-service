@@ -1,6 +1,6 @@
 import Server from "./server";
 
-// Get port ENV variable
+// Web server's working port env variable
 const PORT: Number = Number(process.env.PORT || 3000);
 
 Server.listen(PORT, () => {
