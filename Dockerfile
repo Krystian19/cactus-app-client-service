@@ -17,9 +17,6 @@ EXPOSE 3000
 # Install service manager
 RUN npm install -g yarn@1.12.3
 
-# Install global dependencies
-RUN yarn global add webpack@4.6.0
-
 # Make sure /app/setup.sh has the right persmissions inside the container
 RUN ["chmod", "+x", "/app/setup.sh"]
 

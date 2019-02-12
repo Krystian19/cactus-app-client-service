@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "ts-node ./src/server",
-    "build": "webpack --progress --colors --config webpack.config.dev.js",
+    "build": "webpack --progress --colors --config webpack.config.prod.js",
     "watch": "webpack --progress --colors --watch --config webpack.config.dev.js"
   },
   "dependencies": {
@@ -28,10 +28,12 @@
     "css-loader": "^2.1.0",
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.11.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
     "sass-loader": "^7.1.0",
     "ts-loader": "^5.3.3",
     "typescript": "^3.2.4",
-    "webpack": "4.6.0",
-    "webpack-cli": "3.1.1"
+    "uglifyjs-webpack-plugin": "^2.1.1",
+    "webpack": "4.29.3",
+    "webpack-cli": "3.2.3"
   }
 }

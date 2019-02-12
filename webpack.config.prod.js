@@ -1,10 +1,11 @@
 const path = require('path');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 const tsConfig = {
   entry: path.join(__dirname, 'src', 'app', 'index.tsx'),
-  mode: 'development',
+  mode: 'production',
   module: {
     rules: [
       {
@@ -22,13 +23,23 @@ const tsConfig = {
     path: path.resolve(__dirname, 'public', 'js')
   },
   target: 'node',
+  plugins: [
+    new UglifyJSPlugin({
+      sourceMap: true,
+    }),
+  ],
 };
 
 const sassConfig = {
   entry: path.join(__dirname, 'src', 'app', 'styles', 'index.scss'),
-  mode: 'development',
+  mode: 'production',
   output: {
     path: path.resolve(__dirname, 'public', 'css')
+  },
+  optimization: {
+    minimizer: [
+      new OptimizeCSSAssetsPlugin({})
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -45,11 +56,6 @@ const sassConfig = {
           'sass-loader'
         ]
       },
-    ]
-  },
-  optimization: {
-    minimizer: [
-      new OptimizeCSSAssetsPlugin({}),
     ]
   },
 };
