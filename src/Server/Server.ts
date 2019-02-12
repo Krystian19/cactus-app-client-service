@@ -1,5 +1,4 @@
 import express from "express";
-import bodyParser from "body-parser";
 import path from 'path';
 import requestProxy from 'express-request-proxy';
 
@@ -25,12 +24,6 @@ class Server {
    * @description Configuration of the express web server
    */
   private config(): void {
-    // support application/json type post data
-    this.app.use(bodyParser.json());
-
-    //support application/x-www-form-urlencoded post data
-    this.app.use(bodyParser.urlencoded({ extended: false }));
-
     // Setup static directories for public use
     this.static();
 

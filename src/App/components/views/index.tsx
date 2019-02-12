@@ -9,8 +9,10 @@ import {
 import Dashboard from './Dashboard';
 
 export default () => (
-  <Switch>
-    <Route path="/" exact component={Dashboard} />
-    <Redirect from="/*" to="/" />
-  </Switch>
+  <div className="main-container">
+    <Switch>
+      <Route path="/" exact component={Dashboard} />
+      <Redirect from="/*" to="/" />
+    </Switch>
+  </div>
 );

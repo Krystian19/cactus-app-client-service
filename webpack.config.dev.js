@@ -21,7 +21,7 @@ const tsConfig = {
     filename: 'app.min.js',
     path: path.resolve(__dirname, 'public', 'js')
   },
-  target: 'node',
+  target: 'web',
 };
 
 const sassConfig = {
