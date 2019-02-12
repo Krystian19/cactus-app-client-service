@@ -6,9 +6,8 @@
   "license": "MIT",
   "scripts": {
     "start": "ts-node ./src/server",
-    "build_ts": "webpack --progress --colors --config webpack.config.dev.js",
-    "watch_ts": "webpack --progress --colors --watch --config webpack.config.dev.js",
-    "build": "yarn build_ts;"
+    "build": "webpack --progress --colors --config webpack.config.dev.js",
+    "watch": "webpack --progress --colors --watch --config webpack.config.dev.js"
   },
   "dependencies": {
     "@types/express": "^4.16.1",
@@ -26,6 +25,10 @@
     "ts-node": "^8.0.2"
   },
   "devDependencies": {
+    "css-loader": "^2.1.0",
+    "mini-css-extract-plugin": "^0.5.0",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
     "ts-loader": "^5.3.3",
     "typescript": "^3.2.4",
     "webpack": "4.6.0",
