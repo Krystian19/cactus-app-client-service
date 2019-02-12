@@ -1,8 +1,24 @@
-h1 {
-  color: blue;
-}
+// Fonts
+@import url("../../../public/fonts/Roboto.css");
 
-html,
-body {
-  padding: 0;
-}
+// Layout styles
+@import "./components/Layout";
+
+// Components
+@import "./components/Button";
+@import "./components/Sidebar";
+@import "./components/AnimeThumbnailList";
+@import "./components/SmallAnimeThumbnailList";
+@import "./components/BigSearchBox";
+@import "./components/Genres";
+@import "./components/AnimeInfo";
+@import "./components/AnimeSeasons";
+@import "./components/AnimeWatchEpisode";
+@import "./components/AnimeScheduleList";
+@import "./components/PaginationBox";
+
+// Responsive styles
+@import "./responsive_styles";
+
+// Dependency styles
+// @import "../../../node_modules/video-react/dist/video-react.css";
