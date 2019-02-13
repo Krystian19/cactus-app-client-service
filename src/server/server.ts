@@ -48,10 +48,8 @@ class Server {
     // Setup proxies for 3rd party services
     this.proxies();
 
-    // Setup standart routes
-    this.app.get('**', (req, res) => {
-      res.sendFile(path.join(rootPath, 'public', 'index.html'));
-    });
+    // General route for the Frontend app
+    this.app.get('**', (req, res) => res.send(this.renderHTML()));
   }
 
   /**
@@ -99,7 +97,7 @@ class Server {
   }
 
 
-  private renderHTML(req, res): void {
+  private renderHTML(): String {
     // index.html file
     const indexFile = fs.readFileSync(
       path.join(rootPath, 'public', 'index.html'), 'utf8',
@@ -119,7 +117,7 @@ class Server {
       .replace('app.min.js"', `app.min.js?q=${sha256(mainJsFile).slice(0, 5)}"`)
       .replace('main.min.css"', `main.min.css?q=${sha256(mainCssFile).slice(0, 5)}"`);
 
-    return res.send(finalMarkUpFile);
+    return String(finalMarkUpFile);
   }
 }
 
