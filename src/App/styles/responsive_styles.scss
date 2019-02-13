@@ -1,0 +1,353 @@
+/* Mobile Large */
+
+@media (min-width: 425px) {}
+
+@media (max-width: 425px) {
+  /**
+  * Anime thumbnail list
+  */
+  .anime-thumbnail-list {
+    grid-template-columns: 100% !important;
+    grid-gap: 1em 0 !important;
+  }
+  /**
+  * Anime small thumbnail list
+  */
+  .anime-small-thumbnail-list {
+    display: block;
+  }
+  /**
+  * Anime info
+  */
+  .anime-seasons .anime-season span.anime-season-title {
+    font-size: 1rem !important;
+  }
+
+  .anime-info .head .content .centered-content h1.anime-title {    
+    text-align: center;
+  }
+}
+
+/* Tablet */
+
+@media (min-width: 768px) {
+  /**
+  * Anime small thumbnail list
+  */
+  .anime-small-thumbnail.small .cover {
+    padding-bottom: 47.2%;
+  }
+  .anime-small-thumbnail .cover .overlay .category_title {
+    font-size: 1.2em;
+  }
+  /**
+  * Anime info
+  */
+  .anime-info .head .content .centered-content, .anime-info .main .content {
+    width: 80%;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content.no-margin {
+    margin-left: 55px;
+  }
+  /*
+  * Anime schedule list
+  */
+  .anime-schedule-list .anime-schedule-day .anime-schedule-poster-list {
+    grid-template-columns: 49% 49%;
+    grid-gap: 1em 1%;
+  }
+  /**
+  * Big Search Box
+  */
+  .big-search-box-container .big-search-box-input {
+    width: 100%;
+  }
+  /**
+  * Anime thumbnail list
+  */
+  .anime-thumbnail-list {
+    grid-template-columns: 24% 24% 24% 24%;
+    grid-gap: 0.5em 1.3%;
+  }
+  /**
+  * Anime small thumbnail list
+  */
+  .anime-small-thumbnail-list, .anime-season-videos .anime-small-thumbnail-list {
+    grid-template-columns: 49% 49%;
+    grid-gap: 0.5em 1%;
+  }
+  .anime-small-thumbnail .cover .overlay .category_title {
+    font-size: 1em;
+  }
+  /**
+  * Anime info
+  */
+  .anime-info .head {
+    height: 200px;
+    margin-bottom: 30px;
+  }
+  .anime-info .head .big-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .anime-info .head .genres {
+    justify-content: center;
+  }
+  .anime-info .head .content .centered-content, .anime-info .main .content {
+    width: 80%;
+    display: block;
+  }
+  .anime-info .main .content .small-side .details {
+    margin-top: 0;
+  }
+  .anime-seasons .anime-season span.anime-season-title {
+    font-size: 1.4rem;
+  }
+  /* 
+  * Anime watch episode
+  */
+  .anime-watch-episode {
+    width: 100%;
+    padding-top: 3rem !important;
+  }
+  .anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description {
+    display: block;
+  }
+  .anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls {
+    justify-content: center;
+  }
+  
+  .pagination-box .item {
+    display: none;
+  }
+
+  .pagination-box .item.control,
+  .pagination-box .item.mobile-control
+  {
+    display: inline-block;
+  }
+}
+
+/* Small Tablet */
+
+@media (min-width: 560px) {
+  /**
+  * Anime small thumbnail list
+  */
+  .anime-small-thumbnail.small .cover {
+    padding-bottom: 46.9%;
+  }
+  .anime-small-thumbnail .cover .overlay .category_title {
+    font-size: 1.2em;
+  }
+}
+
+@media (max-width: 560px) {
+  .main-content {
+    flex: 1;
+    /* overflow: hidden;
+    overflow-y: scroll; */
+    margin-top: 55px;
+    margin-left: 0;
+    padding: 0 30px 0;
+  }
+  .main-content.no-margin {
+    margin-left: 0;
+  }
+  /**
+  * Anime thumbnail list
+  */
+  .anime-thumbnail-list {
+    grid-template-columns: 49% 49%;
+    grid-gap: 1em 1%;
+  }
+  /*
+  * Anime schedule list
+  */
+  .anime-schedule-list .anime-schedule-day .anime-schedule-poster-list {
+    grid-template-columns: 100%;
+    grid-gap: 1em 0;
+  }
+  /**
+  * Sidebar
+  */
+  .sidebar {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 55px;
+    flex-direction: row;
+    /* padding-top: 10px; */
+  }
+  .sidebar .sidebar-top-options .sidebar-option {
+    justify-content: flex-start;
+    padding-left: 20px;
+  }
+  .sidebar .sidebar-center-options {
+    /* justify-content: flex-start;
+    padding-left: 20px; */
+    flex-direction: row;
+  }
+  .sidebar .sidebar-bottom-options .sidebar-option {
+    justify-content: flex-end;
+  }
+  .sidebar .sidebar-bottom-options .sidebar-option .flag-icon {
+    margin-right: 20px;
+  }
+}
+
+/* Medium tablets */
+@media (max-width: 850px) {
+  .anime-small-thumbnail.small .cover {
+    padding-bottom: 45.9%;
+  }
+}
+
+/* Laptop */
+
+@media (min-width: 1024px) {
+  /**
+  * Anime small thumbnail list
+  */
+  .anime-small-thumbnail.small .cover {
+    padding-bottom: 47.2%;
+  }
+  .anime-small-thumbnail .cover .overlay .category_title {
+    font-size: 1.2em;
+  }
+  /* 
+  * Anime watch episode
+  */
+  .anime-watch-episode .anime-watch-episode-container {
+    width: 90%;
+  }
+}
+
+@media (max-width: 1024px) {
+  /**
+  * Anime small thumbnail list
+  */
+  .anime-small-thumbnail .info .title .title-container, .anime-small-thumbnail .info .title .detail-container {
+    font-size: .6rem;
+  }
+  .anime-small-thumbnail .cover .overlay svg.play {
+    width: 1.4em;
+    height: 1.4em;
+  }
+}
+
+/* Small Laptop - Fanblet */
+@media (min-width: 1060px) {
+  .anime-small-thumbnail.small .cover {
+      padding-bottom: 48.3%;
+  }
+}
+
+/* Medium Laptop */
+
+@media (min-width: 1240px) {
+  /**
+  * Anime small thumbnail list
+  */
+  .anime-small-thumbnail.small .cover {
+    padding-bottom: 49.1%;
+  }
+}
+
+@media (max-width: 1240px) {}
+
+/* Laptop Large */
+
+@media (min-width: 1440px) {
+  /**
+  * Anime small thumbnail list
+  */
+  .anime-small-thumbnail.small .cover {
+    padding-bottom: 50.1%
+  }
+  .anime-small-thumbnail .cover .overlay .category_title {
+    font-size: 1.5em;
+  }
+  /* 
+  * Anime watch episode
+  */
+  .anime-watch-episode .anime-watch-episode-container {
+    width: 70%;
+  }
+}
+
+@media (max-width: 1440px) {
+  /**
+  * Anime small thumbnail list
+  */
+  .anime-small-thumbnail .cover .overlay svg.play {
+    width: 2.1em;
+    height: 2.1em;
+  }
+}
+
+/* Small 4k Monitors */
+@media (min-width: 1585px) {
+  .anime-small-thumbnail.small .cover {
+      padding-bottom: 51%;
+  }
+}
+
+/* Medium 4k Monitors */
+@media (min-width: 1865px) {
+  .anime-small-thumbnail.small .cover {
+    padding-bottom: 51.9%;
+  }
+}
+
+/* Top Medium 4k Monitors */
+@media (min-width: 2100px) {
+  .anime-small-thumbnail.small .cover {
+    padding-bottom: 52.6%;
+  }
+}
+
+/* 4k monitors */
+
+@media (min-width: 2560px) {
+  /**
+  * Anime small thumbnail list
+  */
+  .anime-small-thumbnail.small .cover {
+    padding-bottom: 53.6%;
+  }
+  .anime-small-thumbnail .cover .overlay .category_title {
+    font-size: 2.2em;
+  }
+  /**
+  * Anime info
+  */
+  .anime-info .head .content .centered-content, .anime-info .main .content {
+    width: 50%;
+  }
+  /* 
+  * Anime watch episode
+  */
+  .anime-watch-episode .anime-watch-episode-container {
+    width: 50%;
+  }
+  .anime-schedule-list .anime-schedule-day {
+    width: 80%;
+    margin: 2rem auto;
+  }
+}
+
+@media (max-width: 2560px) {
+  /**
+  * Anime small thumbnail list
+  */
+  .anime-small-thumbnail .cover .overlay svg.play {
+    width: 3em;
+    height: 3em;
+  }
+}
