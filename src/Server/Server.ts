@@ -1,6 +1,8 @@
 import express from "express";
 import path from 'path';
+import fs from 'fs';
 import requestProxy from 'express-request-proxy';
+import sha256 from 'sha256';
 
 // Root path of the project
 const rootPath = path.resolve(__dirname, '..', '..');
@@ -96,6 +98,29 @@ class Server {
     );
   }
 
+
+  private renderHTML(req, res): void {
+    // index.html file
+    const indexFile = fs.readFileSync(
+      path.join(rootPath, 'public', 'index.html'), 'utf8',
+    );
+
+    // App's app.js file
+    const mainJsFile = fs.readFileSync(
+      path.join(rootPath, 'public', 'js', 'app.min.js'), 'utf8',
+    );
+
+    // App's app.css file
+    const mainCssFile = fs.readFileSync(
+      path.join(rootPath, 'public', 'css', 'main.min.css'), 'utf8',
+    );
+
+    const finalMarkUpFile = indexFile
+      .replace('app.min.js"', `app.min.js?q=${sha256(mainJsFile).slice(0, 5)}"`)
+      .replace('main.min.css"', `main.min.css?q=${sha256(mainCssFile).slice(0, 5)}"`);
+
+    return res.send(finalMarkUpFile);
+  }
 }
 
 export default new Server().app;
