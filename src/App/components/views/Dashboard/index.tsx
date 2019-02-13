@@ -3,6 +3,7 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import LoadingSpinner from '../../components/LoadingSpinner';
+import HottestVideoBlock from '../../components/HottestVideoBlock';
 
 const DashboardQuery = gql`
   query {
@@ -57,7 +58,11 @@ class Dashboard extends React.Component {
           console.log(data);
           return (
             <div className="main-content no-padding">
-              <h1>This is the Dashboard</h1>
+              <HottestVideoBlock
+                title="🔥right now"
+                episodes={data.getHottestEpisodes.rows}
+                viewAllLink="/hottest_episodes"
+              />
             </div>
           );
         }}
