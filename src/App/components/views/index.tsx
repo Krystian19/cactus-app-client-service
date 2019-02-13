@@ -7,9 +7,11 @@ import {
 
 // View components
 import Dashboard from './Dashboard';
+import Sidebar from '../components/Sidebar';
 
 export default () => (
   <div className="main-container">
+    <Sidebar />
     <Switch>
       <Route path="/" exact component={Dashboard} />
       <Redirect from="/*" to="/" />

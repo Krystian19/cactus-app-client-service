@@ -1,6 +1,6 @@
+import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import React from 'react';
 import { RouteComponentProps } from "react-router";
 import {
   Link,
@@ -16,17 +16,8 @@ const RandomAnimeQuery = gql`
   }
 `;
 
-// How to deal with the Router
-// Type whatever you expect in 'this.props.match.params.*'
-// type PathParamsType = {
-//   param1: string,
-// }
-// type PropsType = RouteComponentProps<PathParamsType> & {
-//   someString: string,
-// }
-
-// Sidebar's properties
-type PropsType = RouteComponentProps<{}>;
+// Sidebar's Component props
+type PropsType = RouteComponentProps<{}> & {};
 
 class Sidebar extends React.Component<PropsType> {
   goToIndex = () => {
@@ -80,7 +71,6 @@ class Sidebar extends React.Component<PropsType> {
                   <Link
                     onClick={() => refetch()}
                     to={`/anime/info/${data.getRandomSeason.id}`}
-
                   >
                     <i className="fas fa-random" />
                   </Link>
