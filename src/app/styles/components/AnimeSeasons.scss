@@ -1,0 +1,46 @@
+.anime-seasons {
+  width: 100%;
+  /* background: red; */
+}
+
+.anime-seasons .anime-season {
+  margin: 5% 0;
+}
+
+.anime-seasons .anime-season span.anime-season-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  border-bottom: 2px solid #ff6c00;
+  padding-bottom: .1em;
+}
+
+.anime-seasons .anime-season .anime-season-videos {}
+
+.anime-season-videos .anime-small-thumbnail-list {
+  margin-top: 30px;
+  grid-template-columns: 32.9% 32.9% 32.9%;
+  grid-gap: 8px;
+  margin-bottom: 15px;
+}
+
+.anime-season-videos .anime-small-thumbnail .cover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.anime-season-videos .anime-small-thumbnail .cover .overlay {
+  -webkit-transition: none;
+  transition: opacity none;
+}
+
+.anime-season-videos .anime-small-thumbnail .cover .overlay.darken {
+  background: none;
+}
+
+.anime-season-videos .anime-small-thumbnail .info span.title.episode-name {
+  font-size: .75rem;
+  font-weight: 400;
+}
+
+.anime-season-videos .anime-small-thumbnail .info span.detail.episode-name {
+  font-size: .75rem;
+}
