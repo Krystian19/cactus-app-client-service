@@ -21,6 +21,10 @@ const tsConfig = {
     filename: 'app.min.js',
     path: path.resolve(__dirname, 'public', 'js')
   },
+  watchOptions: {
+    poll: true,
+    ignored: /node_modules/
+  },
   target: 'web',
 };
 

@@ -41,7 +41,7 @@ class Sidebar extends React.Component<PropsType> {
         </div>
         <div className="sidebar-center-options">
           <div className="sidebar-option">
-            <Link to="/anime">
+            <Link to="/search">
               <i className="fas fa-search" />
             </Link>
           </div>
