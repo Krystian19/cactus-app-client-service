@@ -100,7 +100,7 @@ class Server {
   private renderHTML(): String {
     // index.html file
     const indexFile = fs.readFileSync(
-      path.join(rootPath, 'public', 'index.html'), 'utf8',
+      path.join(rootPath, 'resources', 'index.html'), 'utf8',
     );
 
     // App's app.js file
