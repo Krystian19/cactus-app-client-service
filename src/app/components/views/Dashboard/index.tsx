@@ -4,6 +4,8 @@ import gql from 'graphql-tag';
 
 import LoadingSpinner from '../../components/LoadingSpinner';
 import HottestVideoBlock from '../../components/HottestVideoBlock';
+import VideoBlock from '../../components/VideoBlock';
+import CategoriesBlock from '../../components/CategoriesBlock';
 
 const DashboardQuery = gql`
   query {
@@ -62,6 +64,20 @@ class Dashboard extends React.Component {
                 title="🔥right now"
                 episodes={data.getHottestEpisodes.rows}
                 viewAllLink="/hottest_episodes"
+              />
+              <VideoBlock
+                props={{
+                  title: 'Newest episodes',
+                  episodes: data.getNewestEpisodes.rows,
+                  viewAllLink: '/newest_episodes',
+                }}
+              />
+              <CategoriesBlock
+                props={{
+                  title: 'Categories',
+                  categories: data.getGenres,
+                  viewAllLink: '/categories',
+                }}
               />
             </div>
           );
