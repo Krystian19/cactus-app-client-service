@@ -2,6 +2,7 @@ import express from "express";
 import path from 'path';
 import fs from 'fs';
 import requestProxy from 'express-request-proxy';
+import morgan from 'morgan';
 import sha256 from 'sha256';
 
 // Root path of the project
@@ -26,11 +27,20 @@ class Server {
    * @description Configuration of the express web server
    */
   private config(): void {
+    // Setup server's middlewares and utils
+    this.middlewares();
+
     // Setup static directories for public use
     this.static();
 
     // Setup web routes
     this.routes();
+  }
+
+  private middlewares(): void {
+    this.app.use(
+      morgan(':method :url :status :res[content-length] - :response-time ms')
+    );
   }
 
   /**
