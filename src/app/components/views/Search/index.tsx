@@ -1,6 +1,6 @@
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import React, { Component } from 'react';
+import React from 'react';
 import AnimeThumbnailList from '../../components/AnimeThumbnailList';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import PaginationBox from '../../components/PaginationBox';
@@ -27,7 +27,7 @@ type StateTypes = {
 // How many records should be shown per page
 const pageCount = 18;
 
-export default class SearchView extends Component<{}, StateTypes> {
+export default class SearchView extends React.Component<{}, StateTypes> {
   constructor(props) {
     super(props);
 
