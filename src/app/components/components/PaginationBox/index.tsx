@@ -13,11 +13,12 @@ export default class PaginationBox extends React.Component<PropType> {
   fetchPageNumbers = (lastPageValue, currentPage) => {
     const pageRange = 2;
     const visibleCurrentPage = currentPage + 1;
+
     // Generates an array that contains a specified range of integers
-    const range = (start, end) => [...Array(end - start + 1)].map((_, i) => start + i);
+    const range = Array.from({ length: lastPageValue }, (v, k) => k + 1);
 
     // Resolve the range of values below the currentPage value
-    const leftRange = range(1, lastPageValue)
+    const leftRange = range
       .filter(el => (
         (el < visibleCurrentPage)
         && el >= (visibleCurrentPage - pageRange)
@@ -25,7 +26,7 @@ export default class PaginationBox extends React.Component<PropType> {
       ));
 
     // Resolve the range of values above the currentPage value (ignoring the last page)
-    const rightRange = range(1, lastPageValue)
+    const rightRange = range
       .filter(el => (
         (el > visibleCurrentPage)
         && el <= (visibleCurrentPage + pageRange)
@@ -33,8 +34,6 @@ export default class PaginationBox extends React.Component<PropType> {
       ));
 
     return [...leftRange, visibleCurrentPage, ...rightRange];
-
-    // return range(1, lastPageValue);
   }
 
   render() {
