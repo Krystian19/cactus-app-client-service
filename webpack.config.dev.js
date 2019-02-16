@@ -56,6 +56,10 @@ const sassConfig = {
       new OptimizeCSSAssetsPlugin({}),
     ]
   },
+  watchOptions: {
+    poll: true,
+    ignored: /node_modules/
+  },
 };
 
 module.exports = [
