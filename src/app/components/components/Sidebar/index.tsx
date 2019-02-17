@@ -42,12 +42,12 @@ class Sidebar extends React.Component<PropsType> {
         <div className="sidebar-center-options">
           <div className="sidebar-option">
             <Link to="/search">
-              <i className="fas fa-search" />
+              <i className="fa fa-search" />
             </Link>
           </div>
           <div className="sidebar-option">
             <Link to="/schedule">
-              <i className="fas fa-calendar-alt" />
+              <i className="fa fa-calendar" />
             </Link>
           </div>
 
@@ -72,7 +72,7 @@ class Sidebar extends React.Component<PropsType> {
                     onClick={() => refetch()}
                     to={`/anime/info/${data.getRandomSeason.id}`}
                   >
-                    <i className="fas fa-random" />
+                    <i className="fa fa-random" />
                   </Link>
                 </div>
               );

@@ -49,10 +49,24 @@ const sassConfig = {
   module: {
     rules: [
       {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              publicPath: '/css/fonts',
+              outputPath: 'fonts/'
+            }
+          }
+        ]
+      },
+      {
         test: /\.s?css$/,
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
+          'resolve-url-loader',
           'sass-loader'
         ]
       },

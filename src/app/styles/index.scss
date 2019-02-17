@@ -3,6 +3,8 @@
 
 // Libs
 @import "~normalize.css/normalize.css";
+$fa-font-path: "~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome";
 
 // Layout styles
 @import "./components/Layout";
