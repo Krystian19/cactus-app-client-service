@@ -14,7 +14,7 @@ export default class PaginationBox extends React.Component<PropType> {
     const pageRange = 2;
     const visibleCurrentPage = currentPage + 1;
 
-    // Generates an array that contains a specified range of integers
+    // Generates an array that contains a specified range of integers 1..N
     const range = Array.from({ length: lastPageValue }, (v, k) => k + 1);
 
     // Resolve the range of values below the currentPage value
