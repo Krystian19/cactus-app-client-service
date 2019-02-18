@@ -25,7 +25,7 @@ export default () => (
       <Route path="/hottest_episodes" exact component={HottestEpisodes} />
       <Route path="/newest_episodes" exact component={NewestEpisodes} />
       <Route path="/categories" exact component={Categories} />
-      <Route path="/anime/info/:id" exact component={AnimeDetail} />
+      <Route path="/anime/detail/:id" exact component={AnimeDetail} />
       <Redirect from="/*" to="/" />
     </Switch>
   </div>

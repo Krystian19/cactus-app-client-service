@@ -39,7 +39,7 @@ export default class AnimeThumbnailList extends React.Component<PropType> {
             key={Number(season.id)}
             className="anime-thumbnail"
           >
-            <Link to={`/anime/info/${season.id}`}>
+            <Link to={`/anime/detail/${season.id}`}>
               <div className="cover">
                 <span className="score">
                   4.5/5

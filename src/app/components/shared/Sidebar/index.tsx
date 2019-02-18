@@ -70,7 +70,7 @@ class Sidebar extends React.Component<PropsType> {
                 <div className="sidebar-option">
                   <Link
                     onClick={() => refetch()}
-                    to={`/anime/info/${data.getRandomSeason.id}`}
+                    to={`/anime/detail/${data.getRandomSeason.id}`}
                   >
                     <i className="fa fa-random" />
                   </Link>
