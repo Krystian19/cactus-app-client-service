@@ -28,14 +28,14 @@ const HottestEpisodesQuery = gql`
   }
 `;
 
-type stateType = {
+type StateType = {
   currentPage: Number,
 }
 
 // How many records should be shown per page.
 const pageCount = 8;
 
-export default class HottestEpisodes extends React.Component<{}, stateType> {
+export default class HottestEpisodes extends React.Component<{}, StateType> {
   constructor(props) {
     super(props);
 

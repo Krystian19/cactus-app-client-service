@@ -43,7 +43,7 @@ export default class AnimeThumbnailList extends React.Component<PropType> {
               <div className="cover">
                 <span className="score">
                   4.5/5
-                  <i className="fas fa-star" />
+                  <i className="fa fa-star" />
                 </span>
                 <LazyImage
                   src={`/img_cdn/${season.poster}`}

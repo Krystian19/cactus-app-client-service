@@ -66,11 +66,9 @@ class Dashboard extends React.Component {
                 viewAllLink="/hottest_episodes"
               />
               <VideoBlock
-                props={{
-                  title: 'Newest episodes',
-                  episodes: data.getNewestEpisodes.rows,
-                  viewAllLink: '/newest_episodes',
-                }}
+                title={'Newest episodes'}
+                episodes={data.getNewestEpisodes.rows}
+                viewAllLink={'/newest_episodes'}
               />
               <CategoriesBlock
                 title={'Categories'}

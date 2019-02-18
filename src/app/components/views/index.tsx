@@ -12,6 +12,7 @@ import Search from './Search';
 import HottestEpisodes from './HottestEpisodes';
 import NewestEpisodes from './NewestEpisodes';
 import Categories from './Categories';
+import AnimeDetail from './AnimeDetail';
 
 export default () => (
   <div className="main-container">
@@ -22,6 +23,7 @@ export default () => (
       <Route path="/hottest_episodes" exact component={HottestEpisodes} />
       <Route path="/newest_episodes" exact component={NewestEpisodes} />
       <Route path="/categories" exact component={Categories} />
+      <Route path="/anime/info/:id" exact component={AnimeDetail} />
       <Redirect from="/*" to="/" />
     </Switch>
   </div>
