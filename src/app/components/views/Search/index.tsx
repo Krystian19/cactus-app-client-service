@@ -1,9 +1,9 @@
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import React from 'react';
-import AnimeThumbnailList from '../../components/AnimeThumbnailList';
-import LoadingSpinner from '../../components/LoadingSpinner';
-import PaginationBox from '../../components/PaginationBox';
+import AnimeThumbnailList from '../../shared/AnimeThumbnailList';
+import LoadingSpinner from '../../shared/LoadingSpinner';
+import PaginationBox from '../../shared/PaginationBox';
 
 const SearchViewQuery = gql`
   query($title: String, $pageCount:Int, $currentPage:Int) {

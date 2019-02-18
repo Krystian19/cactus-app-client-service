@@ -2,10 +2,10 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import LoadingSpinner from '../../components/LoadingSpinner';
-import HottestVideoBlock from '../../components/HottestVideoBlock';
-import VideoBlock from '../../components/VideoBlock';
-import CategoriesBlock from '../../components/CategoriesBlock';
+import LoadingSpinner from '../../shared/LoadingSpinner';
+import HottestVideoBlock from '../../shared/HottestVideoBlock';
+import VideoBlock from '../../shared/VideoBlock';
+import CategoriesBlock from '../../shared/CategoriesBlock';
 
 const DashboardQuery = gql`
   query {
