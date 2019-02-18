@@ -11,7 +11,7 @@ import LazyImage from '../LazyImage';
 type PropType = RouteComponentProps<{}> & {
   episodes: Array<Episode>,
   title: String,
-  viewAllLink: String,
+  viewAllLink?: String,
 }
 
 class HottestVideoBlock extends React.Component<PropType> {
