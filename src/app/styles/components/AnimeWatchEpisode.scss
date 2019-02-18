@@ -97,20 +97,29 @@
   /* background: brown; */
 }
 
-.anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .previous-option, .anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .list-option, .anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .next-option {
+.anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .previous-option, 
+.anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .list-option, 
+.anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .next-option {
   display: flex;
+  outline: none;
 }
 
-.anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .previous-option:hover, .anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .list-option:hover, .anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .next-option:hover {
+.anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .previous-option:hover,
+.anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .list-option:hover,
+.anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .next-option:hover {
   color: #ff6c00;
   cursor: pointer;
 }
 
-.anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .previous-option .icon, .anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .list-option .icon, .anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .next-option .icon {
+.anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .previous-option .icon,
+.anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .list-option .icon,
+.anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .next-option .icon {
   flex: 1;
 }
 
-.anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .previous-option .icon i, .anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .list-option .icon i, .anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .next-option .icon i {
+.anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .previous-option .icon i,
+.anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .list-option .icon i,
+.anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .next-option .icon i {
   width: 1.5em;
   height: 1.5em;
   display: flex;
@@ -119,7 +128,9 @@
   font-size: .7rem;
 }
 
-.anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .previous-option .text, .anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .list-option .text, .anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .next-option .text {
+.anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .previous-option .text,
+.anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .list-option .text,
+.anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .next-option .text {
   flex: 1;
   display: flex;
   justify-content: center;
@@ -137,6 +148,7 @@
 .anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .list-option {
   order: 2;
   padding: .75em 0.25em;
+  padding-top: .85em;
 }
 
 .anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls .next-option {

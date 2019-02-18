@@ -143,9 +143,9 @@ class AnimeVideo extends React.Component<PropType> {
                               tabIndex={-1}
                             >
                               <div className="icon">
-                                <i className="fas fa-chevron-left" />
+                                {/* <i className="fa fa-chevron-left" /> */}
                               </div>
-                              <div className="text"> Prev </div>
+                              <div className="text">Previous</div>
                             </div>
                           )
                         }
@@ -163,7 +163,7 @@ class AnimeVideo extends React.Component<PropType> {
                           tabIndex={-2}
                         >
                           <div className="icon">
-                            <i className="fas fa-list-ul" />
+                            <i className="fa fa-list-ul" />
                           </div>
                         </div>
                         {
@@ -184,7 +184,7 @@ class AnimeVideo extends React.Component<PropType> {
                             >
                               <div className="text"> Next </div>
                               <div className="icon">
-                                <i className="fas fa-chevron-right" />
+                                {/* <i className="fa fa-chevron-right" /> */}
                               </div>
                             </div>
                           )
