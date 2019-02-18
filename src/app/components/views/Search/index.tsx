@@ -27,7 +27,7 @@ type StateTypes = {
 // How many records should be shown per page
 const pageCount = 18;
 
-export default class SearchView extends React.Component<{}, StateTypes> {
+export default class Search extends React.Component<{}, StateTypes> {
   constructor(props) {
     super(props);
 

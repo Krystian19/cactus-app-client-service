@@ -90,10 +90,9 @@ export default class NewestEpisodes extends React.Component<{}, stateType> {
           console.log(data);
           return (
             <div className="main-content no-padding">
-              <VideoBlock props={{
-                title: 'Newest episodes',
-                episodes: data.getNewestEpisodes.rows,
-              }}
+              <VideoBlock
+                title={'Newest episodes'}
+                episodes={data.getNewestEpisodes.rows}
               />
               {
                 data.getNewestEpisodes.rows.length !== 0
