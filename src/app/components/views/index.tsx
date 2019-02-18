@@ -13,6 +13,7 @@ import HottestEpisodes from './HottestEpisodes';
 import NewestEpisodes from './NewestEpisodes';
 import Categories from './Categories';
 import AnimeDetail from './AnimeDetail';
+import Schedule from './Schedule';
 
 export default () => (
   <div className="main-container">
@@ -20,6 +21,7 @@ export default () => (
     <Switch>
       <Route path="/" exact component={Dashboard} />
       <Route path="/search" exact component={Search} />
+      <Route path="/schedule" exact component={Schedule} />
       <Route path="/hottest_episodes" exact component={HottestEpisodes} />
       <Route path="/newest_episodes" exact component={NewestEpisodes} />
       <Route path="/categories" exact component={Categories} />

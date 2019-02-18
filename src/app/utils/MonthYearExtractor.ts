@@ -2,7 +2,7 @@ import moment from 'moment-timezone';
 
 /**
 * @author Jan Guzman <janfrancisco19@gmail.com>
-* @arg dateString String DateTime UTC String
+* @arg dateString String DateTime UTC
 * @desc Returns a String containing the month and the year of the provided date
 * in the MMM YYYY format
 * @returns String Containing month and year

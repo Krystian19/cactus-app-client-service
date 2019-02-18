@@ -4,7 +4,7 @@ import moment from 'moment-timezone';
 * @author Jan Guzman <janfrancisco19@gmail.com>
 * @desc Transforms the provided UTC DateTime (Original Japan's TimeZone)
 * and returns the equivalent in the current timezone.
-* @arg dateString String DateTime UTC String
+* @arg dateString String DateTime UTC
 * @returns String DateTime ISO String (in Local TimeZone)
 */
 export default (dateString: String): String => {
