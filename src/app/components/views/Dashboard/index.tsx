@@ -73,11 +73,9 @@ class Dashboard extends React.Component {
                 }}
               />
               <CategoriesBlock
-                props={{
-                  title: 'Categories',
-                  categories: data.getGenres,
-                  viewAllLink: '/categories',
-                }}
+                title={'Categories'}
+                categories={data.getGenres}
+                viewAllLink={'/categories'}
               />
             </div>
           );

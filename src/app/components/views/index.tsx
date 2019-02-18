@@ -11,6 +11,7 @@ import Dashboard from './Dashboard';
 import Search from './Search';
 import HottestEpisodes from './HottestEpisodes';
 import NewestEpisodes from './NewestEpisodes';
+import Categories from './Categories';
 
 export default () => (
   <div className="main-container">
@@ -20,6 +21,7 @@ export default () => (
       <Route path="/search" exact component={Search} />
       <Route path="/hottest_episodes" exact component={HottestEpisodes} />
       <Route path="/newest_episodes" exact component={NewestEpisodes} />
+      <Route path="/categories" exact component={Categories} />
       <Redirect from="/*" to="/" />
     </Switch>
   </div>
