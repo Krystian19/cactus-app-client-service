@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, shallow } from 'enzyme';
+import { render } from 'enzyme';
 import { MemoryRouter } from 'react-router-dom';
 
 import VideoBlock from '../components/shared/VideoBlock';
@@ -29,16 +29,6 @@ const componentSetup = (
 
 test('VideoBlock component is rendering properly', () => {
   const component = render(
-    <MemoryRouter>
-      {componentSetup}
-    </MemoryRouter>
-  );
-
-  expect(component).toMatchSnapshot();
-});
-
-test('VideoBlock component shell working properly properly', () => {
-  const component = shallow(
     <MemoryRouter>
       {componentSetup}
     </MemoryRouter>

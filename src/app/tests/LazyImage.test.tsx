@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, shallow } from 'enzyme';
+import { render } from 'enzyme';
 
 import LazyImage from '../components/shared/LazyImage';
 
@@ -15,10 +15,5 @@ const componentSetup = (
 
 test('LazyImage component is rendering properly', () => {
   const component = render(componentSetup);
-  expect(component).toMatchSnapshot();
-});
-
-test('LazyImage component shell is working properly', () => {
-  const component = shallow(componentSetup);
   expect(component).toMatchSnapshot();
 });

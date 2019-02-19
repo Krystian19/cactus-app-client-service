@@ -1,5 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LazyImage component is rendering properly 1`] = `null`;
-
-exports[`LazyImage component shell is working properly 1`] = `""`;

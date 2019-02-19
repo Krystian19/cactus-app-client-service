@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, shallow } from 'enzyme';
+import { render } from 'enzyme';
 import { MemoryRouter } from 'react-router-dom';
 
 import HottestVideoBlock from '../components/shared/HottestVideoBlock';
@@ -33,16 +33,6 @@ const componentSetup = (
 
 test('HottestVideoBlock component is rendering properly', () => {
   const component = render(
-    <MemoryRouter>
-      {componentSetup}
-    </MemoryRouter>
-  );
-
-  expect(component).toMatchSnapshot();
-});
-
-test('HottestVideoBlock component shell working properly', () => {
-  const component = shallow(
     <MemoryRouter>
       {componentSetup}
     </MemoryRouter>
