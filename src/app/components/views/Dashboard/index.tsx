@@ -61,7 +61,7 @@ class Dashboard extends React.Component {
           return (
             <div className="main-content no-padding">
               <HottestVideoBlock
-                title="🔥right now"
+                title="🔥 right now"
                 episodes={data.getHottestEpisodes.rows}
                 viewAllLink="/hottest_episodes"
               />
