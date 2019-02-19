@@ -1,0 +1,140 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HottestVideoBlock component is rendering properly 1`] = `
+<div
+  class="video-block"
+>
+  <div
+    class="video-block-title"
+  >
+    <div
+      class="video-block-title-head"
+    >
+      <span>
+        🔥 right now
+      </span>
+    </div>
+    <a
+      class="button"
+      href="/hottest_episodes"
+    >
+      View all
+    </a>
+  </div>
+  <div
+    class="video-block-content"
+  >
+    <div
+      class="anime-small-thumbnail-list"
+    >
+      <div
+        class="anime-small-thumbnail big"
+        role="menuitem"
+      >
+        <div
+          class="cover"
+        >
+          <div
+            class="loader-container"
+          >
+            <div
+              class="loader"
+            />
+          </div>
+          <div
+            class="overlay hover_hidden darken"
+          >
+            <svg
+              class="play"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M8,5.14V19.14L19,12.14L8,5.14Z"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          class="info"
+        >
+          <div
+            class="title"
+          >
+            <div
+              class="title-container"
+            >
+              Goblin Slayer (Season 1)
+            </div>
+            <div
+              class="detail-container"
+            >
+              Ep. 12
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`HottestVideoBlock component shell working properly 1`] = `
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "canGo": [Function],
+      "createHref": [Function],
+      "entries": Array [
+        Object {
+          "hash": "",
+          "key": "hq2wer",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+      ],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "index": 0,
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "key": "hq2wer",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <withRouter(HottestVideoBlock)
+    episodes={
+      Array [
+        Object {
+          "Season": Object {
+            "Anime": Object {
+              "id": 9,
+              "title": "Goblin Slayer",
+            },
+            "background": "test.jpg",
+            "id": 7,
+            "seasonOrder": 1,
+            "title": "Goblin Slayer",
+          },
+          "episodeOrder": 12,
+          "id": 21,
+          "thumbnail": "test.jpg",
+        },
+      ]
+    }
+    title="🔥 right now"
+    viewAllLink="/hottest_episodes"
+  />
+</Router>
+`;
