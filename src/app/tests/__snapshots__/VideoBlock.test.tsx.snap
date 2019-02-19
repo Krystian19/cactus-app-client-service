@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VideoBlock component is rendering properly 1`] = `
+<div
+  class="video-block"
+>
+  <div
+    class="video-block-title"
+  >
+    <div
+      class="video-block-title-head"
+    >
+      <span>
+        Newest episodes
+      </span>
+    </div>
+    <a
+      class="button"
+      href="/newest_episodes"
+    >
+      View all
+    </a>
+  </div>
+  <div
+    class="video-block-content"
+  >
+    <div
+      class="anime-small-thumbnail-list"
+    >
+      <div
+        class="anime-small-thumbnail"
+        role="menuitem"
+        tabindex="0"
+      >
+        <div
+          class="cover"
+        >
+          <div
+            class="loader-container"
+          >
+            <div
+              class="loader"
+            />
+          </div>
+          <div
+            class="overlay hover_hidden darken"
+          >
+            <svg
+              class="play"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M8,5.14V19.14L19,12.14L8,5.14Z"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          class="info"
+        >
+          <div
+            class="title"
+          >
+            <div
+              class="title-container"
+            >
+              Goblin Slayer (Season 1)
+            </div>
+            <div
+              class="detail-container"
+            >
+              Ep. 12
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

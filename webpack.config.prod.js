@@ -1,33 +1,80 @@
-/**
- * @author Jan Guzman <janfrancisco19@gmail.com>
- * @desc Webpack module bundler configuration for production
- */
-
 const path = require('path');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
-module.exports = {
+const tsConfig = {
+  entry: path.join(__dirname, 'src', 'app', 'index.tsx'),
   mode: 'production',
-  entry: './src/index.js',
-  output: {
-    path: path.resolve(__dirname, './public/js'),
-    filename: 'app.js'
-  },
   module: {
     rules: [
-      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' }
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      }
     ]
   },
-  watchOptions: {
-    aggregateTimeout: 300,
-    poll: 400
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js']
   },
-
-  // Js Minification configuration 
-  devtool: 'source-map',
+  output: {
+    filename: 'app.min.js',
+    path: path.resolve(__dirname, 'public', 'js')
+  },
+  target: 'web',
   plugins: [
     new UglifyJSPlugin({
       sourceMap: true,
     }),
   ],
-}
+};
+
+const sassConfig = {
+  entry: path.join(__dirname, 'src', 'app', 'styles', 'index.scss'),
+  mode: 'production',
+  output: {
+    path: path.resolve(__dirname, 'public', 'css')
+  },
+  optimization: {
+    minimizer: [
+      new OptimizeCSSAssetsPlugin({})
+    ],
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "main.min.css",
+    })
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              publicPath: '/css/fonts',
+              outputPath: 'fonts/'
+            }
+          }
+        ]
+      },
+      {
+        test: /\.s?css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'resolve-url-loader',
+          'sass-loader'
+        ]
+      },
+    ]
+  },
+};
+
+module.exports = [
+  tsConfig,
+  sassConfig,
+]

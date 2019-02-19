@@ -65,28 +65,21 @@ Wait a couple seconds and then the project should be running @ ```http://localho
 
 # How to work with the project ?
 
-Start watch of js changes:
+Start watch of ts and sass changes:
 ```sh
-docker exec -ti cactus_app_client yarn watch_js
-```
-
-Start watch of sass changes:
-```sh
-docker exec -ti cactus_app_client yarn watch_scss
+docker exec -ti cactus_app_client yarn watch
 ```
 # Run the tests
 ```sh
 docker exec -ti cactus_app_client yarn test
 ```
+
 # Utils
 
 ### Translates Japan's Date and time to UTC with moment-timezone.js ...
 ```js
 moment.tz('2018-10-07 00:30', 'Japan').utc().format('YYYY-MM-DD HH:mm:ss A');
 ```
-
-# Todo list
-- [ ] Setup props validation in all the view components
 
 # License
 MIT © [Jan Guzman](https://github.com/Krystian19)
