@@ -4,6 +4,18 @@ import fs from 'fs';
 import requestProxy from 'express-request-proxy';
 import morgan from 'morgan';
 import sha256 from 'sha256';
+import { renderToString } from 'react-dom/server';
+import { StaticRouter } from 'react-router-dom';
+import React from 'react';
+
+/* Apollo related dependencies ... */
+import { ApolloProvider, getDataFromTree } from 'react-apollo';
+import { ApolloClient } from 'apollo-client';
+import { createHttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import fetch from 'node-fetch';
+
+import App from '../app/components/views';
 
 // Root path of the project
 const rootPath = path.resolve(__dirname, '..', '..');
@@ -59,7 +71,16 @@ class Server {
     this.proxies();
 
     // General route for the Frontend app
-    this.app.get('**', (req, res) => res.send(this.renderHTML()));
+    // this.app.get('**', (req, res) => res.send(this.renderHTML()));
+    this.app.get('**', (req, res) => {
+      this.renderHTML(req, res)
+        .then(html => res.send(html))
+        .catch(err => {
+          // NOTE: Return a proper error page, when rendering failed
+          console.log(err);
+          res.end('Something failed in the rendering process');
+        })
+    });
   }
 
   /**
@@ -106,28 +127,61 @@ class Server {
     );
   }
 
+  private async renderHTML(req, res): Promise<String> {
+    const client = new ApolloClient({
+      ssrMode: true,
+      link: createHttpLink({
+        uri: backendServiceUrl,
+        credentials: 'same-origin',
+        headers: {
+          cookie: req.header('Cookie'),
+        },
+        fetch,
+      }),
+      cache: new InMemoryCache(),
+    });
 
-  private renderHTML(): String {
-    // index.html file
-    const indexFile = fs.readFileSync(
-      path.join(rootPath, 'resources', 'index.html'), 'utf8',
+    const markUp = (
+      <ApolloProvider client={client}>
+        <StaticRouter location={req.path} context={{}}>
+          <App />
+        </StaticRouter>
+      </ApolloProvider>
     );
 
-    // App's app.js file
-    const mainJsFile = fs.readFileSync(
-      path.join(rootPath, 'public', 'js', 'app.min.js'), 'utf8',
-    );
+    try {
+      await getDataFromTree(markUp)
 
-    // App's app.css file
-    const mainCssFile = fs.readFileSync(
-      path.join(rootPath, 'public', 'css', 'main.min.css'), 'utf8',
-    );
+      const content = renderToString(markUp);
+      const initialState = client.extract();
 
-    const finalMarkUpFile = indexFile
-      .replace('app.min.js"', `app.min.js?q=${sha256(mainJsFile).slice(0, 5)}"`)
-      .replace('main.min.css"', `main.min.css?q=${sha256(mainCssFile).slice(0, 5)}"`);
+      // index.html file
+      const indexFile = fs.readFileSync(
+        path.join(rootPath, 'resources', 'index.html'), 'utf8',
+      );
 
-    return String(finalMarkUpFile);
+      // App's app.js file
+      const mainJsFile = fs.readFileSync(
+        path.join(rootPath, 'public', 'js', 'app.min.js'), 'utf8',
+      );
+
+      // App's app.css file
+      const mainCssFile = fs.readFileSync(
+        path.join(rootPath, 'public', 'css', 'main.min.css'), 'utf8',
+      );
+
+      const finalMarkUpFile = indexFile
+        .replace('<!-- ::APP:: -->', content)
+        .replace('/* ::APOLLO_CACHE:: */',
+          `window.__APOLLO_STATE__ = ${JSON.stringify(initialState)};`)
+        .replace('app.min.js"', `app.min.js?q=${sha256(mainJsFile).slice(0, 5)}"`)
+        .replace('main.min.css"', `main.min.css?q=${sha256(mainCssFile).slice(0, 5)}"`);
+
+      return new Promise((resolve, reject) => resolve(String(finalMarkUpFile)));
+    } catch (err) {
+      return new Promise((resolve, reject) => reject(err));
+    }
+
   }
 }
 
