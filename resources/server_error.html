@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<link rel="stylesheet" type="text/css"
+		href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+	<title>
+		Cactus app
+	</title>
+	<style>
+		#gif-wrap {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			margin: auto;
+			background-color: #332532;
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+		}
+
+		#gif-wrap:after {
+			content: '';
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			width: 100%;
+			background: #332532;
+			opacity: .95;
+		}
+
+		.content-wrap {
+			z-index: 1;
+			position: relative;
+			text-align: center;
+			color: #ECF0F1;
+		}
+
+		.cactus-logo {
+			width: 100%;
+			text-align: center;
+			margin-bottom: 30px;
+		}
+
+		embed.logo {
+			height: auto;
+			width: 90px;
+			border-radius: 15px;
+			cursor: pointer;
+		}
+
+		.share-this {
+			margin: 25px auto 0 auto;
+			border: 1px solid rgba(255, 255, 255, 0.3);
+			max-width: 500px;
+			padding: 10px;
+			border-radius: 3px;
+		}
+
+		.share-this span {
+			position: relative;
+			top: -2px;
+			margin-right: 10px;
+			color: #bfa5bd;
+		}
+
+		.twitter-share-button {
+			margin-bottom: -5px;
+		}
+
+		.greeting-text {
+			max-width: 600px;
+			margin: 0 auto 25px auto;
+		}
+
+		@media(max-width: 990px) {}
+	</style>
+</head>
+
+<body>
+	<div id="gif-wrap">
+		<div class="content-wrap">
+			<div class="cactus-logo">
+				<embed src="/img/logo.svg" class="logo" />
+			</div>
+			<p class="greeting-text">
+				Hey, glad you're here. Unfortunately, something went wrong. We should be back online soon!
+			</p>
+		</div>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			// Initiate gifLoop for set interval
+			var refresh;
+			// Duration count in seconds
+			const duration = 500 * 10;
+			// Giphy API defaults
+			const giphy = {
+				baseURL: 'https://api.giphy.com/v1/gifs/',
+				key: 'dc6zaTOxFJmzC',
+				tag: 'anime',
+				type: 'random',
+				rating: 'pg-13'
+			};
+			// Target gif-wrap container
+			const $gif_wrap = $('#gif-wrap');
+			// Giphy API URL
+			let giphyURL = encodeURI(giphy.baseURL + giphy.type + '?api_key=' + giphy.key + '&tag=' + giphy.tag + '&rating=' + giphy.rating);
+
+			// Call Giphy API and render data
+			var newGif = () => $.getJSON(giphyURL, (json) => renderGif(json.data));
+
+			// Display Gif in gif wrap container
+			var renderGif = (_giphy) => {
+				var url = _giphy.image_original_url.replace('http:', 'https:');
+				// Set gif as bg image
+				$gif_wrap.css({
+					'background-image': 'url("' + url + '")'
+				});
+
+				// Start duration countdown
+				refreshRate();
+			};
+
+			// Call for new gif after duration
+			var refreshRate = () => {
+				// Reset set intervals
+				clearInterval(refresh);
+				refresh = setInterval(function () {
+					// Call Giphy API for new gif
+					newGif();
+				}, duration);
+			};
+
+			// Call Giphy API for new gif
+			newGif();
+
+		});
+
+		console.clear();
+	</script>
+</body>

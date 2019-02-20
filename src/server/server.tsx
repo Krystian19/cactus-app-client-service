@@ -71,14 +71,13 @@ class Server {
     this.proxies();
 
     // General route for the Frontend app
-    // this.app.get('**', (req, res) => res.send(this.renderHTML()));
     this.app.get('**', (req, res) => {
       this.renderHTML(req, res)
         .then(html => res.send(html))
         .catch(err => {
           // NOTE: Return a proper error page, when rendering failed
           console.log(err);
-          res.end('Something failed in the rendering process');
+          res.sendFile(path.join(rootPath, 'resources', 'server_error.html'))
         })
     });
   }
@@ -127,6 +126,11 @@ class Server {
     );
   }
 
+  /**
+   * @description Returns an html string with Server Side Rendered data to used by the 
+   * client app.
+   * @returns Promise<String> HTML file to respond the request with
+   */
   private async renderHTML(req, res): Promise<String> {
     const client = new ApolloClient({
       ssrMode: true,
