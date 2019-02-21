@@ -97,7 +97,10 @@
 				<embed src="/img/logo.svg" class="logo" />
 			</div>
 			<p class="greeting-text">
-				Hey, glad you're here. Unfortunately, something went wrong. We should be back online soon!
+				This is embarassing ... Looks like something went wrong.
+			</p>
+			<p class="greeting-text">
+				Please try again in a few seconds.
 			</p>
 		</div>
 	</div>
@@ -127,13 +130,25 @@
 			// Display Gif in gif wrap container
 			var renderGif = (_giphy) => {
 				var url = _giphy.image_original_url.replace('http:', 'https:');
-				// Set gif as bg image
-				$gif_wrap.css({
-					'background-image': 'url("' + url + '")'
-				});
+
+				// Load the image resource using the Image helper and force it
+				// to be cached by the browser
+				const img = new Image();
+				img.src = url;
+
+				img.onload = () => {
+					// Set gif as bg image
+					$gif_wrap.css({
+						'background-image': 'url("' + url + '")'
+					});
+
+					refreshRate();
+				};
+
+				img.onerror = () => refreshRate();
 
 				// Start duration countdown
-				refreshRate();
+				// refreshRate();
 			};
 
 			// Call for new gif after duration
