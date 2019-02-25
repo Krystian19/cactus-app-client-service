@@ -108,7 +108,7 @@ class AnimeDetail extends React.Component<PropType> {
                         <div className="cover">
                           <LazyImage
                             src={`/img_cdn/${getSeason.poster}`}
-                            errorSrc="/img_cdn/test.jpg"
+                            errorSrc="/img/poster_placeholder.jpg"
                             alt="cover"
                             className="fade-in"
                             noLoadingSpinner

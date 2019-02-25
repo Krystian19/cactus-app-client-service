@@ -161,7 +161,7 @@ const ScheduleList = (props) => {
                         backgroundImage:
                           (Season.poster)
                             ? `url(/img_cdn/${Season.poster})`
-                            : 'url(/img_cdn/test.jpg)',
+                            : 'url(/img/thumbnail_placeholder.png)',
                       }}
                     >
                       <div className="text">

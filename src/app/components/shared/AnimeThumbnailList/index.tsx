@@ -47,7 +47,7 @@ export default class AnimeThumbnailList extends React.Component<PropType> {
                 </span>
                 <LazyImage
                   src={`/img_cdn/${season.poster}`}
-                  errorSrc="/img_cdn/test.jpg"
+                  errorSrc="/img/thumbnail_placeholder.png"
                   alt="thumbnail"
                   className="anime-thumbnail fade-in"
                 />

@@ -48,7 +48,7 @@ class HottestVideoBlock extends React.Component<PropType> {
                 <div className="cover">
                   <LazyImage
                     src={`/img_cdn/${episode.Season.background}`}
-                    errorSrc="/img_cdn/test.jpg"
+                    errorSrc="/img/thumbnail_placeholder.png"
                     alt="thumbnail"
                     className="anime-small-thumbnail fade-in"
                   />

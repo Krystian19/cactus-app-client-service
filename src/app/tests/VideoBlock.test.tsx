@@ -8,13 +8,13 @@ import Episode from '../components/@types/Episode';
 const episodes: Array<Episode> = [
   {
     'id': 21,
-    'thumbnail': 'test.jpg',
+    'thumbnail': 'thumbnail_placeholder.png',
     'episodeOrder': 12,
     'Season': {
       'id': 7,
       'seasonOrder': 1,
       'title': 'Goblin Slayer',
-      'background': 'test.jpg',
+      'background': 'thumbnail_placeholder.png',
     },
   },
 ];

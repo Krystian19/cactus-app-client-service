@@ -5,8 +5,8 @@ import LazyImage from '../components/shared/LazyImage';
 
 const componentSetup = (
   <LazyImage
-    src="/img_cdn/test.jpg"
-    errorSrc="/img_cdn/test.jpg"
+    src="/img/thumbnail_placeholder.png"
+    errorSrc="/img/thumbnail_placeholder.png"
     alt="thumbnail"
     className="anime-small-thumbnail fade-in"
     noLoadingSpinner

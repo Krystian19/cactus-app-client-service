@@ -96,7 +96,7 @@ class AnimeVideo extends React.Component<PropType> {
                       poster={
                         (getEpisode.thumbnail)
                           ? `/img_cdn/${getEpisode.thumbnail}`
-                          : '/img_cdn/test.jpg'
+                          : '/img/thumbnail_placeholder.png'
                       }
                       // src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
                       src={`/video_cdn/${getEpisode.EpisodeVersions[0].episode_url}`}
@@ -107,7 +107,12 @@ class AnimeVideo extends React.Component<PropType> {
                       <div className="cover">
                         <Link to={`/anime/detail/${getEpisode.Season.id}`}>
                           <img
-                            src={`/img_cdn/${getEpisode.Season.poster}`}
+                            src={
+                              (getEpisode.Season.poster)
+                                ? `/img_cdn/${getEpisode.Season.poster}`
+                                : '/img/poster_placeholder.jpg'
+
+                            }
                             alt="cover"
                           />
                         </Link>

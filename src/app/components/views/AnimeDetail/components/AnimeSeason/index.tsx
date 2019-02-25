@@ -114,7 +114,7 @@ export default class AnimeSeason extends React.Component<PropType, StateType> {
                             /> */}
                             <LazyImage
                               src={`/img_cdn/${episode.thumbnail}`}
-                              errorSrc="/img_cdn/test.jpg"
+                              errorSrc="/img/thumbnail_placeholder.png"
                               alt="thumbnail"
                               className="anime-small-thumbnail"
                             />
