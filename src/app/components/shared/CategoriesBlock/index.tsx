@@ -45,7 +45,7 @@ class CategoriesBlock extends React.Component<PropType> {
                 <div className="cover">
                   <LazyImage
                     src={`/img_cdn/${category.thumbnail}`}
-                    errorSrc="/img/thumbnail_placeholder.png"
+                    errorSrc="/img/category_placeholder.png"
                     alt="thumbnail"
                     className="anime-small-thumbnail fade-in"
                     noLoadingSpinner
