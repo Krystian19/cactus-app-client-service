@@ -4,10 +4,18 @@
 <head>
 	<link rel="stylesheet" type="text/css"
 		href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto">
 	<title>
 		Cactus app
 	</title>
 	<style>
+		body,
+		html {
+			background-color: #171717;
+			font-family: "Roboto";
+			color: #fff;
+		}
+
 		#gif-wrap {
 			position: absolute;
 			top: 0;
@@ -38,8 +46,8 @@
 			left: 0;
 			right: 0;
 			width: 100%;
-			background: #332532;
-			opacity: .95;
+			background: #000;
+			opacity: .80;
 		}
 
 		.content-wrap {
@@ -82,11 +90,27 @@
 		}
 
 		.greeting-text {
-			max-width: 600px;
+			max-width: 650px;
 			margin: 0 auto 25px auto;
 		}
 
-		@media(max-width: 990px) {}
+		@media(max-width: 2560px) {
+			.greeting-text {
+				font-size: 1.6rem;
+			}
+		}
+
+		@media(max-width: 1400px) {
+			.greeting-text {
+				font-size: 1.2rem;
+			}
+		}
+
+		@media(max-width: 760px) {
+			.greeting-text {
+				font-size: .9rem;
+			}
+		}
 	</style>
 </head>
 
@@ -110,30 +134,33 @@
 			// Initiate gifLoop for set interval
 			var refresh;
 			// Duration count in seconds
-			const duration = 500 * 10;
-			// Giphy API defaults
-			const giphy = {
-				baseURL: 'https://api.giphy.com/v1/gifs/',
-				key: 'dc6zaTOxFJmzC',
-				tag: 'anime',
-				type: 'random',
-				rating: 'pg-13'
-			};
+			var duration = 8 * 1000;
+			var gif_count = 0;
+
+			var gifs_array = [
+				'/img/gifs/wreckage.gif',
+				'/img/gifs/stairs.gif',
+			]
+
 			// Target gif-wrap container
-			const $gif_wrap = $('#gif-wrap');
-			// Giphy API URL
-			let giphyURL = encodeURI(giphy.baseURL + giphy.type + '?api_key=' + giphy.key + '&tag=' + giphy.tag + '&rating=' + giphy.rating);
+			var $gif_wrap = $('#gif-wrap');
 
 			// Call Giphy API and render data
-			var newGif = () => $.getJSON(giphyURL, (json) => renderGif(json.data));
+			var newGif = () => renderGif();
 
 			// Display Gif in gif wrap container
-			var renderGif = (_giphy) => {
-				var url = _giphy.image_original_url.replace('http:', 'https:');
+			var renderGif = () => {
+				var url = gifs_array[gif_count];
+
+				gif_count++;
+
+				if (gif_count == (gifs_array.length + 1)) {
+					gif_count = 0;
+				}
 
 				// Load the image resource using the Image helper and force it
 				// to be cached by the browser
-				const img = new Image();
+				var img = new Image();
 				img.src = url;
 
 				img.onload = () => {
