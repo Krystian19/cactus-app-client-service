@@ -5,6 +5,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const tsConfig = {
   entry: path.join(__dirname, 'src', 'app', 'index.tsx'),
   mode: 'development',
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {
