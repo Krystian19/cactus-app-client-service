@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "./public/js/app.js",
+    "outDir": "./public/js/app.min.js",
     "pretty": true,
     "sourceMap": true,
     "module": "commonjs",

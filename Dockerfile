@@ -17,10 +17,4 @@ EXPOSE 3000
 # Install service manager
 RUN npm install -g yarn@1.12.3
 
-# Make sure /app/setup.sh has the right persmissions inside the container
-RUN ["chmod", "+x", "/app/setup.sh"]
-
-# Bulk removal of CRLF line endings (avoid windows bug related to file line endings (CRLF))
-RUN sed -i -e 's/\r$//' /app/setup.sh
-
 CMD /app/setup.sh
