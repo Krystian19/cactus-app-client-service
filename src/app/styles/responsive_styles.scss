@@ -1,6 +1,7 @@
 /* Mobile Large */
 
-@media (min-width: 425px) {}
+@media (min-width: 425px) {
+}
 
 @media (max-width: 425px) {
   /**
@@ -23,7 +24,7 @@
     font-size: 1rem !important;
   }
 
-  .anime-info .head .content .centered-content h1.anime-title {    
+  .anime-info .head .content .centered-content h1.anime-title {
     text-align: center;
   }
 }
@@ -43,7 +44,8 @@
   /**
   * Anime info
   */
-  .anime-info .head .content .centered-content, .anime-info .main .content {
+  .anime-info .head .content .centered-content,
+  .anime-info .main .content {
     width: 80%;
   }
 }
@@ -75,7 +77,8 @@
   /**
   * Anime small thumbnail list
   */
-  .anime-small-thumbnail-list, .anime-season-videos .anime-small-thumbnail-list {
+  .anime-small-thumbnail-list,
+  .anime-season-videos .anime-small-thumbnail-list {
     grid-template-columns: 49% 49%;
     grid-gap: 0.5em 1%;
   }
@@ -97,7 +100,8 @@
   .anime-info .head .genres {
     justify-content: center;
   }
-  .anime-info .head .content .centered-content, .anime-info .main .content {
+  .anime-info .head .content .centered-content,
+  .anime-info .main .content {
     width: 80%;
     display: block;
   }
@@ -120,14 +124,13 @@
   .anime-watch-episode .anime-watch-episode-container .anime-watch-episode-description .right-side .controls {
     justify-content: center;
   }
-  
+
   .pagination-box .item {
     display: none;
   }
 
   .pagination-box .item.control,
-  .pagination-box .item.mobile-control
-  {
+  .pagination-box .item.mobile-control {
     display: inline-block;
   }
 }
@@ -199,6 +202,10 @@
   .sidebar .sidebar-bottom-options .sidebar-option .flag-icon {
     margin-right: 20px;
   }
+
+  footer {
+    margin-left: 0;
+  }
 }
 
 /* Medium tablets */
@@ -232,8 +239,9 @@
   /**
   * Anime small thumbnail list
   */
-  .anime-small-thumbnail .info .title .title-container, .anime-small-thumbnail .info .title .detail-container {
-    font-size: .6rem;
+  .anime-small-thumbnail .info .title .title-container,
+  .anime-small-thumbnail .info .title .detail-container {
+    font-size: 0.6rem;
   }
   .anime-small-thumbnail .cover .overlay svg.play {
     width: 1.4em;
@@ -244,7 +252,7 @@
 /* Small Laptop - Fanblet */
 @media (min-width: 1060px) {
   .anime-small-thumbnail.small .cover {
-      padding-bottom: 48.3%;
+    padding-bottom: 48.3%;
   }
 }
 
@@ -259,7 +267,8 @@
   }
 }
 
-@media (max-width: 1240px) {}
+@media (max-width: 1240px) {
+}
 
 /* Laptop Large */
 
@@ -268,7 +277,7 @@
   * Anime small thumbnail list
   */
   .anime-small-thumbnail.small .cover {
-    padding-bottom: 50.1%
+    padding-bottom: 50.1%;
   }
   .anime-small-thumbnail .cover .overlay .category_title {
     font-size: 1.5em;
@@ -294,7 +303,7 @@
 /* Small 4k Monitors */
 @media (min-width: 1585px) {
   .anime-small-thumbnail.small .cover {
-      padding-bottom: 51%;
+    padding-bottom: 51%;
   }
 }
 
@@ -327,7 +336,8 @@
   /**
   * Anime info
   */
-  .anime-info .head .content .centered-content, .anime-info .main .content {
+  .anime-info .head .content .centered-content,
+  .anime-info .main .content {
     width: 50%;
   }
   /* 
