@@ -1,10 +1,13 @@
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 
-// Libs
+// Icon Fonts
 @import "~normalize.css/normalize.css";
 $fa-font-path: "~font-awesome/fonts";
 @import "~font-awesome/scss/font-awesome";
+
+// Emojis lib - docs @ https://ziishaned.github.io/emoji-awesome/
+@import "~emoji-awesome/src/css/facebook.css";
 
 // Layout styles
 @import "./components/Layout";

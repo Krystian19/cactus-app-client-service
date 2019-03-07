@@ -62,6 +62,19 @@ const sassConfig = {
         ]
       },
       {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              publicPath: '/css/images',
+              outputPath: 'images/'
+            }
+          }
+        ]
+      },
+      {
         test: /\.s?css$/,
         use: [
           MiniCssExtractPlugin.loader,

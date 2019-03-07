@@ -87,7 +87,7 @@ class Sidebar extends React.Component<PropsType> {
           <div className="sidebar-option">
             <div className="flag-icon">
               <span role="img" aria-label="flag">
-                🇺🇸
+                <i className="em em-us"/>
               </span>
             </div>
           </div>
