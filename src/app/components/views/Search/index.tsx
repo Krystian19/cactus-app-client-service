@@ -12,7 +12,8 @@ const SearchViewQuery = gql`
         id,
         title,
         poster,
-        episodeCount
+        episodeCount,
+        startedAiring
       },
       count
     },

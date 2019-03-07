@@ -6,6 +6,8 @@ import {
 import RandomTextEmoji from '../RandomTextEmoji';
 import LazyImage from '../LazyImage';
 import Season from '../../@types/Season';
+import JSTtoLocalTime from '../../../utils/JSTtoLocalTime';
+import YearExtractor from '../../../utils/YearExtractor';
 
 type PropType = {
   seasons: Array<Season>,
@@ -63,7 +65,13 @@ export default class AnimeThumbnailList extends React.Component<PropType> {
                 {season.title}
               </div>
               <div className="year">
-                {`2018 - ${season.episodeCount} episodes`}
+                {`${
+                  YearExtractor(
+                    JSTtoLocalTime(season.startedAiring)
+                  )
+                  } - ${
+                  season.episodeCount
+                  } episodes`}
               </div>
             </div>
           </div>
