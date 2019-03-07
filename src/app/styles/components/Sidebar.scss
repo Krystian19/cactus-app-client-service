@@ -51,4 +51,15 @@
       outline: 0;
     }
   }
+
+  & a {
+    transition: 0.3s;
+    &.active {
+      color: #ff6c00;
+    }
+
+    &:hover {
+      color: #ff6c00;
+    }
+  }
 }

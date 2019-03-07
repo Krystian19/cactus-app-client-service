@@ -3,7 +3,7 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { RouteComponentProps } from "react-router";
 import {
-  Link,
+  NavLink,
   withRouter,
 } from 'react-router-dom';
 
@@ -41,14 +41,18 @@ class Sidebar extends React.Component<PropsType> {
         </div>
         <div className="sidebar-center-options">
           <div className="sidebar-option">
-            <Link to="/search">
+            <NavLink to="/search"
+              activeClassName='active'
+            >
               <i className="fa fa-search" />
-            </Link>
+            </NavLink>
           </div>
           <div className="sidebar-option">
-            <Link to="/schedule">
+            <NavLink to="/schedule"
+              activeClassName='active'
+            >
               <i className="fa fa-calendar" />
-            </Link>
+            </NavLink>
           </div>
 
           <Query query={RandomAnimeQuery}>
@@ -68,12 +72,12 @@ class Sidebar extends React.Component<PropsType> {
 
               return (
                 <div className="sidebar-option">
-                  <Link
+                  <NavLink
                     onClick={() => refetch()}
                     to={`/anime/detail/${data.getRandomSeason.id}`}
                   >
                     <i className="fa fa-random" />
-                  </Link>
+                  </NavLink>
                 </div>
               );
             }}
