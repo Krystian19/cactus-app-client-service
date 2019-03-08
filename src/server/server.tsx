@@ -4,6 +4,7 @@ import fs from 'fs';
 import requestProxy from 'express-request-proxy';
 import morgan from 'morgan';
 import sha256 from 'sha256';
+import helmet from 'helmet';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import React from 'react';
@@ -39,6 +40,9 @@ class Server {
    * @description Configuration of the express web server
    */
   private config(): void {
+    // Security measures for the express server
+    this.security();
+
     // Setup server's middlewares and utils
     this.middlewares();
 
@@ -47,6 +51,11 @@ class Server {
 
     // Setup web routes
     this.routes();
+  }
+
+  private security(): void {
+    // Disable powered by express.js header
+    this.app.use(helmet());
   }
 
   private middlewares(): void {
