@@ -54,9 +54,9 @@ export default class AnimeThumbnailList extends React.Component<PropType> {
                   className="anime-thumbnail fade-in"
                 />
                 <div className="overlay hover_hidden darken">
-                  <svg className="play" viewBox="0 0 24 24">
+                  {/* <svg className="play" viewBox="0 0 24 24">
                     <path d="M8,5.14V19.14L19,12.14L8,5.14Z" />
-                  </svg>
+                  </svg> */}
                 </div>
               </div>
             </Link>
