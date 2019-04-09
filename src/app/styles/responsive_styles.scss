@@ -29,6 +29,21 @@
   }
 }
 
+/* Phanblets */
+@media (max-width: 525px) {
+  /**
+  * Genre options pane
+  */
+  .genre-options-panel {
+    display: block;
+    height: initial;
+  }
+
+  .genre-options-panel .chips-container {
+    margin-top: 15px;
+  }
+}
+
 /* Tablet */
 
 @media (min-width: 768px) {
@@ -54,6 +69,11 @@
   .main-content.no-margin {
     margin-left: 55px;
   }
+
+  .main-content.no-responsive-left-margin {
+    margin-left: 0;
+  }
+
   /*
   * Anime schedule list
   */

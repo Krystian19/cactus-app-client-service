@@ -32,6 +32,30 @@
   background: rgba(0, 0, 0, .03);
 }
 
+.anime-small-thumbnail.small.category .cover .checked {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 200;
+  font-size: 2rem;
+  color: #ff6c00;
+}
+
+.anime-small-thumbnail.small.category .cover .checked .fas {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.anime-small-thumbnail.small.category .cover .checked .fas.fa-check-circle {
+  z-index: 200;
+}
+
+.anime-small-thumbnail.small.category .cover .checked .fas.fa-circle {
+  color: #fff;
+  z-index: 100;
+}
+
 .anime-small-thumbnail .cover {
   position: relative;
   padding-bottom: 56.25%;
