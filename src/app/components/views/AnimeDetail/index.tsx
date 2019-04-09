@@ -56,22 +56,23 @@ class AnimeDetail extends React.Component<PropType> {
   render() {
     const { match: { params } } = this.props;
     return (
-      <div className="main-content no-padding">
-        <Query query={AnimeInfoQuery} variables={{ id: Number(params.id) }}>
-          {({ loading, error, data }) => {
-            if (loading) {
-              return (
-                <div className="main-content no-padding">
-                  <LoadingSpinner />
-                </div>
-              );
-            }
 
-            if (error) return <p>Error :(</p>;
-
-            console.log(data);
-            const { getSeason } = data;
+      <Query query={AnimeInfoQuery} variables={{ id: Number(params.id) }}>
+        {({ loading, error, data }) => {
+          if (loading) {
             return (
+              <div className="main-content no-padding">
+                <LoadingSpinner />
+              </div>
+            );
+          }
+
+          if (error) return <p>Error :(</p>;
+
+          console.log(data);
+          const { getSeason } = data;
+          return (
+            <div className="main-content no-padding">
               <div className="anime-info">
                 <div
                   className={`head 
@@ -180,11 +181,11 @@ class AnimeDetail extends React.Component<PropType> {
                   </div>
                 </div>
               </div>
+            </div>
 
-            );
-          }}
-        </Query>
-      </div>
+          );
+        }}
+      </Query>
     );
   }
 }

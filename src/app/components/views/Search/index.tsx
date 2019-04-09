@@ -95,11 +95,13 @@ export default class Search extends React.Component<{}, StateTypes> {
         >
           {({ loading, error, data }) => {
             if (loading) {
-              return (
-                <div className="main-content no-padding">
-                  <LoadingSpinner />
-                </div>
-              );
+              // return (
+              //   <div className="main-content no-padding">
+              //     <LoadingSpinner />
+              //   </div>
+              // );
+
+              return ('');
             }
 
             if (error) return <p>Error :(</p>;
