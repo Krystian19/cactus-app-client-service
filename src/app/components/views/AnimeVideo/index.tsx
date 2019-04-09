@@ -60,25 +60,22 @@ class AnimeVideo extends React.Component<PropType> {
     const { history } = this.props;
     const { match: { params } } = this.props;
     return (
-      <div className="main-content no-padding">
-        {/* Start of main content */}
-
-        <Query query={AnimeVideoQuery} variables={{ id: Number(params.id) }}>
-          {({ loading, error, data }) => {
-            if (loading) {
-              return (
-                <div className="main-content no-padding">
-                  <LoadingSpinner />
-                </div>
-              );
-            }
-
-            if (error) return <p>Error :(</p>;
-
-            console.log(data);
-            const { getEpisode } = data;
+      <Query query={AnimeVideoQuery} variables={{ id: Number(params.id) }}>
+        {({ loading, error, data }) => {
+          if (loading) {
             return (
+              <div className="main-content no-padding">
+                <LoadingSpinner />
+              </div>
+            );
+          }
 
+          if (error) return <p>Error :(</p>;
+
+          console.log(data);
+          const { getEpisode } = data;
+          return (
+            <div className="main-content no-padding">
               <div className="anime-watch-episode">
                 <div className="anime-watch-episode-container">
                   <div className="anime-watch-episode-video">
@@ -199,12 +196,10 @@ class AnimeVideo extends React.Component<PropType> {
                   </div>
                 </div>
               </div>
-
-            );
-          }}
-        </Query>
-        {/* End of main content */}
-      </div>
+            </div>
+          );
+        }}
+      </Query>
     );
   }
 }
