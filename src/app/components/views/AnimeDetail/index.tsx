@@ -5,6 +5,7 @@ import React from 'react';
 
 
 import AnimeSeason from './components/AnimeSeason';
+import CategoriesChips from '../../shared/CategoriesChips';
 import LoadingSpinner from '../../shared/LoadingSpinner';
 import LazyImage from '../../shared/LazyImage';
 import JSTtoLocalTime from '../../../utils/JSTtoLocalTime';
@@ -91,12 +92,7 @@ class AnimeDetail extends React.Component<PropType> {
                         <h1 className="anime-title">
                           {getSeason.title}
                         </h1>
-                        <div className="genres">
-                          {getSeason.Genres.map(genre => (
-                            <a key={genre.id} className="genre-tag" href="http://www.google.com">{genre.title}</a>
-                          ))
-                          }
-                        </div>
+                        <CategoriesChips categories={getSeason.Genres} />
                       </div>
                     </div>
                   </div>
