@@ -22,9 +22,6 @@ const CategoriesBlock = (props: PropType) => {
     history
   } = props;
 
-  console.log('This is the History');
-  console.log(history);
-
   return (
     <div className="video-block">
       <div className="video-block-title">
