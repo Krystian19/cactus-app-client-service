@@ -7,9 +7,12 @@ import LoadingSpinner from '../../shared/LoadingSpinner';
 const GenresEpisodesQuery = gql`
   query {
     getGenres {
-      id,
-      title,
-      thumbnail
+      rows {
+        id,
+        title,
+        thumbnail
+      },
+      count
     }
   }
 `;
@@ -34,7 +37,7 @@ export default class Categories extends React.Component {
             <div className="main-content no-padding">
               <CategoriesBlock
                 title={'Categories'}
-                categories={data.getGenres}
+                categories={data.getGenres.rows}
               />
             </div>
           );

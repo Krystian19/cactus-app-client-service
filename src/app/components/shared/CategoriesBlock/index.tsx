@@ -6,6 +6,8 @@ import {
 } from 'react-router-dom';
 
 import LazyImage from '../LazyImage';
+import PaginationBox from '../../shared/PaginationBox';
+
 import Genre from '../../@types/Genre';
 
 type PropType = RouteComponentProps<{}> & {
@@ -14,7 +16,44 @@ type PropType = RouteComponentProps<{}> & {
   viewAllLink?: String,
 }
 
-class CategoriesBlock extends React.Component<PropType> {
+type StateType = {
+  currentPage: Number,
+}
+
+// How many records should be shown per page.
+const pageCount = 8;
+
+class CategoriesBlock extends React.Component<PropType, StateType> {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      // Pagination state values
+      currentPage: 0,
+    }
+  }
+
+  PageForward = () => {
+    const { currentPage } = this.state;
+    this.setState({ currentPage: (Number(currentPage) + 1) });
+  }
+
+  PageBackwards = () => {
+    const { currentPage } = this.state;
+
+    // Can't go backwards if page is already 0
+    if (currentPage === 0) return;
+
+    this.setState({ currentPage: (Number(currentPage) - 1) });
+  }
+
+  setCurrentPage = (page) => {
+    // If arg is null then ignore it
+    if ((page === null) || (page === undefined)) return;
+
+    this.setState({ currentPage: page });
+  }
+
   render() {
     const {
       categories,
