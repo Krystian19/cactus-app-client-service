@@ -18,8 +18,12 @@ const CategoriesBlock = (props: PropType) => {
   const {
     categories,
     title,
-    viewAllLink
+    viewAllLink,
+    history
   } = props;
+
+  console.log('This is the History');
+  console.log(history);
 
   return (
     <div className="video-block">
@@ -40,6 +44,7 @@ const CategoriesBlock = (props: PropType) => {
             <div
               key={Number(category.id)}
               className="anime-small-thumbnail small category"
+              onClick={() => history.push('/search')}
             >
               <div className="cover">
                 <LazyImage
