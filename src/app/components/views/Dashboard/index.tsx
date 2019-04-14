@@ -16,9 +16,12 @@ const DashboardQuery = gql`
       ...episodeThumbnailFields
     }
     getGenres {
-      id,
-      title,
-      thumbnail
+      rows {
+        id,
+        title,
+        thumbnail
+      },
+      count
     }
   }
     
@@ -72,7 +75,7 @@ class Dashboard extends React.Component {
               />
               <CategoriesBlock
                 title={'Categories'}
-                categories={data.getGenres}
+                categories={data.getGenres.rows}
                 viewAllLink={'/categories'}
               />
             </div>
