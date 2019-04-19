@@ -100,22 +100,13 @@
   padding: 0.1875em 0;
 }
 
-.anime-info
-  .main
-  .content
-  .small-side
-  .cover-details
-  .cover-detail-row
-  span.cover-detail-row-title,
-.anime-info
-  .main
-  .content
-  .small-side
-  .cover-details
-  .cover-detail-row
-  span.cover-detail-row-detail {
-  flex: 1;
+.anime-info .main .content .small-side .cover-details .cover-detail-row span.cover-detail-row-title,
+.anime-info .main .content .small-side .cover-details .cover-detail-row span.cover-detail-row-detail {
   text-transform: uppercase;
+}
+
+.anime-info .main .content .small-side .cover-details .cover-detail-row span.cover-detail-row-detail {
+  flex: 1;
 }
 
 .anime-info
@@ -127,7 +118,7 @@
   span.cover-detail-row-title {
   color: #b9b9b9;
   font-weight: 400;
-  font-size: 0.6rem;
+  font-size: 0.7rem;
 }
 
 .anime-info
