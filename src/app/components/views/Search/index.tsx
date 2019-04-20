@@ -1,6 +1,6 @@
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import React from 'react';
+import React, { Fragment } from 'react';
 import AnimeThumbnailList from '../../shared/AnimeThumbnailList';
 import GenreOptionsPanel from '../../shared/GenreOptionsPanel';
 import PaginationBox from '../../shared/PaginationBox';
@@ -17,6 +17,14 @@ const SearchViewQuery = gql`
       },
       count
     },
+    getGenres {
+      rows {
+        id,
+        title,
+        thumbnail
+      },
+      count
+    }
   }
 `;
 
@@ -84,7 +92,6 @@ export default class Search extends React.Component<{}, StateTypes> {
             }
           />
         </div>
-        <GenreOptionsPanel />
         <Query
           query={SearchViewQuery}
           variables={{
@@ -108,34 +115,41 @@ export default class Search extends React.Component<{}, StateTypes> {
 
             console.log(data);
             return (
-              <div className="util-container">
-                <AnimeThumbnailList
-                  seasons={data.findSeasons.rows}
+              <Fragment>
+                <GenreOptionsPanel
+                  categories={data.getGenres.rows}
+                  selectedCategories={data.getGenres.rows}
+                  categoryRemoved={(id) => console.log(`Category id:${id} removed`)}
+                  categoryAdded={(id) => console.log(`Category id:${id} added`)}
                 />
-                {
-                  data.findSeasons.rows.length !== 0
-                  && (
-                    <PaginationBox
-                      pageCount={pageCount}
-                      itemCount={data.findSeasons.count}
-                      currentPage={currentPage}
-                      goForwardCB={() => {
-                        const lastPage = Math.ceil(
-                          data.findSeasons.count / pageCount,
-                        );
+                <div className="util-container">
+                  <AnimeThumbnailList
+                    seasons={data.findSeasons.rows}
+                  />
+                  {
+                    data.findSeasons.rows.length !== 0
+                    && (
+                      <PaginationBox
+                        pageCount={pageCount}
+                        itemCount={data.findSeasons.count}
+                        currentPage={currentPage}
+                        goForwardCB={() => {
+                          const lastPage = Math.ceil(
+                            data.findSeasons.count / pageCount,
+                          );
 
-                        // If this is the last page, don't go forward
-                        if ((Number(currentPage) + 1) === lastPage) return;
+                          // If this is the last page, don't go forward
+                          if ((Number(currentPage) + 1) === lastPage) return;
 
-                        this.PageForward();
-                      }}
-                      goBackwardsCB={() => this.PageBackwards()}
-                      setCurrentPageCB={this.setCurrentPage}
-                    />
-                  )
-                }
-              </div>
-
+                          this.PageForward();
+                        }}
+                        goBackwardsCB={() => this.PageBackwards()}
+                        setCurrentPageCB={this.setCurrentPage}
+                      />
+                    )
+                  }
+                </div>
+              </Fragment>
             );
           }}
         </Query>

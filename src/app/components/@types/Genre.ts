@@ -1,7 +1,7 @@
 
 export type Genre = {
   id: Number,
-  title?: String,
+  title: String,
   thumbnail?: String,
 }
 
