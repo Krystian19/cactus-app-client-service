@@ -2,7 +2,7 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import React from 'react';
 import AnimeThumbnailList from '../../shared/AnimeThumbnailList';
-import LoadingSpinner from '../../shared/LoadingSpinner';
+import GenreOptionsPanel from '../../shared/GenreOptionsPanel';
 import PaginationBox from '../../shared/PaginationBox';
 
 const SearchViewQuery = gql`
@@ -84,7 +84,7 @@ export default class Search extends React.Component<{}, StateTypes> {
             }
           />
         </div>
-
+        <GenreOptionsPanel />
         <Query
           query={SearchViewQuery}
           variables={{
