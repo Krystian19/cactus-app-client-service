@@ -12,12 +12,12 @@ const FilterCategoriesChips = ({ categories, categoryRemoved }: PropType) => (
       <div
         key={String(genre.id)}
         className="chip"
+        onClick={() => categoryRemoved(genre.id)}
       >
         <div className="chip-content">
           {genre.title}
           <div
             className="chip-remove-btn"
-            onClick={() => categoryRemoved(genre.id)}
           >
             <i className="fa fa-times"></i>
           </div>
