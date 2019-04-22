@@ -89,7 +89,12 @@ embed.logo {
   cursor: pointer;
 }
 
-.main-container,
+.main-container {
+  min-height: 100%;
+  width: 100%;
+  display: flex;
+}
+
 div#root {
   min-height: 100%;
   width: 100%;
