@@ -1,6 +1,7 @@
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import React, { Fragment } from 'react';
+import Genre from '../../@types/Genre';
 import AnimeThumbnailList from '../../shared/AnimeThumbnailList';
 import GenreOptionsPanel from '../../shared/GenreOptionsPanel';
 import PaginationBox from '../../shared/PaginationBox';
@@ -31,6 +32,7 @@ const SearchViewQuery = gql`
 type StateTypes = {
   currentPage: Number,
   searchFieldText: String,
+  selectedCategories: Array<Genre>,
 }
 
 // How many records should be shown per page
@@ -43,8 +45,11 @@ export default class Search extends React.Component<{}, StateTypes> {
     this.state = {
       searchFieldText: '',
 
-      // Pagination state values
+      // Pagination's current page
       currentPage: 0,
+
+      // Categories are currently selected to filter with
+      selectedCategories: [],
     };
   }
 
