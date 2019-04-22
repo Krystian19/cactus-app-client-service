@@ -38,10 +38,8 @@ class GenreOptionsPanel extends React.Component<PropType, StateType> {
       <div className="genre-options-panel">
         <a
           className="button clear-bg straigth-corners"
-          onClick={() => {
-            console.log('This is settings the state');
-            this.setState({ showCategorySelectionPanel: true })
-          }}
+          onClick={() =>
+            this.setState({ showCategorySelectionPanel: true })}
         >
           Categories
         </a>
@@ -51,7 +49,10 @@ class GenreOptionsPanel extends React.Component<PropType, StateType> {
         />
 
         {showCategorySelectionPanel && (
-          <CategorySelectionPanel />
+          <CategorySelectionPanel
+            closePanel={() =>
+              this.setState({ showCategorySelectionPanel: false })}
+          />
         )}
       </div>
     )
