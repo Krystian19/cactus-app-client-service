@@ -3,11 +3,12 @@ import Genre from '../../@types/Genre';
 
 type PropType = {
   categories: Array<Genre>
-  categoryRemoved: Function
+  categoryRemoved: Function,
+  alignedCenter?: Boolean,
 }
 
-const FilterCategoriesChips = ({ categories, categoryRemoved }: PropType) => (
-  <div className="chips-container aligned-left">
+const FilterCategoriesChips = ({ categories, categoryRemoved, alignedCenter = false }: PropType) => (
+  <div className={`chips-container ${(!alignedCenter) ? 'aligned-left' : ''}`}>
     {categories.map(genre => (
       <div
         key={String(genre.id)}
