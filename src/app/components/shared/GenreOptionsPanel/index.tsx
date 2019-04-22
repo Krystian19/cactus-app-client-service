@@ -5,7 +5,6 @@ import FilterCategoriesChips from '../FilterCategoriesChips';
 import CategorySelectionPanel from './components/CategorySelectionPanel';
 
 type PropType = {
-  categories: Array<Genre>,
   selectedCategories: Array<Genre>,
   categoryRemoved: Function,
   categoryAdded: Function
@@ -26,23 +25,34 @@ class GenreOptionsPanel extends React.Component<PropType, StateType> {
 
   render() {
     const {
-      categories,
       selectedCategories,
       categoryRemoved,
       categoryAdded
     } = this.props;
 
+    const {
+      showCategorySelectionPanel
+    } = this.state;
+
     return (
       <div className="genre-options-panel">
-        <a className="button clear-bg straigth-corners">
+        <a
+          className="button clear-bg straigth-corners"
+          onClick={() => {
+            console.log('This is settings the state');
+            this.setState({ showCategorySelectionPanel: true })
+          }}
+        >
           Categories
-      </a>
+        </a>
         <FilterCategoriesChips
           categories={selectedCategories}
           categoryRemoved={(id) => categoryRemoved(id)}
         />
 
-        <CategorySelectionPanel />
+        {showCategorySelectionPanel && (
+          <CategorySelectionPanel />
+        )}
       </div>
     )
   }

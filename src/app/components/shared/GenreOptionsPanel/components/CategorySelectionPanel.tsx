@@ -3,12 +3,12 @@ import React from 'react';
 class CategorySelectionPanel extends React.Component {
   render() {
     return (
-      <div className="genre-options-container hide">
+      <div className="genre-options-container">
         <div className="main-content no-margin self-contained-padding no-responsive-left-margin">
 
           <div className="genre-options-container-controls">
             <div className="exit-btn">
-              <i className="fas fa-times" />
+              <i className="fa fa-times" />
             </div>
           </div>
           <div className="big-search-box-container">
@@ -20,7 +20,7 @@ class CategorySelectionPanel extends React.Component {
               <div className="chip-content">
                 Romance
                 <div className="chip-remove-btn">
-                  <i className="fas fa-times" />
+                  <i className="fa fa-times" />
                 </div>
               </div>
             </div>
@@ -28,7 +28,7 @@ class CategorySelectionPanel extends React.Component {
               <div className="chip-content">
                 Horror
                 <div className="chip-remove-btn">
-                  <i className="fas fa-times" />
+                  <i className="fa fa-times" />
                 </div>
               </div>
             </div>
@@ -36,7 +36,7 @@ class CategorySelectionPanel extends React.Component {
               <div className="chip-content">
                 Dementia
                 <div className="chip-remove-btn">
-                  <i className="fas fa-times" />
+                  <i className="fa fa-times" />
                 </div>
               </div>
             </div>
@@ -44,7 +44,7 @@ class CategorySelectionPanel extends React.Component {
               <div className="chip-content">
                 Action
                 <div className="chip-remove-btn">
-                  <i className="fas fa-times" />
+                  <i className="fa fa-times" />
                 </div>
               </div>
             </div>
@@ -54,8 +54,8 @@ class CategorySelectionPanel extends React.Component {
             <div className="anime-small-thumbnail small category">
               <div className="cover">
                 <div className="checked">
-                  <i className="fas fa-check-circle" />
-                  <i className="fas fa-circle" />
+                  <i className="fa fa-check-circle" />
+                  <i className="fa fa-circle" />
                 </div>
                 <img src="img/categories/Action.png" alt="thumbnail" className="anime-small-thumbnail" />
                 <div className="overlay">
@@ -99,8 +99,8 @@ class CategorySelectionPanel extends React.Component {
             <div className="anime-small-thumbnail small category">
               <div className="cover">
                 <div className="checked">
-                  <i className="fas fa-check-circle" />
-                  <i className="fas fa-circle" />
+                  <i className="fa fa-check-circle" />
+                  <i className="fa fa-circle" />
                 </div>
                 <img src="img/categories/Romance.png" alt="thumbnail" className="anime-small-thumbnail" />
                 <div className="overlay">

@@ -122,7 +122,6 @@ export default class Search extends React.Component<{}, StateTypes> {
             return (
               <Fragment>
                 <GenreOptionsPanel
-                  categories={data.getGenres.rows}
                   selectedCategories={data.getGenres.rows}
                   categoryRemoved={(id) => console.log(`Category id: ${id} removed`)}
                   categoryAdded={(id) => console.log(`Category id: ${id} added`)}
