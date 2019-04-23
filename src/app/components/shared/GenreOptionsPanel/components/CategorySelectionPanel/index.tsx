@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import FilterCategoriesChips from '../../FilterCategoriesChips';
+import FilterCategoriesChips from '../../../FilterCategoriesChips';
 
 const GenreSearchQuery = gql`
   query($pageCount:Int, $currentPage:Int, $title:String) {
