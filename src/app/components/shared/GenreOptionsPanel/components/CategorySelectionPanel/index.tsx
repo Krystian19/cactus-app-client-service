@@ -3,6 +3,7 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import FilterCategoriesChips from '../../../FilterCategoriesChips';
+import CategoriesSelectionBlock from './components/CategoriesSelectionBlock';
 
 const GenreSearchQuery = gql`
   query($pageCount:Int, $currentPage:Int, $title:String) {
@@ -64,114 +65,9 @@ class CategorySelectionPanel extends React.Component<PropType> {
                     padded={true}
                   />
 
-                  <div className="anime-small-thumbnail-list">
-                    <div className="anime-small-thumbnail small category">
-                      <div className="cover">
-                        <div className="checked">
-                          <i className="fa fa-check-circle" />
-                          <i className="fa fa-circle" />
-                        </div>
-                        <img src="img/categories/Action.png" alt="thumbnail" className="anime-small-thumbnail" />
-                        <div className="overlay">
-                          <span className="category_title">Action</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="anime-small-thumbnail small category">
-                      <div className="cover">
-                        <img src="img/categories/Adventure.png" alt="thumbnail" className="anime-small-thumbnail" />
-                        <div className="overlay">
-                          <span className="category_title">Adventure</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="anime-small-thumbnail small category">
-                      <div className="cover">
-                        <img src="img/categories/Comedy.png" alt="thumbnail" className="anime-small-thumbnail" />
-                        <div className="overlay">
-                          <span className="category_title">Comedy</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="anime-small-thumbnail small category">
-                      <div className="cover">
-                        <img src="img/categories/DailyLife.png" alt="thumbnail" className="anime-small-thumbnail" />
-                        <div className="overlay">
-                          <span className="category_title">Daily Life</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="anime-small-thumbnail small category">
-                      <div className="cover">
-                        <img src="img/categories/Fantasy.png" alt="thumbnail" className="anime-small-thumbnail" />
-                        <div className="overlay">
-                          <span className="category_title">Fantasy</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="anime-small-thumbnail small category">
-                      <div className="cover">
-                        <div className="checked">
-                          <i className="fa fa-check-circle" />
-                          <i className="fa fa-circle" />
-                        </div>
-                        <img src="img/categories/Romance.png" alt="thumbnail" className="anime-small-thumbnail" />
-                        <div className="overlay">
-                          <span className="category_title">Romance</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="anime-small-thumbnail small category">
-                      <div className="cover">
-                        <img src="img/categories/ScienceFiction.png" alt="thumbnail" className="anime-small-thumbnail" />
-                        <div className="overlay">
-                          <span className="category_title">Science Fiction</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="anime-small-thumbnail small category">
-                      <div className="cover">
-                        <img src="img/categories/Sports.png" alt="thumbnail" className="anime-small-thumbnail" />
-                        <div className="overlay">
-                          <span className="category_title">Sports</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="anime-small-thumbnail small category">
-                      <div className="cover">
-                        <img src="img/categories/Action.png" alt="thumbnail" className="anime-small-thumbnail" />
-                        <div className="overlay">
-                          <span className="category_title">Action</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="anime-small-thumbnail small category">
-                      <div className="cover">
-                        <img src="img/categories/Adventure.png" alt="thumbnail" className="anime-small-thumbnail" />
-                        <div className="overlay">
-                          <span className="category_title">Adventure</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="anime-small-thumbnail small category">
-                      <div className="cover">
-                        <img src="img/categories/Comedy.png" alt="thumbnail" className="anime-small-thumbnail" />
-                        <div className="overlay">
-                          <span className="category_title">Comedy</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="anime-small-thumbnail small category">
-                      <div className="cover">
-                        <img src="img/categories/DailyLife.png" alt="thumbnail" className="anime-small-thumbnail" />
-                        <div className="overlay">
-                          <span className="category_title">Daily Life</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <CategoriesSelectionBlock
+                    categories={data.getGenres.rows}
+                  />
 
                   <div className="pagination-box">
                     <div className="item control">
