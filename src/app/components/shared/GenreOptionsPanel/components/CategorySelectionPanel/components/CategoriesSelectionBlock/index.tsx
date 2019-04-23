@@ -1,6 +1,7 @@
 import React from 'react';
 
 import LazyImage from '../../../../../LazyImage'
+import RandomTextEmoji from '../../../../../RandomTextEmoji';
 import Genre from '../../../../../../@types/Genre';
 
 type PropType = {
@@ -35,6 +36,22 @@ class CategoriesSelectionBlock extends React.Component<PropType> {
       selectedCategories,
       categorySelected
     } = this.props;
+
+    // If no categories were received
+    if (categories.length === 0) {
+      return (
+        <div className="anime-thumbnail-list no-grid">
+          <div className="nothing-found">
+            <h1 className="text-emoji">
+              {RandomTextEmoji()}
+            </h1>
+            <h2 className="nothing-found-title">
+              Nothing found
+            </h2>
+          </div>
+        </div>
+      );
+    }
 
     return (
       <div className="anime-small-thumbnail-list">
