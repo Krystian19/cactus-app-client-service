@@ -7,8 +7,8 @@ import GenreOptionsPanel from '../../shared/GenreOptionsPanel';
 import PaginationBox from '../../shared/PaginationBox';
 
 const SearchViewQuery = gql`
-  query($title: String, $pageCount:Int, $currentPage:Int) {
-    findSeasons(title:$title, limit:$pageCount, offset: $currentPage) {
+  query($title: String, $pageCount:Int, $currentPage:Int, $genres: [Int!]) {
+    findSeasons(title:$title, Genres: $genres, limit:$pageCount, offset: $currentPage) {
       rows {
         id,
         title,
@@ -127,6 +127,7 @@ export default class Search extends React.Component<{}, StateTypes> {
             title: searchFieldText,
             pageCount: pageCount,
             currentPage: (Number(currentPage) * pageCount),
+            genres: selectedCategories.map(cat => cat.id),
           }}
         >
           {({ loading, error, data }) => {
