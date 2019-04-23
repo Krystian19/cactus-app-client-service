@@ -74,6 +74,12 @@
   }
 }
 
+@media (max-width: 700px) {
+  .chips-container .chip {    
+    margin-bottom: 3px;
+  }
+}
+
 @media (max-width: 768px) {
   .main-content.no-margin {
     margin-left: 55px;
