@@ -5,8 +5,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const tsConfig = {
   entry: path.join(__dirname, 'src', 'app', 'index.tsx'),
 
-   // Using production mode tag in development, to avoid a webpack build bug
-  mode: 'production',
+  mode: 'development',
 
   devtool: 'inline-source-map',
   module: {
@@ -35,8 +34,7 @@ const tsConfig = {
 const sassConfig = {
   entry: path.join(__dirname, 'src', 'app', 'styles', 'index.scss'),
 
-   // Using production mode tag in development, to avoid a webpack build bug
-  mode: 'production',
+  mode: 'development',
 
   output: {
     path: path.resolve(__dirname, 'public', 'css')

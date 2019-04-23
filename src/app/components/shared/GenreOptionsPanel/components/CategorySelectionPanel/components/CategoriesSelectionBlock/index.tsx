@@ -22,10 +22,10 @@ class CategoriesSelectionBlock extends React.Component<PropType> {
             onClick={() => console.log(`You want to add the category id: ${category.id}`)}
           >
             <div className="cover">
-              <div className="checked">
+              {/* <div className="checked">
                 <i className="fa fa-check-circle" />
                 <i className="fa fa-circle" />
-              </div>
+              </div> */}
               <LazyImage
                 src={`/img_cdn/${category.thumbnail}`}
                 errorSrc="/img/category_placeholder.png"
