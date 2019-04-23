@@ -5,13 +5,34 @@ import Genre from '../../../../../../@types/Genre';
 
 type PropType = {
   categories: Array<Genre>,
+  selectedCategories: Array<Genre>,
   categorySelected: Function,
 }
 
 class CategoriesSelectionBlock extends React.Component<PropType> {
+
+  thisCategoryIsSelected = (
+    category: Genre,
+    selectedCategories: Array<Genre>
+  ): Boolean => {
+
+    // Check if the provided category has been selected in the provided array
+    const categoryIsSelected =
+      selectedCategories.filter(
+        cat => cat.id == category.id
+      );
+
+    if (categoryIsSelected.length > 0) {
+      return true;
+    }
+
+    return false;
+  }
+
   render() {
     const {
       categories,
+      selectedCategories,
       categorySelected
     } = this.props;
 
@@ -21,13 +42,22 @@ class CategoriesSelectionBlock extends React.Component<PropType> {
           <div
             key={Number(category.id)}
             className="anime-small-thumbnail small category"
-            onClick={() => categorySelected(category)}
+            onClick={() => {
+              // Prevents selecting a category twice
+              if (!this.thisCategoryIsSelected(category, selectedCategories)) {
+                categorySelected(category);
+              }
+            }}
           >
             <div className="cover">
-              {/* <div className="checked">
-                <i className="fa fa-check-circle" />
-                <i className="fa fa-circle" />
-              </div> */}
+              {
+                this.thisCategoryIsSelected(category, selectedCategories) && (
+                  <div className="checked">
+                    <i className="fa fa-check-circle" />
+                    <i className="fa fa-circle" />
+                  </div>
+                )
+              }
               <LazyImage
                 src={`/img_cdn/${category.thumbnail}`}
                 errorSrc="/img/category_placeholder.png"

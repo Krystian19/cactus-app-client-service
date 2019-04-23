@@ -138,6 +138,7 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
 
                   <CategoriesSelectionBlock
                     categories={data.getGenres.rows}
+                    selectedCategories={selectedCategories}
                     categorySelected={(category: Genre) => categorySelected(category)}
                   />
 
