@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 
 import FilterCategoriesChips from '../../../FilterCategoriesChips';
 import CategoriesSelectionBlock from './components/CategoriesSelectionBlock';
+import PaginationBox from '../../../../shared/PaginationBox';
 
 const GenreSearchQuery = gql`
   query($pageCount:Int, $currentPage:Int, $title:String) {
@@ -22,8 +23,53 @@ type PropType = {
   closePanel: Function,
 }
 
-class CategorySelectionPanel extends React.Component<PropType> {
+type StateType = {
+  currentPage: Number,
+  searchFieldText: String,
+}
+
+// How many records should be shown per page
+const pageCount = 8;
+
+class CategorySelectionPanel extends React.Component<PropType, StateType> {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      searchFieldText: '',
+
+      // Pagination's current page
+      currentPage: 0,
+    }
+  }
+
+  PageForward = () => {
+    const { currentPage } = this.state;
+    this.setState({ currentPage: (Number(currentPage) + 1) });
+  }
+
+  PageBackwards = () => {
+    const { currentPage } = this.state;
+
+    // Can't go backwards if page is already 0
+    if (currentPage === 0) return;
+
+    this.setState({ currentPage: (Number(currentPage) - 1) });
+  }
+
+  setCurrentPage = (page) => {
+    // If arg is null then ignore it
+    if ((page === null) || (page === undefined)) return;
+
+    this.setState({ currentPage: page });
+  }
+
   render() {
+    const {
+      searchFieldText,
+      currentPage
+    } = this.state;
+
     const {
       closePanel
     } = this.props;
@@ -41,12 +87,30 @@ class CategorySelectionPanel extends React.Component<PropType> {
             </div>
           </div>
           <div className="big-search-box-container">
-            <input type="text" className="big-search-box-input" placeholder="Search Categories ..." />
+            <input
+              type="text"
+              className="big-search-box-input"
+              placeholder="Search Categories ..."
+              value={String(searchFieldText)}
+              onChange={
+                ({ target: { value } }) => {
+                  this.setState(
+                    { searchFieldText: value },
+                    // When text fields are available set current page to 0
+                    () => this.setCurrentPage(0),
+                  );
+                }
+              }
+            />
           </div>
 
           <Query
             query={GenreSearchQuery}
-          // variables={{}}
+            variables={{
+              title: searchFieldText,
+              pageCount: pageCount,
+              currentPage: (Number(currentPage) * pageCount),
+            }}
           >
             {({ loading, error, data }) => {
               if (loading) {
@@ -69,24 +133,28 @@ class CategorySelectionPanel extends React.Component<PropType> {
                     categories={data.getGenres.rows}
                   />
 
-                  <div className="pagination-box">
-                    <div className="item control">
-                      <svg viewBox="0 0 24 24">
-                        <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"></path>
-                      </svg>
-                    </div>
-                    <div className="item active">1</div>
-                    <div className="item">2</div>
-                    <div className="item">3</div>
-                    <div className="item mobile-control">
-                      1 / 42
-                    </div>
-                    <div className="item control">
-                      <svg viewBox="0 0 24 24">
-                        <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
-                      </svg>
-                    </div>
-                  </div>
+                  {
+                    data.getGenres.rows.length !== 0
+                    && (
+                      <PaginationBox
+                        pageCount={pageCount}
+                        itemCount={data.getGenres.count}
+                        currentPage={currentPage}
+                        goForwardCB={() => {
+                          const lastPage = Math.ceil(
+                            data.getGenres.count / pageCount,
+                          );
+
+                          // If this is the last page, don't go forward
+                          if ((Number(currentPage) + 1) === lastPage) return;
+
+                          this.PageForward();
+                        }}
+                        goBackwardsCB={() => this.PageBackwards()}
+                        setCurrentPageCB={this.setCurrentPage}
+                      />
+                    )
+                  }
                 </Fragment>
               );
             }}
