@@ -52,6 +52,7 @@ class GenreOptionsPanel extends React.Component<PropType, StateType> {
           <CategorySelectionPanel
             closePanel={() =>
               this.setState({ showCategorySelectionPanel: false })}
+            selectedCategories={selectedCategories}
             categoryRemoved={(category) => categoryRemoved(category)}
             categorySelected={(category) => categoryAdded(category)}
           />

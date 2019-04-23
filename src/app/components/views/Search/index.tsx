@@ -53,6 +53,25 @@ export default class Search extends React.Component<{}, StateTypes> {
     };
   }
 
+  addedCategory = (category: Genre) => {
+    const { selectedCategories } = this.state;
+    this.setState({
+      selectedCategories: [...selectedCategories, category],
+    })
+  }
+
+  removedCategory = (category: Genre) => {
+    const { selectedCategories } = this.state;
+
+    // Removes the provided category from the selectedCategories array
+    const filteredCategories = selectedCategories
+      .filter(cat => cat.id != category.id);
+
+    this.setState({
+      selectedCategories: filteredCategories,
+    })
+  }
+
   PageForward = () => {
     const { currentPage } = this.state;
     this.setState({ currentPage: (Number(currentPage) + 1) });
@@ -75,7 +94,12 @@ export default class Search extends React.Component<{}, StateTypes> {
   }
 
   render() {
-    const { searchFieldText, currentPage } = this.state;
+    const {
+      searchFieldText,
+      currentPage,
+      selectedCategories,
+    } = this.state;
+
     return (
       <div className="main-content">
         {/* Start of main content */}
@@ -122,9 +146,9 @@ export default class Search extends React.Component<{}, StateTypes> {
             return (
               <Fragment>
                 <GenreOptionsPanel
-                  selectedCategories={data.getGenres.rows}
-                  categoryRemoved={(category) => console.log(`Category id: ${category.id} removed`)}
-                  categoryAdded={(category) => console.log(`Category id: ${category.id} added`)}
+                  selectedCategories={selectedCategories}
+                  categoryRemoved={(category) => this.removedCategory(category)}
+                  categoryAdded={(category) => this.addedCategory(category)}
                 />
                 <div className="util-container">
                   <AnimeThumbnailList

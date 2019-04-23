@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
+import Genre from '../../../../@types/Genre';
 import FilterCategoriesChips from '../../../FilterCategoriesChips';
 import CategoriesSelectionBlock from './components/CategoriesSelectionBlock';
 import PaginationBox from '../../../../shared/PaginationBox';
@@ -21,6 +22,7 @@ const GenreSearchQuery = gql`
 
 type PropType = {
   closePanel: Function,
+  selectedCategories: Array<Genre>,
   categorySelected: Function,
   categoryRemoved: Function,
 }
@@ -76,6 +78,7 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
       closePanel,
       categorySelected,
       categoryRemoved,
+      selectedCategories
     } = this.props;
 
     return (
@@ -127,15 +130,15 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
               return (
                 <Fragment>
                   <FilterCategoriesChips
-                    categories={data.getGenres.rows}
-                    categoryRemoved={category => categoryRemoved(category)}
+                    categories={selectedCategories}
+                    categoryRemoved={(category: Genre) => categoryRemoved(category)}
                     alignedCenter={true}
                     padded={true}
                   />
 
                   <CategoriesSelectionBlock
                     categories={data.getGenres.rows}
-                    categorySelected={category => categorySelected(category)}
+                    categorySelected={(category: Genre) => categorySelected(category)}
                   />
 
                   {
