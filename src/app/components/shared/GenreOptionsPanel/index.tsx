@@ -45,13 +45,15 @@ class GenreOptionsPanel extends React.Component<PropType, StateType> {
         </a>
         <FilterCategoriesChips
           categories={selectedCategories}
-          categoryRemoved={(id) => categoryRemoved(id)}
+          categoryRemoved={(category) => categoryRemoved(category)}
         />
 
         {showCategorySelectionPanel && (
           <CategorySelectionPanel
             closePanel={() =>
               this.setState({ showCategorySelectionPanel: false })}
+            categoryRemoved={(category) => categoryRemoved(category)}
+            categorySelected={(category) => categoryAdded(category)}
           />
         )}
       </div>

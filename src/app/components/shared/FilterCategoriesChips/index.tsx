@@ -23,7 +23,7 @@ const FilterCategoriesChips = ({
         <div
           key={String(genre.id)}
           className="chip"
-          onClick={() => categoryRemoved(genre.id)}
+          onClick={() => categoryRemoved(genre)}
         >
           <div className="chip-content">
             {genre.title}

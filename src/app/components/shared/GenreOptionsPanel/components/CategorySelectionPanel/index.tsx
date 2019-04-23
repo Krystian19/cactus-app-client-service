@@ -21,6 +21,8 @@ const GenreSearchQuery = gql`
 
 type PropType = {
   closePanel: Function,
+  categorySelected: Function,
+  categoryRemoved: Function,
 }
 
 type StateType = {
@@ -71,7 +73,9 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
     } = this.state;
 
     const {
-      closePanel
+      closePanel,
+      categorySelected,
+      categoryRemoved,
     } = this.props;
 
     return (
@@ -124,13 +128,14 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
                 <Fragment>
                   <FilterCategoriesChips
                     categories={data.getGenres.rows}
-                    categoryRemoved={(id) => console.log(`Removing category with id: ${id}`)}
+                    categoryRemoved={category => categoryRemoved(category)}
                     alignedCenter={true}
                     padded={true}
                   />
 
                   <CategoriesSelectionBlock
                     categories={data.getGenres.rows}
+                    categorySelected={category => categorySelected(category)}
                   />
 
                   {

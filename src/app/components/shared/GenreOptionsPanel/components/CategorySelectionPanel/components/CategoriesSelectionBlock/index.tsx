@@ -5,12 +5,14 @@ import Genre from '../../../../../../@types/Genre';
 
 type PropType = {
   categories: Array<Genre>,
+  categorySelected: Function,
 }
 
 class CategoriesSelectionBlock extends React.Component<PropType> {
   render() {
     const {
       categories,
+      categorySelected
     } = this.props;
 
     return (
@@ -19,7 +21,7 @@ class CategoriesSelectionBlock extends React.Component<PropType> {
           <div
             key={Number(category.id)}
             className="anime-small-thumbnail small category"
-            onClick={() => console.log(`You want to add the category id: ${category.id}`)}
+            onClick={() => categorySelected(category)}
           >
             <div className="cover">
               {/* <div className="checked">

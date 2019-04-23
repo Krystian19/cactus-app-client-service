@@ -123,8 +123,8 @@ export default class Search extends React.Component<{}, StateTypes> {
               <Fragment>
                 <GenreOptionsPanel
                   selectedCategories={data.getGenres.rows}
-                  categoryRemoved={(id) => console.log(`Category id: ${id} removed`)}
-                  categoryAdded={(id) => console.log(`Category id: ${id} added`)}
+                  categoryRemoved={(category) => console.log(`Category id: ${category.id} removed`)}
+                  categoryAdded={(category) => console.log(`Category id: ${category.id} added`)}
                 />
                 <div className="util-container">
                   <AnimeThumbnailList
