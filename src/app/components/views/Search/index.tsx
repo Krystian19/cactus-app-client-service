@@ -149,7 +149,9 @@ export default class Search extends React.Component<{}, StateTypes> {
                 <GenreOptionsPanel
                   selectedCategories={selectedCategories}
                   categoryRemoved={(category) => this.removedCategory(category)}
-                  categoryAdded={(category) => this.addedCategory(category)}
+                  setSelectedCategories={
+                    (categories) => this.setState({ selectedCategories: categories })
+                  }
                 />
                 <div className="util-container">
                   <AnimeThumbnailList

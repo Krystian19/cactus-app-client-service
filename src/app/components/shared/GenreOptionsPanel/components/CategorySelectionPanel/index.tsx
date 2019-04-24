@@ -22,14 +22,17 @@ const GenreSearchQuery = gql`
 
 type PropType = {
   closePanel: Function,
-  selectedCategories: Array<Genre>,
-  categorySelected: Function,
-  categoryRemoved: Function,
+  // categorySelected: Function,
+  // categoryRemoved: Function,
+
+  setSelectedCategories: Function,
+  initialSelectedCategories: Array<Genre>,
 }
 
 type StateType = {
   currentPage: Number,
   searchFieldText: String,
+  selectedCategories: Array<Genre>,
 }
 
 // How many records should be shown per page
@@ -39,11 +42,15 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
   constructor(props) {
     super(props);
 
+    const { initialSelectedCategories } = this.props;
+
     this.state = {
       searchFieldText: '',
 
       // Pagination's current page
       currentPage: 0,
+
+      selectedCategories: initialSelectedCategories,
     }
   }
 
@@ -68,17 +75,35 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
     this.setState({ currentPage: page });
   }
 
+  addedCategory = (category: Genre) => {
+    const { selectedCategories } = this.state;
+    this.setState({
+      selectedCategories: [...selectedCategories, category],
+    })
+  }
+
+  removedCategory = (category: Genre) => {
+    const { selectedCategories } = this.state;
+
+    // Removes the provided category from the selectedCategories array
+    const filteredCategories = selectedCategories
+      .filter(cat => cat.id != category.id);
+
+    this.setState({
+      selectedCategories: filteredCategories,
+    })
+  }
+
   render() {
     const {
       searchFieldText,
-      currentPage
+      currentPage,
+      selectedCategories,
     } = this.state;
 
     const {
       closePanel,
-      categorySelected,
-      categoryRemoved,
-      selectedCategories
+      setSelectedCategories
     } = this.props;
 
     return (
@@ -88,7 +113,10 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
           <div className="genre-options-container-controls">
             <div
               className="exit-btn"
-              onClick={() => closePanel()}
+              onClick={() => {
+                closePanel()
+                setSelectedCategories(selectedCategories)
+              }}
             >
               <i className="fa fa-times" />
             </div>
@@ -131,7 +159,7 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
                 <Fragment>
                   <FilterCategoriesChips
                     categories={selectedCategories}
-                    categoryRemoved={(category: Genre) => categoryRemoved(category)}
+                    categoryRemoved={(category: Genre) => this.removedCategory(category)}
                     alignedCenter={true}
                     padded={true}
                   />
@@ -139,7 +167,7 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
                   <CategoriesSelectionBlock
                     categories={data.getGenres.rows}
                     selectedCategories={selectedCategories}
-                    categorySelected={(category: Genre) => categorySelected(category)}
+                    categorySelected={(category: Genre) => this.addedCategory(category)}
                   />
 
                   {

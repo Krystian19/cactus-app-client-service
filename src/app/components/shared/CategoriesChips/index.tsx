@@ -11,9 +11,11 @@ type PropType = RouteComponentProps<{}> & {
 const CategoriesChips = ({ categories }: PropType) => (
   <div className="chips-container aligned-left">
     {categories.map(genre => (
-      <Link to='/search'>
+      <Link
+        to='/search'
+        key={String(genre.id)}
+      >
         <div
-          key={String(genre.id)}
           className="chip"
         >
           <div className="chip-content">

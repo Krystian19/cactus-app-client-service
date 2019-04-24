@@ -7,7 +7,7 @@ import CategorySelectionPanel from './components/CategorySelectionPanel';
 type PropType = {
   selectedCategories: Array<Genre>,
   categoryRemoved: Function,
-  categoryAdded: Function
+  setSelectedCategories: Function
 }
 
 type StateType = {
@@ -27,7 +27,7 @@ class GenreOptionsPanel extends React.Component<PropType, StateType> {
     const {
       selectedCategories,
       categoryRemoved,
-      categoryAdded
+      setSelectedCategories
     } = this.props;
 
     const {
@@ -50,11 +50,9 @@ class GenreOptionsPanel extends React.Component<PropType, StateType> {
 
         {showCategorySelectionPanel && (
           <CategorySelectionPanel
-            closePanel={() =>
-              this.setState({ showCategorySelectionPanel: false })}
-            selectedCategories={selectedCategories}
-            categoryRemoved={(category) => categoryRemoved(category)}
-            categorySelected={(category) => categoryAdded(category)}
+            closePanel={() => this.setState({ showCategorySelectionPanel: false })}
+            initialSelectedCategories={selectedCategories}
+            setSelectedCategories={(categories) => setSelectedCategories(categories)}
           />
         )}
       </div>
