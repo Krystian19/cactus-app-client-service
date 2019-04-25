@@ -9,7 +9,7 @@ import {
 
 const RandomAnimeQuery = gql`
  query {
-    getRandomSeason {
+    RandomSeason {
       id,
       title
     }
@@ -68,13 +68,13 @@ class Sidebar extends React.Component<PropsType> {
               console.log(data);
 
               // If no data received
-              if (!data.getRandomSeason) return false;
+              if (!data.RandomSeason) return false;
 
               return (
                 <div className="sidebar-option">
                   <NavLink
                     onClick={() => refetch()}
-                    to={`/anime/detail/${data.getRandomSeason.id}`}
+                    to={`/anime/detail/${data.RandomSeason.id}`}
                   >
                     <i className="fa fa-random" />
                   </NavLink>

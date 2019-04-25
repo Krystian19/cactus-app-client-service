@@ -10,7 +10,7 @@ import {
 import LoadingSpinner from '../../shared/LoadingSpinner';
 
 const AnimeVideoQuery = gql`
-  query ($id:Int) {
+  query ($id:Int!) {
     Episode(id:$id) {
       id,
       thumbnail,

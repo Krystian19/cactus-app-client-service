@@ -12,7 +12,7 @@ import JSTtoLocalTime from '../../../utils/JSTtoLocalTime';
 import MonthYearExtractor from '../../../utils/MonthYearExtractor';
 
 const AnimeInfoQuery = gql`
-  query($id:Int) {
+  query($id:Int!) {
     Season(id: $id) {
       id,
       seasonOrder,

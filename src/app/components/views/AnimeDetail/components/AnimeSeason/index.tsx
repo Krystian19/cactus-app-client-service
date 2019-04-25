@@ -10,7 +10,7 @@ import LazyImage from '../../../../shared/LazyImage';
 import PaginationBox from '../../../../shared/PaginationBox';
 
 const SeasonQuery = gql`
-  query($id:Int, $pageCount:Int, $currentPage:Int) {
+  query($id:Int!, $pageCount:Int, $currentPage:Int) {
     Season(id:$id) {
       id,
       title,

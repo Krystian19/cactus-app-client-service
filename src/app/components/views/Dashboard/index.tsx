@@ -25,7 +25,7 @@ const DashboardQuery = gql`
     }
   }
     
-  fragment episodeThumbnailFields on PaginatedEpisodes {
+  fragment episodeThumbnailFields on EpisodePaginatedList {
     rows {
       id,
       thumbnail,
