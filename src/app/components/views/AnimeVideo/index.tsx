@@ -11,7 +11,7 @@ import LoadingSpinner from '../../shared/LoadingSpinner';
 
 const AnimeVideoQuery = gql`
   query ($id:Int) {
-    getEpisode(id:$id) {
+    Episode(id:$id) {
       id,
       thumbnail,
       episodeOrder,
@@ -73,7 +73,7 @@ class AnimeVideo extends React.Component<PropType> {
           if (error) return <p>Error :(</p>;
 
           console.log(data);
-          const { getEpisode } = data;
+          const { Episode } = data;
           return (
             <div className="main-content no-padding">
               <div className="anime-watch-episode">
@@ -91,22 +91,22 @@ class AnimeVideo extends React.Component<PropType> {
                     <Player
                       playsInline
                       poster={
-                        (getEpisode.thumbnail)
-                          ? `/img_cdn/${getEpisode.thumbnail}`
+                        (Episode.thumbnail)
+                          ? `/img_cdn/${Episode.thumbnail}`
                           : '/img/thumbnail_placeholder.png'
                       }
                       // src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
-                      src={`/video_cdn/${getEpisode.EpisodeVersions[0].episode_url}`}
+                      src={`/video_cdn/${Episode.EpisodeVersions[0].episode_url}`}
                     />
                   </div>
                   <div className="anime-watch-episode-description">
                     <div className="left-side">
                       <div className="cover">
-                        <Link to={`/anime/detail/${getEpisode.Season.id}`}>
+                        <Link to={`/anime/detail/${Episode.Season.id}`}>
                           <img
                             src={
-                              (getEpisode.Season.poster)
-                                ? `/img_cdn/${getEpisode.Season.poster}`
+                              (Episode.Season.poster)
+                                ? `/img_cdn/${Episode.Season.poster}`
                                 : '/img/poster_placeholder.jpg'
 
                             }
@@ -116,30 +116,30 @@ class AnimeVideo extends React.Component<PropType> {
                       </div>
                       <div className="info">
                         <h1>
-                          <Link to={`/anime/detail/${getEpisode.Season.id}`}>
-                            {getEpisode.Season.title}
+                          <Link to={`/anime/detail/${Episode.Season.id}`}>
+                            {Episode.Season.title}
                           </Link>
                         </h1>
                         <h2>
-                          {`Episode ${getEpisode.episodeOrder}`}
+                          {`Episode ${Episode.episodeOrder}`}
                         </h2>
                       </div>
                     </div>
                     <div className="right-side">
                       <div className="controls">
                         {
-                          getEpisode.EarlierEpisode
+                          Episode.EarlierEpisode
                           && (
                             <div
                               className="previous-option"
                               data-tippy-content="Tooltip C"
                               onClick={
                                 () => history.push(
-                                  `/anime/video/${getEpisode.EarlierEpisode.id}`,
+                                  `/anime/video/${Episode.EarlierEpisode.id}`,
                                 )}
                               onKeyPress={
                                 () => history.push(
-                                  `/anime/video/${getEpisode.EarlierEpisode.id}`,
+                                  `/anime/video/${Episode.EarlierEpisode.id}`,
                                 )}
                               role="menuitem"
                               tabIndex={-1}
@@ -155,11 +155,11 @@ class AnimeVideo extends React.Component<PropType> {
                           className="list-option"
                           onClick={
                             () => history.push(
-                              `/anime/detail/${getEpisode.Season.id}`,
+                              `/anime/detail/${Episode.Season.id}`,
                             )}
                           onKeyPress={
                             () => history.push(
-                              `/anime/detail/${getEpisode.Season.id}`,
+                              `/anime/detail/${Episode.Season.id}`,
                             )}
                           role="menuitem"
                           tabIndex={-2}
@@ -169,17 +169,17 @@ class AnimeVideo extends React.Component<PropType> {
                           </div>
                         </div>
                         {
-                          getEpisode.LaterEpisode
+                          Episode.LaterEpisode
                           && (
                             <div
                               className="next-option"
                               onClick={
                                 () => history.push(
-                                  `/anime/video/${getEpisode.LaterEpisode.id}`,
+                                  `/anime/video/${Episode.LaterEpisode.id}`,
                                 )}
                               onKeyPress={
                                 () => history.push(
-                                  `/anime/video/${getEpisode.LaterEpisode.id}`,
+                                  `/anime/video/${Episode.LaterEpisode.id}`,
                                 )}
                               role="menuitem"
                               tabIndex={-3}

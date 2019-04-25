@@ -168,9 +168,9 @@ const ScheduleList = (props) => {
                         <p>
                           {`
                           ${DateTimeToTime(Season.startedAiring)}
-                           - EPISODE ${Season.episodeCount + 1}
+                           - EPISODE ${Season.EpisodeCount + 1}
                           `}
-                          {/* {`${Season.episodeCount} episodes released`} */}
+                          {/* {`${Season.EpisodeCount} episodes released`} */}
                         </p>
                         <h1>
                           <div className="limit">

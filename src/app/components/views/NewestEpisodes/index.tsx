@@ -7,7 +7,7 @@ import PaginationBox from '../../shared/PaginationBox';
 
 const NewestEpisodesQuery = gql`
   query($pageCount:Int, $currentPage:Int) {
-    getNewestEpisodes(limit:$pageCount, offset: $currentPage) {
+    NewestEpisodes(limit:$pageCount, offset: $currentPage) {
       rows {
         id,
         thumbnail,
@@ -92,18 +92,18 @@ export default class NewestEpisodes extends React.Component<{}, StateType> {
             <div className="main-content no-padding">
               <VideoBlock
                 title={'Newest episodes'}
-                episodes={data.getNewestEpisodes.rows}
+                episodes={data.NewestEpisodes.rows}
               />
               {
-                data.getNewestEpisodes.rows.length !== 0
+                data.NewestEpisodes.rows.length !== 0
                 && (
                   <PaginationBox
                     pageCount={pageCount}
-                    itemCount={data.getNewestEpisodes.count}
+                    itemCount={data.NewestEpisodes.count}
                     currentPage={currentPage}
                     goForwardCB={() => {
                       const lastPage = Math.ceil(
-                        data.getNewestEpisodes.count / pageCount,
+                        data.NewestEpisodes.count / pageCount,
                       );
 
                       // If this is the last page, don't go forward

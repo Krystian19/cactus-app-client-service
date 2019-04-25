@@ -9,13 +9,13 @@ import CategoriesBlock from '../../shared/CategoriesBlock';
 
 const DashboardQuery = gql`
   query {
-    getHottestEpisodes {
+    HottestEpisodes {
       ...episodeThumbnailFields
     }
-    getNewestEpisodes {
+    NewestEpisodes {
       ...episodeThumbnailFields
     }
-    getGenres {
+    Genres {
       rows {
         id,
         title,
@@ -65,17 +65,17 @@ class Dashboard extends React.Component {
             <div className="main-content no-padding">
               <HottestVideoBlock
                 title="🔥 right now"
-                episodes={data.getHottestEpisodes.rows}
+                episodes={data.HottestEpisodes.rows}
                 viewAllLink="/hottest_episodes"
               />
               <VideoBlock
                 title={'Newest episodes'}
-                episodes={data.getNewestEpisodes.rows}
+                episodes={data.NewestEpisodes.rows}
                 viewAllLink={'/newest_episodes'}
               />
               <CategoriesBlock
                 title={'Categories'}
-                categories={data.getGenres.rows}
+                categories={data.Genres.rows}
                 viewAllLink={'/categories'}
               />
             </div>

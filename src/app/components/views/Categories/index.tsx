@@ -8,7 +8,7 @@ import PaginationBox from '../../shared/PaginationBox';
 
 const GenresEpisodesQuery = gql`
   query($pageCount:Int, $currentPage:Int) {
-    getGenres(limit:$pageCount, offset: $currentPage) {
+    Genres(limit:$pageCount, offset: $currentPage) {
       rows {
         id,
         title,
@@ -84,18 +84,18 @@ export default class Categories extends React.Component<{}, StateType> {
             <div className="main-content no-padding">
               <CategoriesBlock
                 title={'Categories'}
-                categories={data.getGenres.rows}
+                categories={data.Genres.rows}
               />
               {
-                data.getGenres.rows.length !== 0
+                data.Genres.rows.length !== 0
                 && (
                   <PaginationBox
                     pageCount={pageCount}
-                    itemCount={data.getGenres.count}
+                    itemCount={data.Genres.count}
                     currentPage={currentPage}
                     goForwardCB={() => {
                       const lastPage = Math.ceil(
-                        data.getGenres.count / pageCount,
+                        data.Genres.count / pageCount,
                       );
 
                       // If this is the last page, don't go forward

@@ -10,7 +10,7 @@ export type Season = {
   stoppedAiring?: String,
   poster?: String,
   background?: String,
-  episodeCount?: Number,
+  EpisodeCount?: Number,
   LatestEpisode?: Episode,
   Episodes?: Array<Episode>,
   // AlternativeTitles: [SeasonAlternativeTitle],

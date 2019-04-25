@@ -9,7 +9,7 @@ import PaginationBox from '../../../../shared/PaginationBox';
 
 const GenreSearchQuery = gql`
   query($pageCount:Int, $currentPage:Int, $title:String) {
-    getGenres(limit:$pageCount, offset: $currentPage, title: $title) {
+    Genres(limit:$pageCount, offset: $currentPage, title: $title) {
       rows {
         id,
         title,
@@ -165,21 +165,21 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
                   />
 
                   <CategoriesSelectionBlock
-                    categories={data.getGenres.rows}
+                    categories={data.Genres.rows}
                     selectedCategories={selectedCategories}
                     categorySelected={(category: Genre) => this.addedCategory(category)}
                   />
 
                   {
-                    data.getGenres.rows.length !== 0
+                    data.Genres.rows.length !== 0
                     && (
                       <PaginationBox
                         pageCount={pageCount}
-                        itemCount={data.getGenres.count}
+                        itemCount={data.Genres.count}
                         currentPage={currentPage}
                         goForwardCB={() => {
                           const lastPage = Math.ceil(
-                            data.getGenres.count / pageCount,
+                            data.Genres.count / pageCount,
                           );
 
                           // If this is the last page, don't go forward

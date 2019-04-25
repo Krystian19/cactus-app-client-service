@@ -70,7 +70,7 @@ export default class AnimeThumbnailList extends React.Component<PropType> {
                     JSTtoLocalTime(season.startedAiring)
                   )
                   } - ${
-                  season.episodeCount
+                  season.EpisodeCount
                   } episodes`}
               </div>
             </div>
