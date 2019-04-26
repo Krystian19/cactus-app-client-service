@@ -108,7 +108,10 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
 
     return (
       <div className="genre-options-container">
-        <div className="main-content no-margin self-contained-padding no-responsive-left-margin">
+        <div
+          className="
+            main-content no-margin self-contained-padding no-responsive-left-margin"
+        >
 
           <div className="genre-options-container-controls">
             <div
@@ -159,7 +162,9 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
                 <Fragment>
                   <FilterCategoriesChips
                     categories={selectedCategories}
-                    categoryRemoved={(category: Genre) => this.removedCategory(category)}
+                    categoryRemoved={
+                      (category: Genre) => this.removedCategory(category)
+                    }
                     alignedCenter={true}
                     padded={true}
                   />
@@ -167,7 +172,9 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
                   <CategoriesSelectionBlock
                     categories={data.Genres.rows}
                     selectedCategories={selectedCategories}
-                    categorySelected={(category: Genre) => this.addedCategory(category)}
+                    categorySelected={
+                      (category: Genre) => this.addedCategory(category)
+                    }
                   />
 
                   {

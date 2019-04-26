@@ -89,7 +89,7 @@ class AnimeVideo extends React.Component<PropType> {
                         title="episode-video"
                       /> */}
                     <Player
-                      playsInline
+                      playsInline={true}
                       poster={
                         (Episode.thumbnail)
                           ? `/img_cdn/${Episode.thumbnail}`

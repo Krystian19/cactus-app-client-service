@@ -108,7 +108,7 @@ class AnimeDetail extends React.Component<PropType> {
                             errorSrc="/img/poster_placeholder.jpg"
                             alt="cover"
                             className="fade-in"
-                            noLoadingSpinner
+                            noLoadingSpinner={true}
                           />
                         </div>
                         <div className="cover-details">

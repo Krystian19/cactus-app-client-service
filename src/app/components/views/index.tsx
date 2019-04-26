@@ -20,14 +20,14 @@ export default () => (
   <div className="main-container">
     <Sidebar />
     <Switch>
-      <Route path="/" exact component={Dashboard} />
-      <Route path="/search" exact component={Search} />
-      <Route path="/schedule" exact component={Schedule} />
-      <Route path="/hottest_episodes" exact component={HottestEpisodes} />
-      <Route path="/newest_episodes" exact component={NewestEpisodes} />
-      <Route path="/categories" exact component={Categories} />
-      <Route path="/anime/detail/:id" exact component={AnimeDetail} />
-      <Route path="/anime/video/:id" exact component={AnimeVideo} />
+      <Route path="/" exact={true} component={Dashboard} />
+      <Route path="/search" exact={true} component={Search} />
+      <Route path="/schedule" exact={true} component={Schedule} />
+      <Route path="/hottest_episodes" exact={true} component={HottestEpisodes} />
+      <Route path="/newest_episodes" exact={true} component={NewestEpisodes} />
+      <Route path="/categories" exact={true} component={Categories} />
+      <Route path="/anime/detail/:id" exact={true} component={AnimeDetail} />
+      <Route path="/anime/video/:id" exact={true} component={AnimeVideo} />
       <Redirect from="/*" to="/" />
     </Switch>
   </div>

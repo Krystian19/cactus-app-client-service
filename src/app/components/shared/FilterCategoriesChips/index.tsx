@@ -14,11 +14,13 @@ const FilterCategoriesChips = ({
   alignedCenter = false,
   padded = false,
 }: PropType) => (
-    <div className={
-      `chips-container 
+    <div
+      className={
+        `chips-container 
         ${(!alignedCenter) ? 'aligned-left' : ''}
         ${(padded) ? 'padded' : ''}
-      `}>
+      `}
+    >
       {categories.map(genre => (
         <div
           key={String(genre.id)}
@@ -30,7 +32,7 @@ const FilterCategoriesChips = ({
             <div
               className="chip-remove-btn"
             >
-              <i className="fa fa-times"></i>
+              <i className="fa fa-times"/>
             </div>
           </div>
         </div>

@@ -41,14 +41,16 @@ class Sidebar extends React.Component<PropsType> {
         </div>
         <div className="sidebar-center-options">
           <div className="sidebar-option">
-            <NavLink to="/search"
+            <NavLink
+              to="/search"
               activeClassName='active'
             >
               <i className="fa fa-search" />
             </NavLink>
           </div>
           <div className="sidebar-option">
-            <NavLink to="/schedule"
+            <NavLink
+              to="/schedule"
               activeClassName='active'
             >
               <i className="fa fa-calendar" />
@@ -87,7 +89,7 @@ class Sidebar extends React.Component<PropsType> {
           <div className="sidebar-option">
             <div className="flag-icon">
               <span role="img" aria-label="flag">
-                <i className="em em-us"/>
+                <i className="em em-us" />
               </span>
             </div>
           </div>

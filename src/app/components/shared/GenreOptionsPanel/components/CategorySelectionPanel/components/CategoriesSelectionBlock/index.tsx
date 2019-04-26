@@ -80,7 +80,7 @@ class CategoriesSelectionBlock extends React.Component<PropType> {
                 errorSrc="/img/category_placeholder.png"
                 alt="thumbnail"
                 className="anime-small-thumbnail fade-in"
-                noLoadingSpinner
+                noLoadingSpinner={true}
               />
               <div className="overlay">
                 <span className="category_title">{category.title}</span>
