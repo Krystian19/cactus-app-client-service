@@ -91,6 +91,7 @@
   height: 100%;
   background-color: rgba(0, 0, 0, .25);
   transition: background-color .25s ease-in-out;
+  border-radius: 5px;
 }
 
 .anime-schedule-list .anime-schedule-day .anime-schedule-poster-list .anime-schedule-poster:hover .content .overlay {
