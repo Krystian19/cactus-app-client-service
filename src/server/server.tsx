@@ -22,9 +22,20 @@ import App from '../app/components/views';
 const rootPath = path.resolve(__dirname, '..', '..');
 
 // External service URLs
-const backendServiceUrl = process.env.BACKEND_SERVICE_URL || 'http://backend:3000/';
-const imageServiceUrl = process.env.IMG_CDN_SERVICE_URL || 'http://img_cdn:3000/';
-const videoServiceUrl = process.env.VIDEO_CDN_SERVICE_URL || 'http://video_cdn:3000/';
+const backendServiceUrl = (
+  process.env.BACKEND_SERVICE_URL ||
+  'http://cactus.backend:3000/'
+);
+
+const imageServiceUrl = (
+  process.env.IMG_CDN_SERVICE_URL ||
+  'http://cactus.img_cdn:3000/'
+);
+
+const videoServiceUrl = (
+  process.env.VIDEO_CDN_SERVICE_URL ||
+  'http://cactus.video_cdn/live'
+);
 
 class Server {
   public app: express.Application;
@@ -120,12 +131,12 @@ class Server {
     );
 
     this.app.get(
-      '/video_cdn/:video_name',
+      '/video_cdn/*',
       (req, res, next) => {
-        const videoName = req.params.video_name;
+        const filePath = req.path.replace('/video_cdn/', '');
 
         const proxy = requestProxy({
-          url: videoServiceUrl + videoName,
+          url: videoServiceUrl + filePath,
           query: req.query,
           headers: req.headers,
         });

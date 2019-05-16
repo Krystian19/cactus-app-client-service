@@ -3,11 +3,13 @@ import gql from 'graphql-tag';
 import React from 'react';
 import { Player } from 'video-react';
 import { RouteComponentProps, withRouter } from "react-router";
+import window from 'global'
 import {
   Link,
 } from 'react-router-dom';
 
 import LoadingSpinner from '../../shared/LoadingSpinner';
+import HLSSource from './components/HLSSource';
 
 const AnimeVideoQuery = gql`
   query ($id:Int!) {
@@ -56,6 +58,15 @@ class AnimeVideo extends React.Component<PropType> {
     console.log(`Looking for an episode with the id: ${params.id}`);
   }
 
+  // componentDidMount() {
+  //   // if (typeof window !== "undefined" && window) {
+  //     const Hls = require('hls.js');
+  //     const hls = new Hls();
+  //     console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+  //     console.log(hls);
+  //   // }
+  // }
+
   render() {
     const { history } = this.props;
     const { match: { params } } = this.props;
@@ -89,15 +100,23 @@ class AnimeVideo extends React.Component<PropType> {
                         title="episode-video"
                       /> */}
                     <Player
-                      playsInline={true}
+                      // playsInline={true}
                       poster={
                         (Episode.thumbnail)
                           ? `/img_cdn/${Episode.thumbnail}`
                           : '/img/thumbnail_placeholder.png'
                       }
-                      // src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
-                      src={`/video_cdn/${Episode.EpisodeVersions[0].episode_url}`}
-                    />
+                    // src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
+                    // src={`/video_cdn/${Episode.EpisodeVersions[0].episode_url}`}
+                    >
+                      <HLSSource
+                        isVideoChild={true}
+                        src={
+                          `/video_cdn/${
+                            Episode.EpisodeVersions[0].episode_url
+                          }/index.m3u8`}
+                      />
+                    </Player>
                   </div>
                   <div className="anime-watch-episode-description">
                     <div className="left-side">
