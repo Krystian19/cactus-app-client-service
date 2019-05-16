@@ -9,7 +9,7 @@ import {
 } from 'react-router-dom';
 
 import LoadingSpinner from '../../shared/LoadingSpinner';
-import HLSSource from './components/HLSSource';
+import VideoPlayer from './components/VideoPlayer';
 
 const AnimeVideoQuery = gql`
   query ($id:Int!) {
@@ -99,7 +99,7 @@ class AnimeVideo extends React.Component<PropType> {
                         allowFullScreen="allowfullscreen"
                         title="episode-video"
                       /> */}
-                    <Player
+                    {/* <Player
                       // playsInline={true}
                       poster={
                         (Episode.thumbnail)
@@ -116,7 +116,19 @@ class AnimeVideo extends React.Component<PropType> {
                             Episode.EpisodeVersions[0].episode_url
                           }/index.m3u8`}
                       />
-                    </Player>
+                    </Player> */}
+
+                    <VideoPlayer
+                      poster={
+                        (Episode.thumbnail)
+                          ? `/img_cdn/${Episode.thumbnail}`
+                          : '/img/thumbnail_placeholder.png'
+                      }
+                      src={
+                        `/video_cdn/${
+                        Episode.EpisodeVersions[0].episode_url
+                        }/index.m3u8`}
+                    />
                   </div>
                   <div className="anime-watch-episode-description">
                     <div className="left-side">

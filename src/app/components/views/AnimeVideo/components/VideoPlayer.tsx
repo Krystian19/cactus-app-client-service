@@ -3,10 +3,10 @@ import window from 'global'
 
 export default class HLSSource extends Component<{
   src: string,
-  video?: any,
-  isVideoChild: Boolean
+  poster?: string,
 }> {
   private hls;
+  private video: HTMLVideoElement;
 
   constructor(props, context) {
     super(props, context);
@@ -16,21 +16,22 @@ export default class HLSSource extends Component<{
     // `src` is the property get from this component
     // `video` is the property insert from `Video` component
     // `video` is the html5 video element
-    const { src, video } = this.props;
+    // const { src, video } = this.props;
+    const { src } = this.props;
     const Hls = require('hls.js');
     this.hls = new Hls();
 
     console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
     console.log(this.hls);
-    console.log(video);
+    console.log(this.video);
 
     // load hls video source base on hls.js
     if (Hls.isSupported()) {
       this.hls.loadSource(src);
-      this.hls.attachMedia(video);
-      // this.hls.on(Hls.Events.MANIFEST_PARSED, () => {
-      //   video.play();
-      // });
+      this.hls.attachMedia(this.video);
+      this.hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        this.video.play();
+      });
     }
   }
 
@@ -42,10 +43,13 @@ export default class HLSSource extends Component<{
   }
 
   render() {
+    const { poster } = this.props;
+    console.log(poster)
     return (
-      <source
-        src={this.props.src}
-        type={'application/vnd.apple.mpegurl'}
+      <video
+        ref={node => this.video = node}
+        poster={poster}
+        controls={true}
       />
     );
   }
