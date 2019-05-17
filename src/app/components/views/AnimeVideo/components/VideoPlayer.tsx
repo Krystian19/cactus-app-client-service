@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
-import window from 'global'
-
-export default class HLSSource extends Component<{
+import React from 'react';
+export default class HLSSource extends React.Component<{
   src: string,
   poster?: string,
 }> {

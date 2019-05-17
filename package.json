@@ -35,7 +35,6 @@
     "express": "^4.16.4",
     "express-request-proxy": "^2.2.2",
     "font-awesome": "^4.7.0",
-    "global": "^4.3.2",
     "graphql": "^14.1.1",
     "graphql-tag": "^2.10.1",
     "helmet": "^3.15.1",
@@ -52,8 +51,7 @@
     "react-router-dom": "^4.2.2",
     "sha256": "^0.2.0",
     "ts-node-dev": "^1.0.0-pre.32",
-    "typescript": "^3.2.4",
-    "video-react": "^0.13.2"
+    "typescript": "^3.2.4"
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.18",
