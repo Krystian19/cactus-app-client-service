@@ -3,13 +3,12 @@ import gql from 'graphql-tag';
 import React from 'react';
 import { Player } from 'video-react';
 import { RouteComponentProps, withRouter } from "react-router";
-import window from 'global'
 import {
   Link,
 } from 'react-router-dom';
 
 import LoadingSpinner from '../../shared/LoadingSpinner';
-import VideoPlayer from './components/VideoPlayer';
+import HLSSource from './components/HLSSource';
 
 const AnimeVideoQuery = gql`
   query ($id:Int!) {
@@ -118,17 +117,21 @@ class AnimeVideo extends React.Component<PropType> {
                       />
                     </Player> */}
 
-                    <VideoPlayer
+                    <Player
                       poster={
                         (Episode.thumbnail)
                           ? `/img_cdn/${Episode.thumbnail}`
                           : '/img/thumbnail_placeholder.png'
                       }
-                      src={
-                        `/video_cdn/${
-                        Episode.EpisodeVersions[0].episode_url
-                        }/index.m3u8`}
-                    />
+                    >
+                      <HLSSource
+                        isVideoChild={true}
+                        src={
+                          `/video_cdn/${
+                          Episode.EpisodeVersions[0].episode_url
+                          }/index.m3u8`}
+                      />
+                    </Player>
                   </div>
                   <div className="anime-watch-episode-description">
                     <div className="left-side">
