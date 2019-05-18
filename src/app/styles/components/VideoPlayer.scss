@@ -3,6 +3,14 @@
   font-family: "Roboto";
 }
 
+.video-react .video-react-mouse-display {
+  font-family: "Roboto" !important;
+}
+
+.video-react .video-react-progress-control:hover .video-react-play-progress:after {
+  font-family: "Roboto" !important;
+}
+
 .video-react .video-react-play-progress,
 .video-react .video-react-volume-level {
   background-color: #ff6c00;
@@ -28,6 +36,11 @@
 .video-react:hover .video-react-big-play-button {
   border: 0.06666em solid #ff6c00;
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+.video-react .video-react-slider:focus {
+  box-shadow: none;
+  text-shadow: none;
 }
 
 .video-react .video-react-loading-spinner {

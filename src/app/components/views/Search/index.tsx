@@ -5,6 +5,7 @@ import Genre from '../../@types/Genre';
 import AnimeThumbnailList from '../../shared/AnimeThumbnailList';
 import GenreOptionsPanel from '../../shared/GenreOptionsPanel';
 import PaginationBox from '../../shared/PaginationBox';
+import _ from 'lodash';
 
 const SearchViewQuery = gql`
   query($title: String, $pageCount:Int, $currentPage:Int, $genres: [Int!]) {
@@ -39,6 +40,8 @@ type StateTypes = {
 const pageCount = 18;
 
 export default class Search extends React.Component<{}, StateTypes> {
+  private typingTimeout = null;
+
   constructor(props) {
     super(props);
 
@@ -93,6 +96,22 @@ export default class Search extends React.Component<{}, StateTypes> {
     this.setState({ currentPage: page });
   }
 
+  onSearchFieldChangeEvent = ({ target: { value } }) => {
+    const self = this;
+
+    // Clears the previously set timer.
+    clearTimeout(this.typingTimeout);
+
+    // Reset the timer, to make the http call after 470MS
+    this.typingTimeout = setTimeout(function updateSearchField() {
+      self.setState(
+        { searchFieldText: value },
+        // When text fields are available set current page to 0
+        () => self.setCurrentPage(0),
+      );
+    }, 400);
+  }
+
   render() {
     const {
       searchFieldText,
@@ -109,19 +128,11 @@ export default class Search extends React.Component<{}, StateTypes> {
             type="text"
             className="big-search-box-input"
             placeholder="Search by ..."
-            value={String(searchFieldText)}
-            onChange={
-              ({ target: { value } }) => {
-                this.setState(
-                  { searchFieldText: value },
-                  // When text fields are available set current page to 0
-                  () => this.setCurrentPage(0),
-                );
-              }
-            }
+            // value={String(searchFieldText)}
+            onChange={this.onSearchFieldChangeEvent}
           />
         </div>
-        
+
         <GenreOptionsPanel
           selectedCategories={selectedCategories}
           categoryRemoved={(category) => this.removedCategory(category)}
