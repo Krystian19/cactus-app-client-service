@@ -19,17 +19,17 @@ export default class HLSSource extends React.Component<{
     const Hls = require('hls.js');
     this.hls = new Hls();
 
-    console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
-    console.log(this.hls);
-    console.log(video);
+    // console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+    // console.log(this.hls);
+    // console.log(video);
 
     // load hls video source base on hls.js
     if (Hls.isSupported()) {
       this.hls.loadSource(src);
       this.hls.attachMedia(video);
-      // this.hls.on(Hls.Events.MANIFEST_PARSED, () => {
-      //   video.play();
-      // });
+
+      // Run something when the Manifest has been parsed
+      // this.hls.on(Hls.Events.MANIFEST_PARSED, () => {});
     }
   }
 

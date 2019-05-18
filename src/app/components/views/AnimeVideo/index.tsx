@@ -70,7 +70,11 @@ class AnimeVideo extends React.Component<PropType> {
     const { history } = this.props;
     const { match: { params } } = this.props;
     return (
-      <Query query={AnimeVideoQuery} variables={{ id: Number(params.id) }}>
+      <Query
+        query={AnimeVideoQuery}
+        variables={{ id: Number(params.id) }}
+        fetchPolicy="no-cache"
+      >
         {({ loading, error, data }) => {
           if (loading) {
             return (
@@ -164,17 +168,10 @@ class AnimeVideo extends React.Component<PropType> {
                         {
                           Episode.EarlierEpisode
                           && (
-                            <div
+                            <Link
                               className="previous-option"
                               data-tippy-content="Tooltip C"
-                              onClick={
-                                () => history.push(
-                                  `/anime/video/${Episode.EarlierEpisode.id}`,
-                                )}
-                              onKeyPress={
-                                () => history.push(
-                                  `/anime/video/${Episode.EarlierEpisode.id}`,
-                                )}
+                              to={`/anime/video/${Episode.EarlierEpisode.id}`}
                               role="menuitem"
                               tabIndex={-1}
                             >
@@ -182,47 +179,33 @@ class AnimeVideo extends React.Component<PropType> {
                                 {/* <i className="fa fa-chevron-left" /> */}
                               </div>
                               <div className="text">Previous</div>
-                            </div>
+                            </Link>
                           )
                         }
-                        <div
+                        <Link
                           className="list-option"
-                          onClick={
-                            () => history.push(
-                              `/anime/detail/${Episode.Season.id}`,
-                            )}
-                          onKeyPress={
-                            () => history.push(
-                              `/anime/detail/${Episode.Season.id}`,
-                            )}
+                          to={`/anime/detail/${Episode.Season.id}`}
                           role="menuitem"
                           tabIndex={-2}
                         >
                           <div className="icon">
                             <i className="fa fa-list-ul" />
                           </div>
-                        </div>
+                        </Link>
                         {
                           Episode.LaterEpisode
                           && (
-                            <div
+                            <Link
                               className="next-option"
-                              onClick={
-                                () => history.push(
-                                  `/anime/video/${Episode.LaterEpisode.id}`,
-                                )}
-                              onKeyPress={
-                                () => history.push(
-                                  `/anime/video/${Episode.LaterEpisode.id}`,
-                                )}
                               role="menuitem"
                               tabIndex={-3}
+                              to={`/anime/video/${Episode.LaterEpisode.id}`}
                             >
                               <div className="text"> Next </div>
                               <div className="icon">
                                 {/* <i className="fa fa-chevron-right" /> */}
                               </div>
-                            </div>
+                            </Link>
                           )
                         }
                       </div>
