@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import React from 'react';
 import Genre from '../../@types/Genre';
 import AnimeThumbnailList from '../../shared/AnimeThumbnailList';
+import LoadingAnimeThumbnailList from '../../shared/LoadingAnimeThumbnailList';
 import GenreOptionsPanel from '../../shared/GenreOptionsPanel';
 import PaginationBox from '../../shared/PaginationBox';
 import _ from 'lodash';
@@ -151,17 +152,15 @@ export default class Search extends React.Component<{}, StateTypes> {
           }}
         >
           {({ loading, error, data }) => {
-            if (loading) {
-              // return (
-              //   <div className="main-content no-padding">
-              //     <LoadingSpinner />
-              //   </div>
-              // );
-
-              return ('');
+            if (loading || error) {
+              return (
+                <div className="util-container">
+                  <LoadingAnimeThumbnailList count={pageCount} />
+                </div>
+              );
             }
 
-            if (error) return <p>Error :(</p>;
+            // if (error) return <p>Error :(</p>;
 
             console.log(data);
             return (

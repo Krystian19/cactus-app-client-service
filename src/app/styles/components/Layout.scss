@@ -195,3 +195,24 @@ div.flag-icon {
     opacity: 1;
   }
 }
+
+.shimmer-load {
+  border-radius: 5px;
+  animation: pulse 2s infinite ease-in-out;
+  -webkit-animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: rgba(165,165,165, .1);
+  }
+  
+  50% {
+    background-color: rgba(165,165,165, .3);
+  }
+
+  100% {
+    background-color: rgba(165,165,165, .1);
+  }
+}
+

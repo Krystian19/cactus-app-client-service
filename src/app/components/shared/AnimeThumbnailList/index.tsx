@@ -42,7 +42,7 @@ export default class AnimeThumbnailList extends React.Component<PropType> {
             className="anime-thumbnail"
           >
             <Link to={`/anime/detail/${season.id}`}>
-              <div className="cover">
+              <div className="cover shimmer-load">
                 <span className="score">
                   4.5/5
                   <i className="fa fa-star" />
@@ -52,6 +52,7 @@ export default class AnimeThumbnailList extends React.Component<PropType> {
                   errorSrc="/img/thumbnail_placeholder.png"
                   alt="thumbnail"
                   className="anime-thumbnail fade-in"
+                  noLoadingSpinner={true}
                 />
                 <div className="overlay hover_hidden darken">
                   {/* <svg className="play" viewBox="0 0 24 24">
