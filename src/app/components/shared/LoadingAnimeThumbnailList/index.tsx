@@ -11,7 +11,7 @@ export default class LoadingAnimeThumbnailList extends React.Component<PropType>
 
     return (
       <div className="anime-thumbnail-list">
-        {range(1, count).map(num => (
+        {range(0, count).map(num => (
           <div
             key={Number(num)}
             className="anime-thumbnail"

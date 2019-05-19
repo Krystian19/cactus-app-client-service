@@ -8,6 +8,7 @@ import {
 import Season from '../../../../@types/Season';
 import LazyImage from '../../../../shared/LazyImage';
 import PaginationBox from '../../../../shared/PaginationBox';
+import LoadingAnimeSeason from '../LoadingAnimeSeason';
 
 const SeasonQuery = gql`
   query($id:Int!, $pageCount:Int, $currentPage:Int) {
@@ -94,8 +95,13 @@ export default class AnimeSeason extends React.Component<PropType, StateType> {
         }}
       >
         {({ loading, error, data }) => {
+
           // Only show anything when data is available
-          if (loading || error || (!data)) return null;
+          if (loading || error || (!data)) {
+            return (
+              <LoadingAnimeSeason count={pageCount} />
+            );
+          }
 
           console.log(data);
           return (
@@ -136,11 +142,13 @@ export default class AnimeSeason extends React.Component<PropType, StateType> {
                         <div className="info">
                           <div className="title">
                             <div className="title-container">
-                              {(episode.EpisodeVersions[0]
-                                && episode.EpisodeVersions[0].title)
+                              {
+                                (episode.EpisodeVersions[0]
+                                  && episode.EpisodeVersions[0].title)
                                 && (
                                   episode.EpisodeVersions[0].title
-                                )}
+                                )
+                              }
                             </div>
                             <div className="detail-container">
                               Ep.
