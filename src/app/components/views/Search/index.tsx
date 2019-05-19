@@ -38,7 +38,7 @@ type StateTypes = {
 }
 
 // How many records should be shown per page
-const pageCount = 18;
+const pageCount = 19;
 
 export default class Search extends React.Component<{}, StateTypes> {
   private typingTimeout = null;
