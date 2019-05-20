@@ -3,6 +3,7 @@ import React from 'react';
 import LazyImage from '../../../../../LazyImage'
 import RandomTextEmoji from '../../../../../RandomTextEmoji';
 import Genre from '../../../../../../@types/Genre';
+import base64Content from '../../../../../../../utils/base64Content';
 
 type PropType = {
   categories: Array<Genre>,
@@ -77,10 +78,12 @@ class CategoriesSelectionBlock extends React.Component<PropType> {
               }
               <LazyImage
                 src={`/img_cdn/${category.thumbnail}`}
-                errorSrc="/img/category_placeholder.png"
+                errorSrc={base64Content.cactus_category_placeholder}
                 alt="thumbnail"
                 className="anime-small-thumbnail fade-in"
-                noLoadingPlaceholder={true}
+                customLoadingPlaceholderSrc={
+                  base64Content.cactus_category_placeholder
+                }
               />
               <div className="overlay">
                 <span className="category_title">{category.title}</span>
