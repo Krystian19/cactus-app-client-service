@@ -9,6 +9,7 @@ import {
 
 import LoadingSpinner from '../../shared/LoadingSpinner';
 import HLSSource from './components/HLSSource';
+import LoadingAnimeVideo from './components/LoadingAnimeVideo'
 
 const AnimeVideoQuery = gql`
   query ($id:Int!) {
@@ -57,15 +58,6 @@ class AnimeVideo extends React.Component<PropType> {
     console.log(`Looking for an episode with the id: ${params.id}`);
   }
 
-  // componentDidMount() {
-  //   // if (typeof window !== "undefined" && window) {
-  //     const Hls = require('hls.js');
-  //     const hls = new Hls();
-  //     console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
-  //     console.log(hls);
-  //   // }
-  // }
-
   render() {
     const { history } = this.props;
     const { match: { params } } = this.props;
@@ -76,15 +68,11 @@ class AnimeVideo extends React.Component<PropType> {
         fetchPolicy="no-cache"
       >
         {({ loading, error, data }) => {
-          if (loading) {
+          if (loading || error) {
             return (
-              <div className="main-content no-padding">
-                <LoadingSpinner />
-              </div>
+              <LoadingAnimeVideo />
             );
           }
-
-          if (error) return <p>Error :(</p>;
 
           console.log(data);
           const { Episode } = data;
@@ -93,34 +81,6 @@ class AnimeVideo extends React.Component<PropType> {
               <div className="anime-watch-episode">
                 <div className="anime-watch-episode-container">
                   <div className="anime-watch-episode-video">
-                    {/* <iframe
-                        src="https://streamango.com/embed/brbamcadtlcnmttr"
-                        width="100%"
-                        height="100%"
-                        frameBorder="0"
-                        scrolling="no"
-                        allowFullScreen="allowfullscreen"
-                        title="episode-video"
-                      /> */}
-                    {/* <Player
-                      // playsInline={true}
-                      poster={
-                        (Episode.thumbnail)
-                          ? `/img_cdn/${Episode.thumbnail}`
-                          : '/img/thumbnail_placeholder.png'
-                      }
-                    // src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
-                    // src={`/video_cdn/${Episode.EpisodeVersions[0].episode_url}`}
-                    >
-                      <HLSSource
-                        isVideoChild={true}
-                        src={
-                          `/video_cdn/${
-                            Episode.EpisodeVersions[0].episode_url
-                          }/index.m3u8`}
-                      />
-                    </Player> */}
-
                     <Player
                       poster={
                         (Episode.thumbnail)
