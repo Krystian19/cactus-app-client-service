@@ -2,6 +2,9 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import React from 'react';
 import HottestVideoBlock from '../../shared/HottestVideoBlock';
+import
+LoadingHottestVideoBlock
+  from '../../shared/HottestVideoBlock/components/LoadingHottestVideoBlock';
 import LoadingSpinner from '../../shared/LoadingSpinner';
 import PaginationBox from '../../shared/PaginationBox';
 
@@ -77,15 +80,15 @@ export default class HottestEpisodes extends React.Component<{}, StateType> {
         }}
       >
         {({ loading, error, data }) => {
-          if (loading) {
+          if (loading || error) {
             return (
               <div className="main-content no-padding">
-                <LoadingSpinner />
+                <LoadingHottestVideoBlock
+                  count={pageCount}
+                />
               </div>
             );
           }
-
-          if (error) return <p>Error :(</p>;
 
           console.log(data);
           return (

@@ -151,11 +151,11 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
             }}
           >
             {({ loading, error, data }) => {
-              if (loading) {
+              if (loading || error) {
                 return ('');
               }
 
-              if (error) return <p>Error :(</p>;
+              // if (error) return <p>Error :(</p>;
 
               console.log(data);
               return (

@@ -8,6 +8,8 @@ import {
 import Episode from '../../@types/Episode';
 import LazyImage from '../LazyImage';
 
+import base64Content from '../../../utils/base64Content';
+
 type PropType = RouteComponentProps<{}> & {
   episodes: Array<Episode>,
   title: String,
@@ -45,12 +47,13 @@ class HottestVideoBlock extends React.Component<PropType> {
                 onKeyPress={() => history.push(`/anime/video/${Number(episode.id)}`)}
                 role="menuitem"
               >
-                <div className="cover">
+                <div className="cover shimmer-load">
                   <LazyImage
                     src={`/img_cdn/${episode.Season.background}`}
-                    errorSrc="/img/thumbnail_placeholder.png"
+                    errorSrc={base64Content.cactus_thumbnail_placeholder}
                     alt="thumbnail"
                     className="anime-small-thumbnail fade-in"
+                    noLoadingPlaceholder={true}
                   />
                   <div
                     className="overlay hover_hidden darken"
