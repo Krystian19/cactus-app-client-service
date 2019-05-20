@@ -32,15 +32,8 @@ exports[`HottestVideoBlock component is rendering properly 1`] = `
         role="menuitem"
       >
         <div
-          class="cover"
+          class="cover shimmer-load"
         >
-          <div
-            class="loader-container"
-          >
-            <div
-              class="loader"
-            />
-          </div>
           <div
             class="overlay hover_hidden darken"
           >
