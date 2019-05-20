@@ -9,6 +9,7 @@ type PropType = {
   alt: String,
   noLoadingPlaceholder: Boolean,
   posterPlaceholder: Boolean,
+  customLoadingPlaceholderSrc?: String,
 }
 
 type StateType = {
@@ -63,6 +64,7 @@ export default class LazyImage extends React.Component<PropType, StateType> {
       alt,
       noLoadingPlaceholder,
       posterPlaceholder,
+      customLoadingPlaceholderSrc,
     } = this.props;
 
     const { isMounted, isLoaded, loadError } = this.state;
@@ -85,6 +87,17 @@ export default class LazyImage extends React.Component<PropType, StateType> {
     ) {
       // If no spinner animation is desired
       if (noLoadingPlaceholder) return (null);
+
+      // If a custom placeholder source is provided
+      if (customLoadingPlaceholderSrc) {
+        return (
+          <img
+            src={String(customLoadingPlaceholderSrc)}
+            alt={String(alt)}
+            className={String(className)}
+          />
+        )
+      }
 
       // If a poster placeholder is desired
       if (posterPlaceholder) {

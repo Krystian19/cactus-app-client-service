@@ -8,6 +8,8 @@ import {
 import LazyImage from '../LazyImage'
 import Genre from '../../@types/Genre';
 
+import base64Content from '../../../utils/base64Content';
+
 type PropType = RouteComponentProps<{}> & {
   categories: Array<Genre>,
   title: String,
@@ -46,10 +48,12 @@ const CategoriesBlock = (props: PropType) => {
               <div className="cover">
                 <LazyImage
                   src={`/img_cdn/${category.thumbnail}`}
-                  errorSrc="/img/category_placeholder.png"
+                  errorSrc={base64Content.cactus_category_placeholder}
                   alt="thumbnail"
                   className="anime-small-thumbnail fade-in"
-                  noLoadingPlaceholder={true}
+                  customLoadingPlaceholderSrc={
+                    base64Content.cactus_category_placeholder
+                  }
                 />
                 <div className="overlay">
                   <span className="category_title">{category.title}</span>
