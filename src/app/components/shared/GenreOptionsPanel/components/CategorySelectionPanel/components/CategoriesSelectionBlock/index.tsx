@@ -80,7 +80,7 @@ class CategoriesSelectionBlock extends React.Component<PropType> {
                 errorSrc="/img/category_placeholder.png"
                 alt="thumbnail"
                 className="anime-small-thumbnail fade-in"
-                noLoadingSpinner={true}
+                noLoadingPlaceholder={true}
               />
               <div className="overlay">
                 <span className="category_title">{category.title}</span>
@@ -134,7 +134,7 @@ export default CategoriesSelectionBlock;
         //         errorSrc="/img/category_placeholder.png"
         //         alt="thumbnail"
         //         className="anime-small-thumbnail fade-in"
-        //         noLoadingSpinner
+        //         noLoadingPlaceholder
         //       />
         //       <div className="overlay">
         //         <span className="category_title">{category.title}</span>

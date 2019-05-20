@@ -1,12 +1,14 @@
 import React from 'react';
 import LoadingSpinner from '../LoadingSpinner';
+import base64Content from '../../../utils/base64Content';
 
 type PropType = {
   src: String,
   errorSrc: String,
   className: String,
   alt: String,
-  noLoadingSpinner: Boolean,
+  noLoadingPlaceholder: Boolean,
+  posterPlaceholder: Boolean,
 }
 
 type StateType = {
@@ -27,7 +29,8 @@ export default class LazyImage extends React.Component<PropType, StateType> {
   }
 
   public static defaultProps = {
-    noLoadingSpinner: false,
+    noLoadingPlaceholder: false,
+    posterPlaceholder: false,
   };
 
   componentDidMount() {
@@ -58,7 +61,8 @@ export default class LazyImage extends React.Component<PropType, StateType> {
       errorSrc,
       className,
       alt,
-      noLoadingSpinner,
+      noLoadingPlaceholder,
+      posterPlaceholder,
     } = this.props;
 
     const { isMounted, isLoaded, loadError } = this.state;
@@ -80,10 +84,27 @@ export default class LazyImage extends React.Component<PropType, StateType> {
       || (!isLoaded) // Or if image has not loaded yet
     ) {
       // If no spinner animation is desired
-      if (noLoadingSpinner) return (null);
+      if (noLoadingPlaceholder) return (null);
 
-      // Otherwise return the spinner
-      return <LoadingSpinner />;
+      // If a poster placeholder is desired
+      if (posterPlaceholder) {
+        return (
+          <img
+            src={base64Content.cactus_poster_placeholder}
+            alt={String(alt)}
+            className={String(className)}
+          />
+        )
+      }
+
+      // Otherwise return the thumbnail placeholder
+      return (
+        <img
+          src={String(src)}
+          alt={String(alt)}
+          className={String(className)}
+        />
+      )
     }
 
     // Return proper image when is not mounted

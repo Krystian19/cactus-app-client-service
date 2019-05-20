@@ -130,7 +130,7 @@ export default class AnimeSeason extends React.Component<PropType, StateType> {
                               errorSrc="/img/thumbnail_placeholder.png"
                               alt="thumbnail"
                               className="anime-small-thumbnail"
-                              noLoadingSpinner={true}
+                              noLoadingPlaceholder={true}
                             />
                             <div className="overlay hover_hidden darken">
                               <svg className="play" viewBox="0 0 24 24">

@@ -52,7 +52,7 @@ export default class AnimeThumbnailList extends React.Component<PropType> {
                   errorSrc="/img/thumbnail_placeholder.png"
                   alt="thumbnail"
                   className="anime-thumbnail fade-in"
-                  noLoadingSpinner={true}
+                  noLoadingPlaceholder={true}
                 />
                 <div className="overlay hover_hidden darken">
                   {/* <svg className="play" viewBox="0 0 24 24">

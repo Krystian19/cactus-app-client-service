@@ -9,7 +9,7 @@ const componentSetup = (
     errorSrc="/img/thumbnail_placeholder.png"
     alt="thumbnail"
     className="anime-small-thumbnail fade-in"
-    noLoadingSpinner={true}
+    noLoadingPlaceholder={true}
   />
 );
 
