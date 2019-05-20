@@ -4,7 +4,10 @@ import gql from 'graphql-tag';
 
 import LoadingSpinner from '../../shared/LoadingSpinner';
 import HottestVideoBlock from '../../shared/HottestVideoBlock';
+import LoadingHottestVideoBlock
+  from '../../shared/HottestVideoBlock/components/LoadingHottestVideoBlock';
 import VideoBlock from '../../shared/VideoBlock';
+import LoadingVideoBlock from '../../shared/VideoBlock/components/LoadingVideoBlock';
 import CategoriesBlock from '../../shared/CategoriesBlock';
 
 const DashboardQuery = gql`
@@ -50,15 +53,18 @@ class Dashboard extends React.Component {
     return (
       <Query query={DashboardQuery}>
         {({ loading, error, data }) => {
-          if (loading) {
+          if (loading || error) {
             return (
               <div className="main-content no-padding">
-                <LoadingSpinner />
+                <LoadingHottestVideoBlock
+                  count={5}
+                />
+                <LoadingVideoBlock
+                  count={8}
+                />
               </div>
             );
           }
-
-          if (error) return <p>Error :(</p>;
 
           console.log(data);
           return (
