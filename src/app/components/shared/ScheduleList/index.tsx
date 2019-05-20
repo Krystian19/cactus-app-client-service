@@ -142,7 +142,7 @@ const ScheduleList = (props) => {
 
                 {Day.seasons.map((Season, index) => (
                   <div
-                    className="anime-schedule-poster"
+                    className="anime-schedule-poster shimmer-load"
                     key={Season.id}
                     onClick={
                       () => history.push(
