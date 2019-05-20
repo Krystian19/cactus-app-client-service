@@ -10,6 +10,7 @@ import LoadingSpinner from '../../shared/LoadingSpinner';
 import LazyImage from '../../shared/LazyImage';
 import JSTtoLocalTime from '../../../utils/JSTtoLocalTime';
 import MonthYearExtractor from '../../../utils/MonthYearExtractor';
+import base64Content from '../../../utils/base64Content';
 
 const AnimeInfoQuery = gql`
   query($id:Int!) {
@@ -105,11 +106,10 @@ class AnimeDetail extends React.Component<PropType> {
                         <div className="cover">
                           <LazyImage
                             src={`/img_cdn/${Season.poster}`}
-                            errorSrc="/img/poster_placeholder.jpg"
+                            errorSrc={base64Content.cactus_poster_placeholder}
                             alt="cover"
                             className="fade-in"
                             posterPlaceholder={true}
-                            // noLoadingPlaceholder={true}
                           />
                         </div>
                         <div className="cover-details">

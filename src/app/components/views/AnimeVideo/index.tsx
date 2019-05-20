@@ -7,9 +7,10 @@ import {
   Link,
 } from 'react-router-dom';
 
-import LoadingSpinner from '../../shared/LoadingSpinner';
+import LazyImage from '../../shared/LazyImage';
 import HLSSource from './components/HLSSource';
 import LoadingAnimeVideo from './components/LoadingAnimeVideo'
+import base64Content from '../../../utils/base64Content';
 
 const AnimeVideoQuery = gql`
   query ($id:Int!) {
@@ -101,14 +102,12 @@ class AnimeVideo extends React.Component<PropType> {
                     <div className="left-side">
                       <div className="cover">
                         <Link to={`/anime/detail/${Episode.Season.id}`}>
-                          <img
-                            src={
-                              (Episode.Season.poster)
-                                ? `/img_cdn/${Episode.Season.poster}`
-                                : '/img/poster_placeholder.jpg'
-
-                            }
+                          <LazyImage
+                            src={`/img_cdn/${Episode.Season.poster}`}
+                            errorSrc={base64Content.cactus_poster_placeholder}
                             alt="cover"
+                            className="fade-in"
+                            posterPlaceholder={true}
                           />
                         </Link>
                       </div>
