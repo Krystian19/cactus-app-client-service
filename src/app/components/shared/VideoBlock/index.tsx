@@ -46,12 +46,13 @@ class VideoBlock extends React.Component<PropType> {
                 role="menuitem"
                 tabIndex={index}
               >
-                <div className="cover">
+                <div className="cover shimmer-load">
                   <LazyImage
                     src={`/img_cdn/${episode.Season.background}`}
                     errorSrc="/img/thumbnail_placeholder.png"
                     alt="thumbnail"
                     className="anime-small-thumbnail fade-in"
+                    noLoadingPlaceholder={true}
                   />
                   <div className="overlay hover_hidden darken">
                     <svg className="play" viewBox="0 0 24 24">

@@ -1,6 +1,7 @@
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import React from 'react';
+import LoadingVideoBlock from '../../shared/VideoBlock/components/LoadingVideoBlock';
 import VideoBlock from '../../shared/VideoBlock';
 import LoadingSpinner from '../../shared/LoadingSpinner';
 import PaginationBox from '../../shared/PaginationBox';
@@ -77,15 +78,15 @@ export default class NewestEpisodes extends React.Component<{}, StateType> {
         }}
       >
         {({ loading, error, data }) => {
-          if (loading) {
+          if (loading || error) {
             return (
               <div className="main-content no-padding">
-                <LoadingSpinner />
+                <LoadingVideoBlock
+                  count={pageCount}
+                />
               </div>
             );
           }
-
-          if (error) return <p>Error :(</p>;
 
           console.log(data);
           return (

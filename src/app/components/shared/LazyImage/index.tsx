@@ -100,7 +100,7 @@ export default class LazyImage extends React.Component<PropType, StateType> {
       // Otherwise return the thumbnail placeholder
       return (
         <img
-          src={String(src)}
+          src={String(base64Content.cactus_thumbnail_placeholder)}
           alt={String(alt)}
           className={String(className)}
         />
