@@ -29,7 +29,7 @@ const backendServiceUrl = (
 
 const imageServiceUrl = (
   process.env.IMG_CDN_SERVICE_URL ||
-  'http://cactus.img_cdn:3000/'
+  'http://cactus.img_cdn:80/'
 );
 
 const videoServiceUrl = (
