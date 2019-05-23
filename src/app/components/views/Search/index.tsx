@@ -6,7 +6,6 @@ import AnimeThumbnailList from '../../shared/AnimeThumbnailList';
 import LoadingAnimeThumbnailList from '../../shared/LoadingAnimeThumbnailList';
 import GenreOptionsPanel from '../../shared/GenreOptionsPanel';
 import PaginationBox from '../../shared/PaginationBox';
-import _ from 'lodash';
 
 const SearchViewQuery = gql`
   query($title: String, $pageCount:Int, $currentPage:Int, $genres: [Int!]) {
@@ -59,13 +58,18 @@ export default class Search extends React.Component<{}, StateTypes> {
 
   addedCategory = (category: Genre) => {
     const { selectedCategories } = this.state;
+    const self = this;
+
     this.setState({
       selectedCategories: [...selectedCategories, category],
-    })
+    },
+      // Update query url params according to the state
+      () => self.mapSearchParamsToUrl(self));
   }
 
   removedCategory = (category: Genre) => {
     const { selectedCategories } = this.state;
+    const self = this;
 
     // Removes the provided category from the selectedCategories array
     const filteredCategories = selectedCategories
@@ -73,28 +77,80 @@ export default class Search extends React.Component<{}, StateTypes> {
 
     this.setState({
       selectedCategories: filteredCategories,
-    })
+    },
+      // Update query url params according to the state
+      () => self.mapSearchParamsToUrl(self));
   }
 
   PageForward = () => {
     const { currentPage } = this.state;
-    this.setState({ currentPage: (Number(currentPage) + 1) });
+    const self = this;
+
+    this.setState({
+      currentPage: (Number(currentPage) + 1),
+    },
+      // Update query url params according to the state
+      () => self.mapSearchParamsToUrl(self));
   }
 
   PageBackwards = () => {
     const { currentPage } = this.state;
+    const self = this;
 
     // Can't go backwards if page is already 0
     if (currentPage === 0) return;
 
-    this.setState({ currentPage: (Number(currentPage) - 1) });
+    this.setState({
+      currentPage: (Number(currentPage) - 1)
+    },
+      // Update query url params according to the state
+      () => self.mapSearchParamsToUrl(self));
   }
 
   setCurrentPage = (page) => {
     // If arg is null then ignore it
     if ((page === null) || (page === undefined)) return;
 
-    this.setState({ currentPage: page });
+    const self = this;
+
+    this.setState({
+      currentPage: page
+    },
+      // Update query url params according to the state
+      () => self.mapSearchParamsToUrl(self));
+  }
+
+  setSelectedCategories = (categories) => {
+    const self = this;
+
+    this.setState({
+      selectedCategories: categories,
+    },
+      () => {
+        // When text fields are available set current page to 0
+        self.setCurrentPage(0);
+
+        // Update query url params according to the state
+        self.mapSearchParamsToUrl(self);
+      });
+  }
+
+  mapSearchParamsToUrl = (self) => {
+    const {
+      searchFieldText,
+      selectedCategories,
+      currentPage,
+    } = self.state;
+
+    const newUrlState = {
+      search: searchFieldText,
+      genre: selectedCategories.map(cat => cat.id).join(','),
+      currentPage,
+    }
+
+    console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+    console.log('This is the new URL state');
+    console.log(newUrlState);
   }
 
   onSearchFieldChangeEvent = ({ target: { value } }) => {
@@ -103,12 +159,18 @@ export default class Search extends React.Component<{}, StateTypes> {
     // Clears the previously set timer.
     clearTimeout(this.typingTimeout);
 
-    // Reset the timer, to make the http call after 470MS
+    // Reset the timer, to make the http call after 400MS
     this.typingTimeout = setTimeout(function updateSearchField() {
       self.setState(
         { searchFieldText: value },
-        // When text fields are available set current page to 0
-        () => self.setCurrentPage(0),
+        () => {
+
+          // When text fields are available set current page to 0
+          self.setCurrentPage(0);
+
+          // Update query url params according to the state
+          self.mapSearchParamsToUrl(self);
+        },
       );
     }, 400);
   }
@@ -137,9 +199,7 @@ export default class Search extends React.Component<{}, StateTypes> {
         <GenreOptionsPanel
           selectedCategories={selectedCategories}
           categoryRemoved={(category) => this.removedCategory(category)}
-          setSelectedCategories={
-            (categories) => this.setState({ selectedCategories: categories })
-          }
+          setSelectedCategories={this.setSelectedCategories}
         />
 
         <Query
