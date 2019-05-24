@@ -1,6 +1,8 @@
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import React from 'react';
+import queryString from 'qs';
+
 import Genre from '../../@types/Genre';
 import AnimeThumbnailList from '../../shared/AnimeThumbnailList';
 import LoadingAnimeThumbnailList from '../../shared/LoadingAnimeThumbnailList';
@@ -143,14 +145,22 @@ export default class Search extends React.Component<{}, StateTypes> {
     } = self.state;
 
     const newUrlState = {
-      search: searchFieldText,
-      genre: selectedCategories.map(cat => cat.id).join(','),
-      currentPage,
+      q: searchFieldText.split(' ').filter(tk => tk).join('+') || undefined,
+      genre: selectedCategories.map(cat => cat.id).join(',') || undefined,
+      page: currentPage,
     }
 
-    console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
-    console.log('This is the new URL state');
-    console.log(newUrlState);
+    // const basePathname = location.toString().replace(location.search, "");
+    const basePathname = window.location.pathname;
+    const queryStringState = queryString.stringify(newUrlState, { encode: false, });
+    const newPathname = `${basePathname}?${queryStringState}`;
+
+    history.pushState(null, '', newPathname);
+
+    // console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+    // console.log('This is the new URL state');
+    // console.log(newUrlState);
+    // console.log(`${basePathname}?${queryStringState}`);
   }
 
   onSearchFieldChangeEvent = ({ target: { value } }) => {
