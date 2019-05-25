@@ -1,6 +1,7 @@
 import React from 'react';
 import { RouteComponentProps } from "react-router";
 import { Link, withRouter } from 'react-router-dom';
+import queryString from 'qs';
 
 import Genre from '../../@types/Genre';
 
@@ -12,7 +13,7 @@ const CategoriesChips = ({ categories }: PropType) => (
   <div className="chips-container aligned-left">
     {categories.map(genre => (
       <Link
-        to='/search'
+        to={`/search?${queryString.stringify({ genre: [genre] })}`}
         key={String(genre.id)}
       >
         <div

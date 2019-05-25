@@ -4,6 +4,7 @@ import {
   Link,
   withRouter,
 } from 'react-router-dom';
+import queryString from 'qs';
 
 import LazyImage from '../LazyImage'
 import Genre from '../../@types/Genre';
@@ -43,7 +44,11 @@ const CategoriesBlock = (props: PropType) => {
             <div
               key={Number(category.id)}
               className="anime-small-thumbnail small category"
-              onClick={() => history.push('/search')}
+              onClick={
+                () =>
+                  history
+                    .push(`/search?${queryString.stringify({ genre: [category] })}`)
+              }
             >
               <div className="cover">
                 <LazyImage
