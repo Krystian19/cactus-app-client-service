@@ -170,9 +170,9 @@ class Search extends React.Component<PropType, StateTypes> {
     const { location: { search } } = this.props;
     const currentUrlParams = queryString.parse(search.replace('?', ''));
 
-    console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
-    console.log('These are the current URL params ......................');
-    console.log(currentUrlParams);
+    // console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+    // console.log('These are the current URL params ......................');
+    // console.log(currentUrlParams);
 
     this.setState({
       searchFieldText: currentUrlParams.q || '',
@@ -218,6 +218,11 @@ class Search extends React.Component<PropType, StateTypes> {
       selectedCategories,
     } = this.state;
 
+    // Avoid the component rendering before it's mounted
+    if (!this._isMounted) {
+      return ('');
+    }
+
     return (
       <div className="main-content">
         {/* Start of main content */}
@@ -238,63 +243,58 @@ class Search extends React.Component<PropType, StateTypes> {
           setSelectedCategories={this.setSelectedCategories}
         />
 
-        {
-          this._isMounted && (
-            <Query
-              query={SearchViewQuery}
-              variables={{
-                title: searchFieldText,
-                pageCount: pageCount,
-                currentPage: (Number(currentPage) * pageCount),
-                genres: selectedCategories.map(cat => Number(cat.id)),
-              }}
-            >
-              {({ loading, error, data }) => {
-                if (loading || error) {
-                  return (
-                    <div className="util-container">
-                      <LoadingAnimeThumbnailList count={pageCount} />
-                    </div>
-                  );
-                }
+        <Query
+          query={SearchViewQuery}
+          variables={{
+            title: searchFieldText,
+            pageCount: pageCount,
+            currentPage: (Number(currentPage) * pageCount),
+            genres: selectedCategories.map(cat => Number(cat.id)),
+          }}
+        >
+          {({ loading, error, data }) => {
+            if (loading || error) {
+              return (
+                <div className="util-container">
+                  <LoadingAnimeThumbnailList count={pageCount} />
+                </div>
+              );
+            }
 
-                // if (error) return <p>Error :(</p>;
+            // if (error) return <p>Error :(</p>;
 
-                console.log(data);
-                return (
-                  <div className="util-container">
-                    <AnimeThumbnailList
-                      seasons={data.Seasons.rows}
+            console.log(data);
+            return (
+              <div className="util-container">
+                <AnimeThumbnailList
+                  seasons={data.Seasons.rows}
+                />
+                {
+                  data.Seasons.rows.length !== 0
+                  && (
+                    <PaginationBox
+                      pageCount={pageCount}
+                      itemCount={data.Seasons.count}
+                      currentPage={currentPage}
+                      goForwardCB={() => {
+                        const lastPage = Math.ceil(
+                          data.Seasons.count / pageCount,
+                        );
+
+                        // If this is the last page, don't go forward
+                        if ((Number(currentPage) + 1) === lastPage) return;
+
+                        this.PageForward();
+                      }}
+                      goBackwardsCB={() => this.PageBackwards()}
+                      setCurrentPageCB={this.setCurrentPage}
                     />
-                    {
-                      data.Seasons.rows.length !== 0
-                      && (
-                        <PaginationBox
-                          pageCount={pageCount}
-                          itemCount={data.Seasons.count}
-                          currentPage={currentPage}
-                          goForwardCB={() => {
-                            const lastPage = Math.ceil(
-                              data.Seasons.count / pageCount,
-                            );
-
-                            // If this is the last page, don't go forward
-                            if ((Number(currentPage) + 1) === lastPage) return;
-
-                            this.PageForward();
-                          }}
-                          goBackwardsCB={() => this.PageBackwards()}
-                          setCurrentPageCB={this.setCurrentPage}
-                        />
-                      )
-                    }
-                  </div>
-                );
-              }}
-            </Query>
-          )
-        }
-
+                  )
+                }
+              </div>
+            );
+          }}
+        </Query>
         {/* End of main content */}
       </div>
     );
