@@ -8,6 +8,7 @@ import LazyImage from '../LazyImage';
 import Season from '../../@types/Season';
 import JSTtoLocalTime from '../../../utils/JSTtoLocalTime';
 import YearExtractor from '../../../utils/YearExtractor';
+import base64Content from '../../../utils/base64Content';
 
 type PropType = {
   seasons: Array<Season>,
@@ -49,9 +50,10 @@ export default class AnimeThumbnailList extends React.Component<PropType> {
                 </span>
                 <LazyImage
                   src={`/img_cdn/${season.poster}`}
-                  errorSrc="/img/thumbnail_placeholder.png"
+                  errorSrc={base64Content.cactus_poster_placeholder}
                   alt="thumbnail"
                   className="anime-thumbnail fade-in"
+                  posterPlaceholder={true}
                   noLoadingPlaceholder={true}
                 />
                 <div className="overlay hover_hidden darken">
