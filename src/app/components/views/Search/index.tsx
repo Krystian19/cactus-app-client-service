@@ -1,6 +1,7 @@
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import React from 'react';
+import { RouteComponentProps, withRouter } from "react-router";
 import queryString from 'qs';
 
 import Genre from '../../@types/Genre';
@@ -38,11 +39,14 @@ type StateTypes = {
   selectedCategories: Array<Genre>,
 }
 
+type PropType = RouteComponentProps<{}> & {}
+
 // How many records should be shown per page
 const pageCount = 18;
 
-export default class Search extends React.Component<{}, StateTypes> {
+class Search extends React.Component<PropType, StateTypes> {
   private typingTimeout = null;
+  private _isMounted = false;
 
   constructor(props) {
     super(props);
@@ -146,13 +150,12 @@ export default class Search extends React.Component<{}, StateTypes> {
 
     const newUrlState = {
       q: searchFieldText.split(' ').filter(tk => tk).join('+') || undefined,
-      genre: selectedCategories.map(cat => cat.id).join(',') || undefined,
+      genre: (selectedCategories.length) ? selectedCategories : undefined,
       page: currentPage,
     }
 
-    // const basePathname = location.toString().replace(location.search, "");
     const basePathname = window.location.pathname;
-    const queryStringState = queryString.stringify(newUrlState, { encode: false, });
+    const queryStringState = queryString.stringify(newUrlState);
     const newPathname = `${basePathname}?${queryStringState}`;
 
     history.pushState(null, '', newPathname);
@@ -161,6 +164,21 @@ export default class Search extends React.Component<{}, StateTypes> {
     // console.log('This is the new URL state');
     // console.log(newUrlState);
     // console.log(`${basePathname}?${queryStringState}`);
+  }
+
+  mapUrlToSearchParams = () => {
+    const { location: { search } } = this.props;
+    const currentUrlParams = queryString.parse(search.replace('?', ''));
+
+    console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+    console.log('These are the current URL params ......................');
+    console.log(currentUrlParams);
+
+    this.setState({
+      searchFieldText: currentUrlParams.q || '',
+      currentPage: currentUrlParams.page ? Number(currentUrlParams.page) : 0,
+      selectedCategories: currentUrlParams.genre || [],
+    })
   }
 
   onSearchFieldChangeEvent = ({ target: { value } }) => {
@@ -185,6 +203,14 @@ export default class Search extends React.Component<{}, StateTypes> {
     }, 400);
   }
 
+  componentDidMount() {
+    // Only map Url to Search params the first time the component has been mounted
+    if (!this._isMounted) {
+      this.mapUrlToSearchParams();
+      this._isMounted = true;
+    }
+  }
+
   render() {
     const {
       searchFieldText,
@@ -201,7 +227,7 @@ export default class Search extends React.Component<{}, StateTypes> {
             type="text"
             className="big-search-box-input"
             placeholder="Search by ..."
-            // value={String(searchFieldText)}
+            defaultValue={String(searchFieldText)}
             onChange={this.onSearchFieldChangeEvent}
           />
         </div>
@@ -212,61 +238,67 @@ export default class Search extends React.Component<{}, StateTypes> {
           setSelectedCategories={this.setSelectedCategories}
         />
 
-        <Query
-          query={SearchViewQuery}
-          variables={{
-            title: searchFieldText,
-            pageCount: pageCount,
-            currentPage: (Number(currentPage) * pageCount),
-            genres: selectedCategories.map(cat => cat.id),
-          }}
-        >
-          {({ loading, error, data }) => {
-            if (loading || error) {
-              return (
-                <div className="util-container">
-                  <LoadingAnimeThumbnailList count={pageCount} />
-                </div>
-              );
-            }
-
-            // if (error) return <p>Error :(</p>;
-
-            console.log(data);
-            return (
-              <div className="util-container">
-                <AnimeThumbnailList
-                  seasons={data.Seasons.rows}
-                />
-                {
-                  data.Seasons.rows.length !== 0
-                  && (
-                    <PaginationBox
-                      pageCount={pageCount}
-                      itemCount={data.Seasons.count}
-                      currentPage={currentPage}
-                      goForwardCB={() => {
-                        const lastPage = Math.ceil(
-                          data.Seasons.count / pageCount,
-                        );
-
-                        // If this is the last page, don't go forward
-                        if ((Number(currentPage) + 1) === lastPage) return;
-
-                        this.PageForward();
-                      }}
-                      goBackwardsCB={() => this.PageBackwards()}
-                      setCurrentPageCB={this.setCurrentPage}
-                    />
-                  )
+        {
+          this._isMounted && (
+            <Query
+              query={SearchViewQuery}
+              variables={{
+                title: searchFieldText,
+                pageCount: pageCount,
+                currentPage: (Number(currentPage) * pageCount),
+                genres: selectedCategories.map(cat => Number(cat.id)),
+              }}
+            >
+              {({ loading, error, data }) => {
+                if (loading || error) {
+                  return (
+                    <div className="util-container">
+                      <LoadingAnimeThumbnailList count={pageCount} />
+                    </div>
+                  );
                 }
-              </div>
-            );
-          }}
-        </Query>
+
+                // if (error) return <p>Error :(</p>;
+
+                console.log(data);
+                return (
+                  <div className="util-container">
+                    <AnimeThumbnailList
+                      seasons={data.Seasons.rows}
+                    />
+                    {
+                      data.Seasons.rows.length !== 0
+                      && (
+                        <PaginationBox
+                          pageCount={pageCount}
+                          itemCount={data.Seasons.count}
+                          currentPage={currentPage}
+                          goForwardCB={() => {
+                            const lastPage = Math.ceil(
+                              data.Seasons.count / pageCount,
+                            );
+
+                            // If this is the last page, don't go forward
+                            if ((Number(currentPage) + 1) === lastPage) return;
+
+                            this.PageForward();
+                          }}
+                          goBackwardsCB={() => this.PageBackwards()}
+                          setCurrentPageCB={this.setCurrentPage}
+                        />
+                      )
+                    }
+                  </div>
+                );
+              }}
+            </Query>
+          )
+        }
 
         {/* End of main content */}
       </div>
     );
   }
 }
+
+export default withRouter(Search);

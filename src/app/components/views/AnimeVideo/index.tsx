@@ -60,7 +60,6 @@ class AnimeVideo extends React.Component<PropType> {
   }
 
   render() {
-    const { history } = this.props;
     const { match: { params } } = this.props;
     return (
       <Query
