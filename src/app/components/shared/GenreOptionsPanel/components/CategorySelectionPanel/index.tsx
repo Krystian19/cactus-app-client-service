@@ -39,6 +39,8 @@ type StateType = {
 const pageCount = 8;
 
 class CategorySelectionPanel extends React.Component<PropType, StateType> {
+  private typingTimeout = null;
+
   constructor(props) {
     super(props);
 
@@ -94,6 +96,22 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
     })
   }
 
+  onSearchFieldChangedEvent = ({ target: { value } }) => {
+    const self = this;
+
+    // Clears the previously set timer.
+    clearTimeout(this.typingTimeout);
+
+    // Reset the timer, to make the http call after 400MS
+    this.typingTimeout = setTimeout(function updateSearchField() {
+      self.setState(
+        { searchFieldText: value },
+        // When text fields are available set current page to 0
+        () => self.setCurrentPage(0),
+      );
+    }, 400);
+  }
+
   render() {
     const {
       searchFieldText,
@@ -129,16 +147,8 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
               type="text"
               className="big-search-box-input"
               placeholder="Search Categories ..."
-              value={String(searchFieldText)}
-              onChange={
-                ({ target: { value } }) => {
-                  this.setState(
-                    { searchFieldText: value },
-                    // When text fields are available set current page to 0
-                    () => this.setCurrentPage(0),
-                  );
-                }
-              }
+              // value={String(searchFieldText)}
+              onChange={this.onSearchFieldChangedEvent}
             />
           </div>
 
