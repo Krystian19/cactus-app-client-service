@@ -6,7 +6,7 @@ type PropType = {
   categoryRemoved: Function,
   alignedCenter?: Boolean,
   padded?: Boolean
-}
+};
 
 const FilterCategoriesChips = ({
   categories,

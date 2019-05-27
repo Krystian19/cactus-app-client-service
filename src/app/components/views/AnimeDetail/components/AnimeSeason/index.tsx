@@ -40,11 +40,11 @@ const SeasonQuery = gql`
 
 type PropType = {
   season: Season,
-}
+};
 
 type StateType = {
   currentPage: Number,
-}
+};
 
 // How many records should be shown per page.
 const pageCount = 9;

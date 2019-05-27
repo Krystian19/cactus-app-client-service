@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LazyImage from '../../../../../LazyImage'
+import LazyImage from '../../../../../LazyImage';
 import RandomTextEmoji from '../../../../../RandomTextEmoji';
 import Genre from '../../../../../../@types/Genre';
 import base64Content from '../../../../../../../utils/base64Content';
@@ -9,7 +9,7 @@ type PropType = {
   categories: Array<Genre>,
   selectedCategories: Array<Genre>,
   categorySelected: Function,
-}
+};
 
 class CategoriesSelectionBlock extends React.Component<PropType> {
 

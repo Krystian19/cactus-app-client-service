@@ -14,7 +14,7 @@ type PropType = RouteComponentProps<{}> & {
   episodes: Array<Episode>,
   title: String,
   viewAllLink?: String,
-}
+};
 
 class HottestVideoBlock extends React.Component<PropType> {
   render() {

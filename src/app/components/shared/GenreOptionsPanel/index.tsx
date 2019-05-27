@@ -8,11 +8,11 @@ type PropType = {
   selectedCategories: Array<Genre>,
   categoryRemoved: Function,
   setSelectedCategories: Function
-}
+};
 
 type StateType = {
   showCategorySelectionPanel: Boolean
-}
+};
 
 class GenreOptionsPanel extends React.Component<PropType, StateType> {
   constructor(props) {
@@ -20,7 +20,7 @@ class GenreOptionsPanel extends React.Component<PropType, StateType> {
 
     this.state = {
       showCategorySelectionPanel: false,
-    }
+    };
   }
 
   render() {
@@ -56,7 +56,7 @@ class GenreOptionsPanel extends React.Component<PropType, StateType> {
           />
         )}
       </div>
-    )
+    );
   }
 }
 

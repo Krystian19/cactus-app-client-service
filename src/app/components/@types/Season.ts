@@ -16,6 +16,6 @@ export type Season = {
   // AlternativeTitles: [SeasonAlternativeTitle],
   Anime?: Anime,
   // Genres: Genre,
-}
+};
 
 export default Season;

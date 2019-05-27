@@ -5,7 +5,6 @@ import HottestVideoBlock from '../../shared/HottestVideoBlock';
 import
 LoadingHottestVideoBlock
   from '../../shared/HottestVideoBlock/components/LoadingHottestVideoBlock';
-import LoadingSpinner from '../../shared/LoadingSpinner';
 import PaginationBox from '../../shared/PaginationBox';
 
 const HottestEpisodesQuery = gql`
@@ -33,7 +32,7 @@ const HottestEpisodesQuery = gql`
 
 type StateType = {
   currentPage: Number,
-}
+};
 
 // How many records should be shown per page.
 const pageCount = 8;

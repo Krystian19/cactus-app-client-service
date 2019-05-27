@@ -10,6 +10,6 @@ export type Episode = {
   // EpisodeVersions: Array<EpisodeVersions>,
   Season?: Season,
   Anime?: Anime,
-}
+};
 
 export default Episode;

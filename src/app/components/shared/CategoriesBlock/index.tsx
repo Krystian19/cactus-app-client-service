@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import queryString from 'qs';
 
-import LazyImage from '../LazyImage'
+import LazyImage from '../LazyImage';
 import Genre from '../../@types/Genre';
 
 import base64Content from '../../../utils/base64Content';
@@ -15,7 +15,7 @@ type PropType = RouteComponentProps<{}> & {
   categories: Array<Genre>,
   title: String,
   viewAllLink?: String,
-}
+};
 
 const CategoriesBlock = (props: PropType) => {
   const {
@@ -71,6 +71,6 @@ const CategoriesBlock = (props: PropType) => {
       </div>
     </div>
   );
-}
+};
 
 export default withRouter(CategoriesBlock);

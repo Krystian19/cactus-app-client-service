@@ -3,7 +3,7 @@ import range from 'lodash/range';
 
 type PropType = {
   count: number
-}
+};
 
 class LoadingHottestVideoBlock extends React.Component<PropType> {
   render() {

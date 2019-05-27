@@ -12,7 +12,7 @@ import base64Content from '../../../utils/base64Content';
 
 type PropType = {
   seasons: Array<Season>,
-}
+};
 
 export default class AnimeThumbnailList extends React.Component<PropType> {
   render() {

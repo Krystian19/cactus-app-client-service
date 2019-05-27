@@ -9,7 +9,7 @@ import {
 
 import LazyImage from '../../shared/LazyImage';
 import HLSSource from './components/HLSSource';
-import LoadingAnimeVideo from './components/LoadingAnimeVideo'
+import LoadingAnimeVideo from './components/LoadingAnimeVideo';
 import base64Content from '../../../utils/base64Content';
 
 const AnimeVideoQuery = gql`
@@ -47,7 +47,7 @@ const AnimeVideoQuery = gql`
 
 type PathParamsType = {
   id: string,
-}
+};
 
 type PropType = RouteComponentProps<PathParamsType> & {};
 

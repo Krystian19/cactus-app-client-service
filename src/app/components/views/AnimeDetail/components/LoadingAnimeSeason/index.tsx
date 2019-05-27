@@ -3,7 +3,7 @@ import range from 'lodash/range';
 
 type PropType = {
   count: number,
-}
+};
 
 export default class LoadingAnimeSeason extends React.Component<PropType> {
   constructor(props) {

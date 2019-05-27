@@ -97,8 +97,8 @@ class Server {
         .catch(err => {
           // NOTE: Return a proper error page, when rendering failed
           console.log(err);
-          res.sendFile(path.join(rootPath, 'resources', 'server_error.html'))
-        })
+          res.sendFile(path.join(rootPath, 'resources', 'server_error.html'));
+        });
     });
   }
 
@@ -174,7 +174,7 @@ class Server {
     );
 
     try {
-      await getDataFromTree(markUp)
+      await getDataFromTree(markUp);
 
       const content = renderToString(markUp);
       const initialState = client.extract();

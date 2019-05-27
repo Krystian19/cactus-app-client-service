@@ -1,5 +1,4 @@
 import React from 'react';
-import LoadingSpinner from '../LoadingSpinner';
 import base64Content from '../../../utils/base64Content';
 
 type PropType = {
@@ -10,13 +9,13 @@ type PropType = {
   noLoadingPlaceholder: Boolean,
   posterPlaceholder: Boolean,
   customLoadingPlaceholderSrc?: String,
-}
+};
 
 type StateType = {
   isMounted: Boolean,
   isLoaded: Boolean,
   loadError: Boolean
-}
+};
 
 export default class LazyImage extends React.Component<PropType, StateType> {
   constructor(props) {
@@ -96,7 +95,7 @@ export default class LazyImage extends React.Component<PropType, StateType> {
             alt={String(alt)}
             className={String(className)}
           />
-        )
+        );
       }
 
       // If a poster placeholder is desired
@@ -107,7 +106,7 @@ export default class LazyImage extends React.Component<PropType, StateType> {
             alt={String(alt)}
             className={String(className)}
           />
-        )
+        );
       }
 
       // Otherwise return the thumbnail placeholder
@@ -117,7 +116,7 @@ export default class LazyImage extends React.Component<PropType, StateType> {
           alt={String(alt)}
           className={String(className)}
         />
-      )
+      );
     }
 
     // Return proper image when is not mounted

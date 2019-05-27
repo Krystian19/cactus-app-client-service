@@ -7,7 +7,7 @@ import Genre from '../../@types/Genre';
 
 type PropType = RouteComponentProps<{}> & {
   categories: Array<Genre>
-}
+};
 
 const CategoriesChips = ({ categories }: PropType) => (
   <div className="chips-container aligned-left">

@@ -3,7 +3,6 @@ import gql from 'graphql-tag';
 import React from 'react';
 import LoadingVideoBlock from '../../shared/VideoBlock/components/LoadingVideoBlock';
 import VideoBlock from '../../shared/VideoBlock';
-import LoadingSpinner from '../../shared/LoadingSpinner';
 import PaginationBox from '../../shared/PaginationBox';
 
 const NewestEpisodesQuery = gql`
@@ -31,7 +30,7 @@ const NewestEpisodesQuery = gql`
 
 type StateType = {
   currentPage: Number,
-}
+};
 
 // How many records should be shown per page.
 const pageCount = 8;

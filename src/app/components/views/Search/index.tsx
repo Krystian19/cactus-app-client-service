@@ -37,9 +37,9 @@ type StateTypes = {
   currentPage: Number,
   searchFieldText: String,
   selectedCategories: Array<Genre>,
-}
+};
 
-type PropType = RouteComponentProps<{}> & {}
+type PropType = RouteComponentProps<{}> & {};
 
 // How many records should be shown per page
 const pageCount = 18;
@@ -152,7 +152,7 @@ class Search extends React.Component<PropType, StateTypes> {
       q: searchFieldText.split(' ').filter(tk => tk).join('+') || undefined,
       genre: (selectedCategories.length) ? selectedCategories : undefined,
       page: currentPage,
-    }
+    };
 
     const basePathname = window.location.pathname;
     const queryStringState = queryString.stringify(newUrlState);
@@ -178,7 +178,7 @@ class Search extends React.Component<PropType, StateTypes> {
       searchFieldText: currentUrlParams.q || '',
       currentPage: currentUrlParams.page ? Number(currentUrlParams.page) : 0,
       selectedCategories: currentUrlParams.genre || [],
-    })
+    });
   }
 
   onSearchFieldChangeEvent = ({ target: { value } }) => {

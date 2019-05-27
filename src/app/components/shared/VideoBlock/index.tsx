@@ -12,7 +12,7 @@ type PropType = RouteComponentProps<{}> & {
   episodes: Array<Episode>,
   title: String,
   viewAllLink?: String,
-}
+};
 
 class VideoBlock extends React.Component<PropType> {
   render() {

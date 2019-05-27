@@ -38,7 +38,7 @@ const LoadingAnimeVideo = () => (
       </div>
     </div>
   </div>
-)
+);
 
 
 export default LoadingAnimeVideo;

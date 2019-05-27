@@ -21,7 +21,7 @@ const GenresEpisodesQuery = gql`
 
 type StateType = {
   currentPage: Number,
-}
+};
 
 // How many records should be shown per page.
 const pageCount = 8;
@@ -33,7 +33,7 @@ export default class Categories extends React.Component<{}, StateType> {
     this.state = {
       // Pagination state values
       currentPage: 0,
-    }
+    };
   }
 
   PageForward = () => {

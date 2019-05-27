@@ -27,13 +27,13 @@ type PropType = {
 
   setSelectedCategories: Function,
   initialSelectedCategories: Array<Genre>,
-}
+};
 
 type StateType = {
   currentPage: Number,
   searchFieldText: String,
   selectedCategories: Array<Genre>,
-}
+};
 
 // How many records should be shown per page
 const pageCount = 8;
@@ -53,7 +53,7 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
       currentPage: 0,
 
       selectedCategories: initialSelectedCategories,
-    }
+    };
   }
 
   PageForward = () => {
@@ -81,7 +81,7 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
     const { selectedCategories } = this.state;
     this.setState({
       selectedCategories: [...selectedCategories, category],
-    })
+    });
   }
 
   removedCategory = (category: Genre) => {
@@ -93,7 +93,7 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
 
     this.setState({
       selectedCategories: filteredCategories,
-    })
+    });
   }
 
   onSearchFieldChangedEvent = ({ target: { value } }) => {
@@ -135,8 +135,8 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
             <div
               className="exit-btn"
               onClick={() => {
-                closePanel()
-                setSelectedCategories(selectedCategories)
+                closePanel();
+                setSelectedCategories(selectedCategories);
               }}
             >
               <i className="fa fa-times" />
@@ -215,7 +215,7 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
           </Query>
         </div>
       </div>
-    )
+    );
   }
 }
 

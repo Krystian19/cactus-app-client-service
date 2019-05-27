@@ -7,7 +7,7 @@ type PropType = {
   itemCount: Number,
   currentPage: Number,
   setCurrentPageCB: Function,
-}
+};
 
 export default class PaginationBox extends React.Component<PropType> {
   fetchPageNumbers = (lastPageValue, currentPage) => {

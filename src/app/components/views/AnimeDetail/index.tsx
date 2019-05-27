@@ -42,7 +42,7 @@ const AnimeInfoQuery = gql`
 
 type PathParamsType = {
   id: string,
-}
+};
 
 type PropType = RouteComponentProps<PathParamsType> & {};
 

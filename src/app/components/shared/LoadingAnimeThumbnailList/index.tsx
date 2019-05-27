@@ -3,7 +3,7 @@ import range from 'lodash/range';
 
 type PropType = {
   count: number,
-}
+};
 
 export default class LoadingAnimeThumbnailList extends React.Component<PropType> {
   render() {

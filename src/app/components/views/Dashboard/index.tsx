@@ -2,7 +2,6 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import LoadingSpinner from '../../shared/LoadingSpinner';
 import HottestVideoBlock from '../../shared/HottestVideoBlock';
 import LoadingHottestVideoBlock
   from '../../shared/HottestVideoBlock/components/LoadingHottestVideoBlock';
