@@ -1,6 +1,6 @@
 # Cactus app web client service
 
-[![Build Status](https://travis-ci.org/Krystian19/cactus-app-client-service.svg?branch=master)](https://travis-ci.org/Krystian19/cactus-app-client-service) [![Code Climate](https://codeclimate.com/github/Krystian19/cactus-app-client-service/badges/gpa.svg)](https://codeclimate.com/github/Krystian19/cactus-app-client-service) [![Test Coverage](https://codecov.io/gh/Krystian19/cactus-app-client-service/branch/master/graph/badge.svg)](https://codecov.io/gh/Krystian19/cactus-app-client-service)
+[![Build Status](https://travis-ci.org/Krystian19/cactus-app-client-service.svg?branch=master)](https://travis-ci.org/Krystian19/cactus-app-client-service) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/166aa4764f6244538723d85594ab60b7)](https://www.codacy.com/app/janfrancisco19/cactus-app-client-service?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Krystian19/cactus-app-client-service&amp;utm_campaign=Badge_Grade) [![Test Coverage](https://codecov.io/gh/Krystian19/cactus-app-client-service/branch/master/graph/badge.svg)](https://codecov.io/gh/Krystian19/cactus-app-client-service)
 
 Cactus app web client service repo.
 
