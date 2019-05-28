@@ -2,17 +2,31 @@ sudo: required
 
 language: node_js
 node_js:
-  - "8"
+  - "10"
+
+# Handle git submodules yourself
+git:
+  submodules: false
 
 services:
   - docker
 
 before_install:
+  # Use sed to replace the SSH URL with the public URL, then initialize submodules
+  - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+  - git submodule update --init --recursive
+
+  # Setup the networks
+  - docker network create testing_network
+
+  # Setup logger service
+  docker run --name cactus.logger -e ACCEPT_EULA=Y -p 4040:80 -p 5341:5341 --network=testing_network datalust/seq:latest
+
   # Build the docker image
   - docker build -t cactus_app/cactus-app-client-service .
   - docker images
 install:
-  - docker run -ti --name=cactus_app_client -d -e CODECOV_TOKEN=$CODECOV_TOKEN -v $(pwd):/app -p 3000:3000 cactus_app/cactus-app-client-service
+  - docker run -ti --name=cactus_app_client -d -e CODECOV_TOKEN=$CODECOV_TOKEN -e SERVICE_NAME="cactus_client" -e LOGGER_SERVICE_HOST="http://cactus.logger:5341/" -v $(pwd):/app -p 3000:3000 --network=testing_network cactus_app/cactus-app-client-service
   - docker ps -a
 
 script:
