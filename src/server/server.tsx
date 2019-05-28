@@ -15,6 +15,7 @@ import { ApolloClient } from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import fetch from 'node-fetch';
+import logger from '@cactus-app/js-logger-module';
 
 import App from '../app/components/views';
 
@@ -126,6 +127,10 @@ class Server {
           headers: {},
         });
 
+        logger.info({
+          imageUrl: '/' + imgName
+        }, 'Image file proxy request');
+
         proxy(req, res, next);
       },
     );
@@ -140,6 +145,8 @@ class Server {
           query: req.query,
           headers: req.headers,
         });
+
+        logger.info({ videoUrl: filePath }, 'Video file proxy request');
 
         proxy(req, res, next);
       },
@@ -203,6 +210,7 @@ class Server {
 
       return new Promise((resolve, reject) => resolve(String(finalMarkUpFile)));
     } catch (err) {
+      logger.error(err, 'Failed at initial rendering web app');
       return new Promise((resolve, reject) => reject(err));
     }
 

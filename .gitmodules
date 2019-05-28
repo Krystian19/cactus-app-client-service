@@ -1,0 +1,4 @@
+[submodule "src/logger"]
+	path = src/logger
+	url = git@github.com:Krystian19/cactus-app-js-logger-module.git
+	branch = master
