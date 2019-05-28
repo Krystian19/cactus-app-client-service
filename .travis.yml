@@ -20,7 +20,7 @@ before_install:
   - docker network create testing_network
 
   # Setup logger service
-  - docker run --name cactus.logger -e ACCEPT_EULA=Y -p 4040:80 -p 5341:5341 --network=testing_network datalust/seq:5
+  - docker run --name cactus.logger -d -e ACCEPT_EULA=Y -p 4040:80 -p 5341:5341 --network=testing_network datalust/seq:5
 
   # Build the docker image
   - docker build -t cactus_app/cactus-app-client-service .
