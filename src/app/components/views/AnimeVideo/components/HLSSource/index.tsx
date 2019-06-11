@@ -41,12 +41,13 @@ export default class HLSSource extends React.Component<{
   }
 
   render() {
-    return (
-      <source
-        src={this.props.src}
-        type={'application/vnd.apple.mpegurl'}
-      />
-    );
+    // return (
+    //   <source
+    //     src={this.props.src}
+    //     type={'application/vnd.apple.mpegurl'}
+    //   />
+    // );
+    return ('');
   }
 }
 
