@@ -12,7 +12,7 @@
     "watch": "webpack --progress --colors --watch --config webpack.config.dev.js",
     "test": "jest ./app/tests/",
     "coverage": "codecov",
-    "tslint": "tslint --project ."
+    "lint": "tslint --project ."
   },
   "workspaces": [
     "./src/logger"
