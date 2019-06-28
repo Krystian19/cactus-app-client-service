@@ -38,6 +38,34 @@ const videoServiceUrl = (
   'http://cactus.video_cdn/live'
 );
 
+/**
+ * @description Listing for server process failures.
+ */
+process
+  .on('unhandledRejection', (reason, p) => {
+    console.error(
+      reason,
+      'Unhandled Rejection at Promise =======================================',
+      p
+    );
+
+    logger.info(
+      { reason, p },
+      'Web client server Unhandled Rejection at Promise'
+    );
+  })
+  .on('uncaughtException', err => {
+    console.error(
+      err,
+      'Uncaught Exception thrown  ======================================='
+    );
+
+    logger.info(
+      { ...err },
+      'Web client server Uncaught Exception thrown'
+    );
+  });
+
 class Server {
   public app: express.Application;
 
@@ -127,10 +155,6 @@ class Server {
           headers: {},
         });
 
-        logger.info({
-          imageUrl: '/' + imgName
-        }, 'Image file proxy request');
-
         proxy(req, res, next);
       },
     );
@@ -145,8 +169,6 @@ class Server {
           query: req.query,
           headers: req.headers,
         });
-
-        logger.info({ videoUrl: filePath }, 'Video file proxy request');
 
         proxy(req, res, next);
       },
