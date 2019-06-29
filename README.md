@@ -22,7 +22,13 @@ services:
       ./cactus-app-client-service
     volumes:
       - ./cactus-app-client-service:/app
-    environment:
+    environment:          
+      # Name of this service
+      SERVICE_NAME: "cactus_client"
+
+      # Logger service URL
+      LOGGER_SERVICE_HOST: "http://cactus.logger:5341/"
+
       # URL of the service that is running a a cactus backend instance
       BACKEND_SERVICE_URL: "http://backend:3000/"
     ports: ['3000:3000']
