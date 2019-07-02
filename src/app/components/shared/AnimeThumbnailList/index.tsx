@@ -44,10 +44,11 @@ export default class AnimeThumbnailList extends React.Component<PropType> {
           >
             <Link to={`/anime/detail/${season.id}`}>
               <div className="cover shimmer-load">
-                <span className="score">
+                {/* Uncomment when a scoring mechanism is present */}
+                {/* <span className="score">
                   4.5/5
                   <i className="fa fa-star" />
-                </span>
+                </span> */}
                 <LazyImage
                   src={`/img_cdn/${season.poster}`}
                   errorSrc={base64Content.cactus_poster_placeholder}
