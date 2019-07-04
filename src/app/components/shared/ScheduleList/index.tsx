@@ -15,11 +15,13 @@ import DateTimeToTime from '../../../utils/DateTimeToTime';
 * @arg today Integer Literal Represent day of the week 1 to 7
 * @returns Array of Day Objects organized by their order attribute
 */
+
 const reorderWeekDays = (WeekDays, today = getDayOfTheWeek()) => {
   // Set array WeekDay array as unmutable (avoids global mutability problem)
   const WeekDaysList = WeekDays.map(day => day);
+
   // Orders WeekDays by ascending order with the 'order' field
-  const parsedWeekDays = WeekDaysList.sort((a, b) => (a.order < b.order));
+  const parsedWeekDays = WeekDaysList.sort((a, b) => (a.order > b.order));
 
   // Get any days before today
   const aftermathWeekDays = parsedWeekDays.filter(day => day.order < today);
