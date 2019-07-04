@@ -1,6 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import { FormattedMessage } from 'react-intl';
 
 import HottestVideoBlock from '../../shared/HottestVideoBlock';
 import LoadingHottestVideoBlock
@@ -68,6 +69,12 @@ class Dashboard extends React.Component {
           console.log(data);
           return (
             <div className="main-content no-padding">
+              {/* <h1>
+                <FormattedMessage
+                  id="cactus.hot_section_title"
+                  defaultMessage={'This is the default message'}
+                />
+              </h1> */}
               <HottestVideoBlock
                 title="🔥 right now"
                 episodes={data.HottestEpisodes.rows}

@@ -7,6 +7,8 @@ import sha256 from 'sha256';
 import helmet from 'helmet';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
+import logger from '@cactus-app/js-logger-module';
+import { IntlProvider } from 'react-intl';
 import React from 'react';
 
 /* Apollo related dependencies ... */
@@ -15,9 +17,11 @@ import { ApolloClient } from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import fetch from 'node-fetch';
-import logger from '@cactus-app/js-logger-module';
 
 import App from '../app/components/views';
+import languages from '../translations';
+
+const createLocaleMiddleware = require('express-locale');
 
 // Root path of the project
 const rootPath = path.resolve(__dirname, '..', '..');
@@ -101,6 +105,10 @@ class Server {
   private middlewares(): void {
     this.app.use(
       morgan(':method :url :status :res[content-length] - :response-time ms')
+    );
+
+    this.app.use(
+      createLocaleMiddleware()
     );
   }
 
@@ -194,11 +202,26 @@ class Server {
       cache: new InMemoryCache(),
     });
 
+    /**
+     * @Note Extracts language preference from the request, and renders the app
+     * accordingly (default if not supported is English). The req.locale value is
+     * set by createLocaleMiddleware().
+     */
+    const { language } = req.locale;
+
+    console.log('==================================================');
+    console.log(language);
+    /**
+     * @todo If the language is not supported, default to English.
+     */
+
     const markUp = (
       <ApolloProvider client={client}>
-        <StaticRouter location={req.path} context={{}}>
-          <App />
-        </StaticRouter>
+        <IntlProvider locale={language} messages={languages[language]}>
+          <StaticRouter location={req.path} context={{}}>
+            <App />
+          </StaticRouter>
+        </IntlProvider>
       </ApolloProvider>
     );
 
@@ -224,6 +247,7 @@ class Server {
       );
 
       const finalMarkUpFile = indexFile
+        .replace('/* ::LANG:: */', languages[language] ? language : 'en')
         .replace('<!-- ::APP:: -->', content)
         .replace('/* ::APOLLO_CACHE:: */',
           `window.__APOLLO_STATE__ = ${JSON.stringify(initialState)};`)

@@ -4,6 +4,12 @@ import { HttpLink } from 'apollo-link-http';
 import { ApolloProvider } from 'react-apollo';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import fetch from 'node-fetch';
+
+import { IntlProvider, addLocaleData } from 'react-intl';
+import locale_en from 'react-intl/locale-data/en';
+import locale_es from 'react-intl/locale-data/es';
+
+import languages from '../../translations';
 import Routes from './views';
 
 const httpLink = new HttpLink({
@@ -16,9 +22,17 @@ const client = new ApolloClient({
   cache: new InMemoryCache().restore(window['__APOLLO_STATE__']),
 });
 
+// Setup language locale support
+addLocaleData([...locale_en, ...locale_es]);
+
+// Gets the language ISO code out of the html tag
+const language = document.documentElement.lang;
+
 const App = () => (
   <ApolloProvider client={client}>
-    <Routes />
+    <IntlProvider locale={language} messages={languages[language]}>
+      <Routes />
+    </IntlProvider>
   </ApolloProvider>
 );
 
