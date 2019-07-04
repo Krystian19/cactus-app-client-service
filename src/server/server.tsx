@@ -209,8 +209,6 @@ class Server {
      */
     const { language } = req.locale;
 
-    console.log('==================================================');
-    console.log(language);
     /**
      * @todo If the language is not supported, default to English.
      */
