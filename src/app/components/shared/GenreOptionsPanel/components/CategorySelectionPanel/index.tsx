@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import { injectIntl, InjectedIntlProps } from 'react-intl';
 
 import Genre from '../../../../@types/Genre';
 import FilterCategoriesChips from '../../../FilterCategoriesChips';
@@ -20,7 +21,7 @@ const GenreSearchQuery = gql`
   }
 `;
 
-type PropType = {
+type PropType = InjectedIntlProps & {
   closePanel: Function,
   // categorySelected: Function,
   // categoryRemoved: Function,
@@ -124,6 +125,8 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
       setSelectedCategories
     } = this.props;
 
+    const { formatMessage } = this.props.intl;
+
     return (
       <div className="genre-options-container">
         <div
@@ -146,7 +149,12 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
             <input
               type="text"
               className="big-search-box-input"
-              placeholder="Search Categories ..."
+              placeholder={
+                formatMessage({
+                  id: "cactus.category_search_field_placeholder",
+                  defaultMessage: "Search categories ..."
+                })
+              }
               // value={String(searchFieldText)}
               onChange={this.onSearchFieldChangedEvent}
             />
@@ -219,4 +227,4 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
   }
 }
 
-export default CategorySelectionPanel;
+export default injectIntl(CategorySelectionPanel);

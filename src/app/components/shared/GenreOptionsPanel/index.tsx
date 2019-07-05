@@ -1,4 +1,5 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import Genre from '../../@types/Genre';
 import FilterCategoriesChips from '../FilterCategoriesChips';
@@ -41,7 +42,10 @@ class GenreOptionsPanel extends React.Component<PropType, StateType> {
           onClick={() =>
             this.setState({ showCategorySelectionPanel: true })}
         >
-          Categories
+          <FormattedMessage
+            id="cactus.categories"
+            defaultMessage="Categories"
+          />
         </a>
         <FilterCategoriesChips
           categories={selectedCategories}

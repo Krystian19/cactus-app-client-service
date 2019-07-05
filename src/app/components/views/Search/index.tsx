@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import React from 'react';
 import { RouteComponentProps, withRouter } from "react-router";
 import queryString from 'qs';
+import { injectIntl, InjectedIntlProps } from 'react-intl';
 
 import Genre from '../../@types/Genre';
 import AnimeThumbnailList from '../../shared/AnimeThumbnailList';
@@ -39,7 +40,9 @@ type StateTypes = {
   selectedCategories: Array<Genre>,
 };
 
-type PropType = RouteComponentProps<{}> & {};
+type PropType =
+  RouteComponentProps<{}>
+  & InjectedIntlProps & {};
 
 // How many records should be shown per page
 const pageCount = 18;
@@ -218,6 +221,8 @@ class Search extends React.Component<PropType, StateTypes> {
       selectedCategories,
     } = this.state;
 
+    const { formatMessage } = this.props.intl;
+
     // Avoid the component rendering before it's mounted
     if (!this._isMounted) {
       return ('');
@@ -231,7 +236,12 @@ class Search extends React.Component<PropType, StateTypes> {
           <input
             type="text"
             className="big-search-box-input"
-            placeholder="Search by ..."
+            placeholder={
+              formatMessage({
+                id: "cactus.search_field_placeholder",
+                defaultMessage: "Search ..."
+              })
+            }
             defaultValue={String(searchFieldText)}
             onChange={this.onSearchFieldChangeEvent}
           />
@@ -260,8 +270,6 @@ class Search extends React.Component<PropType, StateTypes> {
                 </div>
               );
             }
-
-            // if (error) return <p>Error :(</p>;
 
             console.log(data);
             return (
@@ -301,4 +309,8 @@ class Search extends React.Component<PropType, StateTypes> {
   }
 }
 
-export default withRouter(Search);
+export default withRouter(
+  injectIntl(
+    Search
+  )
+);
