@@ -1,7 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl, InjectedIntlProps } from 'react-intl';
 
 import HottestVideoBlock from '../../shared/HottestVideoBlock';
 import LoadingHottestVideoBlock
@@ -48,8 +48,12 @@ const DashboardQuery = gql`
   }
 `;
 
-class Dashboard extends React.Component {
+type PropType = InjectedIntlProps & {};
+
+class Dashboard extends React.Component<PropType> {
   render() {
+    const { formatMessage } = this.props.intl;
+
     return (
       <Query query={DashboardQuery}>
         {({ loading, error, data }) => {
@@ -69,24 +73,33 @@ class Dashboard extends React.Component {
           console.log(data);
           return (
             <div className="main-content no-padding">
-              {/* <h1>
-                <FormattedMessage
-                  id="cactus.hot_section_title"
-                  defaultMessage={'This is the default message'}
-                />
-              </h1> */}
               <HottestVideoBlock
-                title="🔥 right now"
+                title={
+                  formatMessage({
+                    id: "cactus.hot_section_title",
+                    defaultMessage: "🔥 right now"
+                  })
+                }
                 episodes={data.HottestEpisodes.rows}
                 viewAllLink="/hottest_episodes"
               />
               <VideoBlock
-                title={'Newest episodes'}
+                title={
+                  formatMessage({
+                    id: "cactus.newest_episodes_section_title",
+                    defaultMessage: "Newest episodes"
+                  })
+                }
                 episodes={data.NewestEpisodes.rows}
                 viewAllLink={'/newest_episodes'}
               />
               <CategoriesBlock
-                title={'Categories'}
+                title={
+                  formatMessage({
+                    id: "cactus.categories",
+                    defaultMessage: "Categories"
+                  })
+                }
                 categories={data.Genres.rows}
                 viewAllLink={'/categories'}
               />
@@ -98,4 +111,4 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+export default injectIntl(Dashboard);
