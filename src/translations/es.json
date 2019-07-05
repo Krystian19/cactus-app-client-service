@@ -1,5 +1,14 @@
 {
   "cactus.hot_section_title": "Lo que está 🔥",
   "cactus.newest_episodes_section_title": "Últimos episodios",
-  "cactus.categories": "Categorias"
+  "cactus.categories": "Categorias",
+  "cactus.Today": "Hoy",
+  "cactus.Tomorrow": "Mañana",
+  "cactus.Monday": "Lunes",
+  "cactus.Tuesday": "Martes",
+  "cactus.Wednesday": "Miércoles",
+  "cactus.Thursday": "Jueves",
+  "cactus.Friday": "Viernes",
+  "cactus.Saturday": "Sábado",
+  "cactus.Sunday": "Domingo"
 }

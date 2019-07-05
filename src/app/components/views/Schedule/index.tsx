@@ -42,9 +42,7 @@ export default class Schedule extends React.Component {
           return (
             <div className="main-content">
               <ScheduleList
-                props={{
-                  WeekDays: data.AiringSeasons,
-                }}
+                WeekDays={data.AiringSeasons}
               />
             </div>
           );

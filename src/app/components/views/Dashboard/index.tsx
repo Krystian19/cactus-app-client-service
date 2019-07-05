@@ -1,7 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import { FormattedMessage, injectIntl, InjectedIntlProps } from 'react-intl';
+import { injectIntl, InjectedIntlProps } from 'react-intl';
 
 import HottestVideoBlock from '../../shared/HottestVideoBlock';
 import LoadingHottestVideoBlock

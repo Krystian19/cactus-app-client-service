@@ -1,7 +1,10 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import moment from 'moment';
+import { RouteComponentProps } from 'react-router';
+import { injectIntl, InjectedIntlProps } from 'react-intl';
 
+import Season from '../../@types/Season';
 import ClientRender from '../ClientRenderer';
 import JSTToLocalTime from '../../../utils/JSTtoLocalTime';
 import getDayOfTheWeek from '../../../utils/getDayOfTheWeek';
@@ -102,8 +105,14 @@ const groupSeasonsByWeekDays = (Seasons) => {
   return parsedWeekDays;
 };
 
-const ScheduleList = (props) => {
-  const { props: { WeekDays }, history } = props;
+type PropType =
+  RouteComponentProps<{}>
+  & InjectedIntlProps & {
+    WeekDays: Season[],
+  };
+
+const ScheduleList = (props: PropType) => {
+  const { WeekDays, history, intl: { formatMessage } } = props;
   const parsedWeekDays = groupSeasonsByWeekDays(WeekDays);
   return (
     <div className="anime-schedule-list">
@@ -135,7 +144,10 @@ const ScheduleList = (props) => {
                       DayName = Day.dayName;
                     }
 
-                    return DayName;
+                    return formatMessage({
+                      id: `cactus.${DayName}`,
+                      defaultMessage: ""
+                    });
                   })()}
                 </h3>
                 <span className="split" />
@@ -195,4 +207,6 @@ const ScheduleList = (props) => {
   );
 };
 
-export default withRouter(ScheduleList);
+export default withRouter(
+  injectIntl(ScheduleList)
+);
