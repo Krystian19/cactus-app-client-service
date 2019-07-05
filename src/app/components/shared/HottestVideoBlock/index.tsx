@@ -4,6 +4,7 @@ import {
   Link,
   withRouter,
 } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 
 import Episode from '../../@types/Episode';
 import LazyImage from '../LazyImage';
@@ -33,7 +34,10 @@ class HottestVideoBlock extends React.Component<PropType> {
           </div>
           {viewAllLink && (
             <Link to={String(viewAllLink)} className="button">
-              View all
+              <FormattedMessage
+                id="cactus.view_all"
+                defaultMessage={'View all'}
+              />
             </Link>
           )}
         </div>

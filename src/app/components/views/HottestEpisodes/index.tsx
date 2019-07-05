@@ -1,6 +1,8 @@
+import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import React from 'react';
+import { injectIntl, InjectedIntlProps } from 'react-intl';
+
 import HottestVideoBlock from '../../shared/HottestVideoBlock';
 import
 LoadingHottestVideoBlock
@@ -30,6 +32,8 @@ const HottestEpisodesQuery = gql`
   }
 `;
 
+type PropType = InjectedIntlProps & {};
+
 type StateType = {
   currentPage: Number,
 };
@@ -37,7 +41,7 @@ type StateType = {
 // How many records should be shown per page.
 const pageCount = 8;
 
-export default class HottestEpisodes extends React.Component<{}, StateType> {
+class HottestEpisodes extends React.Component<PropType, StateType> {
   constructor(props) {
     super(props);
 
@@ -70,6 +74,8 @@ export default class HottestEpisodes extends React.Component<{}, StateType> {
 
   render() {
     const { currentPage } = this.state;
+    const { formatMessage } = this.props.intl;
+
     return (
       <Query
         query={HottestEpisodesQuery}
@@ -93,7 +99,12 @@ export default class HottestEpisodes extends React.Component<{}, StateType> {
           return (
             <div className="main-content no-padding">
               <HottestVideoBlock
-                title="🔥 right now"
+                title={
+                  formatMessage({
+                    id: "cactus.hot_section_title",
+                    defaultMessage: "🔥 right now"
+                  })
+                }
                 episodes={data.HottestEpisodes.rows}
               />
               {
@@ -125,3 +136,5 @@ export default class HottestEpisodes extends React.Component<{}, StateType> {
     );
   }
 }
+
+export default injectIntl(HottestEpisodes);

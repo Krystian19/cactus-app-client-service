@@ -5,6 +5,7 @@ import {
   withRouter,
 } from 'react-router-dom';
 import queryString from 'qs';
+import { FormattedMessage } from 'react-intl';
 
 import LazyImage from '../LazyImage';
 import Genre from '../../@types/Genre';
@@ -33,7 +34,10 @@ const CategoriesBlock = (props: PropType) => {
         </div>
         {viewAllLink && (
           <Link to={String(viewAllLink)} className="button">
-            View all
+            <FormattedMessage
+              id="cactus.view_all"
+              defaultMessage={'View all'}
+            />
           </Link>
         )}
       </div>

@@ -1,6 +1,8 @@
+import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import React from 'react';
+import { injectIntl, InjectedIntlProps } from 'react-intl';
+
 import LoadingVideoBlock from '../../shared/VideoBlock/components/LoadingVideoBlock';
 import VideoBlock from '../../shared/VideoBlock';
 import PaginationBox from '../../shared/PaginationBox';
@@ -28,6 +30,9 @@ const NewestEpisodesQuery = gql`
   }
 `;
 
+
+type PropType = InjectedIntlProps & {};
+
 type StateType = {
   currentPage: Number,
 };
@@ -35,7 +40,7 @@ type StateType = {
 // How many records should be shown per page.
 const pageCount = 8;
 
-export default class NewestEpisodes extends React.Component<{}, StateType> {
+class NewestEpisodes extends React.Component<PropType, StateType> {
   constructor(props) {
     super(props);
 
@@ -68,6 +73,8 @@ export default class NewestEpisodes extends React.Component<{}, StateType> {
 
   render() {
     const { currentPage } = this.state;
+    const { formatMessage } = this.props.intl;
+
     return (
       <Query
         query={NewestEpisodesQuery}
@@ -91,7 +98,12 @@ export default class NewestEpisodes extends React.Component<{}, StateType> {
           return (
             <div className="main-content no-padding">
               <VideoBlock
-                title={'Newest episodes'}
+                title={
+                  formatMessage({
+                    id: "cactus.newest_episodes_section_title",
+                    defaultMessage: "Newest episodes"
+                  })
+                }
                 episodes={data.NewestEpisodes.rows}
               />
               {
@@ -123,3 +135,6 @@ export default class NewestEpisodes extends React.Component<{}, StateType> {
     );
   }
 }
+
+
+export default injectIntl(NewestEpisodes);

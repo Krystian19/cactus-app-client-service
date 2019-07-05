@@ -1,6 +1,7 @@
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import React from 'react';
+import { injectIntl, InjectedIntlProps } from 'react-intl';
 
 import CategoriesBlock from '../../shared/CategoriesBlock';
 import LoadingSpinner from '../../shared/LoadingSpinner';
@@ -19,6 +20,8 @@ const GenresEpisodesQuery = gql`
   }
 `;
 
+type PropType = InjectedIntlProps & {};
+
 type StateType = {
   currentPage: Number,
 };
@@ -26,7 +29,7 @@ type StateType = {
 // How many records should be shown per page.
 const pageCount = 8;
 
-export default class Categories extends React.Component<{}, StateType> {
+class Categories extends React.Component<PropType, StateType> {
   constructor(props) {
     super(props);
 
@@ -59,6 +62,7 @@ export default class Categories extends React.Component<{}, StateType> {
 
   render() {
     const { currentPage } = this.state;
+    const { formatMessage } = this.props.intl;
 
     return (
       <Query
@@ -83,7 +87,12 @@ export default class Categories extends React.Component<{}, StateType> {
           return (
             <div className="main-content no-padding">
               <CategoriesBlock
-                title={'Categories'}
+                title={
+                  formatMessage({
+                    id: "cactus.categories",
+                    defaultMessage: "Categories"
+                  })
+                }
                 categories={data.Genres.rows}
               />
               {
@@ -115,3 +124,5 @@ export default class Categories extends React.Component<{}, StateType> {
     );
   }
 }
+
+export default injectIntl(Categories);
