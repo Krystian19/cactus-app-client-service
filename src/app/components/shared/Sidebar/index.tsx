@@ -7,6 +7,8 @@ import {
   withRouter,
 } from 'react-router-dom';
 
+import ClientRender from '../ClientRenderer';
+
 const RandomAnimeQuery = gql`
  query {
     RandomSeason {
@@ -19,13 +21,42 @@ const RandomAnimeQuery = gql`
 // Sidebar's Component props
 type PropsType = RouteComponentProps<{}> & {};
 
-class Sidebar extends React.Component<PropsType> {
+
+type StateType = {
+  isMounted: Boolean,
+};
+
+class Sidebar extends React.Component<PropsType, StateType> {
+  constructor(props) {
+    super(props);
+
+    this.state = { isMounted: false };
+  }
+
+  componentDidMount() {
+    this.setState({ isMounted: true });
+  }
+
   goToIndex = () => {
     const { history } = this.props;
     history.push('/');
   }
 
+  getFlagIconCode = (): String => {
+    // Gets the language ISO code out of the html tag
+    const language = document.documentElement.lang;
+
+    switch (language) {
+      case 'es': // Spanish flag
+        return 'em-es';
+      default:
+        return 'em-us'
+    }
+  }
+
   render() {
+    const { isMounted } = this.state;
+
     return (
       <div className="sidebar">
         <div className="sidebar-top-options">
@@ -85,15 +116,19 @@ class Sidebar extends React.Component<PropsType> {
             }}
           </Query>
         </div>
-        <div className="sidebar-bottom-options">
-          <div className="sidebar-option">
-            <div className="flag-icon">
-              <span role="img" aria-label="flag">
-                <i className="em em-us" />
-              </span>
+        {
+          isMounted && (
+            <div className="sidebar-bottom-options">
+              <div className="sidebar-option">
+                <div className="flag-icon">
+                  <span role="img" aria-label="flag">
+                    <i className={`em ${this.getFlagIconCode()}`} />
+                  </span>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          )
+        }
       </div>
     );
   }
