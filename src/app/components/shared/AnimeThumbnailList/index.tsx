@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Link,
 } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 
 import RandomTextEmoji from '../RandomTextEmoji';
 import LazyImage from '../LazyImage';
@@ -28,7 +29,10 @@ export default class AnimeThumbnailList extends React.Component<PropType> {
               {RandomTextEmoji()}
             </h1>
             <h2 className="nothing-found-title">
-              Nothing found
+              <FormattedMessage
+                id="cactus.nothing_found"
+                defaultMessage="Nothing found"
+              />
             </h2>
           </div>
         </div>
