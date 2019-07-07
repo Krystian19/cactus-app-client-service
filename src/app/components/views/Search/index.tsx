@@ -178,7 +178,7 @@ class Search extends React.Component<PropType, StateTypes> {
     // console.log(currentUrlParams);
 
     this.setState({
-      searchFieldText: currentUrlParams.q || '',
+      searchFieldText: currentUrlParams.q.split('+').join(' ') || '',
       currentPage: currentUrlParams.page ? Number(currentUrlParams.page) : 0,
       selectedCategories: currentUrlParams.genre || [],
     });
