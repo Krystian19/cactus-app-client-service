@@ -177,8 +177,13 @@ class Search extends React.Component<PropType, StateTypes> {
     // console.log('These are the current URL params ......................');
     // console.log(currentUrlParams);
 
+    // Clears searchFieldText from '+' signs
+    const searchFieldText = currentUrlParams.q
+      ? currentUrlParams.q.split('+').join(' ')
+      : '';
+
     this.setState({
-      searchFieldText: currentUrlParams.q.split('+').join(' ') || '',
+      searchFieldText,
       currentPage: currentUrlParams.page ? Number(currentUrlParams.page) : 0,
       selectedCategories: currentUrlParams.genre || [],
     });
