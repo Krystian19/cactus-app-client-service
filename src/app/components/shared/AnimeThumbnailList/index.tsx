@@ -79,7 +79,15 @@ export default class AnimeThumbnailList extends React.Component<PropType> {
                   )
                   } - ${
                   season.EpisodeCount
-                  } episodes`}
+                  } `}
+                <FormattedMessage
+                  id={
+                    (season.EpisodeCount == 1)
+                    ? "cactus.episode"
+                    : "cactus.episodes"
+                  }
+                  defaultMessage="Episodes"
+                />
               </div>
             </div>
           </div>
