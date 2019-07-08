@@ -18,7 +18,9 @@ exports[`HottestVideoBlock component is rendering properly 1`] = `
       class="button"
       href="/hottest_episodes"
     >
-      View all
+      <span>
+        View all
+      </span>
     </a>
   </div>
   <div

@@ -1,6 +1,9 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { MemoryRouter } from 'react-router-dom';
+import { IntlProvider, addLocaleData } from 'react-intl';
+import locale_en from 'react-intl/locale-data/en';
+import locale_es from 'react-intl/locale-data/es';
 
 import HottestVideoBlock from '../components/shared/HottestVideoBlock';
 import Episode from '../components/@types/Episode';
@@ -23,12 +26,18 @@ const episodes: Array<Episode> = [
   },
 ];
 
+
+// Setup language locale support
+addLocaleData([...locale_en, ...locale_es]);
+
 const componentSetup = (
-  <HottestVideoBlock
-    title="🔥 right now"
-    episodes={episodes}
-    viewAllLink="/hottest_episodes"
-  />
+  <IntlProvider locale="en">
+    <HottestVideoBlock
+      title="🔥 right now"
+      episodes={episodes}
+      viewAllLink="/hottest_episodes"
+    />
+  </IntlProvider>
 );
 
 test('HottestVideoBlock component is rendering properly', () => {
