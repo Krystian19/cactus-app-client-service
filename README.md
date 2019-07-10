@@ -4,13 +4,13 @@
 
 Cactus app web client service repo.
 
-# Requirements
+## Requirements
 ```
 docker -v
 Docker version 18.03.0-ce
 ```
 
-# Docker-compose setup example
+## Docker-compose setup example
 How to use it inside a docker-compose file:
 ```yaml
 version: '3'
@@ -34,7 +34,7 @@ services:
     ports: ['3000:3000']
 ```
 
-# Standalone Setup
+## Standalone Setup
 
 Inside the project's directory ...
 
@@ -69,23 +69,23 @@ docker run -ti --name=cactus_app_client -d -v $(pwd):/app -p 3000:3000 cactus_ap
 
 Wait a couple seconds and then the project should be running @ ```http://localhost:3000/```.
 
-# How to work with the project ?
+## How to work with the project ?
 
 Start watch of ts and sass changes:
 ```sh
 docker exec -ti cactus_app_client yarn watch
 ```
-# Run the tests
+## Run the tests
 ```sh
 docker exec -ti cactus_app_client yarn test
 ```
 
-# Utils
+## Utils
 
 ### Translates Japan's Date and time to UTC with moment-timezone.js ...
 ```js
 moment.tz('2018-10-07 00:30', 'Japan').utc().format('YYYY-MM-DD HH:mm:ss A');
 ```
 
-# License
+## License
 MIT © [Jan Guzman](https://github.com/Krystian19)
