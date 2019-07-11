@@ -16,7 +16,7 @@ export type Season = {
   Episodes?: Array<Episode>,
   // AlternativeTitles: [SeasonAlternativeTitle],
   Anime?: Anime,
-  Genres: Genre[],
+  Genres?: Genre[],
 };
 
 export default Season;

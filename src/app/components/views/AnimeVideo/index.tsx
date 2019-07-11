@@ -14,10 +14,11 @@ import base64Content from '../../../utils/base64Content';
 
 const AnimeVideoQuery = gql`
   query ($id:Int!) {
-    Episode(id:1) {
+    Episode(id:$id) {
       id,
       thumbnail,
       episodeOrder,
+      episode_code,
       EarlierEpisode {
         id,
         episodeOrder
@@ -92,7 +93,7 @@ class AnimeVideo extends React.Component<PropType> {
                         isVideoChild={true}
                         src={
                           `/video_cdn/${
-                          Episode.EpisodeVersions[0].episode_url
+                          Episode.episode_code
                           }/index.m3u8`}
                       />
                     </Player>
