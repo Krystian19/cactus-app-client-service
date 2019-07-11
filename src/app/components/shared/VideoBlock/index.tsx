@@ -67,7 +67,7 @@ class VideoBlock extends React.Component<PropType> {
                 <div className="info">
                   <div className="title">
                     <div className="title-container">
-                      {`${episode.Season.title} (Season ${episode.Season.seasonOrder})`}
+                      {`${episode.Season.title} (Season ${episode.Season.releaseOrder})`}
                     </div>
                     <div className="detail-container">
                       {`Ep. ${episode.episodeOrder}`}

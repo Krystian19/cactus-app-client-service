@@ -35,7 +35,7 @@ const DashboardQuery = gql`
       episodeOrder,
       Season {
         id,
-        seasonOrder,
+        releaseOrder,
         title,
         background,
         Anime {

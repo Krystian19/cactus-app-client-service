@@ -14,7 +14,7 @@ import base64Content from '../../../utils/base64Content';
 
 const AnimeVideoQuery = gql`
   query ($id:Int!) {
-    Episode(id:$id) {
+    Episode(id:1) {
       id,
       thumbnail,
       episodeOrder,
@@ -30,11 +30,11 @@ const AnimeVideoQuery = gql`
         id,
         poster,
         title,
-        seasonOrder
+        releaseOrder
       },
-      EpisodeVersions {
+      EpisodeSubtitles {
         id,
-        episode_url,
+        subtitle_code,
         Language {
           id,
           name,

@@ -16,7 +16,7 @@ const AnimeInfoQuery = gql`
   query($id:Int!) {
     Season(id: $id) {
       id,
-      seasonOrder,
+      releaseOrder,
       title,
       EpisodeCount
       Descriptions {

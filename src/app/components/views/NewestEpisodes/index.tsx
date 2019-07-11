@@ -16,7 +16,7 @@ const NewestEpisodesQuery = gql`
         episodeOrder,
         Season {
           id,
-          seasonOrder,
+          releaseOrder,
           title,
           background,
           Anime {

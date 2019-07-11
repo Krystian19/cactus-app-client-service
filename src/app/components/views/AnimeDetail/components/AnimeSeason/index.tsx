@@ -21,16 +21,7 @@ const SeasonQuery = gql`
           id,
           thumbnail,
           episodeOrder,
-          EpisodeVersions {
-            id,
-            episode_url,
-            title,
-            Language {
-              id,
-              name,
-              iso_code
-            },
-          }
+          episode_code
         },
         count
       }
@@ -107,7 +98,7 @@ export default class AnimeSeason extends React.Component<PropType, StateType> {
           return (
             <div className="anime-season">
               {/* <span className="anime-season-title">
-                {`${data.Season.title} (Season ${data.Season.seasonOrder})`}
+                {`${data.Season.title} (Season ${data.Season.releaseOrder})`}
               </span> */}
               <div className="anime-season-videos">
                 <div className="anime-small-thumbnail-list">
@@ -142,18 +133,9 @@ export default class AnimeSeason extends React.Component<PropType, StateType> {
                         <div className="info">
                           <div className="title">
                             <div className="title-container">
-                              {
-                                (episode.EpisodeVersions[0]
-                                  && episode.EpisodeVersions[0].title)
-                                && (
-                                  episode.EpisodeVersions[0].title
-                                )
-                              }
+                              {`Episode ${episode.episodeOrder}`}
                             </div>
-                            <div className="detail-container">
-                              Ep.
-                              {episode.episodeOrder}
-                            </div>
+                            <div className="detail-container"></div>
                           </div>
                         </div>
                       </div>

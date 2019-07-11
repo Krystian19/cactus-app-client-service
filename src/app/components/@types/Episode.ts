@@ -7,7 +7,6 @@ export type Episode = {
   episodeOrder?: Number,
   EarlierEpisode?: Episode,
   LaterEpisode?: Episode,
-  // EpisodeVersions: Array<EpisodeVersions>,
   Season?: Season,
   Anime?: Anime,
 };
