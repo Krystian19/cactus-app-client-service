@@ -27,7 +27,7 @@ const AnimeVideoQuery = gql`
         id,
         episodeOrder
       },
-      Season {
+      Release {
         id,
         poster,
         title,
@@ -101,9 +101,9 @@ class AnimeVideo extends React.Component<PropType> {
                   <div className="anime-watch-episode-description">
                     <div className="left-side">
                       <div className="cover">
-                        <Link to={`/anime/detail/${Episode.Season.id}`}>
+                        <Link to={`/anime/detail/${Episode.Release.id}`}>
                           <LazyImage
-                            src={`/img_cdn/${Episode.Season.poster}`}
+                            src={`/img_cdn/${Episode.Release.poster}`}
                             errorSrc={base64Content.cactus_poster_placeholder}
                             alt="cover"
                             className="fade-in"
@@ -113,8 +113,8 @@ class AnimeVideo extends React.Component<PropType> {
                       </div>
                       <div className="info">
                         <h1>
-                          <Link to={`/anime/detail/${Episode.Season.id}`}>
-                            {Episode.Season.title}
+                          <Link to={`/anime/detail/${Episode.Release.id}`}>
+                            {Episode.Release.title}
                           </Link>
                         </h1>
                         <h2>
@@ -143,7 +143,7 @@ class AnimeVideo extends React.Component<PropType> {
                         }
                         <Link
                           className="list-option"
-                          to={`/anime/detail/${Episode.Season.id}`}
+                          to={`/anime/detail/${Episode.Release.id}`}
                           role="menuitem"
                           tabIndex={-2}
                         >
