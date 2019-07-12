@@ -7,11 +7,10 @@ import {
   withRouter,
 } from 'react-router-dom';
 
-import ClientRender from '../ClientRenderer';
 
 const RandomAnimeQuery = gql`
  query {
-    RandomSeason {
+    RandomRelease {
       id,
       title
     }
@@ -101,13 +100,13 @@ class Sidebar extends React.Component<PropsType, StateType> {
               console.log(data);
 
               // If no data received
-              if (!data.RandomSeason) return false;
+              if (!data.RandomRelease) return false;
 
               return (
                 <div className="sidebar-option">
                   <NavLink
                     onClick={() => refetch()}
-                    to={`/anime/detail/${data.RandomSeason.id}`}
+                    to={`/anime/detail/${data.RandomRelease.id}`}
                   >
                     <i className="fa fa-random" />
                   </NavLink>

@@ -1,5 +1,5 @@
 import Anime from './Anime';
-import Season from './Season';
+import Release from './Release';
 
 export type Episode = {
   id: Number,
@@ -7,7 +7,7 @@ export type Episode = {
   episodeOrder?: Number,
   EarlierEpisode?: Episode,
   LaterEpisode?: Episode,
-  Season?: Season,
+  Release?: Release,
   Anime?: Anime,
 };
 

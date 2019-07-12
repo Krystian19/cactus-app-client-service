@@ -2,11 +2,11 @@ import { Episode } from './Episode';
 import Genre from './Genre';
 import Anime from './Anime';
 
-export type Season = {
+export type Release = {
   id: Number,
   releaseOrder?: Number,
   title?: String,
-  // Descriptions: [SeasonDescription],
+  // Descriptions: [ReleaseDescription],
   startedAiring?: String,
   stoppedAiring?: String,
   poster?: String,
@@ -14,9 +14,9 @@ export type Season = {
   EpisodeCount?: Number,
   LatestEpisode?: Episode,
   Episodes?: Array<Episode>,
-  // AlternativeTitles: [SeasonAlternativeTitle],
+  // AlternativeTitles: [ReleaseAlternativeTitle],
   Anime?: Anime,
   Genres?: Genre[],
 };
 
-export default Season;
+export default Release;

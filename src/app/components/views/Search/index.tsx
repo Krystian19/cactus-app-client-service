@@ -13,7 +13,7 @@ import PaginationBox from '../../shared/PaginationBox';
 
 const SearchViewQuery = gql`
   query($title: String, $pageCount:Int, $currentPage:Int, $genres: [Int!]) {
-    Seasons(title:$title, Genres: $genres, limit:$pageCount, offset: $currentPage) {
+    Releases(title:$title, Genres: $genres, limit:$pageCount, offset: $currentPage) {
       rows {
         id,
         title,
@@ -280,18 +280,18 @@ class Search extends React.Component<PropType, StateTypes> {
             return (
               <div className="util-container">
                 <AnimeThumbnailList
-                  seasons={data.Seasons.rows}
+                  releases={data.Releases.rows}
                 />
                 {
-                  data.Seasons.rows.length !== 0
+                  data.Releases.rows.length !== 0
                   && (
                     <PaginationBox
                       pageCount={pageCount}
-                      itemCount={data.Seasons.count}
+                      itemCount={data.Releases.count}
                       currentPage={currentPage}
                       goForwardCB={() => {
                         const lastPage = Math.ceil(
-                          data.Seasons.count / pageCount,
+                          data.Releases.count / pageCount,
                         );
 
                         // If this is the last page, don't go forward

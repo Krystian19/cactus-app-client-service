@@ -52,7 +52,7 @@ class VideoBlock extends React.Component<PropType> {
               >
                 <div className="cover shimmer-load">
                   <LazyImage
-                    src={`/img_cdn/${episode.Season.background}`}
+                    src={`/img_cdn/${episode.Release.background}`}
                     errorSrc="/img/thumbnail_placeholder.png"
                     alt="thumbnail"
                     className="anime-small-thumbnail fade-in"
@@ -67,7 +67,7 @@ class VideoBlock extends React.Component<PropType> {
                 <div className="info">
                   <div className="title">
                     <div className="title-container">
-                      {`${episode.Season.title} (Season ${episode.Season.releaseOrder})`}
+                      {`${episode.Release.title} (Season ${episode.Release.releaseOrder})`}
                     </div>
                     <div className="detail-container">
                       {`Ep. ${episode.episodeOrder}`}

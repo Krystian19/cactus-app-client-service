@@ -5,14 +5,14 @@ import {
   Link,
 } from 'react-router-dom';
 
-import Season from '../../../../@types/Season';
+import Release from '../../../../@types/Release';
 import LazyImage from '../../../../shared/LazyImage';
 import PaginationBox from '../../../../shared/PaginationBox';
-import LoadingAnimeSeason from '../LoadingAnimeSeason';
+import LoadingAnimeRelease from '../LoadingAnimeRelease';
 
-const SeasonQuery = gql`
+const ReleaseQuery = gql`
   query($id:Int!, $pageCount:Int, $currentPage:Int) {
-    Season(id:$id) {
+    Release(id:$id) {
       id,
       title,
       EpisodeCount,
@@ -30,7 +30,7 @@ const SeasonQuery = gql`
 `;
 
 type PropType = {
-  season: Season,
+  season: Release,
 };
 
 type StateType = {
@@ -40,7 +40,7 @@ type StateType = {
 // How many records should be shown per page.
 const pageCount = 9;
 
-export default class AnimeSeason extends React.Component<PropType, StateType> {
+export default class AnimeRelease extends React.Component<PropType, StateType> {
   constructor(props) {
     super(props);
 
@@ -78,7 +78,7 @@ export default class AnimeSeason extends React.Component<PropType, StateType> {
 
     return (
       <Query
-        query={SeasonQuery}
+        query={ReleaseQuery}
         variables={{
           id: Number(season.id),
           pageCount: pageCount,
@@ -90,7 +90,7 @@ export default class AnimeSeason extends React.Component<PropType, StateType> {
           // Only show anything when data is available
           if (loading || error || (!data)) {
             return (
-              <LoadingAnimeSeason count={pageCount} />
+              <LoadingAnimeRelease count={pageCount} />
             );
           }
 
@@ -98,13 +98,13 @@ export default class AnimeSeason extends React.Component<PropType, StateType> {
           return (
             <div className="anime-season">
               {/* <span className="anime-season-title">
-                {`${data.Season.title} (Season ${data.Season.releaseOrder})`}
+                {`${data.Release.title} (Release ${data.Release.releaseOrder})`}
               </span> */}
               <div className="anime-season-videos">
                 <div className="anime-small-thumbnail-list">
 
                   {
-                    data.Season.Episodes.rows.map(episode => (
+                    data.Release.Episodes.rows.map(episode => (
                       <div
                         key={episode.id}
                         className="anime-small-thumbnail fade-in"
@@ -145,11 +145,11 @@ export default class AnimeSeason extends React.Component<PropType, StateType> {
                 </div>
                 <PaginationBox
                   pageCount={pageCount}
-                  itemCount={data.Season.Episodes.count}
+                  itemCount={data.Release.Episodes.count}
                   currentPage={currentPage}
                   goForwardCB={() => {
                     const lastPage = Math.ceil(
-                      data.Season.Episodes.count / pageCount,
+                      data.Release.Episodes.count / pageCount,
                     );
 
                     // If this is the last page, don't go forward

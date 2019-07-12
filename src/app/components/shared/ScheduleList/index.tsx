@@ -4,7 +4,7 @@ import moment from 'moment';
 import { RouteComponentProps } from 'react-router';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
 
-import Season from '../../@types/Season';
+import Release from '../../@types/Release';
 import ClientRender from '../ClientRenderer';
 import JSTToLocalTime from '../../../utils/JSTtoLocalTime';
 import getDayOfTheWeek from '../../../utils/getDayOfTheWeek';
@@ -14,7 +14,7 @@ import DateTimeToTime from '../../../utils/DateTimeToTime';
 * @author Jan Guzman <janfrancisco19@gmail.com>
 * @desc Reorders an Array of days in ASC order
 * depending of the current client's timezone
-* @arg WeekDays Array [ { order: String, dayName: String, seasons: Array } ]
+* @arg WeekDays Array [ { order: String, dayName: String, Release: Array } ]
 * @arg today Integer Literal Represent day of the week 1 to 7
 * @returns Array of Day Objects organized by their order attribute
 */
@@ -39,10 +39,10 @@ const reorderWeekDays = (WeekDays, today = getDayOfTheWeek()) => {
 /**
 * @author Jan Guzman <janfrancisco19@gmail.com>
 * @desc Groups Seaons by their WeekDay 1 through 7
-* @arg Seasons Array of Season Objects
-* @returns WeekDays Array [ { order: String, dayName: String, seasons: Array } ]
+* @arg Release Array of Release Objects
+* @returns WeekDays Array [ { order: String, dayName: String, Release: Array } ]
 */
-const groupSeasonsByWeekDays = (Seasons) => {
+const groupSeasonsByWeekDays = (Release) => {
   const WeekDays = {
     '1': [],
     '2': [],
@@ -53,16 +53,16 @@ const groupSeasonsByWeekDays = (Seasons) => {
     '7': [],
   };
 
-  Seasons.map((Season) => {
-    const ParsedSeason = Season;
+  Release.map((Release) => {
+    const ParsedSeason = Release;
 
     // Translate Original airingTime in JST to the local TimeZone
     ParsedSeason.startedAiring = JSTToLocalTime(ParsedSeason.startedAiring);
 
-    // Get what day of the week this Season started Airing
+    // Get what day of the week this Release started Airing
     const dayOfWeekInt = moment(ParsedSeason.startedAiring).isoWeekday();
 
-    // Avoid Seasons with no episodes
+    // Avoid Release with no episodes
     if (!ParsedSeason.LatestEpisode) return null;
 
     return WeekDays[dayOfWeekInt.toString()].push(ParsedSeason);
@@ -99,7 +99,7 @@ const groupSeasonsByWeekDays = (Seasons) => {
           dayName = '';
       }
 
-      return ({ order: dayOrder, dayName, seasons: WeekDays[dayOrder] });
+      return ({ order: dayOrder, dayName, Release: WeekDays[dayOrder] });
     });
 
   return parsedWeekDays;
@@ -108,7 +108,7 @@ const groupSeasonsByWeekDays = (Seasons) => {
 type PropType =
   RouteComponentProps<{}>
   & InjectedIntlProps & {
-    WeekDays: Season[],
+    WeekDays: Release[],
   };
 
 const ScheduleList = (props: PropType) => {
@@ -121,7 +121,7 @@ const ScheduleList = (props: PropType) => {
         {/* {WeekDays.map((Day) => { */}
         {reorderWeekDays(parsedWeekDays).map((Day) => {
           // If nothing is airing this day, don't show this tab
-          if (!Day.seasons.length) return null;
+          if (!Day.Release.length) return null;
           return (
             <div className="anime-schedule-day" key={Day.order}>
               <div className="date">
@@ -154,17 +154,17 @@ const ScheduleList = (props: PropType) => {
               </div>
               <div className="anime-schedule-poster-list">
 
-                {Day.seasons.map((Season, index) => (
+                {Day.Release.map((Release, index) => (
                   <div
                     className="anime-schedule-poster shimmer-load"
-                    key={Season.id}
+                    key={Release.id}
                     onClick={
                       () => history.push(
-                        `/anime/detail/${Season.id}`,
+                        `/anime/detail/${Release.id}`,
                       )}
                     onKeyPress={
                       () => history.push(
-                        `/anime/detail/${Season.id}`,
+                        `/anime/detail/${Release.id}`,
                       )}
                     role="menuitem"
                     tabIndex={index}
@@ -173,22 +173,22 @@ const ScheduleList = (props: PropType) => {
                       className="content"
                       style={{
                         backgroundImage:
-                          (Season.poster)
-                            ? `url(/img_cdn/${Season.poster})`
+                          (Release.poster)
+                            ? `url(/img_cdn/${Release.poster})`
                             : 'url(/img/thumbnail_placeholder.png)',
                       }}
                     >
                       <div className="text">
                         <p>
                           {`
-                          ${DateTimeToTime(Season.startedAiring)}
-                           - EPISODE ${Season.EpisodeCount + 1}
+                          ${DateTimeToTime(Release.startedAiring)}
+                           - EPISODE ${Release.EpisodeCount + 1}
                           `}
-                          {/* {`${Season.EpisodeCount} episodes released`} */}
+                          {/* {`${Release.EpisodeCount} episodes released`} */}
                         </p>
                         <h1>
                           <div className="limit">
-                            {Season.title}
+                            {Release.title}
                           </div>
                         </h1>
                       </div>

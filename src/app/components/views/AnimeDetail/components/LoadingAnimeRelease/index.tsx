@@ -5,7 +5,7 @@ type PropType = {
   count: number,
 };
 
-export default class LoadingAnimeSeason extends React.Component<PropType> {
+export default class LoadingAnimeRelease extends React.Component<PropType> {
   constructor(props) {
     super(props);
   }

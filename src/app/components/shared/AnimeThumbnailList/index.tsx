@@ -6,22 +6,22 @@ import { FormattedMessage } from 'react-intl';
 
 import RandomTextEmoji from '../RandomTextEmoji';
 import LazyImage from '../LazyImage';
-import Season from '../../@types/Season';
+import Release from '../../@types/Release';
 import JSTtoLocalTime from '../../../utils/JSTtoLocalTime';
 import YearExtractor from '../../../utils/YearExtractor';
 import base64Content from '../../../utils/base64Content';
 
 type PropType = {
-  seasons: Array<Season>,
+  releases: Array<Release>,
 };
 
 export default class AnimeThumbnailList extends React.Component<PropType> {
   render() {
-    const { seasons } = this.props;
-    console.log(seasons);
+    const { releases } = this.props;
+    console.log(releases);
 
-    // If no seasons were received
-    if (!seasons || seasons.length === 0) {
+    // If no releases were received
+    if (!releases || releases.length === 0) {
       return (
         <div className="anime-thumbnail-list no-grid">
           <div className="nothing-found">
@@ -41,7 +41,7 @@ export default class AnimeThumbnailList extends React.Component<PropType> {
 
     return (
       <div className="anime-thumbnail-list">
-        {seasons.map(season => (
+        {releases.map(season => (
           <div
             key={Number(season.id)}
             className="anime-thumbnail"

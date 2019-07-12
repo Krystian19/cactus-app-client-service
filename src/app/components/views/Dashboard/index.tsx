@@ -33,7 +33,7 @@ const DashboardQuery = gql`
       id,
       thumbnail,
       episodeOrder,
-      Season {
+      Release {
         id,
         releaseOrder,
         title,
