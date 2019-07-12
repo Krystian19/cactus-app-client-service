@@ -7,7 +7,7 @@ import LoadingSpinner from '../../shared/LoadingSpinner';
 
 const WeekDayScheduleQuery = gql`
   query {
-    AiringSeasons {
+    AiringReleases {
       id,
       releaseOrder,
       title,
@@ -42,7 +42,7 @@ export default class Schedule extends React.Component {
           return (
             <div className="main-content">
               <ScheduleList
-                WeekDays={data.AiringSeasons}
+                WeekDays={data.AiringReleases}
               />
             </div>
           );

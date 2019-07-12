@@ -4,7 +4,7 @@ import { RouteComponentProps, withRouter } from "react-router";
 import React from 'react';
 
 
-import AnimeSeason from './components/AnimeSeason';
+import AnimeRelease from './components/AnimeRelease';
 import CategoriesChips from '../../shared/CategoriesChips';
 import LoadingSpinner from '../../shared/LoadingSpinner';
 import LazyImage from '../../shared/LazyImage';
@@ -14,7 +14,7 @@ import base64Content from '../../../utils/base64Content';
 
 const AnimeInfoQuery = gql`
   query($id:Int!) {
-    Season(id: $id) {
+    Release(id: $id) {
       id,
       releaseOrder,
       title,
@@ -71,18 +71,18 @@ class AnimeDetail extends React.Component<PropType> {
           if (error) return <p>Error :(</p>;
 
           console.log(data);
-          const { Season } = data;
+          const { Release } = data;
           return (
             <div className="main-content no-padding">
               <div className="anime-info">
                 <div
                   className={`head 
-                      ${(!Season.background) ? 'missing-background' : ''}
+                      ${(!Release.background) ? 'missing-background' : ''}
                     `}
                   style={{
                     backgroundImage:
-                      (Season.background)
-                        ? `url(/img_cdn/${Season.background})`
+                      (Release.background)
+                        ? `url(/img_cdn/${Release.background})`
                         : 'url(/img/default_background.jpg)',
                   }}
                 >
@@ -92,9 +92,9 @@ class AnimeDetail extends React.Component<PropType> {
                       <div className="small-side" />
                       <div className="big-side">
                         <h1 className="anime-title">
-                          {Season.title}
+                          {Release.title}
                         </h1>
-                        <CategoriesChips categories={Season.Genres} />
+                        <CategoriesChips categories={Release.Genres} />
                       </div>
                     </div>
                   </div>
@@ -105,7 +105,7 @@ class AnimeDetail extends React.Component<PropType> {
                       <div className="details">
                         <div className="cover">
                           <LazyImage
-                            src={`/img_cdn/${Season.poster}`}
+                            src={`/img_cdn/${Release.poster}`}
                             errorSrc={base64Content.cactus_poster_placeholder}
                             alt="cover"
                             className="fade-in"
@@ -125,7 +125,7 @@ class AnimeDetail extends React.Component<PropType> {
                           <div className="cover-detail-row">
                             <span className="cover-detail-row-title">EPS</span>
                             <span className="cover-detail-row-detail">
-                              {data.Season.EpisodeCount}
+                              {data.Release.EpisodeCount}
                             </span>
                           </div>
 
@@ -133,22 +133,22 @@ class AnimeDetail extends React.Component<PropType> {
                             <span className="cover-detail-row-title">AIRED</span>
                             <span className="cover-detail-row-detail">
                               {/* If it hasn't been aired yet */}
-                              {!data.Season.startedAiring
+                              {!data.Release.startedAiring
                                 && 'Not airing yet'
                               }
                               {/* If it started airing */}
-                              {data.Season.startedAiring
+                              {data.Release.startedAiring
                                 && `
                                   ${
                                 MonthYearExtractor(
-                                  JSTtoLocalTime(data.Season.startedAiring),
+                                  JSTtoLocalTime(data.Release.startedAiring),
                                 )
                                 } 
                                   - 
                                   ${ // If stoppedAiring DateTime String is defined
-                                data.Season.stoppedAiring
+                                data.Release.stoppedAiring
                                   ? MonthYearExtractor(
-                                    JSTtoLocalTime(data.Season.stoppedAiring),
+                                    JSTtoLocalTime(data.Release.stoppedAiring),
                                   )
                                   : 'PRESENT'
                                 }`
@@ -162,7 +162,7 @@ class AnimeDetail extends React.Component<PropType> {
                             <span
                               className="cover-detail-row-detail"
                             >
-                              {data.Season.stoppedAiring ? 'COMPLETED' : 'AIRING'}
+                              {data.Release.stoppedAiring ? 'COMPLETED' : 'AIRING'}
                             </span>
                           </div>
 
@@ -172,11 +172,11 @@ class AnimeDetail extends React.Component<PropType> {
                     <div className="big-side">
                       <div className="sinopsis">
                         <p>
-                          {Season.Descriptions[0].description}
+                          {Release.Descriptions[0].description}
                         </p>
                       </div>
                       <div className="anime-seasons">
-                        <AnimeSeason key={Season.id} season={Season} />
+                        <AnimeRelease key={Release.id} season={Release} />
                       </div>
 
                     </div>

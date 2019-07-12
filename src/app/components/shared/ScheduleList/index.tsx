@@ -42,7 +42,7 @@ const reorderWeekDays = (WeekDays, today = getDayOfTheWeek()) => {
 * @arg Release Array of Release Objects
 * @returns WeekDays Array [ { order: String, dayName: String, Release: Array } ]
 */
-const groupSeasonsByWeekDays = (Release) => {
+const groupReleasesByWeekDays = (Release) => {
   const WeekDays = {
     '1': [],
     '2': [],
@@ -54,18 +54,18 @@ const groupSeasonsByWeekDays = (Release) => {
   };
 
   Release.map((Release) => {
-    const ParsedSeason = Release;
+    const ParsedRelease = Release;
 
     // Translate Original airingTime in JST to the local TimeZone
-    ParsedSeason.startedAiring = JSTToLocalTime(ParsedSeason.startedAiring);
+    ParsedRelease.startedAiring = JSTToLocalTime(ParsedRelease.startedAiring);
 
     // Get what day of the week this Release started Airing
-    const dayOfWeekInt = moment(ParsedSeason.startedAiring).isoWeekday();
+    const dayOfWeekInt = moment(ParsedRelease.startedAiring).isoWeekday();
 
     // Avoid Release with no episodes
-    if (!ParsedSeason.LatestEpisode) return null;
+    if (!ParsedRelease.LatestEpisode) return null;
 
-    return WeekDays[dayOfWeekInt.toString()].push(ParsedSeason);
+    return WeekDays[dayOfWeekInt.toString()].push(ParsedRelease);
   });
 
   const parsedWeekDays = Object.keys(WeekDays)
@@ -113,7 +113,7 @@ type PropType =
 
 const ScheduleList = (props: PropType) => {
   const { WeekDays, history, intl: { formatMessage } } = props;
-  const parsedWeekDays = groupSeasonsByWeekDays(WeekDays);
+  const parsedWeekDays = groupReleasesByWeekDays(WeekDays);
   return (
     <div className="anime-schedule-list">
 
