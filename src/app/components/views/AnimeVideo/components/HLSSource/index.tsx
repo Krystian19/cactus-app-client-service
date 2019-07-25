@@ -41,12 +41,19 @@ export default class HLSSource extends React.Component<{
   }
 
   render() {
-    // return (
-    //   <source
-    //     src={this.props.src}
-    //     type={'application/vnd.apple.mpegurl'}
-    //   />
-    // );
+    const { src } = this.props;
+    const Hls = require('hls.js');
+
+    // In the case that HLS is not supported in the current browser
+    if (!Hls.isSupported()) {
+      return (
+        <source
+          src={src}
+          type={'application/vnd.apple.mpegurl'}
+        />
+      );
+    }
+
     return ('');
   }
 }
