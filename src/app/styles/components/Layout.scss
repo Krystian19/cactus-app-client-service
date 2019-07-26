@@ -16,6 +16,7 @@ html {
 body {
   overflow: hidden;
   overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 h1,
