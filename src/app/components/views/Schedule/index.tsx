@@ -23,31 +23,29 @@ const WeekDayScheduleQuery = gql`
   }
 `;
 
-export default class Schedule extends React.Component {
-  render() {
-    return (
-      <Query query={WeekDayScheduleQuery} fetchPolicy="no-cache">
-        {({ loading, error, data }) => {
-          if (loading) {
-            return (
-              <div className="main-content no-padding">
-                <LoadingSpinner />
-              </div>
-            );
-          }
+const Schedule = () => (
+  <Query query={WeekDayScheduleQuery} fetchPolicy="no-cache">
+    {({ loading, error, data }) => {
+      if (loading) {
+        return (
+          <div className="main-content no-padding">
+            <LoadingSpinner />
+          </div>
+        );
+      }
 
-          if (error) return <p>Error :(</p>;
+      if (error) return <p>Error :(</p>;
 
-          console.log(data);
-          return (
-            <div className="main-content">
-              <ScheduleList
-                WeekDays={data.AiringReleases}
-              />
-            </div>
-          );
-        }}
-      </Query>
-    );
-  }
-}
+      console.log(data);
+      return (
+        <div className="main-content">
+          <ScheduleList
+            WeekDays={data.AiringReleases}
+          />
+        </div>
+      );
+    }}
+  </Query>
+);
+
+export default Schedule;
