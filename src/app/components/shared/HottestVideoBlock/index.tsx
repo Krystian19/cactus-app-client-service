@@ -72,7 +72,11 @@ class HottestVideoBlock extends React.Component<PropType> {
                     <div
                       className="title-container"
                     >
-                      {`${episode.Release.title} (Season ${episode.Release.releaseOrder})`}
+                      {`${
+                        episode.Release.title
+                        } (Season ${
+                        episode.Release.releaseOrder
+                        })`}
                     </div>
                     <div className="detail-container">
                       {`Ep. ${episode.episodeOrder}`}

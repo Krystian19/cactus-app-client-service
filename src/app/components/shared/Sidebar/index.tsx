@@ -49,7 +49,7 @@ class Sidebar extends React.Component<PropsType, StateType> {
       case 'es': // Spanish flag
         return 'em-es';
       default:
-        return 'em-us'
+        return 'em-us';
     }
   }
 

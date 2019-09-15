@@ -34,4 +34,6 @@ script:
   - sleep 1m
   # Run the normal test processes
   - docker exec -ti cactus_app_client yarn test
+  # Check for code linting rules
+  - docker exec -ti cactus_app_client yarn lint
 after_success: docker exec -ti cactus_app_client yarn coverage

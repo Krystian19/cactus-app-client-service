@@ -135,7 +135,7 @@ export default class AnimeRelease extends React.Component<PropType, StateType> {
                             <div className="title-container">
                               {`Episode ${episode.episodeOrder}`}
                             </div>
-                            <div className="detail-container"></div>
+                            <div className="detail-container" />
                           </div>
                         </div>
                       </div>
