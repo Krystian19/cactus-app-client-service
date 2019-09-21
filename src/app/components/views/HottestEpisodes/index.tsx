@@ -15,7 +15,7 @@ const HottestEpisodesQuery = gql`
       rows {
         id,
         thumbnail,
-        episodeOrder,
+        episode_order,
         Release {
           id,
           releaseOrder,

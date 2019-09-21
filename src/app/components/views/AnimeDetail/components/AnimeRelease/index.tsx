@@ -20,7 +20,7 @@ const ReleaseQuery = gql`
         rows {
           id,
           thumbnail,
-          episodeOrder,
+          episode_order,
           episode_code
         },
         count
@@ -133,7 +133,7 @@ export default class AnimeRelease extends React.Component<PropType, StateType> {
                         <div className="info">
                           <div className="title">
                             <div className="title-container">
-                              {`Episode ${episode.episodeOrder}`}
+                              {`Episode ${episode.episode_order}`}
                             </div>
                             <div className="detail-container" />
                           </div>

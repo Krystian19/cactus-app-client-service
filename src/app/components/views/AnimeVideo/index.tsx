@@ -17,15 +17,15 @@ const AnimeVideoQuery = gql`
     Episode(id:$id) {
       id,
       thumbnail,
-      episodeOrder,
+      episode_order,
       episode_code,
       EarlierEpisode {
         id,
-        episodeOrder
+        episode_order
       },
       LaterEpisode {
         id,
-        episodeOrder
+        episode_order
       },
       Release {
         id,
@@ -118,7 +118,7 @@ class AnimeVideo extends React.Component<PropType> {
                           </Link>
                         </h1>
                         <h2>
-                          {`Episode ${Episode.episodeOrder}`}
+                          {`Episode ${Episode.episode_order}`}
                         </h2>
                       </div>
                     </div>

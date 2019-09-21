@@ -17,7 +17,7 @@ const WeekDayScheduleQuery = gql`
       LatestEpisode {
         id,
         thumbnail,
-        episodeOrder
+        episode_order
       }
     }
   }

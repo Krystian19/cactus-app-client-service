@@ -4,7 +4,7 @@ import Release from './Release';
 export type Episode = {
   id: Number,
   thumbnail?: String,
-  episodeOrder?: Number,
+  episode_order?: Number,
   EarlierEpisode?: Episode,
   LaterEpisode?: Episode,
   Release?: Release,

@@ -12,7 +12,7 @@ const episodes: Array<Episode> = [
   {
     'id': 21,
     'thumbnail': 'thumbnail_placeholder.png',
-    'episodeOrder': 12,
+    'episode_order': 12,
     'Release': {
       'id': 7,
       'releaseOrder': 1,

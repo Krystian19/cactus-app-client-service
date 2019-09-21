@@ -74,7 +74,7 @@ class VideoBlock extends React.Component<PropType> {
                         })`}
                     </div>
                     <div className="detail-container">
-                      {`Ep. ${episode.episodeOrder}`}
+                      {`Ep. ${episode.episode_order}`}
                     </div>
                   </div>
                 </div>
