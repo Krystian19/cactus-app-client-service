@@ -31,7 +31,7 @@ const AnimeVideoQuery = gql`
         id,
         poster,
         title,
-        releaseOrder
+        release_order
       },
       EpisodeSubtitles {
         id,

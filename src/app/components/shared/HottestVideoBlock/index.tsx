@@ -75,7 +75,7 @@ class HottestVideoBlock extends React.Component<PropType> {
                       {`${
                         episode.Release.title
                         } (Season ${
-                        episode.Release.releaseOrder
+                        episode.Release.release_order
                         })`}
                     </div>
                     <div className="detail-container">

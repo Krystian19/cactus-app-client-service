@@ -15,7 +15,7 @@ const episodes: Array<Episode> = [
     'episode_order': 12,
     'Release': {
       'id': 7,
-      'releaseOrder': 1,
+      'release_order': 1,
       'title': 'Goblin Slayer',
       'background': 'thumbnail_placeholder.png',
       'Anime': {

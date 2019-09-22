@@ -4,7 +4,7 @@ import Anime from './Anime';
 
 export type Release = {
   id: Number,
-  releaseOrder?: Number,
+  release_order?: Number,
   title?: String,
   // Descriptions: [ReleaseDescription],
   startedAiring?: String,

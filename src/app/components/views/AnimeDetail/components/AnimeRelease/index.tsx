@@ -98,7 +98,7 @@ export default class AnimeRelease extends React.Component<PropType, StateType> {
           return (
             <div className="anime-season">
               {/* <span className="anime-season-title">
-                {`${data.Release.title} (Release ${data.Release.releaseOrder})`}
+                {`${data.Release.title} (Release ${data.Release.release_order})`}
               </span> */}
               <div className="anime-season-videos">
                 <div className="anime-small-thumbnail-list">
