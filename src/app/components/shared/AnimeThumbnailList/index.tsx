@@ -75,7 +75,7 @@ export default class AnimeThumbnailList extends React.Component<PropType> {
               <div className="year">
                 {`${
                   YearExtractor(
-                    JSTtoLocalTime(season.startedAiring)
+                    JSTtoLocalTime(season.started_airing)
                   )
                   } - ${
                   season.EpisodeCount

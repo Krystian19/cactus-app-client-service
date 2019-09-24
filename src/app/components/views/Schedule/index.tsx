@@ -12,7 +12,7 @@ const WeekDayScheduleQuery = gql`
       release_order,
       title,
       poster,
-      startedAiring,
+      started_airing,
       EpisodeCount,
       LatestEpisode {
         id,

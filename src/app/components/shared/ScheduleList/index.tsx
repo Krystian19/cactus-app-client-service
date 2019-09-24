@@ -57,10 +57,10 @@ const groupReleasesByWeekDays = (Release) => {
     const ParsedRelease = Release;
 
     // Translate Original airingTime in JST to the local TimeZone
-    ParsedRelease.startedAiring = JSTToLocalTime(ParsedRelease.startedAiring);
+    ParsedRelease.started_airing = JSTToLocalTime(ParsedRelease.started_airing);
 
     // Get what day of the week this Release started Airing
-    const dayOfWeekInt = moment(ParsedRelease.startedAiring).isoWeekday();
+    const dayOfWeekInt = moment(ParsedRelease.started_airing).isoWeekday();
 
     // Avoid Release with no episodes
     if (!ParsedRelease.LatestEpisode) return null;
@@ -181,7 +181,7 @@ const ScheduleList = (props: PropType) => {
                       <div className="text">
                         <p>
                           {`
-                          ${DateTimeToTime(Release.startedAiring)}
+                          ${DateTimeToTime(Release.started_airing)}
                            - EPISODE ${Release.EpisodeCount + 1}
                           `}
                           {/* {`${Release.EpisodeCount} episodes released`} */}

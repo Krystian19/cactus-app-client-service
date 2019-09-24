@@ -28,8 +28,8 @@ const AnimeInfoQuery = gql`
           iso_code
         }
       },
-      startedAiring,
-      stoppedAiring,
+      started_airing,
+      stopped_airing,
       poster,
       background,
       Genres {
@@ -133,22 +133,22 @@ class AnimeDetail extends React.Component<PropType> {
                             <span className="cover-detail-row-title">AIRED</span>
                             <span className="cover-detail-row-detail">
                               {/* If it hasn't been aired yet */}
-                              {!data.Release.startedAiring
+                              {!data.Release.started_airing
                                 && 'Not airing yet'
                               }
                               {/* If it started airing */}
-                              {data.Release.startedAiring
+                              {data.Release.started_airing
                                 && `
                                   ${
                                 MonthYearExtractor(
-                                  JSTtoLocalTime(data.Release.startedAiring),
+                                  JSTtoLocalTime(data.Release.started_airing),
                                 )
                                 } 
                                   - 
-                                  ${ // If stoppedAiring DateTime String is defined
-                                data.Release.stoppedAiring
+                                  ${ // If stopped_airing DateTime String is defined
+                                data.Release.stopped_airing
                                   ? MonthYearExtractor(
-                                    JSTtoLocalTime(data.Release.stoppedAiring),
+                                    JSTtoLocalTime(data.Release.stopped_airing),
                                   )
                                   : 'PRESENT'
                                 }`
@@ -162,7 +162,7 @@ class AnimeDetail extends React.Component<PropType> {
                             <span
                               className="cover-detail-row-detail"
                             >
-                              {data.Release.stoppedAiring ? 'COMPLETED' : 'AIRING'}
+                              {data.Release.stopped_airing ? 'COMPLETED' : 'AIRING'}
                             </span>
                           </div>
 
