@@ -12,23 +12,30 @@ import GenreOptionsPanel from '../../shared/GenreOptionsPanel';
 import PaginationBox from '../../shared/PaginationBox';
 
 const SearchViewQuery = gql`
-  query($title: String, $pageCount:Int, $currentPage:Int, $genres: [Int!]) {
-    Releases(title:$title, Genres: $genres, limit:$pageCount, offset: $currentPage) {
+  query($title: String, $pageCount: Int, $currentPage: Int, $genres: [Int!]) {
+    Releases(
+      input: {
+        title: $title
+        Genres: $genres
+        limit: $pageCount
+        offset: $currentPage
+      }
+    ) {
       rows {
-        id,
-        title,
-        poster,
-        EpisodeCount,
+        id
+        title
+        poster
+        EpisodeCount
         started_airing
-      },
+      }
       count
-    },
+    }
     Genres {
       rows {
-        id,
-        title,
+        id
+        title
         thumbnail
-      },
+      }
       count
     }
   }
