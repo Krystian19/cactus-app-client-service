@@ -9,15 +9,15 @@ import CategoriesSelectionBlock from './components/CategoriesSelectionBlock';
 import PaginationBox from '../../../../shared/PaginationBox';
 
 const GenreSearchQuery = gql`
-  query($pageCount:Int, $currentPage:Int, $title:String) {
-    Genres(limit:$pageCount, offset: $currentPage, title: $title) {
+  query($pageCount: Int, $currentPage: Int, $title: String) {
+    Genres(input: { limit: $pageCount, offset: $currentPage, title: $title }) {
       rows {
-        id,
-        title,
+        id
+        title
         thumbnail
-      },
+      }
       count
-    },
+    }
   }
 `;
 
