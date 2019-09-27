@@ -9,7 +9,7 @@ import PaginationBox from '../../shared/PaginationBox';
 
 const GenresEpisodesQuery = gql`
   query($pageCount:Int, $currentPage:Int) {
-    Genres(limit:$pageCount, offset: $currentPage) {
+    Genres(input: { limit: $pageCount, offset: $currentPage }) {
       rows {
         id,
         title,
