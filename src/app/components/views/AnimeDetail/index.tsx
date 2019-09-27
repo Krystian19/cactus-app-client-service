@@ -13,29 +13,29 @@ import MonthYearExtractor from '../../../utils/MonthYearExtractor';
 import base64Content from '../../../utils/base64Content';
 
 const AnimeInfoQuery = gql`
-  query($id:Int!) {
-    Release(id: $id) {
-      id,
-      release_order,
-      title,
+  query {
+    Release(id: 1) {
+      id
+      release_order
+      title
       EpisodeCount
       Descriptions {
-        id,
-        description,
+        id
+        description
         Language {
-          id,
-          name,
+          id
+          name
           iso_code
         }
-      },
-      started_airing,
-      stopped_airing,
-      poster,
-      background,
+      }
+      started_airing
+      stopped_airing
+      poster
+      background
       Genres {
-        id,
+        id
         title
-      },
+      }
     }
   }
 `;
