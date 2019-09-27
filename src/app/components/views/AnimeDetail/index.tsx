@@ -13,8 +13,8 @@ import MonthYearExtractor from '../../../utils/MonthYearExtractor';
 import base64Content from '../../../utils/base64Content';
 
 const AnimeInfoQuery = gql`
-  query {
-    Release(id: 1) {
+  query($id: Int!) {
+    Release(id: $id) {
       id
       release_order
       title
