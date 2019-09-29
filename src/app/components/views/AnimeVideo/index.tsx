@@ -91,10 +91,7 @@ class AnimeVideo extends React.Component<PropType> {
                     >
                       <HLSSource
                         isVideoChild={true}
-                        src={
-                          `/video_cdn/${
-                          Episode.episode_code
-                          }/index.m3u8`}
+                        src={`/video_cdn/${Episode.episode_code.replace(/-/g, "")}/index.m3u8`}
                       />
                     </Player>
                   </div>
