@@ -27,9 +27,9 @@ const createLocaleMiddleware = require('express-locale');
 const rootPath = path.resolve(__dirname, '..', '..');
 
 // External service URLs
-const backendServiceUrl = (
-  process.env.BACKEND_SERVICE_URL ||
-  'http://cactus.backend:3000/'
+const bffServiceUrl = (
+  process.env.BFF_SERVICE_URL ||
+  'http://cactus.bff:3000/graphql'
 );
 
 const imageServiceUrl = (
@@ -146,7 +146,7 @@ class Server {
     this.app.post(
       '/graphql',
       requestProxy({
-        url: backendServiceUrl,
+        url: bffServiceUrl,
         query: {},
         headers: {},
       }),
@@ -192,7 +192,7 @@ class Server {
     const client = new ApolloClient({
       ssrMode: true,
       link: createHttpLink({
-        uri: backendServiceUrl,
+        uri: bffServiceUrl,
         credentials: 'same-origin',
         headers: {
           cookie: req.header('Cookie'),
