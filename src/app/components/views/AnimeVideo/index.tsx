@@ -13,36 +13,42 @@ import LoadingAnimeVideo from './components/LoadingAnimeVideo';
 import base64Content from '../../../utils/base64Content';
 
 const AnimeVideoQuery = gql`
-  query ($id:Int!) {
-    Episode(id:$id) {
-      id,
-      thumbnail,
-      episode_order,
-      episode_code,
+  query($id: Int!) {
+    Episode(id: $id) {
+      id
+      thumbnail
+      episode_order
+      episode_code
       EarlierEpisode {
-        id,
+        id
         episode_order
-      },
+      }
       LaterEpisode {
-        id,
+        id
         episode_order
-      },
+      }
       Release {
-        id,
-        poster,
-        title,
+        id
+        poster
+        title
         release_order
-      },
+      }
       EpisodeSubtitles {
-        id,
-        subtitle_code,
+        id
+        subtitle_code
         Language {
-          id,
-          name,
+          id
+          name
           iso_code
-        },
+        }
       }
     }
+  }
+`;
+
+const EpisodeSeenMutation = gql`
+  mutation($id: Int!) {
+    EpisodeSeen(episode_id: $id)
   }
 `;
 
