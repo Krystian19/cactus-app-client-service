@@ -1,4 +1,4 @@
-import { Query } from 'react-apollo';
+import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import React from 'react';
 import ReactPlayer from 'react-player'
@@ -71,7 +71,6 @@ class AnimeVideo extends React.Component<PropType> {
       <Query
         query={AnimeVideoQuery}
         variables={{ id: Number(params.id) }}
-        fetchPolicy="no-cache"
       >
         {({ loading, error, data }) => {
           if (loading || error) {
@@ -87,19 +86,26 @@ class AnimeVideo extends React.Component<PropType> {
               <div className="anime-watch-episode">
                 <div className="anime-watch-episode-container">
                   <div className="anime-watch-episode-video">
-                    <ReactPlayer
-                      className='react-player'
-                      url={`/video_cdn/${Episode.episode_code}/index.m3u8`}
-                      light={
-                        (Episode.thumbnail)
-                          ? `/img_cdn/${Episode.thumbnail}`
-                          : '/img/thumbnail_placeholder.png'
-                      }
-                      playing={true}
-                      controls={true}
-                      width='100%'
-                      height='100%'
-                    />
+                    <Mutation
+                      mutation={EpisodeSeenMutation}
+                    >
+                      {(episodeSeen) => (
+                        <ReactPlayer
+                          className='react-player'
+                          url={`/video_cdn/${Episode.episode_code}/index.m3u8`}
+                          light={
+                            (Episode.thumbnail)
+                              ? `/img_cdn/${Episode.thumbnail}`
+                              : '/img/thumbnail_placeholder.png'
+                          }
+                          playing={true}
+                          controls={true}
+                          width='100%'
+                          height='100%'
+                          onStart={() => episodeSeen({ variables: { id: Episode.id } })}
+                        />
+                      )}
+                    </Mutation>
                   </div>
                   <div className="anime-watch-episode-description">
                     <div className="left-side">
