@@ -95,9 +95,10 @@ class AnimeVideo extends React.Component<PropType> {
                           ? `/img_cdn/${Episode.thumbnail}`
                           : '/img/thumbnail_placeholder.png'
                       }
+                      playing={true}
+                      controls={true}
                       width='100%'
                       height='100%'
-                      controls={true}
                     />
                   </div>
                   <div className="anime-watch-episode-description">
