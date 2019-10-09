@@ -20,7 +20,6 @@ const RandomAnimeQuery = gql`
 // Sidebar's Component props
 type PropsType = RouteComponentProps<{}> & {};
 
-
 type StateType = {
   isMounted: Boolean,
 };

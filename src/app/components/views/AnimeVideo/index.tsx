@@ -57,16 +57,24 @@ type PathParamsType = {
 
 type PropType = RouteComponentProps<PathParamsType> & {};
 
-class AnimeVideo extends React.Component<PropType> {
+type StateType = {
+  isMounted: Boolean,
+};
+
+class AnimeVideo extends React.Component<PropType, StateType> {
   constructor(props) {
     super(props);
+    this.state = { isMounted: false };
+  }
 
-    const { match: { params } } = this.props;
-    console.log(`Looking for an episode with the id: ${params.id}`);
+  componentDidMount() {
+    this.setState({ isMounted: true });
   }
 
   render() {
+    const { isMounted } = this.state;
     const { match: { params } } = this.props;
+    console.log(`Looking for an episode with the id: ${params.id}`);
     return (
       <Query
         query={AnimeVideoQuery}
@@ -81,31 +89,51 @@ class AnimeVideo extends React.Component<PropType> {
 
           console.log(data);
           const { Episode } = data;
+          const videoUrl = `/video_cdn/${Episode.episode_code}/index.m3u8`;
           return (
             <div className="main-content no-padding">
               <div className="anime-watch-episode">
                 <div className="anime-watch-episode-container">
                   <div className="anime-watch-episode-video">
-                    <Mutation
-                      mutation={EpisodeSeenMutation}
-                    >
-                      {(episodeSeen) => (
-                        <ReactPlayer
-                          className='react-player'
-                          url={`/video_cdn/${Episode.episode_code}/index.m3u8`}
-                          light={
-                            (Episode.thumbnail)
-                              ? `/img_cdn/${Episode.thumbnail}`
-                              : '/img/thumbnail_placeholder.png'
-                          }
-                          playing={true}
-                          controls={true}
-                          width='100%'
-                          height='100%'
-                          onStart={() => episodeSeen({ variables: { id: Episode.id } })}
-                        />
-                      )}
-                    </Mutation>
+                    {
+                      isMounted && (
+                        <Mutation
+                          mutation={EpisodeSeenMutation}
+                        >
+                          {(episodeSeen) => (
+                            <ReactPlayer
+                              className='react-player'
+                              url={
+                                /*
+                                  @Note: application/vnd.apple.mpegURL is a format
+                                  that is supported by the safari family of browsers
+                                  so we check wether your browser supports it or not.
+                                */
+                                document
+                                  .createElement('video')
+                                  .canPlayType('application/vnd.apple.mpegURL')
+                                  ? [{
+                                    src: videoUrl, type: 'application/vnd.apple.mpegurl'
+                                  }]
+                                  : videoUrl
+                              }
+                              light={
+                                (Episode.thumbnail)
+                                  ? `/img_cdn/${Episode.thumbnail}`
+                                  : '/img/thumbnail_placeholder.png'
+                              }
+                              playing={true}
+                              controls={true}
+                              width='100%'
+                              height='100%'
+                              onStart={
+                                () => episodeSeen({ variables: { id: Episode.id } })
+                              }
+                            />
+                          )}
+                        </Mutation>
+                      )
+                    }
                   </div>
                   <div className="anime-watch-episode-description">
                     <div className="left-side">
