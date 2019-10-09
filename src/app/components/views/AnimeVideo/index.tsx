@@ -1,14 +1,13 @@
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import React from 'react';
-import { Player } from 'video-react';
+import ReactPlayer from 'react-player'
 import { RouteComponentProps, withRouter } from "react-router";
 import {
   Link,
 } from 'react-router-dom';
 
 import LazyImage from '../../shared/LazyImage';
-import HLSSource from './components/HLSSource';
 import LoadingAnimeVideo from './components/LoadingAnimeVideo';
 import base64Content from '../../../utils/base64Content';
 
@@ -88,20 +87,18 @@ class AnimeVideo extends React.Component<PropType> {
               <div className="anime-watch-episode">
                 <div className="anime-watch-episode-container">
                   <div className="anime-watch-episode-video">
-                    <Player
-                      poster={
+                    <ReactPlayer
+                      className='react-player'
+                      url={`/video_cdn/${Episode.episode_code}/index.m3u8`}
+                      light={
                         (Episode.thumbnail)
                           ? `/img_cdn/${Episode.thumbnail}`
                           : '/img/thumbnail_placeholder.png'
                       }
-                    >
-                      <HLSSource
-                        isVideoChild={true}
-                        src={`/video_cdn/${
-                          Episode.episode_code
-                        }/index.m3u8`}
-                      />
-                    </Player>
+                      width='100%'
+                      height='100%'
+                      controls={true}
+                    />
                   </div>
                   <div className="anime-watch-episode-description">
                     <div className="left-side">

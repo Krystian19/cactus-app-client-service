@@ -15,15 +15,19 @@
 .anime-watch-episode .anime-watch-episode-container .anime-watch-episode-video {
   width: 100%;
   position: relative;
-  height: 56.25%;
-  // padding-bottom: 56.25%;
+  // height: 56.25%;
+  padding-bottom: 56.25%;
   position: relative;
   /* background: purple; */
 }
 
-.anime-watch-episode .anime-watch-episode-container .anime-watch-episode-video video {
-  width: 100%;
-  height: 100%;
+.anime-watch-episode .anime-watch-episode-container .anime-watch-episode-video .react-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.anime-watch-episode .anime-watch-episode-container .anime-watch-episode-video .react-player video {
   outline: none;
 }
 
