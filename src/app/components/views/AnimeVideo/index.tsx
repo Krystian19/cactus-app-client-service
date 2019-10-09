@@ -105,9 +105,10 @@ class AnimeVideo extends React.Component<PropType, StateType> {
                               className='react-player'
                               url={
                                 /*
-                                  @Note: application/vnd.apple.mpegURL is a format
-                                  that is supported by the safari family of browsers
-                                  so we check wether your browser supports it or not.
+                                  @Note: Safari presents a lot of bugs if the mime-type
+                                  of the video source is not of the format 
+                                  "application/vnd.apple.mpegURL", so we check if this
+                                  browser supports it first. (9-10-2019)
                                 */
                                 document
                                   .createElement('video')
