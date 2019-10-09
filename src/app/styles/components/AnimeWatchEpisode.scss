@@ -15,9 +15,14 @@
 .anime-watch-episode .anime-watch-episode-container .anime-watch-episode-video {
   width: 100%;
   position: relative;
-  // height: 56.25%;
   padding-bottom: 56.25%;
   position: relative;
+  /* background: purple; */
+}
+
+.anime-watch-episode .anime-watch-episode-container .anime-watch-episode-video.shimmer-load {
+  height: 56.25%;
+  padding-bottom: initial;
   /* background: purple; */
 }
 
