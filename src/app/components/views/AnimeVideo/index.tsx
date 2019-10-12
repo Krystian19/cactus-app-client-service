@@ -1,7 +1,7 @@
 import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import React from 'react';
-import ReactPlayer from 'react-player'
+import ReactPlayer from 'react-player';
 import { RouteComponentProps, withRouter } from "react-router";
 import {
   Link,
