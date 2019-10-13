@@ -5,13 +5,13 @@ import {
   withRouter,
 } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import { injectIntl, InjectedIntlProps } from 'react-intl';
 
 import Episode from '../../@types/Episode';
 import LazyImage from '../LazyImage';
-
 import base64Content from '../../../utils/base64Content';
 
-type PropType = RouteComponentProps<{}> & {
+type PropType = RouteComponentProps<{}> & InjectedIntlProps & {
   episodes: Array<Episode>,
   title: String,
   viewAllLink?: String,
@@ -25,6 +25,8 @@ class HottestVideoBlock extends React.Component<PropType> {
       history,
       viewAllLink,
     } = this.props;
+
+    const { formatMessage } = this.props.intl;
 
     return (
       <div className="video-block">
@@ -72,11 +74,12 @@ class HottestVideoBlock extends React.Component<PropType> {
                     <div
                       className="title-container"
                     >
-                      {`${
-                        episode.Release.title
-                        } (Season ${
-                        episode.Release.release_order
-                        })`}
+                      {`${episode.Release.title}
+                      (${
+                        formatMessage({
+                          id: "cactus.season_short",
+                          defaultMessage: "S"
+                        })}${episode.Release.release_order})`}
                     </div>
                     <div className="detail-container">
                       {`Ep. ${episode.episode_order}`}
@@ -92,4 +95,6 @@ class HottestVideoBlock extends React.Component<PropType> {
   }
 }
 
-export default withRouter(HottestVideoBlock);
+export default withRouter(
+  injectIntl(HottestVideoBlock)
+);

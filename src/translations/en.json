@@ -5,6 +5,8 @@
   "cactus.search_field_placeholder": "Search ...",
   "cactus.category_search_field_placeholder": "Search categories ...",
   "cactus.nothing_found": "Nothing found",
+  "cactus.season": "Season",
+  "cactus.season_short": "S",
   "cactus.view_all": "View all",
   "cactus.episodes": "Episodes",
   "cactus.episode": "Episode",

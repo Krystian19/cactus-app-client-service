@@ -4,8 +4,7 @@ import gql from 'graphql-tag';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
 
 import HottestVideoBlock from '../../shared/HottestVideoBlock';
-import
-LoadingHottestVideoBlock
+import LoadingHottestVideoBlock
   from '../../shared/HottestVideoBlock/components/LoadingHottestVideoBlock';
 import PaginationBox from '../../shared/PaginationBox';
 
