@@ -100,8 +100,8 @@ class NewestEpisodes extends React.Component<PropType, StateType> {
               <VideoBlock
                 title={
                   formatMessage({
-                    id: "cactus.newest_episodes_section_title",
-                    defaultMessage: "Newest episodes"
+                    id: "cactus.what_is_new",
+                    defaultMessage: "What's new ?"
                   })
                 }
                 episodes={data.NewestEpisodes.rows}
