@@ -182,7 +182,12 @@ const ScheduleList = (props: PropType) => {
                         <p>
                           {`
                           ${DateTimeToTime(Release.started_airing)}
-                           - EPISODE ${Release.EpisodeCount + 1}
+                           - ${
+                            formatMessage({
+                              id: "cactus.episode",
+                              defaultMessage: "EPISODE",
+                            })
+                            } ${Release.EpisodeCount + 1}
                           `}
                           {/* {`${Release.EpisodeCount} episodes released`} */}
                         </p>
