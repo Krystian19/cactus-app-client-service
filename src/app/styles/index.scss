@@ -31,8 +31,3 @@ $fa-font-path: "~font-awesome/fonts";
 // Responsive styles
 @import "./responsive_styles";
 
-// Dependency styles
-@import "~video-react/dist/video-react.css";
-
-// Dependency override
-@import "./components/VideoPlayer";
