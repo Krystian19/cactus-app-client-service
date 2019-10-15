@@ -58,7 +58,8 @@ exports[`HottestVideoBlock component is rendering properly 1`] = `
             <div
               class="title-container"
             >
-              Goblin Slayer (Season 1)
+              Goblin Slayer
+                      (S1)
             </div>
             <div
               class="detail-container"
