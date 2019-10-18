@@ -10,7 +10,7 @@ import PaginationBox from '../../../../shared/PaginationBox';
 
 const GenreSearchQuery = gql`
   query($pageCount: Int, $currentPage: Int, $title: String) {
-    Genres(input: { limit: $pageCount, offset: $currentPage, title: $title }) {
+    Genres(filter: { title: $title }, limit: $pageCount, offset: $currentPage) {
       rows {
         id
         title

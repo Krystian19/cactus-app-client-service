@@ -14,12 +14,12 @@ import PaginationBox from '../../shared/PaginationBox';
 const SearchViewQuery = gql`
   query($title: String, $pageCount: Int, $currentPage: Int, $genres: [Int!]) {
     Releases(
-      input: {
+      filter: {
         title: $title
         Genres: $genres
-        limit: $pageCount
-        offset: $currentPage
       }
+      limit: $pageCount
+      offset: $currentPage
     ) {
       rows {
         id
