@@ -1,6 +1,7 @@
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { RouteComponentProps, withRouter } from "react-router";
+import { injectIntl, InjectedIntlProps } from 'react-intl';
 import React from 'react';
 
 
@@ -44,7 +45,7 @@ type PathParamsType = {
   id: string,
 };
 
-type PropType = RouteComponentProps<PathParamsType> & {};
+type PropType = RouteComponentProps<PathParamsType> & InjectedIntlProps & {};
 
 class AnimeDetail extends React.Component<PropType> {
   constructor(props) {
@@ -55,9 +56,11 @@ class AnimeDetail extends React.Component<PropType> {
   }
 
   render() {
-    const { match: { params } } = this.props;
+    const {
+      match: { params },
+      intl: { locale },
+    } = this.props;
     return (
-
       <Query query={AnimeInfoQuery} variables={{ id: Number(params.id) }}>
         {({ loading, error, data }) => {
           if (loading) {
@@ -172,19 +175,23 @@ class AnimeDetail extends React.Component<PropType> {
                     <div className="big-side">
                       <div className="sinopsis">
                         <p>
-                          {Release.Descriptions[0].description}
+                          {Release.Descriptions.length && (
+                            (
+                              Release.Descriptions.find(desc => (
+                                desc.Language.iso_code === locale
+                              )) || Release.Descriptions[0]
+                            ).description
+                          )}
                         </p>
                       </div>
                       <div className="anime-seasons">
                         <AnimeRelease key={Release.id} season={Release} />
                       </div>
-
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
           );
         }}
       </Query>
@@ -192,4 +199,6 @@ class AnimeDetail extends React.Component<PropType> {
   }
 }
 
-export default withRouter(AnimeDetail);
+export default withRouter(
+  injectIntl(AnimeDetail)
+);
