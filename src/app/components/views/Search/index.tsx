@@ -27,6 +27,10 @@ const SearchViewQuery = gql`
         poster
         EpisodeCount
         started_airing
+        ReleaseType {
+          id
+          title
+        }
       }
       count
     }

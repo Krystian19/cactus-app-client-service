@@ -37,6 +37,10 @@ const AnimeInfoQuery = gql`
         id
         title
       }
+      ReleaseType {
+        id
+        title
+      }
     }
   }
 `;
