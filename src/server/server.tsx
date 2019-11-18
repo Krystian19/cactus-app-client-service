@@ -252,10 +252,10 @@ class Server {
         .replace('app.min.js"', `app.min.js?q=${sha256(mainJsFile).slice(0, 5)}"`)
         .replace('main.min.css"', `main.min.css?q=${sha256(mainCssFile).slice(0, 5)}"`);
 
-      return new Promise((resolve, reject) => resolve(String(finalMarkUpFile)));
+      return Promise.resolve(String(finalMarkUpFile));
     } catch (err) {
       logger.error(err, 'Failed at initial rendering web app');
-      return new Promise((resolve, reject) => reject(err));
+      return Promise.reject(err);
     }
 
   }
