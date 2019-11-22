@@ -10,12 +10,12 @@
     "start": "ts-node-dev --poll --respawn --ignore-watch node_modules --ignore-watch public ./src/server",
     "build": "webpack --progress --colors --config webpack.config.prod.js",
     "watch": "webpack --progress --colors --watch --config webpack.config.dev.js",
-    "gqlgen": "yarn run gql-download-schema; yarn run gql-type-gen;",
-    "gql-download-schema": "get-graphql-schema http://cactus.bff:3000/graphql > reference.graphql",
-    "gql-type-gen": "file=\"./src/@types/graphql.d.ts\"; mkdir -p \"${file%/*}\"; gql2ts ./reference.graphql >> $(echo $file);",
     "test": "jest ./app/tests/",
     "coverage": "codecov",
-    "lint": "tslint --project ."
+    "lint": "tslint --project .",
+    "gqlgen": "yarn run gql-download-schema; yarn run gql-type-gen;",
+    "gql-download-schema": "get-graphql-schema http://cactus.bff:3000/graphql > reference.graphql",
+    "gql-type-gen": "file=\"./src/@types/graphql.d.ts\"; mkdir -p \"${file%/*}\"; gql2ts ./reference.graphql >> $(echo $file);"
   },
   "workspaces": [
     "./src/logger"
