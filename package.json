@@ -10,6 +10,9 @@
     "start": "ts-node-dev --poll --respawn --ignore-watch node_modules --ignore-watch public ./src/server",
     "build": "webpack --progress --colors --config webpack.config.prod.js",
     "watch": "webpack --progress --colors --watch --config webpack.config.dev.js",
+    "gqlgen": "yarn run gql-download-schema; yarn run gql-type-gen;",
+    "gql-download-schema": "get-graphql-schema http://cactus.bff:3000/graphql > reference.graphql",
+    "gql-type-gen": "file=\"./src/@types/graphql.d.ts\"; mkdir -p \"${file%/*}\"; gql2ts ./reference.graphql >> $(echo $file);",
     "test": "jest ./app/tests/",
     "coverage": "codecov",
     "lint": "tslint --project ."
@@ -45,6 +48,8 @@
     "express-locale": "^1.2.0",
     "express-request-proxy": "^2.2.2",
     "font-awesome": "^4.7.0",
+    "get-graphql-schema": "^2.1.2",
+    "gql2ts": "^1.10.1",
     "graphql": "^14.1.1",
     "graphql-tag": "^2.10.1",
     "helmet": "^3.15.1",
