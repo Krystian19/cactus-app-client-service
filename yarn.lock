@@ -164,9 +164,6 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@cactus-app/types@file:./src/types":
-  version "0.0.0"
-
 "@concordance/react@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@concordance/react/-/react-1.0.0.tgz#fcf3cad020e5121bfd1c61d05bc3516aac25f734"
