@@ -14,7 +14,7 @@
     "coverage": "codecov",
     "lint": "tslint --project .",
     "gqlgen": "yarn run gql-download-schema; yarn run gql-type-gen;",
-    "gql-download-schema": "get-graphql-schema http://localhost:4000/playground_graphql > reference.graphql",
+    "gql-download-schema": "get-graphql-schema http://cactus.bff:3000/playground_graphql > reference.graphql",
     "gql-type-gen": "file=\"./src/types/index.ts\"; mkdir -p \"${file%/*}\"; graphql-schema-typescript generate-ts reference.graphql --output $(echo $file);"
   },
   "workspaces": [

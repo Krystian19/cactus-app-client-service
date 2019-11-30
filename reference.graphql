@@ -1,3 +1,11 @@
+type Anime {
+  id: Int!
+  title: String!
+  created_at: String!
+  updated_at: String!
+  Releases: [Release!]!
+}
+
 """Episode schema."""
 type Episode {
   id: Int!
@@ -86,6 +94,7 @@ type Mutation {
 }
 
 type Query {
+  Anime(id: Int): Anime
   Episode(id: Int): Episode
   Episodes(filter: EpisodesFilter, limit: Int = 10, offset: Int = 0): EpisodePaginatedList!
 
@@ -144,6 +153,9 @@ type Release {
 
   """List of descriptions of this Release in many languages"""
   Descriptions: [ReleaseDescription!]!
+
+  """This Release belongs to this Anime"""
+  Anime: Anime!
 
   """Genres that this release fits into"""
   Genres: [Genre!]!

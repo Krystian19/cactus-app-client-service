@@ -13,6 +13,7 @@ import { GraphQLResolveInfo } from 'graphql';
  *                             *
  *******************************/
 export interface GQLQuery {
+  Anime?: GQLAnime;
   Episode?: GQLEpisode;
   Episodes: GQLEpisodePaginatedList;
   
@@ -33,46 +34,12 @@ export interface GQLQuery {
   AiringReleases: Array<GQLRelease>;
 }
 
-/**
- * Episode schema.
- */
-export interface GQLEpisode {
+export interface GQLAnime {
   id: number;
-  
-  /**
-   * Thumbnail of this category
-   */
-  thumbnail?: string;
-  
-  /**
-   * Episode order E.g: 'Episode #1'
-   */
-  episode_order: number;
-  
-  /**
-   * Episode file UUID Key code
-   */
-  episode_code: string;
-  
-  /**
-   * What is the episode before this one ?
-   */
-  EarlierEpisode?: GQLEpisode;
-  
-  /**
-   * What is the episode after this one ?
-   */
-  LaterEpisode?: GQLEpisode;
-  
-  /**
-   * The Release that this episode belongs to
-   */
-  Release: GQLRelease;
-  
-  /**
-   * Versions of this episode in different Languages, and Sources.
-   */
-  EpisodeSubtitles: Array<GQLEpisodeSubtitle>;
+  title: string;
+  created_at: string;
+  updated_at: string;
+  Releases: Array<GQLRelease>;
 }
 
 /**
@@ -133,6 +100,11 @@ export interface GQLRelease {
   Descriptions: Array<GQLReleaseDescription>;
   
   /**
+   * This Release belongs to this Anime
+   */
+  Anime: GQLAnime;
+  
+  /**
    * Genres that this release fits into
    */
   Genres: Array<GQLGenre>;
@@ -141,6 +113,83 @@ export interface GQLRelease {
    * Is this release a Season, Movie, OVA or Special ?
    */
   ReleaseType: GQLReleaseType;
+}
+
+/**
+ * Episode schema.
+ */
+export interface GQLEpisode {
+  id: number;
+  
+  /**
+   * Thumbnail of this category
+   */
+  thumbnail?: string;
+  
+  /**
+   * Episode order E.g: 'Episode #1'
+   */
+  episode_order: number;
+  
+  /**
+   * Episode file UUID Key code
+   */
+  episode_code: string;
+  
+  /**
+   * What is the episode before this one ?
+   */
+  EarlierEpisode?: GQLEpisode;
+  
+  /**
+   * What is the episode after this one ?
+   */
+  LaterEpisode?: GQLEpisode;
+  
+  /**
+   * The Release that this episode belongs to
+   */
+  Release: GQLRelease;
+  
+  /**
+   * Versions of this episode in different Languages, and Sources.
+   */
+  EpisodeSubtitles: Array<GQLEpisodeSubtitle>;
+}
+
+/**
+ * EpisodeSubtitle belongs to an Episode,
+ * and an Episode might have multiple EpisodeSubtitles based on available Languages
+ */
+export interface GQLEpisodeSubtitle {
+  id: number;
+  
+  /**
+   * Title of this episode, in the expected language
+   */
+  subtitle_code: string;
+  
+  /**
+   * Language of this episode
+   */
+  Language: GQLLanguage;
+}
+
+/**
+ * Language schema
+ */
+export interface GQLLanguage {
+  id: number;
+  
+  /**
+   * Name of the language e.g: 'Spanish'
+   */
+  name: string;
+  
+  /**
+   * Corresponding ISO code
+   */
+  iso_code: string;
 }
 
 export interface GQLEpisodePaginatedList {
@@ -163,23 +212,6 @@ export interface GQLReleaseDescription {
    * Language support of this description
    */
   Language: GQLLanguage;
-}
-
-/**
- * Language schema
- */
-export interface GQLLanguage {
-  id: number;
-  
-  /**
-   * Name of the language e.g: 'Spanish'
-   */
-  name: string;
-  
-  /**
-   * Corresponding ISO code
-   */
-  iso_code: string;
 }
 
 /**
@@ -209,24 +241,6 @@ export interface GQLReleaseType {
    * Title of this Release Type
    */
   title: string;
-}
-
-/**
- * EpisodeSubtitle belongs to an Episode,
- * and an Episode might have multiple EpisodeSubtitles based on available Languages
- */
-export interface GQLEpisodeSubtitle {
-  id: number;
-  
-  /**
-   * Title of this episode, in the expected language
-   */
-  subtitle_code: string;
-  
-  /**
-   * Language of this episode
-   */
-  Language: GQLLanguage;
 }
 
 export interface GQLEpisodesFilter {
@@ -273,19 +287,21 @@ export interface GQLMutation {
  */
 export interface GQLResolver {
   Query?: GQLQueryTypeResolver;
-  Episode?: GQLEpisodeTypeResolver;
+  Anime?: GQLAnimeTypeResolver;
   Release?: GQLReleaseTypeResolver;
+  Episode?: GQLEpisodeTypeResolver;
+  EpisodeSubtitle?: GQLEpisodeSubtitleTypeResolver;
+  Language?: GQLLanguageTypeResolver;
   EpisodePaginatedList?: GQLEpisodePaginatedListTypeResolver;
   ReleaseDescription?: GQLReleaseDescriptionTypeResolver;
-  Language?: GQLLanguageTypeResolver;
   Genre?: GQLGenreTypeResolver;
   ReleaseType?: GQLReleaseTypeTypeResolver;
-  EpisodeSubtitle?: GQLEpisodeSubtitleTypeResolver;
   GenrePaginatedList?: GQLGenrePaginatedListTypeResolver;
   ReleasePaginatedList?: GQLReleasePaginatedListTypeResolver;
   Mutation?: GQLMutationTypeResolver;
 }
 export interface GQLQueryTypeResolver<TParent = any> {
+  Anime?: QueryToAnimeResolver<TParent>;
   Episode?: QueryToEpisodeResolver<TParent>;
   Episodes?: QueryToEpisodesResolver<TParent>;
   HottestEpisodes?: QueryToHottestEpisodesResolver<TParent>;
@@ -296,6 +312,13 @@ export interface GQLQueryTypeResolver<TParent = any> {
   Releases?: QueryToReleasesResolver<TParent>;
   RandomRelease?: QueryToRandomReleaseResolver<TParent>;
   AiringReleases?: QueryToAiringReleasesResolver<TParent>;
+}
+
+export interface QueryToAnimeArgs {
+  id?: number;
+}
+export interface QueryToAnimeResolver<TParent = any, TResult = any> {
+  (parent: TParent, args: QueryToAnimeArgs, context: any, info: GraphQLResolveInfo): TResult;
 }
 
 export interface QueryToEpisodeArgs {
@@ -370,46 +393,31 @@ export interface QueryToAiringReleasesResolver<TParent = any, TResult = any> {
   (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
 }
 
-export interface GQLEpisodeTypeResolver<TParent = any> {
-  id?: EpisodeToIdResolver<TParent>;
-  thumbnail?: EpisodeToThumbnailResolver<TParent>;
-  episode_order?: EpisodeToEpisode_orderResolver<TParent>;
-  episode_code?: EpisodeToEpisode_codeResolver<TParent>;
-  EarlierEpisode?: EpisodeToEarlierEpisodeResolver<TParent>;
-  LaterEpisode?: EpisodeToLaterEpisodeResolver<TParent>;
-  Release?: EpisodeToReleaseResolver<TParent>;
-  EpisodeSubtitles?: EpisodeToEpisodeSubtitlesResolver<TParent>;
+export interface GQLAnimeTypeResolver<TParent = any> {
+  id?: AnimeToIdResolver<TParent>;
+  title?: AnimeToTitleResolver<TParent>;
+  created_at?: AnimeToCreated_atResolver<TParent>;
+  updated_at?: AnimeToUpdated_atResolver<TParent>;
+  Releases?: AnimeToReleasesResolver<TParent>;
 }
 
-export interface EpisodeToIdResolver<TParent = any, TResult = any> {
+export interface AnimeToIdResolver<TParent = any, TResult = any> {
   (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
 }
 
-export interface EpisodeToThumbnailResolver<TParent = any, TResult = any> {
+export interface AnimeToTitleResolver<TParent = any, TResult = any> {
   (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
 }
 
-export interface EpisodeToEpisode_orderResolver<TParent = any, TResult = any> {
+export interface AnimeToCreated_atResolver<TParent = any, TResult = any> {
   (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
 }
 
-export interface EpisodeToEpisode_codeResolver<TParent = any, TResult = any> {
+export interface AnimeToUpdated_atResolver<TParent = any, TResult = any> {
   (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
 }
 
-export interface EpisodeToEarlierEpisodeResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
-}
-
-export interface EpisodeToLaterEpisodeResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
-}
-
-export interface EpisodeToReleaseResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
-}
-
-export interface EpisodeToEpisodeSubtitlesResolver<TParent = any, TResult = any> {
+export interface AnimeToReleasesResolver<TParent = any, TResult = any> {
   (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
 }
 
@@ -425,6 +433,7 @@ export interface GQLReleaseTypeResolver<TParent = any> {
   LatestEpisode?: ReleaseToLatestEpisodeResolver<TParent>;
   Episodes?: ReleaseToEpisodesResolver<TParent>;
   Descriptions?: ReleaseToDescriptionsResolver<TParent>;
+  Anime?: ReleaseToAnimeResolver<TParent>;
   Genres?: ReleaseToGenresResolver<TParent>;
   ReleaseType?: ReleaseToReleaseTypeResolver<TParent>;
 }
@@ -477,11 +486,94 @@ export interface ReleaseToDescriptionsResolver<TParent = any, TResult = any> {
   (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
 }
 
+export interface ReleaseToAnimeResolver<TParent = any, TResult = any> {
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
+}
+
 export interface ReleaseToGenresResolver<TParent = any, TResult = any> {
   (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
 }
 
 export interface ReleaseToReleaseTypeResolver<TParent = any, TResult = any> {
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
+}
+
+export interface GQLEpisodeTypeResolver<TParent = any> {
+  id?: EpisodeToIdResolver<TParent>;
+  thumbnail?: EpisodeToThumbnailResolver<TParent>;
+  episode_order?: EpisodeToEpisode_orderResolver<TParent>;
+  episode_code?: EpisodeToEpisode_codeResolver<TParent>;
+  EarlierEpisode?: EpisodeToEarlierEpisodeResolver<TParent>;
+  LaterEpisode?: EpisodeToLaterEpisodeResolver<TParent>;
+  Release?: EpisodeToReleaseResolver<TParent>;
+  EpisodeSubtitles?: EpisodeToEpisodeSubtitlesResolver<TParent>;
+}
+
+export interface EpisodeToIdResolver<TParent = any, TResult = any> {
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
+}
+
+export interface EpisodeToThumbnailResolver<TParent = any, TResult = any> {
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
+}
+
+export interface EpisodeToEpisode_orderResolver<TParent = any, TResult = any> {
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
+}
+
+export interface EpisodeToEpisode_codeResolver<TParent = any, TResult = any> {
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
+}
+
+export interface EpisodeToEarlierEpisodeResolver<TParent = any, TResult = any> {
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
+}
+
+export interface EpisodeToLaterEpisodeResolver<TParent = any, TResult = any> {
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
+}
+
+export interface EpisodeToReleaseResolver<TParent = any, TResult = any> {
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
+}
+
+export interface EpisodeToEpisodeSubtitlesResolver<TParent = any, TResult = any> {
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
+}
+
+export interface GQLEpisodeSubtitleTypeResolver<TParent = any> {
+  id?: EpisodeSubtitleToIdResolver<TParent>;
+  subtitle_code?: EpisodeSubtitleToSubtitle_codeResolver<TParent>;
+  Language?: EpisodeSubtitleToLanguageResolver<TParent>;
+}
+
+export interface EpisodeSubtitleToIdResolver<TParent = any, TResult = any> {
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
+}
+
+export interface EpisodeSubtitleToSubtitle_codeResolver<TParent = any, TResult = any> {
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
+}
+
+export interface EpisodeSubtitleToLanguageResolver<TParent = any, TResult = any> {
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
+}
+
+export interface GQLLanguageTypeResolver<TParent = any> {
+  id?: LanguageToIdResolver<TParent>;
+  name?: LanguageToNameResolver<TParent>;
+  iso_code?: LanguageToIso_codeResolver<TParent>;
+}
+
+export interface LanguageToIdResolver<TParent = any, TResult = any> {
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
+}
+
+export interface LanguageToNameResolver<TParent = any, TResult = any> {
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
+}
+
+export interface LanguageToIso_codeResolver<TParent = any, TResult = any> {
   (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
 }
 
@@ -516,24 +608,6 @@ export interface ReleaseDescriptionToLanguageResolver<TParent = any, TResult = a
   (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
 }
 
-export interface GQLLanguageTypeResolver<TParent = any> {
-  id?: LanguageToIdResolver<TParent>;
-  name?: LanguageToNameResolver<TParent>;
-  iso_code?: LanguageToIso_codeResolver<TParent>;
-}
-
-export interface LanguageToIdResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
-}
-
-export interface LanguageToNameResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
-}
-
-export interface LanguageToIso_codeResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
-}
-
 export interface GQLGenreTypeResolver<TParent = any> {
   id?: GenreToIdResolver<TParent>;
   title?: GenreToTitleResolver<TParent>;
@@ -562,24 +636,6 @@ export interface ReleaseTypeToIdResolver<TParent = any, TResult = any> {
 }
 
 export interface ReleaseTypeToTitleResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
-}
-
-export interface GQLEpisodeSubtitleTypeResolver<TParent = any> {
-  id?: EpisodeSubtitleToIdResolver<TParent>;
-  subtitle_code?: EpisodeSubtitleToSubtitle_codeResolver<TParent>;
-  Language?: EpisodeSubtitleToLanguageResolver<TParent>;
-}
-
-export interface EpisodeSubtitleToIdResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
-}
-
-export interface EpisodeSubtitleToSubtitle_codeResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
-}
-
-export interface EpisodeSubtitleToLanguageResolver<TParent = any, TResult = any> {
   (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
 }
 
