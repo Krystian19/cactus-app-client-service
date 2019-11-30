@@ -17,3 +17,6 @@ setup.sh-e
 
 # Coverage directory used by tools like istanbul
 coverage
+
+# Ignore Auto-generated GraphQL TS types
+src/types/index.ts

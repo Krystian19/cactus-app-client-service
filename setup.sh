@@ -3,6 +3,9 @@
 # Install dependencies
 yarn install
 
+# Generate GraphQL TS Types
+yarn gqlgen
+
 # Build ts and sass scripts  
 yarn build
 
