@@ -37,8 +37,6 @@ export interface GQLQuery {
 export interface GQLAnime {
   id: number;
   title: string;
-  created_at: string;
-  updated_at: string;
   Releases: Array<GQLRelease>;
 }
 
@@ -396,8 +394,6 @@ export interface QueryToAiringReleasesResolver<TParent = any, TResult = any> {
 export interface GQLAnimeTypeResolver<TParent = any> {
   id?: AnimeToIdResolver<TParent>;
   title?: AnimeToTitleResolver<TParent>;
-  created_at?: AnimeToCreated_atResolver<TParent>;
-  updated_at?: AnimeToUpdated_atResolver<TParent>;
   Releases?: AnimeToReleasesResolver<TParent>;
 }
 
@@ -406,14 +402,6 @@ export interface AnimeToIdResolver<TParent = any, TResult = any> {
 }
 
 export interface AnimeToTitleResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
-}
-
-export interface AnimeToCreated_atResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
-}
-
-export interface AnimeToUpdated_atResolver<TParent = any, TResult = any> {
   (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
 }
 
