@@ -1,6 +1,4 @@
 import React from 'react';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
 
 import HottestVideoBlock from '../../shared/HottestVideoBlock';
@@ -9,44 +7,7 @@ import LoadingHottestVideoBlock
 import VideoBlock from '../../shared/VideoBlock';
 import LoadingVideoBlock from '../../shared/VideoBlock/components/LoadingVideoBlock';
 import CategoriesBlock from '../../shared/CategoriesBlock';
-
-const DashboardQuery = gql`
-  query {
-    HottestEpisodes {
-      ...episodeThumbnailFields
-    }
-    NewestEpisodes {
-      ...episodeThumbnailFields
-    }
-    Genres {
-      rows {
-        id,
-        title,
-        thumbnail
-      },
-      count
-    }
-  }
-    
-  fragment episodeThumbnailFields on EpisodePaginatedList {
-    rows {
-      id,
-      thumbnail,
-      episode_order,
-      Release {
-        id,
-        release_order,
-        title,
-        background,
-        Anime {
-          id,
-          title
-        }
-      }
-    },
-    count
-  }
-`;
+import DashboardQuery from './DashboardQuery';
 
 type PropType = InjectedIntlProps & {};
 
@@ -55,7 +16,7 @@ class Dashboard extends React.Component<PropType> {
     const { formatMessage } = this.props.intl;
 
     return (
-      <Query query={DashboardQuery}>
+      <DashboardQuery>
         {({ loading, error, data }) => {
           if (loading || error) {
             return (
@@ -70,7 +31,6 @@ class Dashboard extends React.Component<PropType> {
             );
           }
 
-          console.log(data);
           return (
             <div className="main-content no-padding">
               <HottestVideoBlock
@@ -106,7 +66,7 @@ class Dashboard extends React.Component<PropType> {
             </div>
           );
         }}
-      </Query>
+      </DashboardQuery>
     );
   }
 }

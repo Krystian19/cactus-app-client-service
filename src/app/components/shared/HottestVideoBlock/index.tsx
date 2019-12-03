@@ -6,13 +6,15 @@ import {
 } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
+import {
+  GQLEpisode
+} from '@cactus-app/types';
 
-import Episode from '../../@types/Episode';
 import LazyImage from '../LazyImage';
 import base64Content from '../../../utils/base64Content';
 
 type PropType = RouteComponentProps<{}> & InjectedIntlProps & {
-  episodes: Array<Episode>,
+  episodes: GQLEpisode[],
   title: String,
   viewAllLink?: String,
 };

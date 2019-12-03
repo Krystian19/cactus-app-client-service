@@ -8,10 +8,12 @@ import { FormattedMessage } from 'react-intl';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
 
 import LazyImage from '../LazyImage';
-import Episode from '../../@types/Episode';
+import {
+  GQLEpisode
+} from '@cactus-app/types';
 
 type PropType = RouteComponentProps<{}> & InjectedIntlProps & {
-  episodes: Array<Episode>,
+  episodes: GQLEpisode[],
   title: String,
   viewAllLink?: String,
 };
