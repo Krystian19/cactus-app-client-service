@@ -4,7 +4,9 @@ import moment from 'moment-timezone';
 import { RouteComponentProps } from 'react-router';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
 
-import Release from '../../@types/Release';
+import {
+  GQLRelease,
+} from '@cactus-app/types';
 import ClientRender from '../ClientRenderer';
 import JSTToLocalTime from '../../../utils/JSTtoLocalTime';
 import getDayOfTheWeek from '../../../utils/getDayOfTheWeek';
@@ -108,7 +110,7 @@ const groupReleasesByWeekDays = (Release) => {
 type PropType =
   RouteComponentProps<{}>
   & InjectedIntlProps & {
-    WeekDays: Release[],
+    WeekDays: GQLRelease[],
   };
 
 const ScheduleList = (props: PropType) => {
