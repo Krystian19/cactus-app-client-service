@@ -6,48 +6,15 @@ import queryString from 'qs';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
 
 import Genre from '../../@types/Genre';
+import SearchQuery from './SearchQuery';
 import AnimeThumbnailList from '../../shared/AnimeThumbnailList';
 import LoadingAnimeThumbnailList from '../../shared/LoadingAnimeThumbnailList';
 import GenreOptionsPanel from '../../shared/GenreOptionsPanel';
 import PaginationBox from '../../shared/PaginationBox';
 
-const SearchViewQuery = gql`
-  query($title: String, $pageCount: Int, $currentPage: Int, $genres: [Int!]) {
-    Releases(
-      filter: {
-        title: $title
-        Genres: $genres
-      }
-      limit: $pageCount
-      offset: $currentPage
-    ) {
-      rows {
-        id
-        title
-        poster
-        EpisodeCount
-        started_airing
-        ReleaseType {
-          id
-          title
-        }
-      }
-      count
-    }
-    Genres {
-      rows {
-        id
-        title
-        thumbnail
-      }
-      count
-    }
-  }
-`;
-
 type StateTypes = {
   currentPage: Number,
-  searchFieldText: String,
+  searchFieldText: string,
   selectedCategories: Array<Genre>,
 };
 
@@ -269,8 +236,7 @@ class Search extends React.Component<PropType, StateTypes> {
           setSelectedCategories={this.setSelectedCategories}
         />
 
-        <Query
-          query={SearchViewQuery}
+        <SearchQuery
           variables={{
             title: searchFieldText,
             pageCount: pageCount,
@@ -287,7 +253,6 @@ class Search extends React.Component<PropType, StateTypes> {
               );
             }
 
-            console.log(data);
             return (
               <div className="util-container">
                 <AnimeThumbnailList
@@ -318,7 +283,7 @@ class Search extends React.Component<PropType, StateTypes> {
               </div>
             );
           }}
-        </Query>
+        </SearchQuery>
         {/* End of main content */}
       </div>
     );

@@ -3,22 +3,23 @@ import {
   Link,
 } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import {
+  GQLRelease,
+} from '@cactus-app/types';
 
 import RandomTextEmoji from '../RandomTextEmoji';
 import LazyImage from '../LazyImage';
-import Release from '../../@types/Release';
 import JSTtoLocalTime from '../../../utils/JSTtoLocalTime';
 import YearExtractor from '../../../utils/YearExtractor';
 import base64Content from '../../../utils/base64Content';
 
 type PropType = {
-  releases: Array<Release>,
+  releases: Array<GQLRelease>,
 };
 
 export default class AnimeThumbnailList extends React.Component<PropType> {
   render() {
     const { releases } = this.props;
-    console.log(releases);
 
     // If no releases were received
     if (!releases || releases.length === 0) {
@@ -83,8 +84,8 @@ export default class AnimeThumbnailList extends React.Component<PropType> {
                 <FormattedMessage
                   id={
                     (season.EpisodeCount == 1)
-                    ? "cactus.episode"
-                    : "cactus.episodes"
+                      ? "cactus.episode"
+                      : "cactus.episodes"
                   }
                   defaultMessage="Episodes"
                 />
