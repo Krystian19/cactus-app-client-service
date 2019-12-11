@@ -8,7 +8,7 @@ import CategoriesSelectionBlock from './components/CategoriesSelectionBlock';
 import PaginationBox from '../../../../shared/PaginationBox';
 
 type PropType = InjectedIntlProps & {
-  closePanel: Function,
+  closePanel: () => void,
 
   setSelectedCategories: (selectedCategories: GQLGenre[]) => void,
   initialSelectedCategories: Array<GQLGenre>,

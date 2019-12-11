@@ -7,8 +7,8 @@ import CategorySelectionPanel from './components/CategorySelectionPanel';
 
 type PropType = {
   selectedCategories: Array<GQLGenre>,
-  categoryRemoved: Function,
-  setSelectedCategories: Function
+  categoryRemoved: (category: GQLGenre) => void,
+  setSelectedCategories: (categories: GQLGenre[]) => void,
 };
 
 type StateType = {

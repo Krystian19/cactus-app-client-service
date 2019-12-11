@@ -1,21 +1,21 @@
 import React from 'react';
 
+import { GQLGenre } from '@cactus-app/types';
 import LazyImage from '../../../../../LazyImage';
 import RandomTextEmoji from '../../../../../RandomTextEmoji';
-import Genre from '../../../../../../@types/Genre';
 import base64Content from '../../../../../../../utils/base64Content';
 
 type PropType = {
-  categories: Array<Genre>,
-  selectedCategories: Array<Genre>,
-  categorySelected: Function,
+  categories: Array<GQLGenre>,
+  selectedCategories: Array<GQLGenre>,
+  categorySelected: (category: GQLGenre) => void,
 };
 
 class CategoriesSelectionBlock extends React.Component<PropType> {
 
   thisCategoryIsSelected = (
-    category: Genre,
-    selectedCategories: Array<Genre>
+    category: GQLGenre,
+    selectedCategories: Array<GQLGenre>
   ): Boolean => {
 
     // Check if the provided category has been selected in the provided array
@@ -97,59 +97,3 @@ class CategoriesSelectionBlock extends React.Component<PropType> {
 }
 
 export default CategoriesSelectionBlock;
-
-// const CategoriesBlock = (props: PropType) => {
-//   const {
-//     categories,
-//     title,
-//     viewAllLink,
-//     history
-//   } = props;
-
-// return (
-//   <div className="video-block">
-//     <div className="video-block-title">
-//       <div className="video-block-title-head">
-//         <span>{title}</span>
-//       </div>
-//       {viewAllLink && (
-//         <Link to={String(viewAllLink)} className="button">
-//           View all
-//           </Link>
-//       )}
-//     </div>
-//     <div className="video-block-content">
-//       <div className="anime-small-thumbnail-list">
-
-        // {categories.map(category => (
-        //   <div
-        //     key={Number(category.id)}
-        //     className="anime-small-thumbnail small category"
-        //     onClick={() => history.push('/search')}
-        //   >
-        //     <div className="cover">
-        //       <div className="checked">
-        //         <i className="fa fa-check-circle" />
-        //         <i className="fa fa-circle" />
-        //       </div>
-        //       <LazyImage
-        //         src={`/img_cdn/${category.thumbnail}`}
-        //         errorSrc="/img/category_placeholder.png"
-        //         alt="thumbnail"
-        //         className="anime-small-thumbnail fade-in"
-        //         noLoadingPlaceholder
-        //       />
-        //       <div className="overlay">
-        //         <span className="category_title">{category.title}</span>
-        //       </div>
-        //     </div>
-        //   </div>
-        // ))}
-
-//       </div>
-//     </div>
-//   </div>
-// );
-// }
-
-// export default withRouter(CategoriesBlock);
