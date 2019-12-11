@@ -1,11 +1,9 @@
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
 import React from 'react';
 import { RouteComponentProps, withRouter } from "react-router";
 import queryString from 'qs';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
 
-import Genre from '../../@types/Genre';
+import { GQLGenre } from '@cactus-app/types';
 import SearchQuery from './SearchQuery';
 import AnimeThumbnailList from '../../shared/AnimeThumbnailList';
 import LoadingAnimeThumbnailList from '../../shared/LoadingAnimeThumbnailList';
@@ -15,7 +13,7 @@ import PaginationBox from '../../shared/PaginationBox';
 type StateTypes = {
   currentPage: Number,
   searchFieldText: string,
-  selectedCategories: Array<Genre>,
+  selectedCategories: Array<GQLGenre>,
 };
 
 type PropType =
@@ -43,7 +41,7 @@ class Search extends React.Component<PropType, StateTypes> {
     };
   }
 
-  addedCategory = (category: Genre) => {
+  addedCategory = (category: GQLGenre) => {
     const { selectedCategories } = this.state;
     const self = this;
 
@@ -54,7 +52,7 @@ class Search extends React.Component<PropType, StateTypes> {
       () => self.mapSearchParamsToUrl(self));
   }
 
-  removedCategory = (category: Genre) => {
+  removedCategory = (category: GQLGenre) => {
     const { selectedCategories } = this.state;
     const self = this;
 

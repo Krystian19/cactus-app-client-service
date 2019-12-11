@@ -1,39 +1,23 @@
 import React, { Fragment } from 'react';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
 
-import Genre from '../../../../@types/Genre';
+import { GQLGenre } from '@cactus-app/types';
+import GenreSearchQuery from './GenreSearchQuery';
 import FilterCategoriesChips from '../../../FilterCategoriesChips';
 import CategoriesSelectionBlock from './components/CategoriesSelectionBlock';
 import PaginationBox from '../../../../shared/PaginationBox';
 
-const GenreSearchQuery = gql`
-  query($pageCount: Int, $currentPage: Int, $title: String) {
-    Genres(filter: { title: $title }, limit: $pageCount, offset: $currentPage) {
-      rows {
-        id
-        title
-        thumbnail
-      }
-      count
-    }
-  }
-`;
-
 type PropType = InjectedIntlProps & {
   closePanel: Function,
-  // categorySelected: Function,
-  // categoryRemoved: Function,
 
-  setSelectedCategories: Function,
-  initialSelectedCategories: Array<Genre>,
+  setSelectedCategories: (selectedCategories: GQLGenre[]) => void,
+  initialSelectedCategories: Array<GQLGenre>,
 };
 
 type StateType = {
   currentPage: Number,
-  searchFieldText: String,
-  selectedCategories: Array<Genre>,
+  searchFieldText: string,
+  selectedCategories: Array<GQLGenre>,
 };
 
 // How many records should be shown per page
@@ -78,14 +62,14 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
     this.setState({ currentPage: page });
   }
 
-  addedCategory = (category: Genre) => {
+  addedCategory = (category: GQLGenre) => {
     const { selectedCategories } = this.state;
     this.setState({
       selectedCategories: [...selectedCategories, category],
     });
   }
 
-  removedCategory = (category: Genre) => {
+  removedCategory = (category: GQLGenre) => {
     const { selectedCategories } = this.state;
 
     // Removes the provided category from the selectedCategories array
@@ -155,13 +139,11 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
                   defaultMessage: "Search categories ..."
                 })
               }
-              // value={String(searchFieldText)}
               onChange={this.onSearchFieldChangedEvent}
             />
           </div>
 
-          <Query
-            query={GenreSearchQuery}
+          <GenreSearchQuery
             variables={{
               title: searchFieldText,
               pageCount: pageCount,
@@ -173,15 +155,14 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
                 return ('');
               }
 
-              // if (error) return <p>Error :(</p>;
-
+              console.log('Here we are');
               console.log(data);
               return (
                 <Fragment>
                   <FilterCategoriesChips
                     categories={selectedCategories}
                     categoryRemoved={
-                      (category: Genre) => this.removedCategory(category)
+                      (category: GQLGenre) => this.removedCategory(category)
                     }
                     alignedCenter={true}
                     padded={true}
@@ -191,7 +172,7 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
                     categories={data.Genres.rows}
                     selectedCategories={selectedCategories}
                     categorySelected={
-                      (category: Genre) => this.addedCategory(category)
+                      (category: GQLGenre) => this.addedCategory(category)
                     }
                   />
 
@@ -220,7 +201,7 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
                 </Fragment>
               );
             }}
-          </Query>
+          </GenreSearchQuery>
         </div>
       </div>
     );

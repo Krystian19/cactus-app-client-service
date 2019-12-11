@@ -1,9 +1,9 @@
 import React from 'react';
-import Genre from '../../@types/Genre';
+import { GQLGenre } from '@cactus-app/types';
 
 type PropType = {
-  categories: Array<Genre>
-  categoryRemoved: Function,
+  categories: Array<GQLGenre>
+  categoryRemoved: (genre: GQLGenre) => void,
   alignedCenter?: Boolean,
   padded?: Boolean
 };
@@ -32,7 +32,7 @@ const FilterCategoriesChips = ({
             <div
               className="chip-remove-btn"
             >
-              <i className="fa fa-times"/>
+              <i className="fa fa-times" />
             </div>
           </div>
         </div>

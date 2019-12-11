@@ -1,12 +1,12 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import Genre from '../../@types/Genre';
+import { GQLGenre } from '@cactus-app/types';
 import FilterCategoriesChips from '../FilterCategoriesChips';
 import CategorySelectionPanel from './components/CategorySelectionPanel';
 
 type PropType = {
-  selectedCategories: Array<Genre>,
+  selectedCategories: Array<GQLGenre>,
   categoryRemoved: Function,
   setSelectedCategories: Function
 };
