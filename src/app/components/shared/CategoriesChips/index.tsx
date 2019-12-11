@@ -3,10 +3,10 @@ import { RouteComponentProps } from "react-router";
 import { Link, withRouter } from 'react-router-dom';
 import queryString from 'qs';
 
-import Genre from '../../@types/Genre';
+import { GQLGenre } from '@cactus-app/types';
 
 type PropType = RouteComponentProps<{}> & {
-  categories: Array<Genre>
+  categories: Array<GQLGenre>
 };
 
 const CategoriesChips = ({ categories }: PropType) => (
