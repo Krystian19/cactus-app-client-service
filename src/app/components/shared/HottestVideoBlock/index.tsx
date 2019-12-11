@@ -15,8 +15,8 @@ import base64Content from '../../../utils/base64Content';
 
 type PropType = RouteComponentProps<{}> & InjectedIntlProps & {
   episodes: GQLEpisode[],
-  title: String,
-  viewAllLink?: String,
+  title: string,
+  viewAllLink?: string,
 };
 
 class HottestVideoBlock extends React.Component<PropType> {

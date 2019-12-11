@@ -7,15 +7,15 @@ import {
 import queryString from 'qs';
 import { FormattedMessage } from 'react-intl';
 
+import { GQLGenre } from '@cactus-app/types';
 import LazyImage from '../LazyImage';
-import Genre from '../../@types/Genre';
 
 import base64Content from '../../../utils/base64Content';
 
 type PropType = RouteComponentProps<{}> & {
-  categories: Array<Genre>,
-  title: String,
-  viewAllLink?: String,
+  categories: Array<GQLGenre>,
+  title: string,
+  viewAllLink?: string,
 };
 
 const CategoriesBlock = (props: PropType) => {

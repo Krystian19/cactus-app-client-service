@@ -2,13 +2,13 @@ import React from 'react';
 import base64Content from '../../../utils/base64Content';
 
 type PropType = {
-  src: String,
-  errorSrc: String,
-  className: String,
-  alt: String,
+  src: string,
+  errorSrc: string,
+  className: string,
+  alt: string,
   noLoadingPlaceholder: Boolean,
   posterPlaceholder: Boolean,
-  customLoadingPlaceholderSrc?: String,
+  customLoadingPlaceholderSrc?: string,
 };
 
 type StateType = {
