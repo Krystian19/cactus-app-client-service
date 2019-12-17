@@ -1,36 +1,14 @@
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
 import React from 'react';
-import {
-  Link,
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { GQLRelease } from '@cactus-app/types';
 
-import Release from '../../../../@types/Release';
+import ReleaseQuery from './ReleaseQuery';
 import LazyImage from '../../../../shared/LazyImage';
 import PaginationBox from '../../../../shared/PaginationBox';
 import LoadingAnimeRelease from '../LoadingAnimeRelease';
 
-const ReleaseQuery = gql`
-  query($id:Int!, $pageCount:Int, $currentPage:Int) {
-    Release(id:$id) {
-      id,
-      title,
-      EpisodeCount,
-      Episodes(limit:$pageCount, offset: $currentPage) {
-        rows {
-          id,
-          thumbnail,
-          episode_order,
-          episode_code
-        },
-        count
-      }
-    }
-  }
-`;
-
 type PropType = {
-  season: Release,
+  season: GQLRelease,
 };
 
 type StateType = {
@@ -77,8 +55,7 @@ export default class AnimeRelease extends React.Component<PropType, StateType> {
     // console.log(`This is the current page ${currentPage}`);
 
     return (
-      <Query
-        query={ReleaseQuery}
+      <ReleaseQuery
         variables={{
           id: Number(season.id),
           pageCount: pageCount,
@@ -164,7 +141,7 @@ export default class AnimeRelease extends React.Component<PropType, StateType> {
             </div>
           );
         }}
-      </Query>
+      </ReleaseQuery>
     );
   }
 }

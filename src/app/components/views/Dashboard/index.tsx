@@ -11,64 +11,61 @@ import DashboardQuery from './DashboardQuery';
 
 type PropType = InjectedIntlProps & {};
 
-class Dashboard extends React.Component<PropType> {
-  render() {
-    const { formatMessage } = this.props.intl;
-
-    return (
-      <DashboardQuery>
-        {({ loading, error, data }) => {
-          if (loading || error) {
-            return (
-              <div className="main-content no-padding">
-                <LoadingHottestVideoBlock
-                  count={5}
-                />
-                <LoadingVideoBlock
-                  count={8}
-                />
-              </div>
-            );
-          }
-
+const Dashboard = (props: PropType) => {
+  const { intl: { formatMessage } } = props;
+  return (
+    <DashboardQuery>
+      {({ loading, error, data }) => {
+        if (loading || error) {
           return (
             <div className="main-content no-padding">
-              <HottestVideoBlock
-                title={
-                  formatMessage({
-                    id: "cactus.hot_section_title",
-                    defaultMessage: "🔥 right now"
-                  })
-                }
-                episodes={data.HottestEpisodes.rows}
-                viewAllLink="/hottest_episodes"
+              <LoadingHottestVideoBlock
+                count={5}
               />
-              <VideoBlock
-                title={
-                  formatMessage({
-                    id: "cactus.what_is_new",
-                    defaultMessage: "What's new ?"
-                  })
-                }
-                episodes={data.NewestEpisodes.rows}
-                viewAllLink={'/newest_episodes'}
-              />
-              <CategoriesBlock
-                title={
-                  formatMessage({
-                    id: "cactus.categories",
-                    defaultMessage: "Categories"
-                  })
-                }
-                categories={data.Genres.rows}
-                viewAllLink={'/categories'}
+              <LoadingVideoBlock
+                count={8}
               />
             </div>
           );
-        }}
-      </DashboardQuery>
-    );
-  }
-}
+        }
+
+        return (
+          <div className="main-content no-padding">
+            <HottestVideoBlock
+              title={
+                formatMessage({
+                  id: "cactus.hot_section_title",
+                  defaultMessage: "🔥 right now"
+                })
+              }
+              episodes={data.HottestEpisodes.rows}
+              viewAllLink="/hottest_episodes"
+            />
+            <VideoBlock
+              title={
+                formatMessage({
+                  id: "cactus.what_is_new",
+                  defaultMessage: "What's new ?"
+                })
+              }
+              episodes={data.NewestEpisodes.rows}
+              viewAllLink={'/newest_episodes'}
+            />
+            <CategoriesBlock
+              title={
+                formatMessage({
+                  id: "cactus.categories",
+                  defaultMessage: "Categories"
+                })
+              }
+              categories={data.Genres.rows}
+              viewAllLink={'/categories'}
+            />
+          </div>
+        );
+      }}
+    </DashboardQuery>
+  );
+};
 
 export default injectIntl(Dashboard);
