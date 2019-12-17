@@ -3,22 +3,10 @@ import gql from 'graphql-tag';
 import React from 'react';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
 
+import GenresQuery from './GenresQuery';
 import CategoriesBlock from '../../shared/CategoriesBlock';
 import LoadingSpinner from '../../shared/LoadingSpinner';
 import PaginationBox from '../../shared/PaginationBox';
-
-const GenresEpisodesQuery = gql`
-  query($pageCount:Int, $currentPage:Int) {
-    Genres(limit: $pageCount, offset: $currentPage) {
-      rows {
-        id,
-        title,
-        thumbnail
-      },
-      count
-    },
-  }
-`;
 
 type PropType = InjectedIntlProps & {};
 
@@ -60,10 +48,9 @@ class Categories extends React.Component<PropType, StateType> {
     const { formatMessage } = this.props.intl;
 
     return (
-      <Query
-        query={GenresEpisodesQuery}
+      <GenresQuery
         variables={{
-          pageCount: pageCount,
+          pageCount,
           currentPage: (Number(currentPage) * pageCount),
         }}
       >
@@ -78,7 +65,6 @@ class Categories extends React.Component<PropType, StateType> {
 
           if (error) return <p>Error :(</p>;
 
-          console.log(data);
           return (
             <div className="main-content no-padding">
               <CategoriesBlock
@@ -115,7 +101,7 @@ class Categories extends React.Component<PropType, StateType> {
             </div>
           );
         }}
-      </Query>
+      </GenresQuery>
     );
   }
 }
