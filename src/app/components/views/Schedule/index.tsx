@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ScheduleQuery from './ScheduleQuery'
+import ScheduleQuery from './ScheduleQuery';
 import ScheduleList from '../../shared/ScheduleList';
 import LoadingSpinner from '../../shared/LoadingSpinner';
 

@@ -1,35 +1,11 @@
 import React from 'react';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
 
+import HottestEpisodesQuery from './HottestEpisodesQuery';
 import HottestVideoBlock from '../../shared/HottestVideoBlock';
 import LoadingHottestVideoBlock
   from '../../shared/HottestVideoBlock/components/LoadingHottestVideoBlock';
 import PaginationBox from '../../shared/PaginationBox';
-
-const HottestEpisodesQuery = gql`
-  query($pageCount:Int, $currentPage:Int) {
-    HottestEpisodes(limit:$pageCount, offset: $currentPage) {
-      rows {
-        id,
-        thumbnail,
-        episode_order,
-        Release {
-          id,
-          release_order,
-          title,
-          background,
-          Anime {
-            id,
-            title
-          }
-        }
-      },
-      count
-    },
-  }
-`;
 
 type PropType = InjectedIntlProps & {};
 
@@ -72,8 +48,7 @@ class HottestEpisodes extends React.Component<PropType, StateType> {
     const { formatMessage } = this.props.intl;
 
     return (
-      <Query
-        query={HottestEpisodesQuery}
+      <HottestEpisodesQuery
         variables={{
           pageCount: pageCount,
           currentPage: (Number(currentPage) * pageCount),
@@ -90,7 +65,6 @@ class HottestEpisodes extends React.Component<PropType, StateType> {
             );
           }
 
-          console.log(data);
           return (
             <div className="main-content no-padding">
               <HottestVideoBlock
@@ -127,7 +101,7 @@ class HottestEpisodes extends React.Component<PropType, StateType> {
             </div>
           );
         }}
-      </Query>
+      </HottestEpisodesQuery>
     );
   }
 }
