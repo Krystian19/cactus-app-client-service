@@ -1,5 +1,3 @@
-import { Query, Mutation } from 'react-apollo';
-import gql from 'graphql-tag';
 import React from 'react';
 import ReactPlayer from 'react-player';
 import { RouteComponentProps, withRouter } from "react-router";
@@ -7,49 +5,11 @@ import {
   Link,
 } from 'react-router-dom';
 
+import AnimeVideoQuery from './AnimeVideoQuery';
+import EpisodeSeenMutation from './EpisodeSeenMutation';
 import LazyImage from '../../shared/LazyImage';
 import LoadingAnimeVideo from './components/LoadingAnimeVideo';
 import base64Content from '../../../utils/base64Content';
-
-const AnimeVideoQuery = gql`
-  query($id: Int!) {
-    Episode(id: $id) {
-      id
-      thumbnail
-      episode_order
-      episode_code
-      EarlierEpisode {
-        id
-        episode_order
-      }
-      LaterEpisode {
-        id
-        episode_order
-      }
-      Release {
-        id
-        poster
-        title
-        release_order
-      }
-      EpisodeSubtitles {
-        id
-        subtitle_code
-        Language {
-          id
-          name
-          iso_code
-        }
-      }
-    }
-  }
-`;
-
-const EpisodeSeenMutation = gql`
-  mutation($id: Int!) {
-    EpisodeSeen(episode_id: $id)
-  }
-`;
 
 type PathParamsType = {
   id: string,
@@ -71,10 +31,8 @@ class AnimeVideo extends React.Component<PropType, StateType> {
   render() {
     const { isMounted } = this.state;
     const { match: { params } } = this.props;
-    console.log(`Looking for an episode with the id: ${params.id}`);
     return (
-      <Query
-        query={AnimeVideoQuery}
+      <AnimeVideoQuery
         variables={{ id: Number(params.id) }}
       >
         {({ loading, error, data }) => {
@@ -94,19 +52,17 @@ class AnimeVideo extends React.Component<PropType, StateType> {
                   <div className="anime-watch-episode-video">
                     {
                       isMounted && (
-                        <Mutation
-                          mutation={EpisodeSeenMutation}
-                        >
+                        <EpisodeSeenMutation>
                           {(episodeSeen) => (
                             <ReactPlayer
                               className='react-player'
                               url={
-                                /*
-                                  @Note: Safari presents a lot of bugs if the mime-type
-                                  of the video source is not of the format 
-                                  "application/vnd.apple.mpegURL", so we check if this
-                                  browser supports it first. (9-10-2019)
-                                */
+                                /**
+                                 * @Note Safari presents a lot of bugs if the mime-type
+                                 * of the video source is not of the format 
+                                 * "application/vnd.apple.mpegURL", so we check if this
+                                 * browser supports it first. (9-10-2019)
+                                 */
                                 document
                                   .createElement('video')
                                   .canPlayType('application/vnd.apple.mpegURL')
@@ -129,7 +85,7 @@ class AnimeVideo extends React.Component<PropType, StateType> {
                               }
                             />
                           )}
-                        </Mutation>
+                        </EpisodeSeenMutation>
                       )
                     }
                   </div>
@@ -210,7 +166,7 @@ class AnimeVideo extends React.Component<PropType, StateType> {
             </div>
           );
         }}
-      </Query>
+      </AnimeVideoQuery>
     );
   }
 }
