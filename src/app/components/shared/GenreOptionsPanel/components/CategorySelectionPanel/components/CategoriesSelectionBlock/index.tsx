@@ -12,7 +12,6 @@ type PropType = {
 };
 
 class CategoriesSelectionBlock extends React.Component<PropType> {
-
   thisCategoryIsSelected = (
     category: GQLGenre,
     selectedCategories: Array<GQLGenre>

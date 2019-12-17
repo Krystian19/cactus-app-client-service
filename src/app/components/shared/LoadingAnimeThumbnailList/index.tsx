@@ -5,26 +5,26 @@ type PropType = {
   count: number,
 };
 
-export default class LoadingAnimeThumbnailList extends React.Component<PropType> {
-  render() {
-    const { count } = this.props;
+const LoadingAnimeThumbnailList = (props: PropType) => {
+  const { count } = props;
 
-    return (
-      <div className="anime-thumbnail-list">
-        {range(0, count).map(num => (
-          <div
-            key={Number(num)}
-            className="anime-thumbnail"
-          >
-            <div className="cover shimmer-load">
-              <span className="score">
-                &#8203;
-              </span>
-            </div>
-            <div className="info shimmer-load" />
+  return (
+    <div className="anime-thumbnail-list">
+      {range(0, count).map(num => (
+        <div
+          key={Number(num)}
+          className="anime-thumbnail"
+        >
+          <div className="cover shimmer-load">
+            <span className="score">
+              &#8203;
+            </span>
           </div>
-        ))}
-      </div>
-    );
-  }
-}
+          <div className="info shimmer-load" />
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default LoadingAnimeThumbnailList;

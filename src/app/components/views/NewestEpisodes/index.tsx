@@ -1,35 +1,10 @@
 import React from 'react';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
 
+import NewestEpisodesQuery from './NewestEpisodesQuery';
 import LoadingVideoBlock from '../../shared/VideoBlock/components/LoadingVideoBlock';
 import VideoBlock from '../../shared/VideoBlock';
 import PaginationBox from '../../shared/PaginationBox';
-
-const NewestEpisodesQuery = gql`
-  query($pageCount:Int, $currentPage:Int) {
-    NewestEpisodes(limit:$pageCount, offset: $currentPage) {
-      rows {
-        id,
-        thumbnail,
-        episode_order,
-        Release {
-          id,
-          release_order,
-          title,
-          background,
-          Anime {
-            id,
-            title
-          }
-        }
-      },
-      count
-    },
-  }
-`;
-
 
 type PropType = InjectedIntlProps & {};
 
@@ -71,8 +46,7 @@ class NewestEpisodes extends React.Component<PropType, StateType> {
     const { formatMessage } = this.props.intl;
 
     return (
-      <Query
-        query={NewestEpisodesQuery}
+      <NewestEpisodesQuery
         variables={{
           pageCount: pageCount,
           currentPage: (Number(currentPage) * pageCount),
@@ -126,10 +100,9 @@ class NewestEpisodes extends React.Component<PropType, StateType> {
             </div>
           );
         }}
-      </Query>
+      </NewestEpisodesQuery>
     );
   }
 }
-
 
 export default injectIntl(NewestEpisodes);
