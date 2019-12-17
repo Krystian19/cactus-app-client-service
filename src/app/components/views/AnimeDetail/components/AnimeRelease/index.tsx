@@ -64,7 +64,6 @@ class AnimeRelease extends React.Component<PropType, StateType> {
             );
           }
 
-          console.log(data);
           return (
             <div className="anime-season">
               {/* <span className="anime-season-title">

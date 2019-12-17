@@ -146,8 +146,6 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
                 return ('');
               }
 
-              console.log('Here we are');
-              console.log(data);
               return (
                 <Fragment>
                   <FilterCategoriesChips

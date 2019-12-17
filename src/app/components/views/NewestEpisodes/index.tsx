@@ -62,8 +62,7 @@ class NewestEpisodes extends React.Component<PropType, StateType> {
               </div>
             );
           }
-
-          console.log(data);
+          
           return (
             <div className="main-content no-padding">
               <VideoBlock

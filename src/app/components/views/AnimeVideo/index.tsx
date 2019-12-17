@@ -42,7 +42,6 @@ class AnimeVideo extends React.Component<PropType, StateType> {
             );
           }
 
-          console.log(data);
           const { Episode } = data;
           const videoUrl = `/video_cdn/${Episode.episode_code}/index.m3u8`;
           return (
