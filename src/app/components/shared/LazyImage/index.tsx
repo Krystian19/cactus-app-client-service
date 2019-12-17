@@ -18,15 +18,11 @@ type StateType = {
 };
 
 export default class LazyImage extends React.Component<PropType, StateType> {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isMounted: false,
-      isLoaded: false,
-      loadError: false,
-    };
-  }
+  state = {
+    isMounted: false,
+    isLoaded: false,
+    loadError: false,
+  };
 
   public static defaultProps = {
     noLoadingPlaceholder: false,

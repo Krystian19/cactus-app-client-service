@@ -30,14 +30,9 @@ type StateType = {
 const pageCount = 8;
 
 class Categories extends React.Component<PropType, StateType> {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      // Pagination state values
-      currentPage: 0,
-    };
-  }
+  state = {
+    currentPage: 0,
+  };
 
   PageForward = () => {
     const { currentPage } = this.state;

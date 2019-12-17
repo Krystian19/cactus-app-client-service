@@ -14,12 +14,8 @@ type StateType = {
 };
 
 class Sidebar extends React.Component<PropsType, StateType> {
-  constructor(props) {
-    super(props);
-
-    this.state = { isMounted: false };
-  }
-
+  state = { isMounted: false };
+  
   componentDidMount() {
     this.setState({ isMounted: true });
   }

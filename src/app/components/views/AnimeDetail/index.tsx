@@ -148,7 +148,7 @@ const AnimeDetail = (props: PropType) => {
                     <div className="anime-seasons">
                       <AnimeRelease
                         key={Release.id}
-                        season={Release}
+                        releaseId={Release.id}
                       />
                     </div>
                   </div>

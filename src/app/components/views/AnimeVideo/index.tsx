@@ -62,10 +62,7 @@ type StateType = {
 };
 
 class AnimeVideo extends React.Component<PropType, StateType> {
-  constructor(props) {
-    super(props);
-    this.state = { isMounted: false };
-  }
+  state = { isMounted: false };
 
   componentDidMount() {
     this.setState({ isMounted: true });

@@ -41,14 +41,10 @@ type StateType = {
 const pageCount = 8;
 
 class HottestEpisodes extends React.Component<PropType, StateType> {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      // Pagination state values
-      currentPage: 0,
-    };
-  }
+  state = {
+    // Pagination state values
+    currentPage: 0,
+  };
 
   PageForward = () => {
     const { currentPage } = this.state;

@@ -27,19 +27,11 @@ class Search extends React.Component<PropType, StateTypes> {
   private typingTimeout = null;
   private _isMounted = false;
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      searchFieldText: '',
-
-      // Pagination's current page
-      currentPage: 0,
-
-      // Categories are currently selected to filter with
-      selectedCategories: [],
-    };
-  }
+  state = {
+    searchFieldText: '',
+    currentPage: 0,
+    selectedCategories: [],
+  };
 
   addedCategory = (category: GQLGenre) => {
     const { selectedCategories } = this.state;

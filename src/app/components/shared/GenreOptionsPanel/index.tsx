@@ -16,13 +16,9 @@ type StateType = {
 };
 
 class GenreOptionsPanel extends React.Component<PropType, StateType> {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      showCategorySelectionPanel: false,
-    };
-  }
+  state = {
+    showCategorySelectionPanel: false,
+  };
 
   render() {
     const {

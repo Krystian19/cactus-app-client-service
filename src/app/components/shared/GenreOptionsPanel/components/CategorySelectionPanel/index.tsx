@@ -26,20 +26,11 @@ const pageCount = 8;
 class CategorySelectionPanel extends React.Component<PropType, StateType> {
   private typingTimeout = null;
 
-  constructor(props) {
-    super(props);
-
-    const { initialSelectedCategories } = this.props;
-
-    this.state = {
-      searchFieldText: '',
-
-      // Pagination's current page
-      currentPage: 0,
-
-      selectedCategories: initialSelectedCategories,
-    };
-  }
+  state = {
+    searchFieldText: '',
+    currentPage: 0,
+    selectedCategories: this.props.initialSelectedCategories,
+  };
 
   PageForward = () => {
     const { currentPage } = this.state;

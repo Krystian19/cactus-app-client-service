@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { GQLRelease } from '@cactus-app/types';
 
 import ReleaseQuery from './ReleaseQuery';
 import LazyImage from '../../../../shared/LazyImage';
@@ -8,24 +7,20 @@ import PaginationBox from '../../../../shared/PaginationBox';
 import LoadingAnimeRelease from '../LoadingAnimeRelease';
 
 type PropType = {
-  season: GQLRelease,
+  releaseId: number;
 };
 
 type StateType = {
-  currentPage: Number,
+  currentPage: number;
 };
 
 // How many records should be shown per page.
 const pageCount = 9;
 
-export default class AnimeRelease extends React.Component<PropType, StateType> {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      currentPage: 0,
-    };
-  }
+class AnimeRelease extends React.Component<PropType, StateType> {
+  state = {
+    currentPage: 0,
+  };
 
   PageForward = () => {
     const { currentPage } = this.state;
@@ -49,15 +44,13 @@ export default class AnimeRelease extends React.Component<PropType, StateType> {
   }
 
   render() {
-    const { season } = this.props;
+    const { releaseId } = this.props;
     const { currentPage } = this.state;
-
-    // console.log(`This is the current page ${currentPage}`);
 
     return (
       <ReleaseQuery
         variables={{
-          id: Number(season.id),
+          id: releaseId,
           pageCount: pageCount,
           currentPage: (Number(currentPage) * pageCount),
         }}
@@ -145,3 +138,5 @@ export default class AnimeRelease extends React.Component<PropType, StateType> {
     );
   }
 }
+
+export default AnimeRelease;
