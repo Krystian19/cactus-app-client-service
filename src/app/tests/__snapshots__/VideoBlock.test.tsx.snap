@@ -28,49 +28,7 @@ exports[`VideoBlock component is rendering properly 1`] = `
   >
     <div
       class="anime-small-thumbnail-list"
-    >
-      <div
-        class="anime-small-thumbnail"
-        role="menuitem"
-        tabindex="0"
-      >
-        <div
-          class="cover shimmer-load"
-        >
-          <div
-            class="overlay hover_hidden darken"
-          >
-            <svg
-              class="play"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M8,5.14V19.14L19,12.14L8,5.14Z"
-              />
-            </svg>
-          </div>
-        </div>
-        <div
-          class="info"
-        >
-          <div
-            class="title"
-          >
-            <div
-              class="title-container"
-            >
-              Goblin Slayer
-                      (S1)
-            </div>
-            <div
-              class="detail-container"
-            >
-              Ep. 12
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    />
   </div>
 </div>
 `;
