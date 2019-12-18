@@ -32,8 +32,8 @@ install:
 script:
   # Wait for a minute to give time for the container to start properly
   - sleep 1m
-  # Run the normal test processes
-  - docker exec -ti cactus_app_client yarn test
   # Check for code linting rules
   - docker exec -ti cactus_app_client yarn lint
+  # Run the normal test processes
+  - docker exec -ti cactus_app_client yarn test
 after_success: docker exec -ti cactus_app_client yarn coverage

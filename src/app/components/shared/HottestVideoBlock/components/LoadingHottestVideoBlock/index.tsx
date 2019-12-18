@@ -41,6 +41,6 @@ const LoadingHottestVideoBlock = (props: PropType) => {
       </div>
     </div>
   );
-}
+};
 
 export default LoadingHottestVideoBlock;
