@@ -13,6 +13,7 @@
     "test": "jest ./app/tests/",
     "coverage": "codecov",
     "lint": "tslint --project .",
+    "lint-light": "git diff --name-only | grep -E '\\.tsx?$' | xargs yarn lint",
     "gqlgen": "(cd src/types && yarn gqlgen);"
   },
   "workspaces": [
@@ -25,7 +26,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint"
+      "pre-commit": "yarn lint-light"
     }
   },
   "dependencies": {
