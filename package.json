@@ -13,7 +13,7 @@
     "test": "jest ./app/tests/",
     "coverage": "codecov",
     "lint": "tslint --project .",
-    "lint-commit": "git diff --name-only --cached | grep -E '\\.tsx?$' | xargs yarn lint",
+    "lint-commit": "git diff --name-only --cached | grep -E '\\.tsx?$' | xargs tslint",
     "gqlgen": "(cd src/types && yarn gqlgen);"
   },
   "workspaces": [

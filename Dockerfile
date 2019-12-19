@@ -8,7 +8,4 @@ RUN apk add --no-cache git
 COPY . /app
 EXPOSE 3000
 
-# Install service manager
-RUN npm install -g yarn
-
 CMD /app/setup.sh
