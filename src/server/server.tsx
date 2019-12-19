@@ -1,4 +1,4 @@
-import express from "express";
+import express from 'express';
 import path from 'path';
 import fs from 'fs';
 import requestProxy from 'express-request-proxy';

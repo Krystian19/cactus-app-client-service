@@ -34,8 +34,8 @@ const Dashboard = (props: PropType) => {
             <HottestVideoBlock
               title={
                 formatMessage({
-                  id: "cactus.hot_section_title",
-                  defaultMessage: "🔥 right now"
+                  id: 'cactus.hot_section_title',
+                  defaultMessage: '🔥 right now'
                 })
               }
               episodes={data.HottestEpisodes.rows}
@@ -44,8 +44,8 @@ const Dashboard = (props: PropType) => {
             <VideoBlock
               title={
                 formatMessage({
-                  id: "cactus.what_is_new",
-                  defaultMessage: "What's new ?"
+                  id: 'cactus.what_is_new',
+                  defaultMessage: 'What\'s new ?'
                 })
               }
               episodes={data.NewestEpisodes.rows}
@@ -54,8 +54,8 @@ const Dashboard = (props: PropType) => {
             <CategoriesBlock
               title={
                 formatMessage({
-                  id: "cactus.categories",
-                  defaultMessage: "Categories"
+                  id: 'cactus.categories',
+                  defaultMessage: 'Categories'
                 })
               }
               categories={data.Genres.rows}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { RouteComponentProps } from "react-router";
+import { RouteComponentProps } from 'react-router';
 import {
   NavLink,
   withRouter,
@@ -57,7 +57,7 @@ class Sidebar extends React.Component<PropsType, StateType> {
           <div className="sidebar-option">
             <NavLink
               to="/search"
-              activeClassName='active'
+              activeClassName="active"
             >
               <i className="fa fa-search" />
             </NavLink>
@@ -65,7 +65,7 @@ class Sidebar extends React.Component<PropsType, StateType> {
           <div className="sidebar-option">
             <NavLink
               to="/schedule"
-              activeClassName='active'
+              activeClassName="active"
             >
               <i className="fa fa-calendar" />
             </NavLink>

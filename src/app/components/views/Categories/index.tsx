@@ -68,8 +68,8 @@ class Categories extends React.Component<PropType, StateType> {
               <CategoriesBlock
                 title={
                   formatMessage({
-                    id: "cactus.categories",
-                    defaultMessage: "Categories"
+                    id: 'cactus.categories',
+                    defaultMessage: 'Categories'
                   })
                 }
                 categories={data.Genres.rows}

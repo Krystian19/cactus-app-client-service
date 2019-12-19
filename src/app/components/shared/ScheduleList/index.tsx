@@ -148,7 +148,7 @@ const ScheduleList = (props: PropType) => {
 
                     return formatMessage({
                       id: `cactus.${DayName}`,
-                      defaultMessage: ""
+                      defaultMessage: ''
                     });
                   })()}
                 </h3>
@@ -186,8 +186,8 @@ const ScheduleList = (props: PropType) => {
                           ${DateTimeToTime(Release.started_airing)}
                            - ${
                             formatMessage({
-                              id: "cactus.episode",
-                              defaultMessage: "EPISODE",
+                              id: 'cactus.episode',
+                              defaultMessage: 'EPISODE',
                             })
                             } ${Release.EpisodeCount + 1}
                           `}

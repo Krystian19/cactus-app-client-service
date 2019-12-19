@@ -1,5 +1,5 @@
 import React from 'react';
-import { RouteComponentProps, withRouter } from "react-router";
+import { RouteComponentProps, withRouter } from 'react-router';
 import queryString from 'qs';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
 
@@ -211,8 +211,8 @@ class Search extends React.Component<PropType, StateTypes> {
             className="big-search-box-input"
             placeholder={
               formatMessage({
-                id: "cactus.search_field_placeholder",
-                defaultMessage: "Search ..."
+                id: 'cactus.search_field_placeholder',
+                defaultMessage: 'Search ...'
               })
             }
             defaultValue={String(searchFieldText)}

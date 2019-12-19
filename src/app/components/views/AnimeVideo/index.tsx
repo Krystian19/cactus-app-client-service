@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
-import { RouteComponentProps, withRouter } from "react-router";
+import { RouteComponentProps, withRouter } from 'react-router';
 import {
   Link,
 } from 'react-router-dom';
@@ -54,7 +54,7 @@ class AnimeVideo extends React.Component<PropType, StateType> {
                         <EpisodeSeenMutation>
                           {(episodeSeen) => (
                             <ReactPlayer
-                              className='react-player'
+                              className="react-player"
                               url={
                                 /**
                                  * @Note Safari presents a lot of bugs if the mime-type
@@ -77,8 +77,8 @@ class AnimeVideo extends React.Component<PropType, StateType> {
                               }
                               playing={true}
                               controls={true}
-                              width='100%'
-                              height='100%'
+                              width="100%"
+                              height="100%"
                               onStart={
                                 () => episodeSeen({ variables: { id: Episode.id } })
                               }

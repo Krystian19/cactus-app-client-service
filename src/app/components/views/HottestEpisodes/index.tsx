@@ -70,8 +70,8 @@ class HottestEpisodes extends React.Component<PropType, StateType> {
               <HottestVideoBlock
                 title={
                   formatMessage({
-                    id: "cactus.hot_section_title",
-                    defaultMessage: "🔥 right now"
+                    id: 'cactus.hot_section_title',
+                    defaultMessage: '🔥 right now'
                   })
                 }
                 episodes={data.HottestEpisodes.rows}

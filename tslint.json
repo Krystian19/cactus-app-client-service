@@ -13,7 +13,8 @@
     "jsx-no-multiline-js": false,
     "jsx-no-lambda": false,
     "semicolon": true,
-    "no-unused-variable": true
+    "no-unused-variable": true,
+    "quotemark": [true, "single", "jsx-double"]
   },
   "jsRules": {
     "max-line-length": {

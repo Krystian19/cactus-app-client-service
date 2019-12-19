@@ -1,5 +1,5 @@
 import React from 'react';
-import { RouteComponentProps } from "react-router";
+import { RouteComponentProps } from 'react-router';
 import { Link, withRouter } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
@@ -72,8 +72,8 @@ const HottestVideoBlock = (props: PropType) => {
                     {`${episode.Release.title}
                     (${
                       formatMessage({
-                        id: "cactus.season_short",
-                        defaultMessage: "S"
+                        id: 'cactus.season_short',
+                        defaultMessage: 'S'
                       })}${episode.Release.release_order})`}
                   </div>
                   <div className="detail-container">

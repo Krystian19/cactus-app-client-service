@@ -1,4 +1,4 @@
-import { RouteComponentProps, withRouter } from "react-router";
+import { RouteComponentProps, withRouter } from 'react-router';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
 import React from 'react';
 

@@ -79,8 +79,8 @@ const AnimeThumbnailList = (props: PropType) => {
               <FormattedMessage
                 id={
                   (season.EpisodeCount == 1)
-                    ? "cactus.episode"
-                    : "cactus.episodes"
+                    ? 'cactus.episode'
+                    : 'cactus.episodes'
                 }
                 defaultMessage="Episodes"
               />

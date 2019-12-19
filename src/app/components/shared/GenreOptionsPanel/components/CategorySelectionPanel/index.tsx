@@ -126,8 +126,8 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
               className="big-search-box-input"
               placeholder={
                 formatMessage({
-                  id: "cactus.category_search_field_placeholder",
-                  defaultMessage: "Search categories ..."
+                  id: 'cactus.category_search_field_placeholder',
+                  defaultMessage: 'Search categories ...'
                 })
               }
               onChange={this.onSearchFieldChangedEvent}
