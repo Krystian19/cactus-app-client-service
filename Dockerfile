@@ -9,6 +9,6 @@ COPY . /app
 EXPOSE 3000
 
 # Install service manager
-RUN npm install -g yarn@1.17.3
+RUN npm install -g yarn
 
 CMD /app/setup.sh
