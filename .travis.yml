@@ -23,19 +23,18 @@ before_install:
   # Setup the networks
   - docker network create testing_network
 
-  # Setup logger service
-  - docker run --name cactus.logger -d -e ACCEPT_EULA=Y -p 4040:80 -p 5341:5341 --network=testing_network datalust/seq:5
-
   # Build and run the cactus.bff service
   - git clone https://github.com/Krystian19/cactus-app-bff-service.git ~/cactus-bff
   - docker build -t cactus_app/cactus-app-bff-service ~/cactus-bff
   - docker run --name cactus_bff -d -e CACTUS_CORE_URL="cactus.core:9040" -p 4000:3000 --network=testing_network cactus_app/cactus-app-bff-service
-  - chmod +x ~/cactus-bff/wait.sh
-  - sh ~/cactus-bff/wait.sh # Wait until the cactus_bff is ready to continue
+  - chmod +x wait.sh && sh wait.sh # Wait until the cactus_bff is ready to continue
   - docker images
   - docker ps -a
 
-  # Build the docker image
+  # Setup logger service
+  - docker run --name cactus.logger -d -e ACCEPT_EULA=Y -p 4040:80 -p 5341:5341 --network=testing_network datalust/seq:5
+
+  # Build the docker the client's image
   - docker build -t cactus_app/cactus-app-client-service .
   - docker images
 install:
