@@ -12,10 +12,6 @@ services:
   - docker
 
 before_install:
-  # Install env tools
-  - sudo apt-get update
-  - sudo apt-get -y install wget
-
   # Use sed to replace the SSH URL with the public URL, then initialize submodules
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
@@ -27,7 +23,7 @@ before_install:
   - git clone https://github.com/Krystian19/cactus-app-bff-service.git ~/cactus-bff
   - docker build -t cactus_app/cactus-app-bff-service ~/cactus-bff
   - docker run --name cactus_bff -d -e CACTUS_CORE_URL="cactus.core:9040" -p 4000:3000 --network=testing_network cactus_app/cactus-app-bff-service
-  - bash ./wait.sh # Wait until the cactus_bff is ready to continue
+  - while ! echo exit | curl -I --fail "http://localhost:4000"; do sleep 10; done # Wait until the cactus_bff is ready to continue
   - docker images
   - docker ps -a
 
