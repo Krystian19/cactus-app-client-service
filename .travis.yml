@@ -30,7 +30,7 @@ before_install:
   - git clone https://github.com/Krystian19/cactus-app-bff-service.git ~/cactus-bff
   - docker build -t cactus_app/cactus-app-bff-service ~/cactus-bff
   - docker run --name cactus_bff -d -e CACTUS_CORE_URL="cactus.core:9040" -p 4000:3000 --network=testing_network cactus_app/cactus-app-bff-service
-  - wget http://localhost:4000 --retry-connrefused --tries=20 -q --wait=10 --spider
+  - sh ~/cactus-bff/wait.sh # Wait until the cactus_bff is ready to continue
   - docker images
   - docker ps -a
 
