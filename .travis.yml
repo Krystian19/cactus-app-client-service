@@ -22,11 +22,19 @@ before_install:
   # Setup logger service
   - docker run --name cactus.logger -d -e ACCEPT_EULA=Y -p 4040:80 -p 5341:5341 --network=testing_network datalust/seq:5
 
+  # Build and run the cactus.bff service
+  - git clone https://github.com/Krystian19/cactus-app-bff-service.git ~/cactus-bff
+  - docker build -t cactus_app/cactus-app-bff-service ~/cactus-bff
+  - docker run --name cactus.bff -d -e CACTUS_CORE_URL="cactus.core:9040" -p 4000:3000 --network=testing_network cactus_app/cactus-app-bff-service
+  - docker inspect --format '{{ .NetworkSettings.IPAddress }}:3000' cactus.bff | xargs wget --retry-connrefused --tries=20 -q --wait=10 --spider
+  - docker images
+  - docker ps -a
+
   # Build the docker image
   - docker build -t cactus_app/cactus-app-client-service .
   - docker images
 install:
-  - docker run -ti --name=cactus_app_client -d -e CODECOV_TOKEN=$CODECOV_TOKEN -e SERVICE_NAME="cactus_client" -e LOGGER_SERVICE_HOST="http://cactus.logger:5341/" -v $(pwd):/app -p 3000:3000 --network=testing_network cactus_app/cactus-app-client-service
+  - docker run -ti --name=cactus_app_client -d -e CODECOV_TOKEN=$CODECOV_TOKEN -e SERVICE_NAME="cactus_client" -e LOGGER_SERVICE_HOST="http://cactus.logger:5341/" -p 3000:3000 --network=testing_network cactus_app/cactus-app-client-service
   - docker ps -a
 
 script:
