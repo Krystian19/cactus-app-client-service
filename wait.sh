@@ -1,7 +1,9 @@
 #!/bin/sh
 
-# Waits until cactus_bff container is healthy. (Is only used in Travis.CI)
-until [ "`docker inspect -f {{.State.Health.Status}} cactus_bff`" == "healthy" ]; do
-  sleep 10;
-  echo "Wait until cactus bff is ready";
-done;
+# Waits until cactus.bff is ready to accept connections (Only used inside of travis.ci).
+while ! echo exit | curl -I --fail "http://localhost:4000";
+do
+  echo "Waiting for cactus.bff to start"
+  ((c++)) && ((c==10)) && break
+  sleep 10
+done
