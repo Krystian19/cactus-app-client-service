@@ -1,15 +1,11 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
-import {
-  Link,
-  withRouter,
-} from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import queryString from 'qs';
 import { FormattedMessage } from 'react-intl';
-
 import { GQLGenre } from '@cactus-app/types';
-import LazyImage from '../LazyImage';
 
+import LazyImage from '../LazyImage';
 import base64Content from '../../../utils/base64Content';
 
 type PropType = RouteComponentProps<{}> & {
