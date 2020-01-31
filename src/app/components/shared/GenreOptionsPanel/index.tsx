@@ -6,13 +6,13 @@ import FilterCategoriesChips from '../FilterCategoriesChips';
 import CategorySelectionPanel from './components/CategorySelectionPanel';
 
 type PropType = {
-  selectedCategories: Array<GQLGenre>,
-  categoryRemoved: (category: GQLGenre) => void,
-  setSelectedCategories: (categories: GQLGenre[]) => void,
+  selectedCategories: Array<GQLGenre>;
+  categoryRemoved: (category: GQLGenre) => void;
+  setSelectedCategories: (categories: GQLGenre[]) => void;
 };
 
 type StateType = {
-  showCategorySelectionPanel: Boolean
+  showCategorySelectionPanel: boolean;
 };
 
 class GenreOptionsPanel extends React.Component<PropType, StateType> {

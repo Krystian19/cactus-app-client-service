@@ -10,7 +10,7 @@ import YearExtractor from '../../../utils/YearExtractor';
 import base64Content from '../../../utils/base64Content';
 
 type PropType = {
-  releases: Array<GQLRelease>,
+  releases: Array<GQLRelease>;
 };
 
 const AnimeThumbnailList = (props: PropType) => {

@@ -8,16 +8,16 @@ import CategoriesSelectionBlock from './components/CategoriesSelectionBlock';
 import PaginationBox from '../../../../shared/PaginationBox';
 
 type PropType = InjectedIntlProps & {
-  closePanel: () => void,
+  closePanel: () => void;
 
-  setSelectedCategories: (selectedCategories: GQLGenre[]) => void,
-  initialSelectedCategories: Array<GQLGenre>,
+  setSelectedCategories: (selectedCategories: GQLGenre[]) => void;
+  initialSelectedCategories: Array<GQLGenre>;
 };
 
 type StateType = {
-  currentPage: Number,
-  searchFieldText: string,
-  selectedCategories: Array<GQLGenre>,
+  currentPage: number;
+  searchFieldText: string;
+  selectedCategories: Array<GQLGenre>;
 };
 
 // How many records should be shown per page

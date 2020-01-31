@@ -8,9 +8,9 @@ import { GQLEpisode } from '@cactus-app/types';
 import LazyImage from '../LazyImage';
 
 type PropType = RouteComponentProps<{}> & InjectedIntlProps & {
-  episodes: GQLEpisode[],
-  title: String,
-  viewAllLink?: String,
+  episodes: GQLEpisode[];
+  title: string;
+  viewAllLink?: string;
 };
 
 const VideoBlock = (props: PropType) => {

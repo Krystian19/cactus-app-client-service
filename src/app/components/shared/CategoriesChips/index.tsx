@@ -6,7 +6,7 @@ import queryString from 'qs';
 import { GQLGenre } from '@cactus-app/types';
 
 type PropType = RouteComponentProps<{}> & {
-  categories: Array<GQLGenre>
+  categories: Array<GQLGenre>;
 };
 
 const CategoriesChips = ({ categories }: PropType) => (

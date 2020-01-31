@@ -9,9 +9,9 @@ import LazyImage from '../LazyImage';
 import base64Content from '../../../utils/base64Content';
 
 type PropType = RouteComponentProps<{}> & {
-  categories: Array<GQLGenre>,
-  title: string,
-  viewAllLink?: string,
+  categories: Array<GQLGenre>;
+  title: string;
+  viewAllLink?: string;
 };
 
 const CategoriesBlock = (props: PropType) => {

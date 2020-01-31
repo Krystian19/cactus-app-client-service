@@ -2,10 +2,10 @@ import React from 'react';
 import { GQLGenre } from '@cactus-app/types';
 
 type PropType = {
-  categories: Array<GQLGenre>
-  categoryRemoved: (genre: GQLGenre) => void,
-  alignedCenter?: Boolean,
-  padded?: Boolean
+  categories: Array<GQLGenre>;
+  categoryRemoved: (genre: GQLGenre) => void;
+  alignedCenter?: boolean;
+  padded?: boolean;
 };
 
 const FilterCategoriesChips = ({

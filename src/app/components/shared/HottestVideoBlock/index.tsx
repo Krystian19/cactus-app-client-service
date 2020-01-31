@@ -9,9 +9,9 @@ import LazyImage from '../LazyImage';
 import base64Content from '../../../utils/base64Content';
 
 type PropType = RouteComponentProps<{}> & InjectedIntlProps & {
-  episodes: GQLEpisode[],
-  title: string,
-  viewAllLink?: string,
+  episodes: GQLEpisode[];
+  title: string;
+  viewAllLink?: string;
 };
 
 const HottestVideoBlock = (props: PropType) => {

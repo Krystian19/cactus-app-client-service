@@ -41,10 +41,10 @@ const reorderWeekDays = (WeekDays, today = getDayOfTheWeek()) => {
 /**
 * @author Jan Guzman <janfrancisco19@gmail.com>
 * @desc Groups Seaons by their WeekDay 1 through 7
-* @arg Release Array of Release Objects
+* @arg s Array of Release Objects
 * @returns WeekDays Array [ { order: String, dayName: String, Release: Array } ]
 */
-const groupReleasesByWeekDays = (Release) => {
+const groupReleasesByWeekDays = (Releases: GQLRelease[]) => {
   const WeekDays = {
     '1': [],
     '2': [],
@@ -55,7 +55,7 @@ const groupReleasesByWeekDays = (Release) => {
     '7': [],
   };
 
-  Release.map((Release) => {
+  Releases.map((Release) => {
     const ParsedRelease = Release;
 
     // Translate Original airingTime in JST to the local TimeZone
@@ -110,7 +110,7 @@ const groupReleasesByWeekDays = (Release) => {
 type PropType =
   RouteComponentProps<{}>
   & InjectedIntlProps & {
-    WeekDays: GQLRelease[],
+    WeekDays: GQLRelease[];
   };
 
 const ScheduleList = (props: PropType) => {

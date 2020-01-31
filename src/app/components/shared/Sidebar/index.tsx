@@ -10,7 +10,7 @@ import RandomReleaseQuery from './RandomReleaseQuery';
 type PropsType = RouteComponentProps<{}> & {};
 
 type StateType = {
-  isMounted: Boolean,
+  isMounted: boolean;
 };
 
 class Sidebar extends React.Component<PropsType, StateType> {
@@ -25,7 +25,7 @@ class Sidebar extends React.Component<PropsType, StateType> {
     history.push('/');
   }
 
-  getFlagIconCode = (): String => {
+  getFlagIconCode = (): string => {
     // Gets the language ISO code out of the html tag
     const language = document.documentElement.lang;
 

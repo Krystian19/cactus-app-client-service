@@ -12,8 +12,7 @@
     "watch": "webpack --progress --colors --watch --config webpack.config.dev.js",
     "test": "jest ./app/tests/",
     "coverage": "codecov",
-    "lint": "eslint . --ext .ts,.tsx",
-    "lint-commit": "git diff --name-only --cached | grep -E '\\.tsx?$' | xargs tslint",
+    "lint": "eslint . --ext .ts,.tsx --quiet --cache --cache-location \".eslintcache/\"",
     "gqlgen": "(cd src/types && yarn gqlgen);"
   },
   "workspaces": [
@@ -26,7 +25,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint-commit"
+      "pre-commit": "yarn lint"
     }
   },
   "dependencies": {

@@ -7,7 +7,7 @@ import moment from 'moment-timezone';
 * in the MMM YYYY format
 * @returns String Containing month and year
 */
-export default (dateString: String):String => {
+export default (dateString: string): string => {
   // Check if dateString arg is not valid
   if (!moment(dateString).isValid()) {
     throw new Error('Provided date string value, is not valid.');

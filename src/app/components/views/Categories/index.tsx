@@ -9,7 +9,7 @@ import PaginationBox from '../../shared/PaginationBox';
 type PropType = InjectedIntlProps & {};
 
 type StateType = {
-  currentPage: Number,
+  currentPage: number;
 };
 
 // How many records should be shown per page.

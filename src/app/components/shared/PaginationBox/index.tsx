@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react';
 
 type PropType = {
-  goForwardCB: () => void,
-  goBackwardsCB: () => void,
-  pageCount: Number,
-  itemCount: Number,
-  currentPage: Number,
-  setCurrentPageCB: (page: number) => void,
+  goForwardCB: () => void;
+  goBackwardsCB: () => void;
+  pageCount: number;
+  itemCount: number;
+  currentPage: number;
+  setCurrentPageCB: (page: number) => void;
 };
 
 export default class PaginationBox extends React.Component<PropType> {

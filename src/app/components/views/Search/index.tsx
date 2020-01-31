@@ -11,9 +11,9 @@ import GenreOptionsPanel from '../../shared/GenreOptionsPanel';
 import PaginationBox from '../../shared/PaginationBox';
 
 type StateTypes = {
-  currentPage: Number,
-  searchFieldText: string,
-  selectedCategories: Array<GQLGenre>,
+  currentPage: number;
+  searchFieldText: string;
+  selectedCategories: Array<GQLGenre>;
 };
 
 type PropType =

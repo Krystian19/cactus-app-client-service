@@ -12,7 +12,7 @@ import MonthYearExtractor from '../../../utils/MonthYearExtractor';
 import base64Content from '../../../utils/base64Content';
 
 type PathParamsType = {
-  id: string,
+  id: string;
 };
 
 type PropType = RouteComponentProps<PathParamsType> & InjectedIntlProps & {};

@@ -6,11 +6,11 @@ import React from 'react';
 */
 
 type StateType = {
-  isMounted: Boolean,
+  isMounted: boolean;
 };
 
 type PropType = {
-  children: React.ReactNode,
+  children: React.ReactNode;
 };
 
 export default class ClientRender extends React.Component<PropType, StateType> {

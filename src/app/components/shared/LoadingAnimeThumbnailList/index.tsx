@@ -2,7 +2,7 @@ import React from 'react';
 import range from 'lodash/range';
 
 type PropType = {
-  count: number,
+  count: number;
 };
 
 const LoadingAnimeThumbnailList = (props: PropType) => {

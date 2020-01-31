@@ -12,13 +12,13 @@ import LoadingAnimeVideo from './components/LoadingAnimeVideo';
 import base64Content from '../../../utils/base64Content';
 
 type PathParamsType = {
-  id: string,
+  id: string;
 };
 
 type PropType = RouteComponentProps<PathParamsType> & {};
 
 type StateType = {
-  isMounted: Boolean,
+  isMounted: boolean;
 };
 
 class AnimeVideo extends React.Component<PropType, StateType> {

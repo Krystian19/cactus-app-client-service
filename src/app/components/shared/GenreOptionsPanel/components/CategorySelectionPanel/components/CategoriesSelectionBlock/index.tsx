@@ -6,16 +6,16 @@ import RandomTextEmoji from '../../../../../RandomTextEmoji';
 import base64Content from '../../../../../../../utils/base64Content';
 
 type PropType = {
-  categories: Array<GQLGenre>,
-  selectedCategories: Array<GQLGenre>,
-  categorySelected: (category: GQLGenre) => void,
+  categories: Array<GQLGenre>;
+  selectedCategories: Array<GQLGenre>;
+  categorySelected: (category: GQLGenre) => void;
 };
 
 class CategoriesSelectionBlock extends React.Component<PropType> {
   thisCategoryIsSelected = (
     category: GQLGenre,
     selectedCategories: Array<GQLGenre>
-  ): Boolean => {
+  ): boolean => {
 
     // Check if the provided category has been selected in the provided array
     const categoryIsSelected =

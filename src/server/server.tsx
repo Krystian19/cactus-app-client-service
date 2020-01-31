@@ -188,7 +188,7 @@ class Server {
    * client app.
    * @returns Promise<String> HTML file to respond the request with
    */
-  private async renderHTML(req, res): Promise<String> {
+  private async renderHTML(req, res): Promise<string> {
     const client = new ApolloClient({
       ssrMode: true,
       link: createHttpLink({

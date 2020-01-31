@@ -4,3 +4,5 @@ node_modules
 public
 # don't lint nyc coverage output
 coverage
+# Ignore submodules 
+logger

@@ -20,3 +20,6 @@ coverage
 
 # Ignore Auto-generated GraphQL TS types
 src/types/index.ts
+
+# Ignore eslint cache
+.eslintcache

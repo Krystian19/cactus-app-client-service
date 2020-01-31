@@ -15,5 +15,12 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
   ],
-  // rules: {},
+  rules: {
+    "react/display-name": 0,
+    '@typescript-eslint/camelcase': 0,
+    '@typescript-eslint/no-this-alias': 0,
+    '@typescript-eslint/no-var-requires': 0,
+    '@typescript-eslint/explicit-function-return-type': 0,
+    '@typescript-eslint/no-empty-interface': 0,
+  },
 };

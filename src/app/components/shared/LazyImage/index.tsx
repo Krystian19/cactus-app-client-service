@@ -2,19 +2,19 @@ import React from 'react';
 import base64Content from '../../../utils/base64Content';
 
 type PropType = {
-  src: string,
-  errorSrc: string,
-  className: string,
-  alt: string,
-  noLoadingPlaceholder: Boolean,
-  posterPlaceholder: Boolean,
-  customLoadingPlaceholderSrc?: string,
+  src: string;
+  errorSrc: string;
+  className: string;
+  alt: string;
+  noLoadingPlaceholder: boolean;
+  posterPlaceholder: boolean;
+  customLoadingPlaceholderSrc?: string;
 };
 
 type StateType = {
-  isMounted: Boolean,
-  isLoaded: Boolean,
-  loadError: Boolean
+  isMounted: boolean;
+  isLoaded: boolean;
+  loadError: boolean;
 };
 
 export default class LazyImage extends React.Component<PropType, StateType> {
