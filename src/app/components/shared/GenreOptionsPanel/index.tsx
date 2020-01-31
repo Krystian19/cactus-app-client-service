@@ -15,12 +15,12 @@ type StateType = {
   showCategorySelectionPanel: boolean;
 };
 
-class GenreOptionsPanel extends React.Component<PropType, StateType> {
+export default class extends React.Component<PropType, StateType> {
   state = {
     showCategorySelectionPanel: false,
   };
 
-  render() {
+  render = (): JSX.Element => {
     const {
       selectedCategories,
       categoryRemoved,
@@ -35,7 +35,7 @@ class GenreOptionsPanel extends React.Component<PropType, StateType> {
       <div className="genre-options-panel">
         <a
           className="button clear-bg straigth-corners"
-          onClick={() =>
+          onClick={(): void =>
             this.setState({ showCategorySelectionPanel: true })}
         >
           <FormattedMessage
@@ -45,14 +45,14 @@ class GenreOptionsPanel extends React.Component<PropType, StateType> {
         </a>
         <FilterCategoriesChips
           categories={selectedCategories}
-          categoryRemoved={(category) => categoryRemoved(category)}
+          categoryRemoved={(category): void => categoryRemoved(category)}
         />
 
         {showCategorySelectionPanel && (
           <CategorySelectionPanel
-            closePanel={() => this.setState({ showCategorySelectionPanel: false })}
+            closePanel={(): void => this.setState({ showCategorySelectionPanel: false })}
             initialSelectedCategories={selectedCategories}
-            setSelectedCategories={(categories) => setSelectedCategories(categories)}
+            setSelectedCategories={(categories): void => setSelectedCategories(categories)}
           />
         )}
       </div>
@@ -60,4 +60,3 @@ class GenreOptionsPanel extends React.Component<PropType, StateType> {
   }
 }
 
-export default GenreOptionsPanel;

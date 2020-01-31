@@ -1,8 +1,9 @@
 import React from 'react';
 import { Player } from 'video-react';
+
 import base64Content from '../../../../../utils/base64Content';
 
-const LoadingAnimeVideo = () => (
+export default (): JSX.Element => (
   <div className="main-content no-padding">
     <div className="anime-watch-episode">
       <div className="anime-watch-episode-container">
@@ -39,6 +40,3 @@ const LoadingAnimeVideo = () => (
     </div>
   </div>
 );
-
-
-export default LoadingAnimeVideo;

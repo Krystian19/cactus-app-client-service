@@ -14,7 +14,7 @@ type PropType = RouteComponentProps<{}> & {
   viewAllLink?: string;
 };
 
-const CategoriesBlock = (props: PropType) => {
+const CategoriesBlock = (props: PropType): JSX.Element => {
   const {
     categories,
     title,
@@ -45,7 +45,7 @@ const CategoriesBlock = (props: PropType) => {
               key={Number(category.id)}
               className="anime-small-thumbnail small category"
               onClick={
-                () =>
+                (): void =>
                   history
                     .push(`/search?${queryString.stringify({ genre: [category] })}`)
               }

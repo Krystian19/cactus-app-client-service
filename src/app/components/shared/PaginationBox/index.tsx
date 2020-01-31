@@ -10,7 +10,7 @@ type PropType = {
 };
 
 export default class PaginationBox extends React.Component<PropType> {
-  fetchPageNumbers = (lastPageValue, currentPage) => {
+  fetchPageNumbers = (lastPageValue: number, currentPage: number): Array<number> => {
     const pageRange = 2;
     const visibleCurrentPage = currentPage + 1;
 
@@ -36,7 +36,7 @@ export default class PaginationBox extends React.Component<PropType> {
     return [...leftRange, visibleCurrentPage, ...rightRange];
   }
 
-  render() {
+  render = (): JSX.Element => {
     const {
       goForwardCB,
       goBackwardsCB,
@@ -64,8 +64,8 @@ export default class PaginationBox extends React.Component<PropType> {
       <div className="pagination-box">
         <div
           className="item control"
-          onClick={() => goBackwardsCB()}
-          onKeyPress={() => goBackwardsCB()}
+          onClick={(): void => goBackwardsCB()}
+          onKeyPress={(): void => goBackwardsCB()}
           role="menuitem"
           tabIndex={-1}
         >
@@ -82,8 +82,8 @@ export default class PaginationBox extends React.Component<PropType> {
                 className={
                   `item ${((Number(currentPage) + 1) === 1) ? 'active' : ''}`
                 }
-                onClick={() => setCurrentPageCB(Math.abs((0)))}
-                onKeyPress={() => setCurrentPageCB(Math.abs((0)))}
+                onClick={(): void => setCurrentPageCB(Math.abs((0)))}
+                onKeyPress={(): void => setCurrentPageCB(Math.abs((0)))}
                 role="menuitem"
                 tabIndex={-1}
               >
@@ -102,8 +102,8 @@ export default class PaginationBox extends React.Component<PropType> {
             <div
               key={num}
               className={`item ${(num === (Number(currentPage) + 1)) ? 'active' : ''}`}
-              onClick={() => setCurrentPageCB(Math.abs((num - 1)))}
-              onKeyPress={() => setCurrentPageCB(Math.abs((num - 1)))}
+              onClick={(): void => setCurrentPageCB(Math.abs((num - 1)))}
+              onKeyPress={(): void => setCurrentPageCB(Math.abs((num - 1)))}
               role="menuitem"
               tabIndex={-1}
             >
@@ -125,8 +125,8 @@ export default class PaginationBox extends React.Component<PropType> {
                 className={
                   `item ${(pageLength === (Number(currentPage) + 1)) ? 'active' : ''}`
                 }
-                onClick={() => setCurrentPageCB(Math.abs((pageLength - 1)))}
-                onKeyPress={() => setCurrentPageCB(Math.abs((pageLength - 1)))}
+                onClick={(): void => setCurrentPageCB(Math.abs((pageLength - 1)))}
+                onKeyPress={(): void => setCurrentPageCB(Math.abs((pageLength - 1)))}
                 role="menuitem"
                 tabIndex={-1}
               >
@@ -143,8 +143,8 @@ export default class PaginationBox extends React.Component<PropType> {
         </div>
         <div
           className="item control"
-          onClick={() => goForwardCB()}
-          onKeyPress={() => goForwardCB()}
+          onClick={(): void => goForwardCB()}
+          onKeyPress={(): void => goForwardCB()}
           role="menuitem"
           tabIndex={-2}
         >

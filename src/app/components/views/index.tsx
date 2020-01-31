@@ -16,7 +16,7 @@ import Categories from './Categories';
 import AnimeDetail from './AnimeDetail';
 import AnimeVideo from './AnimeVideo';
 
-export default () => (
+export default (): JSX.Element => (
   <div className="main-container">
     <Sidebar />
     <Switch>

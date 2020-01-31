@@ -1,9 +1,8 @@
 import React from 'react';
 
-const LoadingSpinner = () => (
+export default (): JSX.Element => (
   <div className="loader-container">
     <div className="loader" />
   </div>
 );
 
-export default LoadingSpinner;

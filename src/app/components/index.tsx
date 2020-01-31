@@ -28,12 +28,10 @@ addLocaleData([...locale_en, ...locale_es]);
 // Gets the language ISO code out of the html tag
 const language = document.documentElement.lang;
 
-const App = () => (
+export default (): JSX.Element => (
   <ApolloProvider client={client}>
     <IntlProvider locale={language} messages={languages[language]}>
       <Routes />
     </IntlProvider>
   </ApolloProvider>
 );
-
-export default App;

@@ -11,7 +11,7 @@ type PropType = {
   categorySelected: (category: GQLGenre) => void;
 };
 
-class CategoriesSelectionBlock extends React.Component<PropType> {
+export default class extends React.Component<PropType> {
   thisCategoryIsSelected = (
     category: GQLGenre,
     selectedCategories: Array<GQLGenre>
@@ -30,7 +30,7 @@ class CategoriesSelectionBlock extends React.Component<PropType> {
     return false;
   }
 
-  render() {
+  render = (): JSX.Element => {
     const {
       categories,
       selectedCategories,
@@ -59,7 +59,7 @@ class CategoriesSelectionBlock extends React.Component<PropType> {
           <div
             key={Number(category.id)}
             className="anime-small-thumbnail small category"
-            onClick={() => {
+            onClick={(): void => {
               // Prevents selecting a category twice
               if (!this.thisCategoryIsSelected(category, selectedCategories)) {
                 categorySelected(category);
@@ -94,5 +94,3 @@ class CategoriesSelectionBlock extends React.Component<PropType> {
     );
   }
 }
-
-export default CategoriesSelectionBlock;

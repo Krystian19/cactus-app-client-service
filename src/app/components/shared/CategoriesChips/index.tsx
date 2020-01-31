@@ -9,7 +9,7 @@ type PropType = RouteComponentProps<{}> & {
   categories: Array<GQLGenre>;
 };
 
-const CategoriesChips = ({ categories }: PropType) => (
+const CategoriesChips = ({ categories }: PropType): JSX.Element => (
   <div className="chips-container aligned-left">
     {categories.map(genre => (
       <Link

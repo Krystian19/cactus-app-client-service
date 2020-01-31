@@ -5,9 +5,8 @@ type PropType = {
   count: number;
 };
 
-const LoadingAnimeThumbnailList = (props: PropType) => {
+export default (props: PropType): JSX.Element => {
   const { count } = props;
-
   return (
     <div className="anime-thumbnail-list">
       {range(0, count).map(num => (
@@ -26,5 +25,3 @@ const LoadingAnimeThumbnailList = (props: PropType) => {
     </div>
   );
 };
-
-export default LoadingAnimeThumbnailList;

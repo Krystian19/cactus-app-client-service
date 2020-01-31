@@ -13,7 +13,7 @@ const FilterCategoriesChips = ({
   categoryRemoved,
   alignedCenter = false,
   padded = false,
-}: PropType) => (
+}: PropType): JSX.Element => (
     <div
       className={
         `chips-container 
@@ -25,7 +25,7 @@ const FilterCategoriesChips = ({
         <div
           key={String(genre.id)}
           className="chip"
-          onClick={() => categoryRemoved(genre)}
+          onClick={(): void => categoryRemoved(genre)}
         >
           <div className="chip-content">
             {genre.title}

@@ -13,7 +13,7 @@ type PropType = RouteComponentProps<{}> & InjectedIntlProps & {
   viewAllLink?: string;
 };
 
-const VideoBlock = (props: PropType) => {
+const VideoBlock = (props: PropType): JSX.Element => {
   const {
     episodes,
     title,
@@ -43,8 +43,8 @@ const VideoBlock = (props: PropType) => {
             <div
               key={Number(episode.id)}
               className="anime-small-thumbnail"
-              onClick={() => history.push(`/anime/video/${episode.id}`)}
-              onKeyPress={() => history.push(`/anime/video/${episode.id}`)}
+              onClick={(): void => history.push(`/anime/video/${episode.id}`)}
+              onKeyPress={(): void => history.push(`/anime/video/${episode.id}`)}
               role="menuitem"
               tabIndex={index}
             >

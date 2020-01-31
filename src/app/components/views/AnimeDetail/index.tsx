@@ -17,7 +17,7 @@ type PathParamsType = {
 
 type PropType = RouteComponentProps<PathParamsType> & InjectedIntlProps & {};
 
-const AnimeDetail = (props: PropType) => {
+const AnimeDetail = (props: PropType): JSX.Element => {
   const {
     match: { params },
     intl: { locale },
@@ -26,7 +26,7 @@ const AnimeDetail = (props: PropType) => {
     <AnimeInfoQuery
       variables={{ id: Number(params.id) }}
     >
-      {({ loading, error, data }) => {
+      {({ loading, error, data }): JSX.Element => {
         if (loading || error) {
           return (
             <div className="main-content no-padding">

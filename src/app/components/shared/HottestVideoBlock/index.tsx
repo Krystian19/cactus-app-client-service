@@ -14,7 +14,7 @@ type PropType = RouteComponentProps<{}> & InjectedIntlProps & {
   viewAllLink?: string;
 };
 
-const HottestVideoBlock = (props: PropType) => {
+const HottestVideoBlock = (props: PropType): JSX.Element => {
   const {
     episodes,
     title,
@@ -44,8 +44,8 @@ const HottestVideoBlock = (props: PropType) => {
             <div
               key={Number(episode.id)}
               className={`anime-small-thumbnail ${(index === 0) ? 'big' : 'small'}`}
-              onClick={() => history.push(`/anime/video/${Number(episode.id)}`)}
-              onKeyPress={() => history.push(`/anime/video/${Number(episode.id)}`)}
+              onClick={(): void => history.push(`/anime/video/${Number(episode.id)}`)}
+              onKeyPress={(): void => history.push(`/anime/video/${Number(episode.id)}`)}
               role="menuitem"
             >
               <div className="cover shimmer-load">

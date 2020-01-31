@@ -11,11 +11,11 @@ import DashboardQuery from './DashboardQuery';
 
 type PropType = InjectedIntlProps & {};
 
-const Dashboard = (props: PropType) => {
+const Dashboard = (props: PropType): JSX.Element => {
   const { intl: { formatMessage } } = props;
   return (
     <DashboardQuery>
-      {({ loading, error, data }) => {
+      {({ loading, error, data }): JSX.Element => {
         if (loading || error) {
           return (
             <div className="main-content no-padding">

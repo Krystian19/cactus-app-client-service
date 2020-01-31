@@ -10,8 +10,6 @@ const textEmojis = [
   '( ͡° ͜ʖ ͡°)',
 ];
 
-const RandomTextEmoji = () => (
+export default (): string => (
   textEmojis[Math.floor(Math.random() * textEmojis.length)]
 );
-
-export default RandomTextEmoji;

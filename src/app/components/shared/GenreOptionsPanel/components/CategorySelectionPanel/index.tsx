@@ -32,12 +32,12 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
     selectedCategories: this.props.initialSelectedCategories,
   };
 
-  PageForward = () => {
+  PageForward = (): void => {
     const { currentPage } = this.state;
     this.setState({ currentPage: (Number(currentPage) + 1) });
   }
 
-  PageBackwards = () => {
+  PageBackwards = (): void => {
     const { currentPage } = this.state;
 
     // Can't go backwards if page is already 0
@@ -46,21 +46,21 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
     this.setState({ currentPage: (Number(currentPage) - 1) });
   }
 
-  setCurrentPage = (page) => {
+  setCurrentPage = (page: number): void => {
     // If arg is null then ignore it
     if ((page === null) || (page === undefined)) return;
 
     this.setState({ currentPage: page });
   }
 
-  addedCategory = (category: GQLGenre) => {
+  addedCategory = (category: GQLGenre): void => {
     const { selectedCategories } = this.state;
     this.setState({
       selectedCategories: [...selectedCategories, category],
     });
   }
 
-  removedCategory = (category: GQLGenre) => {
+  removedCategory = (category: GQLGenre): void => {
     const { selectedCategories } = this.state;
 
     // Removes the provided category from the selectedCategories array
@@ -72,7 +72,7 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
     });
   }
 
-  onSearchFieldChangedEvent = ({ target: { value } }) => {
+  onSearchFieldChangedEvent = ({ target: { value } }): void => {
     const self = this;
 
     // Clears the previously set timer.
@@ -88,7 +88,7 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
     }, 400);
   }
 
-  render() {
+  render = (): JSX.Element => {
     const {
       searchFieldText,
       currentPage,
@@ -112,7 +112,7 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
           <div className="genre-options-container-controls">
             <div
               className="exit-btn"
-              onClick={() => {
+              onClick={(): void => {
                 closePanel();
                 setSelectedCategories(selectedCategories);
               }}
@@ -141,9 +141,9 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
               currentPage: (Number(currentPage) * pageCount),
             }}
           >
-            {({ loading, error, data }) => {
+            {({ loading, error, data }): JSX.Element => {
               if (loading || error) {
-                return ('');
+                return <Fragment />
               }
 
               return (
@@ -151,7 +151,7 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
                   <FilterCategoriesChips
                     categories={selectedCategories}
                     categoryRemoved={
-                      (category: GQLGenre) => this.removedCategory(category)
+                      (category: GQLGenre): void => this.removedCategory(category)
                     }
                     alignedCenter={true}
                     padded={true}
@@ -161,7 +161,7 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
                     categories={data.Genres.rows}
                     selectedCategories={selectedCategories}
                     categorySelected={
-                      (category: GQLGenre) => this.addedCategory(category)
+                      (category: GQLGenre): void => this.addedCategory(category)
                     }
                   />
 
@@ -172,7 +172,7 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
                         pageCount={pageCount}
                         itemCount={data.Genres.count}
                         currentPage={currentPage}
-                        goForwardCB={() => {
+                        goForwardCB={(): void => {
                           const lastPage = Math.ceil(
                             data.Genres.count / pageCount,
                           );
@@ -182,7 +182,7 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
 
                           this.PageForward();
                         }}
-                        goBackwardsCB={() => this.PageBackwards()}
+                        goBackwardsCB={(): void => this.PageBackwards()}
                         setCurrentPageCB={this.setCurrentPage}
                       />
                     )

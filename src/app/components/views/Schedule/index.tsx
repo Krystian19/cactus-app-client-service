@@ -4,9 +4,9 @@ import ScheduleQuery from './ScheduleQuery';
 import ScheduleList from '../../shared/ScheduleList';
 import LoadingSpinner from '../../shared/LoadingSpinner';
 
-const Schedule = () => (
+export default (): JSX.Element => (
   <ScheduleQuery>
-    {({ loading, error, data }) => {
+    {({ loading, error, data }): JSX.Element => {
       if (loading) {
         return (
           <div className="main-content no-padding">
@@ -27,5 +27,3 @@ const Schedule = () => (
     }}
   </ScheduleQuery>
 );
-
-export default Schedule;

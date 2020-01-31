@@ -5,9 +5,8 @@ type PropType = {
   count: number;
 };
 
-const LoadingAnimeRelease = (props: PropType) => {
+export default (props: PropType): JSX.Element => {
   const { count } = props;
-
   return (
     <div className="anime-season">
       <div className="anime-season-videos">
@@ -28,5 +27,3 @@ const LoadingAnimeRelease = (props: PropType) => {
     </div>
   );
 };
-
-export default LoadingAnimeRelease;

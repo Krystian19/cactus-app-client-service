@@ -24,18 +24,18 @@ type StateType = {
 class AnimeVideo extends React.Component<PropType, StateType> {
   state = { isMounted: false };
 
-  componentDidMount() {
+  componentDidMount = (): void => {
     this.setState({ isMounted: true });
   }
 
-  render() {
+  render = (): JSX.Element => {
     const { isMounted } = this.state;
     const { match: { params } } = this.props;
     return (
       <AnimeVideoQuery
         variables={{ id: Number(params.id) }}
       >
-        {({ loading, error, data }) => {
+        {({ loading, error, data }): JSX.Element => {
           if (loading || error) {
             return (
               <LoadingAnimeVideo />
@@ -52,7 +52,7 @@ class AnimeVideo extends React.Component<PropType, StateType> {
                     {
                       isMounted && (
                         <EpisodeSeenMutation>
-                          {(episodeSeen) => (
+                          {(episodeSeen): JSX.Element => (
                             <ReactPlayer
                               className="react-player"
                               url={
@@ -80,7 +80,7 @@ class AnimeVideo extends React.Component<PropType, StateType> {
                               width="100%"
                               height="100%"
                               onStart={
-                                () => episodeSeen({ variables: { id: Episode.id } })
+                                (): void => { episodeSeen({ variables: { id: Episode.id } }) }
                               }
                             />
                           )}

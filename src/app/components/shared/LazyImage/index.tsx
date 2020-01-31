@@ -29,7 +29,7 @@ export default class LazyImage extends React.Component<PropType, StateType> {
     posterPlaceholder: false,
   };
 
-  componentDidMount() {
+  componentDidMount = (): void => {
     const { src } = this.props;
 
     // Set component state to mounted
@@ -43,15 +43,15 @@ export default class LazyImage extends React.Component<PropType, StateType> {
     img.src = String(src);
   }
 
-  imageDidLoad = () => {
+  imageDidLoad = (): void => {
     this.setState({ isLoaded: true });
   }
 
-  imageDidHaveLoadError = () => {
+  imageDidHaveLoadError = (): void => {
     this.setState({ loadError: true });
   }
 
-  render() {
+  render = (): JSX.Element => {
     const {
       src,
       errorSrc,

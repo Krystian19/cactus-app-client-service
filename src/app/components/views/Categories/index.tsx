@@ -20,12 +20,12 @@ class Categories extends React.Component<PropType, StateType> {
     currentPage: 0,
   };
 
-  PageForward = () => {
+  PageForward = (): void => {
     const { currentPage } = this.state;
     this.setState({ currentPage: (Number(currentPage) + 1) });
   }
 
-  PageBackwards = () => {
+  PageBackwards = (): void => {
     const { currentPage } = this.state;
 
     // Can't go backwards if page is already 0
@@ -34,14 +34,14 @@ class Categories extends React.Component<PropType, StateType> {
     this.setState({ currentPage: (Number(currentPage) - 1) });
   }
 
-  setCurrentPage = (page) => {
+  setCurrentPage = (page: number): void => {
     // If arg is null then ignore it
     if ((page === null) || (page === undefined)) return;
 
     this.setState({ currentPage: page });
   }
 
-  render() {
+  render = (): JSX.Element => {
     const { currentPage } = this.state;
     const { formatMessage } = this.props.intl;
 
@@ -52,7 +52,7 @@ class Categories extends React.Component<PropType, StateType> {
           currentPage: (Number(currentPage) * pageCount),
         }}
       >
-        {({ loading, error, data }) => {
+        {({ loading, error, data }): JSX.Element => {
           if (loading) {
             return (
               <div className="main-content no-padding">
@@ -81,7 +81,7 @@ class Categories extends React.Component<PropType, StateType> {
                     pageCount={pageCount}
                     itemCount={data.Genres.count}
                     currentPage={currentPage}
-                    goForwardCB={() => {
+                    goForwardCB={(): void => {
                       const lastPage = Math.ceil(
                         data.Genres.count / pageCount,
                       );
@@ -91,7 +91,7 @@ class Categories extends React.Component<PropType, StateType> {
 
                       this.PageForward();
                     }}
-                    goBackwardsCB={() => this.PageBackwards()}
+                    goBackwardsCB={(): void => this.PageBackwards()}
                     setCurrentPageCB={this.setCurrentPage}
                   />
                 )

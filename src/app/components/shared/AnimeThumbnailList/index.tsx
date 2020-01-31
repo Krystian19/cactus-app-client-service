@@ -13,7 +13,7 @@ type PropType = {
   releases: Array<GQLRelease>;
 };
 
-const AnimeThumbnailList = (props: PropType) => {
+const AnimeThumbnailList = (props: PropType): JSX.Element => {
   const { releases } = props;
 
   // If no releases were received

@@ -15,12 +15,12 @@ type StateType = {
 
 class Sidebar extends React.Component<PropsType, StateType> {
   state = { isMounted: false };
-  
-  componentDidMount() {
+
+  componentDidMount = (): void => {
     this.setState({ isMounted: true });
   }
 
-  goToIndex = () => {
+  goToIndex = (): void => {
     const { history } = this.props;
     history.push('/');
   }
@@ -37,9 +37,8 @@ class Sidebar extends React.Component<PropsType, StateType> {
     }
   }
 
-  render() {
+  render = (): JSX.Element => {
     const { isMounted } = this.state;
-
     return (
       <div className="sidebar">
         <div className="sidebar-top-options">
@@ -72,14 +71,12 @@ class Sidebar extends React.Component<PropsType, StateType> {
           </div>
 
           <RandomReleaseQuery>
-            {({ loading, error, data, refetch }) => {
+            {({ loading, error, data, refetch }): JSX.Element | boolean => {
               // While request is loading no option is shown
               if (loading) {
                 return (
                   <div className="sidebar-option">
-                    <NavLink
-                      to="/"
-                    >
+                    <NavLink to="/">
                       <i className="fa fa-random" />
                     </NavLink>
                   </div>
@@ -95,7 +92,7 @@ class Sidebar extends React.Component<PropsType, StateType> {
               return (
                 <div className="sidebar-option">
                   <NavLink
-                    onClick={() => refetch()}
+                    onClick={(): void => { refetch() }}
                     to={`/anime/detail/${data.RandomRelease.id}`}
                   >
                     <i className="fa fa-random" />
@@ -118,7 +115,7 @@ class Sidebar extends React.Component<PropsType, StateType> {
             </div>
           )
         }
-      </div>
+      </div >
     );
   }
 }

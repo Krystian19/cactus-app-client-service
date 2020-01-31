@@ -5,7 +5,7 @@ type PropType = {
   count: number;
 };
 
-const LoadingVideoBlock = (props: PropType) => {
+export default (props: PropType): JSX.Element => {
   const { count } = props;
   return (
     <div className="video-block">
@@ -40,5 +40,3 @@ const LoadingVideoBlock = (props: PropType) => {
     </div>
   );
 };
-
-export default LoadingVideoBlock;

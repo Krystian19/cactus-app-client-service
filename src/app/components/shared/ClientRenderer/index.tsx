@@ -16,11 +16,11 @@ type PropType = {
 export default class ClientRender extends React.Component<PropType, StateType> {
   state = { isMounted: false };
 
-  componentDidMount() {
+  componentDidMount = (): void => {
     this.setState({ isMounted: true });
   }
 
-  render() {
+  render = (): React.ReactNode | null => {
     const { children } = this.props;
     const { isMounted } = this.state;
 

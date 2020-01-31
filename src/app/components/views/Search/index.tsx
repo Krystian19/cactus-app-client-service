@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import queryString from 'qs';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
@@ -33,7 +33,7 @@ class Search extends React.Component<PropType, StateTypes> {
     selectedCategories: [],
   };
 
-  addedCategory = (category: GQLGenre) => {
+  addedCategory = (category: GQLGenre): void => {
     const { selectedCategories } = this.state;
     const self = this;
 
@@ -44,7 +44,7 @@ class Search extends React.Component<PropType, StateTypes> {
       () => self.mapSearchParamsToUrl(self));
   }
 
-  removedCategory = (category: GQLGenre) => {
+  removedCategory = (category: GQLGenre): void => {
     const { selectedCategories } = this.state;
     const self = this;
 
@@ -59,7 +59,7 @@ class Search extends React.Component<PropType, StateTypes> {
       () => self.mapSearchParamsToUrl(self));
   }
 
-  PageForward = () => {
+  PageForward = (): void => {
     const { currentPage } = this.state;
     const self = this;
 
@@ -70,7 +70,7 @@ class Search extends React.Component<PropType, StateTypes> {
       () => self.mapSearchParamsToUrl(self));
   }
 
-  PageBackwards = () => {
+  PageBackwards = (): void => {
     const { currentPage } = this.state;
     const self = this;
 
@@ -84,7 +84,7 @@ class Search extends React.Component<PropType, StateTypes> {
       () => self.mapSearchParamsToUrl(self));
   }
 
-  setCurrentPage = (page) => {
+  setCurrentPage = (page): void => {
     // If arg is null then ignore it
     if ((page === null) || (page === undefined)) return;
 
@@ -97,7 +97,7 @@ class Search extends React.Component<PropType, StateTypes> {
       () => self.mapSearchParamsToUrl(self));
   }
 
-  setSelectedCategories = (categories) => {
+  setSelectedCategories = (categories): void => {
     const self = this;
 
     this.setState({
@@ -112,7 +112,7 @@ class Search extends React.Component<PropType, StateTypes> {
       });
   }
 
-  mapSearchParamsToUrl = (self) => {
+  mapSearchParamsToUrl = (self): void => {
     const {
       searchFieldText,
       selectedCategories,
@@ -137,7 +137,7 @@ class Search extends React.Component<PropType, StateTypes> {
     // console.log(`${basePathname}?${queryStringState}`);
   }
 
-  mapUrlToSearchParams = () => {
+  mapUrlToSearchParams = (): void => {
     const { location: { search } } = this.props;
     const currentUrlParams = queryString.parse(search.replace('?', ''));
 
@@ -157,7 +157,7 @@ class Search extends React.Component<PropType, StateTypes> {
     });
   }
 
-  onSearchFieldChangeEvent = ({ target: { value } }) => {
+  onSearchFieldChangeEvent = ({ target: { value } }): void => {
     const self = this;
 
     // Clears the previously set timer.
@@ -179,7 +179,7 @@ class Search extends React.Component<PropType, StateTypes> {
     }, 400);
   }
 
-  componentDidMount() {
+  componentDidMount = (): void => {
     // Only map Url to Search params the first time the component has been mounted
     if (!this._isMounted) {
       this.mapUrlToSearchParams();
@@ -187,7 +187,7 @@ class Search extends React.Component<PropType, StateTypes> {
     }
   }
 
-  render() {
+  render = (): JSX.Element => {
     const {
       searchFieldText,
       currentPage,
@@ -198,7 +198,7 @@ class Search extends React.Component<PropType, StateTypes> {
 
     // Avoid the component rendering before it's mounted
     if (!this._isMounted) {
-      return ('');
+      return <Fragment />
     }
 
     return (
@@ -222,7 +222,7 @@ class Search extends React.Component<PropType, StateTypes> {
 
         <GenreOptionsPanel
           selectedCategories={selectedCategories}
-          categoryRemoved={(category) => this.removedCategory(category)}
+          categoryRemoved={(category): void => this.removedCategory(category)}
           setSelectedCategories={this.setSelectedCategories}
         />
 
@@ -234,7 +234,7 @@ class Search extends React.Component<PropType, StateTypes> {
             genres: selectedCategories.map(cat => Number(cat.id)),
           }}
         >
-          {({ loading, error, data }) => {
+          {({ loading, error, data }): JSX.Element => {
             if (loading || error) {
               return (
                 <div className="util-container">
@@ -255,7 +255,7 @@ class Search extends React.Component<PropType, StateTypes> {
                       pageCount={pageCount}
                       itemCount={data.Releases.count}
                       currentPage={currentPage}
-                      goForwardCB={() => {
+                      goForwardCB={(): void => {
                         const lastPage = Math.ceil(
                           data.Releases.count / pageCount,
                         );
@@ -265,7 +265,7 @@ class Search extends React.Component<PropType, StateTypes> {
 
                         this.PageForward();
                       }}
-                      goBackwardsCB={() => this.PageBackwards()}
+                      goBackwardsCB={(): void => this.PageBackwards()}
                       setCurrentPageCB={this.setCurrentPage}
                     />
                   )
