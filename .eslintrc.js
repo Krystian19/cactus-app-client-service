@@ -36,5 +36,13 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 0,
     "@typescript-eslint/no-unused-vars": ["error"],
     "@typescript-eslint/explicit-function-return-type": ["error"],
+    "import/order": ["error", {
+      "newlines-between": "always",
+      "groups": [
+        ["builtin", "external", "internal"],
+        ["parent", "sibling"],
+        "index",
+      ],
+    }],
   },
 };
