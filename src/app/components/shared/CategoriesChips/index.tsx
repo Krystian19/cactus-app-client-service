@@ -2,7 +2,6 @@ import React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Link, withRouter } from 'react-router-dom';
 import queryString from 'qs';
-
 import { GQLGenre } from '@cactus-app/types';
 
 type PropType = RouteComponentProps<{}> & {

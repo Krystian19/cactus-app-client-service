@@ -4,7 +4,6 @@ import { HttpLink } from 'apollo-link-http';
 import { ApolloProvider } from 'react-apollo';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import fetch from 'node-fetch';
-
 import { IntlProvider, addLocaleData } from 'react-intl';
 import locale_en from 'react-intl/locale-data/en';
 import locale_es from 'react-intl/locale-data/es';

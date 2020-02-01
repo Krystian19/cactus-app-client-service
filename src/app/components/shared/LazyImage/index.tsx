@@ -1,4 +1,5 @@
 import React from 'react';
+
 import base64Content from '../../../utils/base64Content';
 
 type PropType = {

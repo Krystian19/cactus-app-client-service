@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-
 import { GQLGenre } from '@cactus-app/types';
+
 import FilterCategoriesChips from '../FilterCategoriesChips';
 import CategorySelectionPanel from './components/CategorySelectionPanel';
 

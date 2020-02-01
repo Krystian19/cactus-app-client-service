@@ -2,7 +2,6 @@ import React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Link, withRouter } from 'react-router-dom';
 import { FormattedMessage, injectIntl, InjectedIntlProps } from 'react-intl';
-
 import { GQLEpisode } from '@cactus-app/types';
 
 import LazyImage from '../LazyImage';

@@ -10,8 +10,6 @@ import { StaticRouter } from 'react-router-dom';
 import logger from '@cactus-app/js-logger-module';
 import { IntlProvider } from 'react-intl';
 import React from 'react';
-
-/* Apollo related dependencies ... */
 import { ApolloProvider, getDataFromTree } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';

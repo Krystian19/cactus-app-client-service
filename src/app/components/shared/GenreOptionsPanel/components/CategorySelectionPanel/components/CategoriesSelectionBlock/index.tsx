@@ -1,6 +1,6 @@
 import React from 'react';
-
 import { GQLGenre } from '@cactus-app/types';
+
 import LazyImage from '../../../../../LazyImage';
 import RandomTextEmoji from '../../../../../RandomTextEmoji';
 import base64Content from '../../../../../../../utils/base64Content';

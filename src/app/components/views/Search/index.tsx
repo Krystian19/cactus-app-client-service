@@ -2,8 +2,8 @@ import React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import queryString from 'qs';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
-
 import { GQLGenre } from '@cactus-app/types';
+
 import SearchQuery from './SearchQuery';
 import AnimeThumbnailList from '../../shared/AnimeThumbnailList';
 import LoadingAnimeThumbnailList from '../../shared/LoadingAnimeThumbnailList';
