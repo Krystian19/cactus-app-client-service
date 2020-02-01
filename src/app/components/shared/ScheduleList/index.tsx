@@ -3,9 +3,7 @@ import { withRouter } from 'react-router-dom';
 import moment from 'moment-timezone';
 import { RouteComponentProps } from 'react-router';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
-import {
-  GQLRelease,
-} from '@cactus-app/types';
+import { GQLRelease } from '@cactus-app/types';
 
 import ClientRender from '../ClientRenderer';
 import JSTToLocalTime from '../../../utils/JSTtoLocalTime';
@@ -15,7 +13,7 @@ import DateTimeToTime from '../../../utils/DateTimeToTime';
 type WeekDay = {
   order: string;
   dayName: string;
-  Release: GQLRelease[];
+  Releases: GQLRelease[];
 };
 
 /**
@@ -112,7 +110,7 @@ const groupReleasesByWeekDays = (Releases: GQLRelease[]): WeekDay[] => {
           dayName = '';
       }
 
-      return ({ order: dayOrder, dayName, Release: WeekDays[dayOrder] } as WeekDay);
+      return ({ order: dayOrder, dayName, Releases: WeekDays[dayOrder] } as WeekDay);
     });
 
   return parsedWeekDays;
@@ -132,7 +130,7 @@ const ScheduleList = (props: PropType): JSX.Element => {
       <ClientRender>
         {reorderWeekDays(parsedWeekDays).map((Day) => {
           // If nothing is airing this day, don't show this tab
-          if (!Day.Release.length) return null;
+          if (!Day.Releases.length) return null;
           return (
             <div className="anime-schedule-day" key={Day.order}>
               <div className="date">
@@ -164,7 +162,7 @@ const ScheduleList = (props: PropType): JSX.Element => {
                 <span className="split" />
               </div>
               <div className="anime-schedule-poster-list">
-                {Day.Release.map((Release, index) => (
+                {Day.Releases.map((Release, index) => (
                   <div
                     className="anime-schedule-poster shimmer-load"
                     key={Release.id}
