@@ -24,7 +24,6 @@ module.exports = {
     'no-underscore-dangle': 0,
     'class-methods-use-this': 0,
     'jsx-a11y/anchor-is-valid': 0,
-    'lines-between-class-member': 0,
     'lines-between-class-members': 0,
     '@typescript-eslint/camelcase': 0,
     'max-len': ["error", { "code": 88 }],
