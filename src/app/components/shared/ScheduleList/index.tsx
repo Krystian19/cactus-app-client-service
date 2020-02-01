@@ -12,6 +12,12 @@ import JSTToLocalTime from '../../../utils/JSTtoLocalTime';
 import getDayOfTheWeek from '../../../utils/getDayOfTheWeek';
 import DateTimeToTime from '../../../utils/DateTimeToTime';
 
+type WeekDay = {
+  order: string;
+  dayName: string;
+  Release: GQLRelease[];
+};
+
 /**
 * @author Jan Guzman <janfrancisco19@gmail.com>
 * @desc Reorders an Array of days in ASC order
@@ -21,15 +27,20 @@ import DateTimeToTime from '../../../utils/DateTimeToTime';
 * @returns Array of Day Objects organized by their order attribute
 */
 
-const reorderWeekDays = (WeekDays, today = getDayOfTheWeek()) => {
+const reorderWeekDays = (
+  WeekDays: WeekDay[],
+  today: number = getDayOfTheWeek(),
+): WeekDay[] => {
   // Set array WeekDay array as unmutable (avoids global mutability problem)
   const WeekDaysList = WeekDays.map((day) => day);
 
   // Orders WeekDays by ascending order with the 'order' field
-  const parsedWeekDays = WeekDaysList.sort((a, b) => (a.order > b.order));
+  const parsedWeekDays = WeekDaysList.sort(
+    (a, b) => (Number(a.order) - Number(b.order)),
+  );
 
   // Get any days before today
-  const aftermathWeekDays = parsedWeekDays.filter((day) => day.order < today);
+  const aftermathWeekDays = parsedWeekDays.filter((day) => Number(day.order) < today);
 
   // Remove those filtered days from the  array in their current order
   parsedWeekDays.splice(0, aftermathWeekDays.length);
@@ -44,7 +55,7 @@ const reorderWeekDays = (WeekDays, today = getDayOfTheWeek()) => {
 * @arg s Array of Release Objects
 * @returns WeekDays Array [ { order: String, dayName: String, Release: Array } ]
 */
-const groupReleasesByWeekDays = (Releases: GQLRelease[]) => {
+const groupReleasesByWeekDays = (Releases: GQLRelease[]): WeekDay[] => {
   const WeekDays = {
     1: [],
     2: [],
@@ -101,7 +112,7 @@ const groupReleasesByWeekDays = (Releases: GQLRelease[]) => {
           dayName = '';
       }
 
-      return ({ order: dayOrder, dayName, Release: WeekDays[dayOrder] });
+      return ({ order: dayOrder, dayName, Release: WeekDays[dayOrder] } as WeekDay);
     });
 
   return parsedWeekDays;
@@ -113,14 +124,12 @@ type PropType =
     WeekDays: GQLRelease[];
   };
 
-const ScheduleList = (props: PropType) => {
+const ScheduleList = (props: PropType): JSX.Element => {
   const { WeekDays, history, intl: { formatMessage } } = props;
   const parsedWeekDays = groupReleasesByWeekDays(WeekDays);
   return (
     <div className="anime-schedule-list">
-
       <ClientRender>
-        {/* {WeekDays.map((Day) => { */}
         {reorderWeekDays(parsedWeekDays).map((Day) => {
           // If nothing is airing this day, don't show this tab
           if (!Day.Release.length) return null;
@@ -128,7 +137,7 @@ const ScheduleList = (props: PropType) => {
             <div className="anime-schedule-day" key={Day.order}>
               <div className="date">
                 <h3 className="day">
-                  {(() => {
+                  {((): string => {
                     let DayName = '';
 
                     // If this day corresponds to today's day of the week
@@ -155,21 +164,20 @@ const ScheduleList = (props: PropType) => {
                 <span className="split" />
               </div>
               <div className="anime-schedule-poster-list">
-
                 {Day.Release.map((Release, index) => (
                   <div
                     className="anime-schedule-poster shimmer-load"
                     key={Release.id}
                     onClick={
-                      () => history.push(
+                      (): void => history.push(
                         `/anime/detail/${Release.id}`,
                       )
-}
+                    }
                     onKeyPress={
-                      () => history.push(
+                      (): void => history.push(
                         `/anime/detail/${Release.id}`,
                       )
-}
+                    }
                     role="menuitem"
                     tabIndex={index}
                   >
