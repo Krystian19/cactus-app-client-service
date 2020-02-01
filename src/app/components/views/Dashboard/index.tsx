@@ -35,7 +35,7 @@ const Dashboard = (props: PropType): JSX.Element => {
               title={
                 formatMessage({
                   id: 'cactus.hot_section_title',
-                  defaultMessage: '🔥 right now'
+                  defaultMessage: '🔥 right now',
                 })
               }
               episodes={data.HottestEpisodes.rows}
@@ -45,21 +45,21 @@ const Dashboard = (props: PropType): JSX.Element => {
               title={
                 formatMessage({
                   id: 'cactus.what_is_new',
-                  defaultMessage: 'What\'s new ?'
+                  defaultMessage: 'What\'s new ?',
                 })
               }
               episodes={data.NewestEpisodes.rows}
-              viewAllLink={'/newest_episodes'}
+              viewAllLink="/newest_episodes"
             />
             <CategoriesBlock
               title={
                 formatMessage({
                   id: 'cactus.categories',
-                  defaultMessage: 'Categories'
+                  defaultMessage: 'Categories',
                 })
               }
               categories={data.Genres.rows}
-              viewAllLink={'/categories'}
+              viewAllLink="/categories"
             />
           </div>
         );

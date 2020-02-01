@@ -18,16 +18,19 @@ type StateType = {
 };
 
 export default class LazyImage extends React.Component<PropType, StateType> {
-  state = {
-    isMounted: false,
-    isLoaded: false,
-    loadError: false,
-  };
-
   public static defaultProps = {
     noLoadingPlaceholder: false,
     posterPlaceholder: false,
   };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      isMounted: false,
+      isLoaded: false,
+      loadError: false,
+    };
+  }
 
   componentDidMount = (): void => {
     const { src } = this.props;
@@ -41,15 +44,15 @@ export default class LazyImage extends React.Component<PropType, StateType> {
     img.onload = this.imageDidLoad;
     img.onerror = this.imageDidHaveLoadError;
     img.src = String(src);
-  }
+  };
 
   imageDidLoad = (): void => {
     this.setState({ isLoaded: true });
-  }
+  };
 
   imageDidHaveLoadError = (): void => {
     this.setState({ loadError: true });
-  }
+  };
 
   render = (): JSX.Element => {
     const {
@@ -123,5 +126,5 @@ export default class LazyImage extends React.Component<PropType, StateType> {
         className={String(className)}
       />
     );
-  }
+  };
 }

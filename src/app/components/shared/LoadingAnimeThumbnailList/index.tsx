@@ -9,7 +9,7 @@ export default (props: PropType): JSX.Element => {
   const { count } = props;
   return (
     <div className="anime-thumbnail-list">
-      {range(0, count).map(num => (
+      {range(0, count).map((num) => (
         <div
           key={Number(num)}
           className="anime-thumbnail"

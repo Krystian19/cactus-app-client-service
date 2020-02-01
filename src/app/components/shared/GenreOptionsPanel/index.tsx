@@ -16,27 +16,30 @@ type StateType = {
 };
 
 export default class extends React.Component<PropType, StateType> {
-  state = {
-    showCategorySelectionPanel: false,
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showCategorySelectionPanel: false,
+    };
+  }
 
   render = (): JSX.Element => {
     const {
       selectedCategories,
       categoryRemoved,
-      setSelectedCategories
+      setSelectedCategories,
     } = this.props;
 
     const {
-      showCategorySelectionPanel
+      showCategorySelectionPanel,
     } = this.state;
 
     return (
       <div className="genre-options-panel">
         <a
           className="button clear-bg straigth-corners"
-          onClick={(): void =>
-            this.setState({ showCategorySelectionPanel: true })}
+          onClick={(): void => this.setState({ showCategorySelectionPanel: true })}
         >
           <FormattedMessage
             id="cactus.categories"
@@ -50,13 +53,16 @@ export default class extends React.Component<PropType, StateType> {
 
         {showCategorySelectionPanel && (
           <CategorySelectionPanel
-            closePanel={(): void => this.setState({ showCategorySelectionPanel: false })}
+            closePanel={
+              (): void => this.setState({ showCategorySelectionPanel: false })
+            }
             initialSelectedCategories={selectedCategories}
-            setSelectedCategories={(categories): void => setSelectedCategories(categories)}
+            setSelectedCategories={
+              (categories): void => setSelectedCategories(categories)
+            }
           />
         )}
       </div>
     );
-  }
+  };
 }
-

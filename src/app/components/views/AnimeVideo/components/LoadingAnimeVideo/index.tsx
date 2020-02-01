@@ -8,7 +8,7 @@ export default (): JSX.Element => (
     <div className="anime-watch-episode">
       <div className="anime-watch-episode-container">
         <div className="anime-watch-episode-video shimmer-load">
-          <div style={{ 'visibility': 'hidden' }}>
+          <div style={{ visibility: 'hidden' }}>
             <Player
               src={base64Content.placeholder_video}
             />
@@ -20,7 +20,7 @@ export default (): JSX.Element => (
               <img
                 src={base64Content.cactus_poster_placeholder}
                 alt="cover"
-                style={{ 'visibility': 'hidden' }}
+                style={{ visibility: 'hidden' }}
               />
             </div>
             <div className="info">

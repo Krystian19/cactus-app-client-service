@@ -13,9 +13,9 @@ addLocaleData([...locale_en, ...locale_es]);
 const componentSetup = (
   <IntlProvider locale="en">
     <VideoBlock
-      title={'Newest episodes'}
+      title="Newest episodes"
       episodes={[]}
-      viewAllLink={'/newest_episodes'}
+      viewAllLink="/newest_episodes"
     />
   </IntlProvider>
 );
@@ -24,7 +24,7 @@ test('VideoBlock component is rendering properly', () => {
   const component = render(
     <MemoryRouter>
       {componentSetup}
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 
   expect(component).toMatchSnapshot();

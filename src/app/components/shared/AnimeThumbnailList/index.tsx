@@ -37,7 +37,7 @@ const AnimeThumbnailList = (props: PropType): JSX.Element => {
 
   return (
     <div className="anime-thumbnail-list">
-      {releases.map(season => (
+      {releases.map((season) => (
         <div
           key={Number(season.id)}
           className="anime-thumbnail"
@@ -54,8 +54,8 @@ const AnimeThumbnailList = (props: PropType): JSX.Element => {
                 errorSrc={base64Content.cactus_poster_placeholder}
                 alt="thumbnail"
                 className="anime-thumbnail fade-in"
-                posterPlaceholder={true}
-                noLoadingPlaceholder={true}
+                posterPlaceholder
+                noLoadingPlaceholder
               />
               <div className="overlay hover_hidden darken">
                 {/* <svg className="play" viewBox="0 0 24 24">
@@ -71,14 +71,14 @@ const AnimeThumbnailList = (props: PropType): JSX.Element => {
             <div className="year">
               {`${
                 YearExtractor(
-                  JSTtoLocalTime(season.started_airing)
+                  JSTtoLocalTime(season.started_airing),
                 )
-                } - ${
+              } - ${
                 season.EpisodeCount
-                } `}
+              } `}
               <FormattedMessage
                 id={
-                  (season.EpisodeCount == 1)
+                  (season.EpisodeCount === 1)
                     ? 'cactus.episode'
                     : 'cactus.episodes'
                 }

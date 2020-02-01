@@ -73,7 +73,7 @@ const AnimeDetail = (props: PropType): JSX.Element => {
                           errorSrc={base64Content.cactus_poster_placeholder}
                           alt="cover"
                           className="fade-in"
-                          posterPlaceholder={true}
+                          posterPlaceholder
                         />
                       </div>
                       <div className="cover-details">
@@ -98,8 +98,7 @@ const AnimeDetail = (props: PropType): JSX.Element => {
                           <span className="cover-detail-row-detail">
                             {/* If it hasn't been aired yet */}
                             {!data.Release.started_airing
-                              && 'Not airing yet'
-                            }
+                              && 'Not airing yet'}
                             {/* If it started airing */}
                             {data.Release.started_airing
                               && `
@@ -115,8 +114,7 @@ const AnimeDetail = (props: PropType): JSX.Element => {
                                   JSTtoLocalTime(data.Release.stopped_airing),
                                 )
                                 : 'PRESENT'
-                              }`
-                            }
+                              }`}
                             {/* APR 2009 - JUL 2010 */}
                           </span>
                         </div>
@@ -138,7 +136,7 @@ const AnimeDetail = (props: PropType): JSX.Element => {
                       <p>
                         {Release.Descriptions.length && (
                           (
-                            Release.Descriptions.find(desc => (
+                            Release.Descriptions.find((desc) => (
                               desc.Language.iso_code === locale
                             )) || Release.Descriptions[0]
                           ).description
@@ -163,5 +161,5 @@ const AnimeDetail = (props: PropType): JSX.Element => {
 };
 
 export default withRouter(
-  injectIntl(AnimeDetail)
+  injectIntl(AnimeDetail),
 );

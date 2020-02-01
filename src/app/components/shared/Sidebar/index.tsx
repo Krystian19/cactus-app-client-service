@@ -14,16 +14,19 @@ type StateType = {
 };
 
 class Sidebar extends React.Component<PropsType, StateType> {
-  state = { isMounted: false };
+  constructor(props) {
+    super(props);
+    this.state = { isMounted: false };
+  }
 
   componentDidMount = (): void => {
     this.setState({ isMounted: true });
-  }
+  };
 
   goToIndex = (): void => {
     const { history } = this.props;
     history.push('/');
-  }
+  };
 
   getFlagIconCode = (): string => {
     // Gets the language ISO code out of the html tag
@@ -35,7 +38,7 @@ class Sidebar extends React.Component<PropsType, StateType> {
       default:
         return 'em-us';
     }
-  }
+  };
 
   render = (): JSX.Element => {
     const { isMounted } = this.state;
@@ -47,7 +50,6 @@ class Sidebar extends React.Component<PropsType, StateType> {
               className="clickable"
               onClick={this.goToIndex}
               onKeyPress={this.goToIndex}
-              role="menuitem"
             />
             <embed src="/img/logo.svg" className="logo" />
           </div>
@@ -71,7 +73,9 @@ class Sidebar extends React.Component<PropsType, StateType> {
           </div>
 
           <RandomReleaseQuery>
-            {({ loading, error, data, refetch }): JSX.Element | boolean => {
+            {({
+              loading, error, data, refetch,
+            }): JSX.Element | boolean => {
               // While request is loading no option is shown
               if (loading) {
                 return (
@@ -92,7 +96,7 @@ class Sidebar extends React.Component<PropsType, StateType> {
               return (
                 <div className="sidebar-option">
                   <NavLink
-                    onClick={(): void => { refetch() }}
+                    onClick={(): void => { refetch(); }}
                     to={`/anime/detail/${data.RandomRelease.id}`}
                   >
                     <i className="fa fa-random" />
@@ -115,9 +119,9 @@ class Sidebar extends React.Component<PropsType, StateType> {
             </div>
           )
         }
-      </div >
+      </div>
     );
-  }
+  };
 }
 
 

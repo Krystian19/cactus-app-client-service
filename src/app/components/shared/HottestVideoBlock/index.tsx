@@ -1,8 +1,7 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Link, withRouter } from 'react-router-dom';
-import { FormattedMessage } from 'react-intl';
-import { injectIntl, InjectedIntlProps } from 'react-intl';
+import { FormattedMessage, injectIntl, InjectedIntlProps } from 'react-intl';
 import { GQLEpisode } from '@cactus-app/types';
 
 import LazyImage from '../LazyImage';
@@ -33,7 +32,7 @@ const HottestVideoBlock = (props: PropType): JSX.Element => {
           <Link to={String(viewAllLink)} className="button">
             <FormattedMessage
               id="cactus.view_all"
-              defaultMessage={'View all'}
+              defaultMessage="View all"
             />
           </Link>
         )}
@@ -45,8 +44,11 @@ const HottestVideoBlock = (props: PropType): JSX.Element => {
               key={Number(episode.id)}
               className={`anime-small-thumbnail ${(index === 0) ? 'big' : 'small'}`}
               onClick={(): void => history.push(`/anime/video/${Number(episode.id)}`)}
-              onKeyPress={(): void => history.push(`/anime/video/${Number(episode.id)}`)}
+              onKeyPress={
+                (): void => history.push(`/anime/video/${Number(episode.id)}`)
+              }
               role="menuitem"
+              tabIndex={index + 20}
             >
               <div className="cover shimmer-load">
                 <LazyImage
@@ -54,7 +56,7 @@ const HottestVideoBlock = (props: PropType): JSX.Element => {
                   errorSrc={base64Content.cactus_thumbnail_placeholder}
                   alt="thumbnail"
                   className="anime-small-thumbnail fade-in"
-                  noLoadingPlaceholder={true}
+                  noLoadingPlaceholder
                 />
                 <div
                   className="overlay hover_hidden darken"
@@ -73,7 +75,7 @@ const HottestVideoBlock = (props: PropType): JSX.Element => {
                     (${
                       formatMessage({
                         id: 'cactus.season_short',
-                        defaultMessage: 'S'
+                        defaultMessage: 'S',
                       })}${episode.Release.release_order})`}
                   </div>
                   <div className="detail-container">
@@ -90,5 +92,5 @@ const HottestVideoBlock = (props: PropType): JSX.Element => {
 };
 
 export default withRouter(
-  injectIntl(HottestVideoBlock)
+  injectIntl(HottestVideoBlock),
 );

@@ -3,10 +3,10 @@ import { withRouter } from 'react-router-dom';
 import moment from 'moment-timezone';
 import { RouteComponentProps } from 'react-router';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
-
 import {
   GQLRelease,
 } from '@cactus-app/types';
+
 import ClientRender from '../ClientRenderer';
 import JSTToLocalTime from '../../../utils/JSTtoLocalTime';
 import getDayOfTheWeek from '../../../utils/getDayOfTheWeek';
@@ -23,13 +23,13 @@ import DateTimeToTime from '../../../utils/DateTimeToTime';
 
 const reorderWeekDays = (WeekDays, today = getDayOfTheWeek()) => {
   // Set array WeekDay array as unmutable (avoids global mutability problem)
-  const WeekDaysList = WeekDays.map(day => day);
+  const WeekDaysList = WeekDays.map((day) => day);
 
   // Orders WeekDays by ascending order with the 'order' field
   const parsedWeekDays = WeekDaysList.sort((a, b) => (a.order > b.order));
 
   // Get any days before today
-  const aftermathWeekDays = parsedWeekDays.filter(day => day.order < today);
+  const aftermathWeekDays = parsedWeekDays.filter((day) => day.order < today);
 
   // Remove those filtered days from the  array in their current order
   parsedWeekDays.splice(0, aftermathWeekDays.length);
@@ -46,13 +46,13 @@ const reorderWeekDays = (WeekDays, today = getDayOfTheWeek()) => {
 */
 const groupReleasesByWeekDays = (Releases: GQLRelease[]) => {
   const WeekDays = {
-    '1': [],
-    '2': [],
-    '3': [],
-    '4': [],
-    '5': [],
-    '6': [],
-    '7': [],
+    1: [],
+    2: [],
+    3: [],
+    4: [],
+    5: [],
+    6: [],
+    7: [],
   };
 
   Releases.map((Release) => {
@@ -148,7 +148,7 @@ const ScheduleList = (props: PropType) => {
 
                     return formatMessage({
                       id: `cactus.${DayName}`,
-                      defaultMessage: ''
+                      defaultMessage: '',
                     });
                   })()}
                 </h3>
@@ -163,11 +163,13 @@ const ScheduleList = (props: PropType) => {
                     onClick={
                       () => history.push(
                         `/anime/detail/${Release.id}`,
-                      )}
+                      )
+}
                     onKeyPress={
                       () => history.push(
                         `/anime/detail/${Release.id}`,
-                      )}
+                      )
+}
                     role="menuitem"
                     tabIndex={index}
                   >
@@ -215,5 +217,5 @@ const ScheduleList = (props: PropType) => {
 };
 
 export default withRouter(
-  injectIntl(ScheduleList)
+  injectIntl(ScheduleList),
 );

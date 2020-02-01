@@ -22,11 +22,14 @@ type StateType = {
 };
 
 class AnimeVideo extends React.Component<PropType, StateType> {
-  state = { isMounted: false };
+  constructor(props) {
+    super(props);
+    this.state = { isMounted: false };
+  }
 
   componentDidMount = (): void => {
     this.setState({ isMounted: true });
-  }
+  };
 
   render = (): JSX.Element => {
     const { isMounted } = this.state;
@@ -58,16 +61,19 @@ class AnimeVideo extends React.Component<PropType, StateType> {
                               url={
                                 /**
                                  * @Note Safari presents a lot of bugs if the mime-type
-                                 * of the video source is not of the format 
+                                 * of the video source is not of the format
                                  * "application/vnd.apple.mpegURL", so we check if this
                                  * browser supports it first. (9-10-2019)
                                  */
                                 document
                                   .createElement('video')
                                   .canPlayType('application/vnd.apple.mpegURL')
-                                  ? [{
-                                    src: videoUrl, type: 'application/vnd.apple.mpegurl'
-                                  }]
+                                  ? (
+                                    [{
+                                      src: videoUrl,
+                                      type: 'application/vnd.apple.mpegurl',
+                                    }]
+                                  )
                                   : videoUrl
                               }
                               light={
@@ -75,12 +81,14 @@ class AnimeVideo extends React.Component<PropType, StateType> {
                                   ? `/img_cdn/${Episode.thumbnail}`
                                   : '/img/thumbnail_placeholder.png'
                               }
-                              playing={true}
-                              controls={true}
+                              playing
+                              controls
                               width="100%"
                               height="100%"
                               onStart={
-                                (): void => { episodeSeen({ variables: { id: Episode.id } }) }
+                                (): void => {
+                                  episodeSeen({ variables: { id: Episode.id } });
+                                }
                               }
                             />
                           )}
@@ -97,7 +105,7 @@ class AnimeVideo extends React.Component<PropType, StateType> {
                             errorSrc={base64Content.cactus_poster_placeholder}
                             alt="cover"
                             className="fade-in"
-                            posterPlaceholder={true}
+                            posterPlaceholder
                           />
                         </Link>
                       </div>
@@ -167,7 +175,7 @@ class AnimeVideo extends React.Component<PropType, StateType> {
         }}
       </AnimeVideoQuery>
     );
-  }
+  };
 }
 
 export default withRouter(AnimeVideo);

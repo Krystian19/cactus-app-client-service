@@ -1,11 +1,11 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
-
 import { GQLGenre } from '@cactus-app/types';
+
 import GenreSearchQuery from './GenreSearchQuery';
 import FilterCategoriesChips from '../../../FilterCategoriesChips';
 import CategoriesSelectionBlock from './components/CategoriesSelectionBlock';
-import PaginationBox from '../../../../shared/PaginationBox';
+import PaginationBox from '../../../PaginationBox';
 
 type PropType = InjectedIntlProps & {
   closePanel: () => void;
@@ -26,16 +26,21 @@ const pageCount = 8;
 class CategorySelectionPanel extends React.Component<PropType, StateType> {
   private typingTimeout = null;
 
-  state = {
-    searchFieldText: '',
-    currentPage: 0,
-    selectedCategories: this.props.initialSelectedCategories,
-  };
+  constructor(props) {
+    super(props);
+    const { initialSelectedCategories } = this.props;
+
+    this.state = {
+      searchFieldText: '',
+      currentPage: 0,
+      selectedCategories: initialSelectedCategories,
+    };
+  }
 
   PageForward = (): void => {
     const { currentPage } = this.state;
     this.setState({ currentPage: (Number(currentPage) + 1) });
-  }
+  };
 
   PageBackwards = (): void => {
     const { currentPage } = this.state;
@@ -44,33 +49,33 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
     if (currentPage === 0) return;
 
     this.setState({ currentPage: (Number(currentPage) - 1) });
-  }
+  };
 
   setCurrentPage = (page: number): void => {
     // If arg is null then ignore it
     if ((page === null) || (page === undefined)) return;
 
     this.setState({ currentPage: page });
-  }
+  };
 
   addedCategory = (category: GQLGenre): void => {
     const { selectedCategories } = this.state;
     this.setState({
       selectedCategories: [...selectedCategories, category],
     });
-  }
+  };
 
   removedCategory = (category: GQLGenre): void => {
     const { selectedCategories } = this.state;
 
     // Removes the provided category from the selectedCategories array
     const filteredCategories = selectedCategories
-      .filter(cat => cat.id != category.id);
+      .filter((cat) => cat.id !== category.id);
 
     this.setState({
       selectedCategories: filteredCategories,
     });
-  }
+  };
 
   onSearchFieldChangedEvent = ({ target: { value } }): void => {
     const self = this;
@@ -79,14 +84,14 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
     clearTimeout(this.typingTimeout);
 
     // Reset the timer, to make the http call after 400MS
-    this.typingTimeout = setTimeout(function updateSearchField() {
+    this.typingTimeout = setTimeout(() => {
       self.setState(
         { searchFieldText: value },
         // When text fields are available set current page to 0
         () => self.setCurrentPage(0),
       );
     }, 400);
-  }
+  };
 
   render = (): JSX.Element => {
     const {
@@ -97,16 +102,17 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
 
     const {
       closePanel,
-      setSelectedCategories
+      setSelectedCategories,
     } = this.props;
 
-    const { formatMessage } = this.props.intl;
+    const { intl: { formatMessage } } = this.props;
 
     return (
       <div className="genre-options-container">
         <div
           className="
-            main-content no-margin self-contained-padding no-responsive-left-margin"
+            main-content no-margin self-contained-padding no-responsive-left-margin
+          "
         >
 
           <div className="genre-options-container-controls">
@@ -127,7 +133,7 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
               placeholder={
                 formatMessage({
                   id: 'cactus.category_search_field_placeholder',
-                  defaultMessage: 'Search categories ...'
+                  defaultMessage: 'Search categories ...',
                 })
               }
               onChange={this.onSearchFieldChangedEvent}
@@ -137,24 +143,24 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
           <GenreSearchQuery
             variables={{
               title: searchFieldText,
-              pageCount: pageCount,
+              pageCount,
               currentPage: (Number(currentPage) * pageCount),
             }}
           >
             {({ loading, error, data }): JSX.Element => {
               if (loading || error) {
-                return <Fragment />
+                return <></>;
               }
 
               return (
-                <Fragment>
+                <>
                   <FilterCategoriesChips
                     categories={selectedCategories}
                     categoryRemoved={
                       (category: GQLGenre): void => this.removedCategory(category)
                     }
-                    alignedCenter={true}
-                    padded={true}
+                    alignedCenter
+                    padded
                   />
 
                   <CategoriesSelectionBlock
@@ -187,14 +193,14 @@ class CategorySelectionPanel extends React.Component<PropType, StateType> {
                       />
                     )
                   }
-                </Fragment>
+                </>
               );
             }}
           </GenreSearchQuery>
         </div>
       </div>
     );
-  }
+  };
 }
 
 export default injectIntl(CategorySelectionPanel);

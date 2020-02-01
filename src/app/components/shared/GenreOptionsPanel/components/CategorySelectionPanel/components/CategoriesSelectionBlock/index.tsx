@@ -14,27 +14,14 @@ type PropType = {
 export default class extends React.Component<PropType> {
   thisCategoryIsSelected = (
     category: GQLGenre,
-    selectedCategories: Array<GQLGenre>
-  ): boolean => {
-
-    // Check if the provided category has been selected in the provided array
-    const categoryIsSelected =
-      selectedCategories.filter(
-        cat => cat.id == category.id
-      );
-
-    if (categoryIsSelected.length > 0) {
-      return true;
-    }
-
-    return false;
-  }
+    selectedCategories: Array<GQLGenre>,
+  ): boolean => selectedCategories.filter((cat) => cat.id === category.id).length > 0;
 
   render = (): JSX.Element => {
     const {
       categories,
       selectedCategories,
-      categorySelected
+      categorySelected,
     } = this.props;
 
     // If no categories were received
@@ -55,7 +42,7 @@ export default class extends React.Component<PropType> {
 
     return (
       <div className="anime-small-thumbnail-list">
-        {categories.map(category => (
+        {categories.map((category) => (
           <div
             key={Number(category.id)}
             className="anime-small-thumbnail small category"
@@ -92,5 +79,5 @@ export default class extends React.Component<PropType> {
         ))}
       </div>
     );
-  }
+  };
 }

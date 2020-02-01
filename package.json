@@ -1,36 +1,37 @@
 {
   "name": "cactus-app-web-client",
   "version": "1.0.0",
-  "description": "Client service for the Cactus App",
   "private": true,
+  "description": "Client service for the Cactus App",
   "repository": "git@github.com:Krystian19/cactus-app-client-service.git",
-  "author": "Jan Guzman <janfrancisco19@gmail.com>",
   "license": "MIT",
-  "scripts": {
-    "start": "ts-node-dev --poll --respawn --ignore-watch node_modules --ignore-watch public ./src/server",
-    "build": "webpack --progress --colors --config webpack.config.prod.js",
-    "watch": "webpack --progress --colors --watch --config webpack.config.dev.js",
-    "test": "jest ./app/tests/",
-    "coverage": "codecov",
-    "lint": "eslint . --ext .ts,.tsx --quiet --cache --cache-location \".eslintcache/\"",
-    "gqlgen": "(cd src/types && yarn gqlgen);"
-  },
+  "author": "Jan Guzman <janfrancisco19@gmail.com>",
   "workspaces": [
     "./src/logger",
     "./src/types"
   ],
-  "jest": {
-    "coverageDirectory": "./coverage/",
-    "collectCoverage": true
+  "scripts": {
+    "build": "webpack --progress --colors --config webpack.config.prod.js",
+    "coverage": "codecov",
+    "gqlgen": "(cd src/types && yarn gqlgen);",
+    "lint": "eslint . --ext .ts,.tsx --quiet --cache --cache-location \".eslintcache/\"",
+    "start": "ts-node-dev --poll --respawn --ignore-watch node_modules --ignore-watch public ./src/server",
+    "test": "jest ./app/tests/",
+    "watch": "webpack --progress --colors --watch --config webpack.config.dev.js"
   },
   "husky": {
     "hooks": {
       "pre-commit": "yarn lint"
     }
   },
+  "jest": {
+    "collectCoverage": true,
+    "coverageDirectory": "./coverage/"
+  },
   "dependencies": {
     "@cactus-app/js-logger-module": "1.0.0",
     "@cactus-app/types": "1.0.0",
+    "@types/enzyme": "^3.1.18",
     "@types/express": "^4.16.1",
     "@types/hls.js": "0.12.0",
     "@types/lodash": "^4.14.129",
@@ -49,6 +50,9 @@
     "apollo-link-error": "^1.0.9",
     "apollo-link-http": "^1.5.11",
     "emoji-awesome": "^0.0.2",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.9.1",
+    "enzyme-to-json": "^3.3.5",
     "express": "^4.16.4",
     "express-locale": "^1.2.0",
     "express-request-proxy": "^2.2.2",
@@ -79,21 +83,17 @@
     "video-react": "^0.14.1"
   },
   "devDependencies": {
-    "@types/enzyme": "^3.1.18",
     "@types/jest": "^24.0.6",
-    "@typescript-eslint/eslint-plugin": "^2.7.0",
+    "@typescript-eslint/eslint-plugin": "^2.18.0",
     "@typescript-eslint/parser": "^2.18.0",
     "codecov": "3.1.0",
     "css-loader": "^2.1.0",
-    "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.9.1",
-    "enzyme-to-json": "^3.3.5",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-typescript": "^6.3.1",
-    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-import": "^2.20.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.15.1",
-    "eslint-plugin-react-hooks": "^1.7.0",
+    "eslint-plugin-react": "^7.18.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
     "file-loader": "^3.0.1",
     "font-loader": "^0.1.2",
     "husky": "^3.1.0",

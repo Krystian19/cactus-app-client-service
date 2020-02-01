@@ -5,4 +5,3 @@ export default (): JSX.Element => (
     <div className="loader" />
   </div>
 );
-

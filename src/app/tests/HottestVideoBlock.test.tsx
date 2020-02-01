@@ -24,7 +24,7 @@ test('HottestVideoBlock component is rendering properly', () => {
   const component = render(
     <MemoryRouter>
       {componentSetup}
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 
   expect(component).toMatchSnapshot();

@@ -18,14 +18,18 @@ type StateType = {
 const pageCount = 9;
 
 class AnimeRelease extends React.Component<PropType, StateType> {
-  state = {
-    currentPage: 0,
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      currentPage: 0,
+    };
+  }
 
   PageForward = (): void => {
     const { currentPage } = this.state;
     this.setState({ currentPage: (Number(currentPage) + 1) });
-  }
+  };
 
   PageBackwards = (): void => {
     const { currentPage } = this.state;
@@ -34,14 +38,14 @@ class AnimeRelease extends React.Component<PropType, StateType> {
     if (currentPage === 0) return;
 
     this.setState({ currentPage: (Number(currentPage) - 1) });
-  }
+  };
 
   setCurrentPage = (page): void => {
     // If arg is null then ignore it
     if ((page === null) || (page === undefined)) return;
 
     this.setState({ currentPage: page });
-  }
+  };
 
   render = (): JSX.Element => {
     const { releaseId } = this.props;
@@ -51,12 +55,11 @@ class AnimeRelease extends React.Component<PropType, StateType> {
       <ReleaseQuery
         variables={{
           id: releaseId,
-          pageCount: pageCount,
+          pageCount,
           currentPage: (Number(currentPage) * pageCount),
         }}
       >
         {({ loading, error, data }): JSX.Element => {
-
           // Only show anything when data is available
           if (loading || error || (!data)) {
             return (
@@ -73,7 +76,7 @@ class AnimeRelease extends React.Component<PropType, StateType> {
                 <div className="anime-small-thumbnail-list">
 
                   {
-                    data.Release.Episodes.rows.map(episode => (
+                    data.Release.Episodes.rows.map((episode) => (
                       <div
                         key={episode.id}
                         className="anime-small-thumbnail fade-in"
@@ -90,7 +93,7 @@ class AnimeRelease extends React.Component<PropType, StateType> {
                               errorSrc="/img/thumbnail_placeholder.png"
                               alt="thumbnail"
                               className="anime-small-thumbnail"
-                              noLoadingPlaceholder={true}
+                              noLoadingPlaceholder
                             />
                             <div className="overlay hover_hidden darken">
                               <svg className="play" viewBox="0 0 24 24">
@@ -135,7 +138,7 @@ class AnimeRelease extends React.Component<PropType, StateType> {
         }}
       </ReleaseQuery>
     );
-  }
+  };
 }
 
 export default AnimeRelease;

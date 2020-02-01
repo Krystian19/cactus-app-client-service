@@ -28,18 +28,18 @@ const rootPath = path.resolve(__dirname, '..', '..');
 
 // External service URLs
 const bffServiceUrl = (
-  process.env.BFF_SERVICE_URL ||
-  'http://cactus.bff:3000/graphql'
+  process.env.BFF_SERVICE_URL
+  || 'http://cactus.bff:3000/graphql'
 );
 
 const imageServiceUrl = (
-  process.env.IMG_CDN_SERVICE_URL ||
-  'http://cactus.img_cdn:80/'
+  process.env.IMG_CDN_SERVICE_URL
+  || 'http://cactus.img_cdn:80/'
 );
 
 const videoServiceUrl = (
-  process.env.VIDEO_CDN_SERVICE_URL ||
-  'http://cactus.video_cdn/live'
+  process.env.VIDEO_CDN_SERVICE_URL
+  || 'http://cactus.video_cdn/live'
 );
 
 /**
@@ -47,26 +47,28 @@ const videoServiceUrl = (
  */
 process
   .on('unhandledRejection', (reason, p) => {
+    // eslint-disable-next-line no-console
     console.error(
       reason,
       'Unhandled Rejection at Promise =======================================',
-      p
+      p,
     );
 
     logger.info(
       { reason, p },
-      'Web client server Unhandled Rejection at Promise'
+      'Web client server Unhandled Rejection at Promise',
     );
   })
-  .on('uncaughtException', err => {
+  .on('uncaughtException', (err) => {
+    // eslint-disable-next-line no-console
     console.error(
       err,
-      'Uncaught Exception thrown  ======================================='
+      'Uncaught Exception thrown  =======================================',
     );
 
     logger.info(
       { ...err },
-      'Web client server Uncaught Exception thrown'
+      'Web client server Uncaught Exception thrown',
     );
   });
 
@@ -104,11 +106,11 @@ class Server {
 
   private middlewares(): void {
     this.app.use(
-      morgan(':method :url :status :res[content-length] - :response-time ms')
+      morgan(':method :url :status :res[content-length] - :response-time ms'),
     );
 
     this.app.use(
-      createLocaleMiddleware()
+      createLocaleMiddleware(),
     );
   }
 
@@ -129,10 +131,10 @@ class Server {
 
     // General route for the Frontend app
     this.app.get('**', (req, res) => {
-      this.renderHTML(req, res)
-        .then(html => res.send(html))
-        .catch(err => {
-          // NOTE: Return a proper error page, when rendering failed
+      this.renderHTML(req)
+        .then((html) => res.send(html))
+        .catch((err) => {
+          // eslint-disable-next-line no-console
           console.log(err);
           res.sendFile(path.join(rootPath, 'resources', 'server_error.html'));
         });
@@ -184,11 +186,11 @@ class Server {
   }
 
   /**
-   * @description Returns an html string with Server Side Rendered data to used by the 
+   * @description Returns an html string with Server Side Rendered data to used by the
    * client app.
    * @returns Promise<String> HTML file to respond the request with
    */
-  private async renderHTML(req, res): Promise<string> {
+  private async renderHTML(req): Promise<string> {
     const client = new ApolloClient({
       ssrMode: true,
       link: createHttpLink({
@@ -257,7 +259,6 @@ class Server {
       logger.error(err, 'Failed at initial rendering web app');
       return Promise.reject(err);
     }
-
   }
 }
 

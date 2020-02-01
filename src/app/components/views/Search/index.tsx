@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import queryString from 'qs';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
@@ -27,11 +27,15 @@ class Search extends React.Component<PropType, StateTypes> {
   private typingTimeout = null;
   private _isMounted = false;
 
-  state = {
-    searchFieldText: '',
-    currentPage: 0,
-    selectedCategories: [],
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      searchFieldText: '',
+      currentPage: 0,
+      selectedCategories: [],
+    };
+  }
 
   addedCategory = (category: GQLGenre): void => {
     const { selectedCategories } = this.state;
@@ -39,10 +43,8 @@ class Search extends React.Component<PropType, StateTypes> {
 
     this.setState({
       selectedCategories: [...selectedCategories, category],
-    },
-      // Update query url params according to the state
-      () => self.mapSearchParamsToUrl(self));
-  }
+    }, () => self.mapSearchParamsToUrl(self));
+  };
 
   removedCategory = (category: GQLGenre): void => {
     const { selectedCategories } = this.state;
@@ -50,14 +52,12 @@ class Search extends React.Component<PropType, StateTypes> {
 
     // Removes the provided category from the selectedCategories array
     const filteredCategories = selectedCategories
-      .filter(cat => cat.id != category.id);
+      .filter((cat) => cat.id !== category.id);
 
     this.setState({
       selectedCategories: filteredCategories,
-    },
-      // Update query url params according to the state
-      () => self.mapSearchParamsToUrl(self));
-  }
+    }, () => self.mapSearchParamsToUrl(self));
+  };
 
   PageForward = (): void => {
     const { currentPage } = this.state;
@@ -65,10 +65,8 @@ class Search extends React.Component<PropType, StateTypes> {
 
     this.setState({
       currentPage: (Number(currentPage) + 1),
-    },
-      // Update query url params according to the state
-      () => self.mapSearchParamsToUrl(self));
-  }
+    }, () => self.mapSearchParamsToUrl(self));
+  };
 
   PageBackwards = (): void => {
     const { currentPage } = this.state;
@@ -78,11 +76,9 @@ class Search extends React.Component<PropType, StateTypes> {
     if (currentPage === 0) return;
 
     this.setState({
-      currentPage: (Number(currentPage) - 1)
-    },
-      // Update query url params according to the state
-      () => self.mapSearchParamsToUrl(self));
-  }
+      currentPage: (Number(currentPage) - 1),
+    }, () => self.mapSearchParamsToUrl(self));
+  };
 
   setCurrentPage = (page): void => {
     // If arg is null then ignore it
@@ -91,26 +87,23 @@ class Search extends React.Component<PropType, StateTypes> {
     const self = this;
 
     this.setState({
-      currentPage: page
-    },
-      // Update query url params according to the state
-      () => self.mapSearchParamsToUrl(self));
-  }
+      currentPage: page,
+    }, () => self.mapSearchParamsToUrl(self));
+  };
 
   setSelectedCategories = (categories): void => {
     const self = this;
 
     this.setState({
       selectedCategories: categories,
-    },
-      () => {
-        // When text fields are available set current page to 0
-        self.setCurrentPage(0);
+    }, () => {
+      // When text fields are available set current page to 0
+      self.setCurrentPage(0);
 
-        // Update query url params according to the state
-        self.mapSearchParamsToUrl(self);
-      });
-  }
+      // Update query url params according to the state
+      self.mapSearchParamsToUrl(self);
+    });
+  };
 
   mapSearchParamsToUrl = (self): void => {
     const {
@@ -120,7 +113,7 @@ class Search extends React.Component<PropType, StateTypes> {
     } = self.state;
 
     const newUrlState = {
-      q: searchFieldText.split(' ').filter(tk => tk).join('+') || undefined,
+      q: searchFieldText.split(' ').filter((tk) => tk).join('+') || undefined,
       genre: (selectedCategories.length) ? selectedCategories : undefined,
       page: currentPage,
     };
@@ -129,13 +122,13 @@ class Search extends React.Component<PropType, StateTypes> {
     const queryStringState = queryString.stringify(newUrlState);
     const newPathname = `${basePathname}?${queryStringState}`;
 
-    history.pushState(null, '', newPathname);
+    window.history.pushState(null, '', newPathname);
 
     // console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
     // console.log('This is the new URL state');
     // console.log(newUrlState);
     // console.log(`${basePathname}?${queryStringState}`);
-  }
+  };
 
   mapUrlToSearchParams = (): void => {
     const { location: { search } } = this.props;
@@ -155,7 +148,7 @@ class Search extends React.Component<PropType, StateTypes> {
       currentPage: currentUrlParams.page ? Number(currentUrlParams.page) : 0,
       selectedCategories: currentUrlParams.genre || [],
     });
-  }
+  };
 
   onSearchFieldChangeEvent = ({ target: { value } }): void => {
     const self = this;
@@ -164,11 +157,10 @@ class Search extends React.Component<PropType, StateTypes> {
     clearTimeout(this.typingTimeout);
 
     // Reset the timer, to make the http call after 400MS
-    this.typingTimeout = setTimeout(function updateSearchField() {
+    this.typingTimeout = setTimeout(() => {
       self.setState(
         { searchFieldText: value },
         () => {
-
           // When text fields are available set current page to 0
           self.setCurrentPage(0);
 
@@ -177,7 +169,7 @@ class Search extends React.Component<PropType, StateTypes> {
         },
       );
     }, 400);
-  }
+  };
 
   componentDidMount = (): void => {
     // Only map Url to Search params the first time the component has been mounted
@@ -185,7 +177,7 @@ class Search extends React.Component<PropType, StateTypes> {
       this.mapUrlToSearchParams();
       this._isMounted = true;
     }
-  }
+  };
 
   render = (): JSX.Element => {
     const {
@@ -194,11 +186,11 @@ class Search extends React.Component<PropType, StateTypes> {
       selectedCategories,
     } = this.state;
 
-    const { formatMessage } = this.props.intl;
+    const { intl: { formatMessage } } = this.props;
 
     // Avoid the component rendering before it's mounted
     if (!this._isMounted) {
-      return <Fragment />
+      return <></>;
     }
 
     return (
@@ -212,7 +204,7 @@ class Search extends React.Component<PropType, StateTypes> {
             placeholder={
               formatMessage({
                 id: 'cactus.search_field_placeholder',
-                defaultMessage: 'Search ...'
+                defaultMessage: 'Search ...',
               })
             }
             defaultValue={String(searchFieldText)}
@@ -229,9 +221,9 @@ class Search extends React.Component<PropType, StateTypes> {
         <SearchQuery
           variables={{
             title: searchFieldText,
-            pageCount: pageCount,
+            pageCount,
             currentPage: (Number(currentPage) * pageCount),
-            genres: selectedCategories.map(cat => Number(cat.id)),
+            genres: selectedCategories.map((cat) => Number(cat.id)),
           }}
         >
           {({ loading, error, data }): JSX.Element => {
@@ -277,11 +269,11 @@ class Search extends React.Component<PropType, StateTypes> {
         {/* End of main content */}
       </div>
     );
-  }
+  };
 }
 
 export default withRouter(
   injectIntl(
-    Search
-  )
+    Search,
+  ),
 );

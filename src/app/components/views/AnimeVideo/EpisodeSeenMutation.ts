@@ -15,6 +15,6 @@ export default class extends Mutation<Data, Variables> {
     mutation($id: Int!) {
       EpisodeSeen(episode_id: $id)
     }
-  `
+  `,
   };
 }

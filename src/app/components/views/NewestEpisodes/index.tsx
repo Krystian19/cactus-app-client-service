@@ -16,14 +16,18 @@ type StateType = {
 const pageCount = 8;
 
 class NewestEpisodes extends React.Component<PropType, StateType> {
-  state = {
-    currentPage: 0,
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      currentPage: 0,
+    };
+  }
 
   PageForward = (): void => {
     const { currentPage } = this.state;
     this.setState({ currentPage: (Number(currentPage) + 1) });
-  }
+  };
 
   PageBackwards = (): void => {
     const { currentPage } = this.state;
@@ -32,23 +36,23 @@ class NewestEpisodes extends React.Component<PropType, StateType> {
     if (currentPage === 0) return;
 
     this.setState({ currentPage: (Number(currentPage) - 1) });
-  }
+  };
 
   setCurrentPage = (page: number): void => {
     // If arg is null then ignore it
     if ((page === null) || (page === undefined)) return;
 
     this.setState({ currentPage: page });
-  }
+  };
 
   render = (): JSX.Element => {
     const { currentPage } = this.state;
-    const { formatMessage } = this.props.intl;
+    const { intl: { formatMessage } } = this.props;
 
     return (
       <NewestEpisodesQuery
         variables={{
-          pageCount: pageCount,
+          pageCount,
           currentPage: (Number(currentPage) * pageCount),
         }}
       >
@@ -69,7 +73,7 @@ class NewestEpisodes extends React.Component<PropType, StateType> {
                 title={
                   formatMessage({
                     id: 'cactus.what_is_new',
-                    defaultMessage: 'What\'s new ?'
+                    defaultMessage: 'What\'s new ?',
                   })
                 }
                 episodes={data.NewestEpisodes.rows}
@@ -101,7 +105,7 @@ class NewestEpisodes extends React.Component<PropType, StateType> {
         }}
       </NewestEpisodesQuery>
     );
-  }
+  };
 }
 
 export default injectIntl(NewestEpisodes);

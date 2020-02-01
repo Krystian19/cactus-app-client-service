@@ -1,8 +1,8 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Link, withRouter } from 'react-router-dom';
-import { FormattedMessage } from 'react-intl';
-import { injectIntl, InjectedIntlProps } from 'react-intl';
+import { FormattedMessage, injectIntl, InjectedIntlProps } from 'react-intl';
+
 import { GQLEpisode } from '@cactus-app/types';
 
 import LazyImage from '../LazyImage';
@@ -32,7 +32,7 @@ const VideoBlock = (props: PropType): JSX.Element => {
           <Link to={String(viewAllLink)} className="button">
             <FormattedMessage
               id="cactus.view_all"
-              defaultMessage={'View all'}
+              defaultMessage="View all"
             />
           </Link>
         )}
@@ -54,7 +54,7 @@ const VideoBlock = (props: PropType): JSX.Element => {
                   errorSrc="/img/thumbnail_placeholder.png"
                   alt="thumbnail"
                   className="anime-small-thumbnail fade-in"
-                  noLoadingPlaceholder={true}
+                  noLoadingPlaceholder
                 />
                 <div className="overlay hover_hidden darken">
                   <svg className="play" viewBox="0 0 24 24">
@@ -69,7 +69,7 @@ const VideoBlock = (props: PropType): JSX.Element => {
                     (${
                       formatMessage({
                         id: 'cactus.season_short',
-                        defaultMessage: 'S'
+                        defaultMessage: 'S',
                       })}${episode.Release.release_order})`}
                   </div>
                   <div className="detail-container">
@@ -86,5 +86,5 @@ const VideoBlock = (props: PropType): JSX.Element => {
 };
 
 export default withRouter(
-  injectIntl(VideoBlock)
+  injectIntl(VideoBlock),
 );

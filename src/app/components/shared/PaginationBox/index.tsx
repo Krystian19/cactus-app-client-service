@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 type PropType = {
   goForwardCB: () => void;
@@ -9,7 +9,7 @@ type PropType = {
   setCurrentPageCB: (page: number) => void;
 };
 
-export default class PaginationBox extends React.Component<PropType> {
+export default class extends React.Component<PropType> {
   fetchPageNumbers = (lastPageValue: number, currentPage: number): Array<number> => {
     const pageRange = 2;
     const visibleCurrentPage = currentPage + 1;
@@ -19,7 +19,7 @@ export default class PaginationBox extends React.Component<PropType> {
 
     // Resolve the range of values below the currentPage value
     const leftRange = range
-      .filter(el => (
+      .filter((el) => (
         (el < visibleCurrentPage)
         && el >= (visibleCurrentPage - pageRange)
         && el !== 1
@@ -27,14 +27,14 @@ export default class PaginationBox extends React.Component<PropType> {
 
     // Resolve the range of values above the currentPage value (ignoring the last page)
     const rightRange = range
-      .filter(el => (
+      .filter((el) => (
         (el > visibleCurrentPage)
         && el <= (visibleCurrentPage + pageRange)
         && el !== lastPageValue
       ));
 
     return [...leftRange, visibleCurrentPage, ...rightRange];
-  }
+  };
 
   render = (): JSX.Element => {
     const {
@@ -76,7 +76,7 @@ export default class PaginationBox extends React.Component<PropType> {
         { // If the current page is the first page hide this one
           currentPage !== 0
           && (
-            <Fragment>
+            <>
               <div
                 key={0}
                 className={
@@ -94,11 +94,11 @@ export default class PaginationBox extends React.Component<PropType> {
                   ...
                 </div>
               )}
-            </Fragment>
+            </>
           )
         }
         {
-          this.fetchPageNumbers(pageLength, currentPage).map(num => (
+          this.fetchPageNumbers(pageLength, currentPage).map((num) => (
             <div
               key={num}
               className={`item ${(num === (Number(currentPage) + 1)) ? 'active' : ''}`}
@@ -114,7 +114,7 @@ export default class PaginationBox extends React.Component<PropType> {
         { // If the current page is the last page hide this one
           pageLength !== (Number(currentPage) + 1)
           && (
-            <Fragment>
+            <>
               {showPoints && (
                 <div className="item">
                   ...
@@ -132,7 +132,7 @@ export default class PaginationBox extends React.Component<PropType> {
               >
                 {pageLength}
               </div>
-            </Fragment>
+            </>
           )
         }
         {/* <div className="item active">1</div>
@@ -154,5 +154,5 @@ export default class PaginationBox extends React.Component<PropType> {
         </div>
       </div>
     );
-  }
+  };
 }

@@ -19,7 +19,7 @@ const CategoriesBlock = (props: PropType): JSX.Element => {
     categories,
     title,
     viewAllLink,
-    history
+    history,
   } = props;
 
   return (
@@ -32,7 +32,7 @@ const CategoriesBlock = (props: PropType): JSX.Element => {
           <Link to={String(viewAllLink)} className="button">
             <FormattedMessage
               id="cactus.view_all"
-              defaultMessage={'View all'}
+              defaultMessage="View all"
             />
           </Link>
         )}
@@ -40,14 +40,13 @@ const CategoriesBlock = (props: PropType): JSX.Element => {
       <div className="video-block-content">
         <div className="anime-small-thumbnail-list">
 
-          {categories.map(category => (
+          {categories.map((category) => (
             <div
               key={Number(category.id)}
               className="anime-small-thumbnail small category"
               onClick={
-                (): void =>
-                  history
-                    .push(`/search?${queryString.stringify({ genre: [category] })}`)
+                (): void => history
+                  .push(`/search?${queryString.stringify({ genre: [category] })}`)
               }
             >
               <div className="cover">

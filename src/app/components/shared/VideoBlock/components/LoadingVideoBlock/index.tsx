@@ -13,7 +13,7 @@ export default (props: PropType): JSX.Element => {
         <div className="video-block-title-head">
           <span>&#8203;</span>
         </div>
-        <a href={'javascript:void(0)'} className="button shimmer-load">
+        <a href="#" className="button shimmer-load">
           &#8203;
         </a>
       </div>

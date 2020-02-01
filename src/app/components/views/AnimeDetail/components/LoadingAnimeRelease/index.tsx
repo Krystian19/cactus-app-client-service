@@ -12,7 +12,7 @@ export default (props: PropType): JSX.Element => {
       <div className="anime-season-videos">
         <div className="anime-small-thumbnail-list">
           {
-            range(0, count).map(num => (
+            range(0, count).map((num) => (
               <div
                 key={num}
                 className="anime-small-thumbnail fade-in"

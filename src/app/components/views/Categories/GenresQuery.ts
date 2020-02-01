@@ -24,6 +24,6 @@ export default class extends Query<Data, Variables> {
         count
       }
     }
-  `
+  `,
   };
 }

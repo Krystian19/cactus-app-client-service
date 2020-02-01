@@ -11,7 +11,7 @@ type PropType = RouteComponentProps<{}> & {
 
 const CategoriesChips = ({ categories }: PropType): JSX.Element => (
   <div className="chips-container aligned-left">
-    {categories.map(genre => (
+    {categories.map((genre) => (
       <Link
         to={`/search?${queryString.stringify({ genre: [genre] })}`}
         key={String(genre.id)}

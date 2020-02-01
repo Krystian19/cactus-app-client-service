@@ -14,30 +14,31 @@ const FilterCategoriesChips = ({
   alignedCenter = false,
   padded = false,
 }: PropType): JSX.Element => (
-    <div
-      className={
+  <div
+    className={
         `chips-container 
         ${(!alignedCenter) ? 'aligned-left' : ''}
         ${(padded) ? 'padded' : ''}
-      `}
-    >
-      {categories.map(genre => (
-        <div
-          key={String(genre.id)}
-          className="chip"
-          onClick={(): void => categoryRemoved(genre)}
-        >
-          <div className="chip-content">
-            {genre.title}
-            <div
-              className="chip-remove-btn"
-            >
-              <i className="fa fa-times" />
-            </div>
+      `
+}
+  >
+    {categories.map((genre) => (
+      <div
+        key={String(genre.id)}
+        className="chip"
+        onClick={(): void => categoryRemoved(genre)}
+      >
+        <div className="chip-content">
+          {genre.title}
+          <div
+            className="chip-remove-btn"
+          >
+            <i className="fa fa-times" />
           </div>
         </div>
-      ))}
-    </div>
-  );
+      </div>
+    ))}
+  </div>
+);
 
 export default FilterCategoriesChips;
