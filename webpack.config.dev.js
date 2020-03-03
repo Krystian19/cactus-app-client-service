@@ -1,6 +1,5 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 const tsConfig = {
   entry: path.join(__dirname, 'src', 'app', 'index.tsx'),
@@ -13,20 +12,20 @@ const tsConfig = {
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
-        exclude: /node_modules/
-      }
-    ]
+        exclude: /node_modules/,
+      },
+    ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js']
+    extensions: ['.tsx', '.ts', '.js'],
   },
   output: {
     filename: 'app.min.js',
-    path: path.resolve(__dirname, 'public', 'js')
+    path: path.resolve(__dirname, 'public', 'js'),
   },
   watchOptions: {
     poll: true,
-    ignored: /node_modules/
+    ignored: /node_modules/,
   },
   target: 'web',
 };
@@ -37,12 +36,12 @@ const sassConfig = {
   mode: 'development',
 
   output: {
-    path: path.resolve(__dirname, 'public', 'css')
+    path: path.resolve(__dirname, 'public', 'css'),
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "main.min.css",
-    })
+      filename: 'main.min.css',
+    }),
   ],
   module: {
     rules: [
@@ -54,10 +53,10 @@ const sassConfig = {
             options: {
               name: '[name].[ext]',
               publicPath: '/css/fonts',
-              outputPath: 'fonts/'
-            }
-          }
-        ]
+              outputPath: 'fonts/',
+            },
+          },
+        ],
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
@@ -67,10 +66,10 @@ const sassConfig = {
             options: {
               name: '[name].[ext]',
               publicPath: '/css/images',
-              outputPath: 'images/'
-            }
-          }
-        ]
+              outputPath: 'images/',
+            },
+          },
+        ],
       },
       {
         test: /\.s?css$/,
@@ -78,18 +77,18 @@ const sassConfig = {
           MiniCssExtractPlugin.loader,
           'css-loader',
           'resolve-url-loader',
-          'sass-loader'
-        ]
+          'sass-loader',
+        ],
       },
-    ]
+    ],
   },
   watchOptions: {
     poll: true,
-    ignored: /node_modules/
+    ignored: /node_modules/,
   },
 };
 
 module.exports = [
   tsConfig,
   sassConfig,
-]
+];

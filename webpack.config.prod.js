@@ -1,7 +1,7 @@
 const path = require('path');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const tsConfig = {
   entry: path.join(__dirname, 'src', 'app', 'index.tsx'),
@@ -11,16 +11,16 @@ const tsConfig = {
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
-        exclude: /node_modules/
-      }
-    ]
+        exclude: /node_modules/,
+      },
+    ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js']
+    extensions: ['.tsx', '.ts', '.js'],
   },
   output: {
     filename: 'app.min.js',
-    path: path.resolve(__dirname, 'public', 'js')
+    path: path.resolve(__dirname, 'public', 'js'),
   },
   target: 'web',
   plugins: [
@@ -34,17 +34,17 @@ const sassConfig = {
   entry: path.join(__dirname, 'src', 'app', 'styles', 'index.scss'),
   mode: 'production',
   output: {
-    path: path.resolve(__dirname, 'public', 'css')
+    path: path.resolve(__dirname, 'public', 'css'),
   },
   optimization: {
     minimizer: [
-      new OptimizeCSSAssetsPlugin({})
+      new OptimizeCSSAssetsPlugin({}),
     ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "main.min.css",
-    })
+      filename: 'main.min.css',
+    }),
   ],
   module: {
     rules: [
@@ -56,10 +56,10 @@ const sassConfig = {
             options: {
               name: '[name].[ext]',
               publicPath: '/css/fonts',
-              outputPath: 'fonts/'
-            }
-          }
-        ]
+              outputPath: 'fonts/',
+            },
+          },
+        ],
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
@@ -69,10 +69,10 @@ const sassConfig = {
             options: {
               name: '[name].[ext]',
               publicPath: '/css/images',
-              outputPath: 'images/'
-            }
-          }
-        ]
+              outputPath: 'images/',
+            },
+          },
+        ],
       },
       {
         test: /\.s?css$/,
@@ -80,14 +80,14 @@ const sassConfig = {
           MiniCssExtractPlugin.loader,
           'css-loader',
           'resolve-url-loader',
-          'sass-loader'
-        ]
+          'sass-loader',
+        ],
       },
-    ]
+    ],
   },
 };
 
 module.exports = [
   tsConfig,
   sassConfig,
-]
+];
