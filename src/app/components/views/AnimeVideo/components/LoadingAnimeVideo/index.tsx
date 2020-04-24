@@ -1,5 +1,5 @@
 import React from 'react';
-import { Player } from 'video-react';
+import ReactPlayer from 'react-player';
 
 import base64Content from '../../../../../utils/base64Content';
 
@@ -9,8 +9,10 @@ export default (): JSX.Element => (
       <div className="anime-watch-episode-container">
         <div className="anime-watch-episode-video shimmer-load">
           <div style={{ visibility: 'hidden' }}>
-            <Player
+            <ReactPlayer
               src={base64Content.placeholder_video}
+              width="100%"
+              height="100%"
             />
           </div>
         </div>
