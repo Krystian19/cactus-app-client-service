@@ -18,7 +18,6 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
   ],
   rules: {
-    'dot-notation': 0,
     "react/display-name": 0,
     "no-console": ["error"],
     'no-underscore-dangle': 0,

@@ -18,6 +18,7 @@ const httpLink = new HttpLink({
 
 const client = new ApolloClient({
   link: httpLink,
+  // eslint-disable-next-line dot-notation
   cache: new InMemoryCache().restore(window['__APOLLO_STATE__']),
 });
 
