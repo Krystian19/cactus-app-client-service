@@ -8,12 +8,12 @@ Cactus app web client service repo.
 
 Start the watching for ts and sass changes:
 ```sh
-docker exec -ti cactus_app_client yarn watch
+docker exec -ti cactus_client yarn watch
 ```
 
 ## Run the tests
 ```sh
-docker exec -ti cactus_app_client yarn test
+docker exec -ti cactus_client yarn test
 ```
 
 ## Utils
