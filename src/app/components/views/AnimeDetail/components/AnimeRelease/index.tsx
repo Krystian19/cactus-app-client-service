@@ -67,6 +67,8 @@ class AnimeRelease extends React.Component<PropType, StateType> {
             );
           }
 
+          const { Release } = data;
+
           return (
             <div className="anime-season">
               {/* <span className="anime-season-title">
@@ -76,7 +78,7 @@ class AnimeRelease extends React.Component<PropType, StateType> {
                 <div className="anime-small-thumbnail-list">
 
                   {
-                    data.Release.Episodes.rows.map((episode) => (
+                    Release.Episodes.rows.map((episode) => (
                       <div
                         key={episode.id}
                         className="anime-small-thumbnail fade-in"
@@ -117,11 +119,11 @@ class AnimeRelease extends React.Component<PropType, StateType> {
                 </div>
                 <PaginationBox
                   pageCount={pageCount}
-                  itemCount={data.Release.Episodes.count}
+                  itemCount={Release.Episodes.count}
                   currentPage={currentPage}
                   goForwardCB={(): void => {
                     const lastPage = Math.ceil(
-                      data.Release.Episodes.count / pageCount,
+                      Release.Episodes.count / pageCount,
                     );
 
                     // If this is the last page, don't go forward

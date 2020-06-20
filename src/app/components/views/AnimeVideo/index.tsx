@@ -1,9 +1,7 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
 import { RouteComponentProps, withRouter } from 'react-router';
-import {
-  Link,
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import AnimeVideoQuery from './AnimeVideoQuery';
 import EpisodeSeenMutation from './EpisodeSeenMutation';

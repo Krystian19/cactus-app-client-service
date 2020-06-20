@@ -29,6 +29,8 @@ const Dashboard = (props: PropType): JSX.Element => {
           );
         }
 
+        const { HottestEpisodes, NewestEpisodes, Genres } = data;
+
         return (
           <div className="main-content no-padding">
             <HottestVideoBlock
@@ -38,7 +40,7 @@ const Dashboard = (props: PropType): JSX.Element => {
                   defaultMessage: '🔥 right now',
                 })
               }
-              episodes={data.HottestEpisodes.rows}
+              episodes={HottestEpisodes.rows}
               viewAllLink="/hottest_episodes"
             />
             <VideoBlock
@@ -48,7 +50,7 @@ const Dashboard = (props: PropType): JSX.Element => {
                   defaultMessage: 'What\'s new ?',
                 })
               }
-              episodes={data.NewestEpisodes.rows}
+              episodes={NewestEpisodes.rows}
               viewAllLink="/newest_episodes"
             />
             <CategoriesBlock
@@ -58,7 +60,7 @@ const Dashboard = (props: PropType): JSX.Element => {
                   defaultMessage: 'Categories',
                 })
               }
-              categories={data.Genres.rows}
+              categories={Genres.rows}
               viewAllLink="/categories"
             />
           </div>

@@ -16,9 +16,7 @@ type StateTypes = {
   selectedCategories: Array<GQLGenre>;
 };
 
-type PropType =
-  RouteComponentProps<{}>
-  & InjectedIntlProps & {};
+type PropType = {} & RouteComponentProps<{}> & InjectedIntlProps;
 
 // How many records should be shown per page
 const pageCount = 18;
@@ -195,8 +193,6 @@ class Search extends React.Component<PropType, StateTypes> {
 
     return (
       <div className="main-content">
-        {/* Start of main content */}
-
         <div className="big-search-box-container">
           <input
             type="text"
@@ -211,13 +207,11 @@ class Search extends React.Component<PropType, StateTypes> {
             onChange={this.onSearchFieldChangeEvent}
           />
         </div>
-
         <GenreOptionsPanel
           selectedCategories={selectedCategories}
           categoryRemoved={(category): void => this.removedCategory(category)}
           setSelectedCategories={this.setSelectedCategories}
         />
-
         <SearchQuery
           variables={{
             title: searchFieldText,
@@ -235,21 +229,23 @@ class Search extends React.Component<PropType, StateTypes> {
               );
             }
 
+            const { Releases } = data;
+
             return (
               <div className="util-container">
                 <AnimeThumbnailList
-                  releases={data.Releases.rows}
+                  releases={Releases.rows}
                 />
                 {
-                  data.Releases.rows.length !== 0
+                  Releases.rows.length !== 0
                   && (
                     <PaginationBox
                       pageCount={pageCount}
-                      itemCount={data.Releases.count}
+                      itemCount={Releases.count}
                       currentPage={currentPage}
                       goForwardCB={(): void => {
                         const lastPage = Math.ceil(
-                          data.Releases.count / pageCount,
+                          Releases.count / pageCount,
                         );
 
                         // If this is the last page, don't go forward
@@ -266,7 +262,6 @@ class Search extends React.Component<PropType, StateTypes> {
             );
           }}
         </SearchQuery>
-        {/* End of main content */}
       </div>
     );
   };

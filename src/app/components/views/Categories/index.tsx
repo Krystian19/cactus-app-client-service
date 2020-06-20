@@ -6,7 +6,7 @@ import CategoriesBlock from '../../shared/CategoriesBlock';
 import LoadingSpinner from '../../shared/LoadingSpinner';
 import PaginationBox from '../../shared/PaginationBox';
 
-type PropType = InjectedIntlProps & {};
+type PropType = {} & InjectedIntlProps;
 
 type StateType = {
   currentPage: number;
@@ -65,7 +65,13 @@ class Categories extends React.Component<PropType, StateType> {
             );
           }
 
-          if (error) return <p>Error :(</p>;
+          if (error) {
+            return (
+              <p>Error :(</p>
+            );
+          }
+
+          const { Genres } = data;
 
           return (
             <div className="main-content no-padding">
@@ -76,18 +82,18 @@ class Categories extends React.Component<PropType, StateType> {
                     defaultMessage: 'Categories',
                   })
                 }
-                categories={data.Genres.rows}
+                categories={Genres.rows}
               />
               {
-                data.Genres.rows.length !== 0
+                Genres.rows.length !== 0
                 && (
                   <PaginationBox
                     pageCount={pageCount}
-                    itemCount={data.Genres.count}
+                    itemCount={Genres.count}
                     currentPage={currentPage}
                     goForwardCB={(): void => {
                       const lastPage = Math.ceil(
-                        data.Genres.count / pageCount,
+                        Genres.count / pageCount,
                       );
 
                       // If this is the last page, don't go forward

@@ -15,7 +15,11 @@ export default (): JSX.Element => (
         );
       }
 
-      if (error) return <p>Error :(</p>;
+      if (error) {
+        return (
+          <p>Error :(</p>
+        );
+      }
 
       return (
         <div className="main-content">

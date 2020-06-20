@@ -11,11 +11,7 @@ import JSTtoLocalTime from '../../../utils/JSTtoLocalTime';
 import MonthYearExtractor from '../../../utils/MonthYearExtractor';
 import base64Content from '../../../utils/base64Content';
 
-type PathParamsType = {
-  id: string;
-};
-
-type PropType = RouteComponentProps<PathParamsType> & InjectedIntlProps & {};
+type PropType = RouteComponentProps<{ id: string }> & InjectedIntlProps & {};
 
 const AnimeDetail = (props: PropType): JSX.Element => {
   const {
@@ -89,7 +85,7 @@ const AnimeDetail = (props: PropType): JSX.Element => {
                         <div className="cover-detail-row">
                           <span className="cover-detail-row-title">EPS</span>
                           <span className="cover-detail-row-detail">
-                            {data.Release.EpisodeCount}
+                            {Release.EpisodeCount}
                           </span>
                         </div>
 
@@ -97,21 +93,21 @@ const AnimeDetail = (props: PropType): JSX.Element => {
                           <span className="cover-detail-row-title">AIRED</span>
                           <span className="cover-detail-row-detail">
                             {/* If it hasn't been aired yet */}
-                            {!data.Release.started_airing
+                            {!Release.started_airing
                               && 'Not airing yet'}
                             {/* If it started airing */}
-                            {data.Release.started_airing
+                            {Release.started_airing
                               && `
                                 ${
                               MonthYearExtractor(
-                                JSTtoLocalTime(data.Release.started_airing),
+                                JSTtoLocalTime(Release.started_airing),
                               )
                               } 
                                 - 
                                 ${ // If stopped_airing DateTime String is defined
-                              data.Release.stopped_airing
+                              Release.stopped_airing
                                 ? MonthYearExtractor(
-                                  JSTtoLocalTime(data.Release.stopped_airing),
+                                  JSTtoLocalTime(Release.stopped_airing),
                                 )
                                 : 'PRESENT'
                               }`}
@@ -124,7 +120,7 @@ const AnimeDetail = (props: PropType): JSX.Element => {
                           <span
                             className="cover-detail-row-detail"
                           >
-                            {data.Release.stopped_airing ? 'COMPLETED' : 'AIRING'}
+                            {Release.stopped_airing ? 'COMPLETED' : 'AIRING'}
                           </span>
                         </div>
 

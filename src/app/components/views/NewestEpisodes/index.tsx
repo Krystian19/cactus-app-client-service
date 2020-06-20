@@ -6,7 +6,7 @@ import LoadingVideoBlock from '../../shared/VideoBlock/components/LoadingVideoBl
 import VideoBlock from '../../shared/VideoBlock';
 import PaginationBox from '../../shared/PaginationBox';
 
-type PropType = InjectedIntlProps & {};
+type PropType = {} & InjectedIntlProps;
 
 type StateType = {
   currentPage: number;
