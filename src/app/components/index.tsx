@@ -12,7 +12,7 @@ import languages from '../../translations';
 import Routes from './views';
 
 const httpLink = new HttpLink({
-  uri: '/graphql',
+  uri: '/q',
   fetch,
 });
 

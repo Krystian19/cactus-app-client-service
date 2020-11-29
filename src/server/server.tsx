@@ -27,7 +27,7 @@ const rootPath = path.resolve(__dirname, '..', '..');
 // External service URLs
 const bffServiceUrl = (
   process.env.BFF_SERVICE_URL
-  || 'http://cactus.bff:3000/graphql'
+  || 'http://cactus.bff:3000/q'
 );
 
 const imageServiceUrl = (
@@ -144,7 +144,7 @@ class Server {
    */
   private proxies(): void {
     this.app.post(
-      '/graphql',
+      '/q',
       requestProxy({
         url: bffServiceUrl,
         query: {},
