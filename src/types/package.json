@@ -4,7 +4,7 @@
   "description": "Auto generated TS types for the cactus client",
   "scripts": {
     "gqlgen": "yarn run gql-download-schema; yarn run gql-type-gen;",
-    "gql-download-schema": "get-graphql-schema http://cactus.bff:3000/playground_graphql > reference.graphql",
+    "gql-download-schema": "get-graphql-schema http://cactus.bff:3000/play_graphql > reference.graphql",
     "gql-type-gen": "file=\"./index.ts\"; mkdir -p \"${file%/*}\"; graphql-schema-typescript generate-ts reference.graphql --output $(echo $file);"
   },
   "author": "Jan Guzman <janfrancisco19@gmail.com>",
