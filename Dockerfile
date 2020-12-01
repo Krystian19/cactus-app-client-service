@@ -1,4 +1,4 @@
-FROM node:13.4.0-alpine3.10
+FROM node:15.3.0-alpine3.12
 LABEL Jan Guzman <janfrancisco19@gmail.com>
 
 WORKDIR /app
