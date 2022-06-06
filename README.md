@@ -1,6 +1,6 @@
 # Cactus app web client service
 
-[![Build Status](https://travis-ci.org/Krystian19/cactus-app-client-service.svg?branch=master)](https://travis-ci.org/Krystian19/cactus-app-client-service) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/166aa4764f6244538723d85594ab60b7)](https://www.codacy.com/app/janfrancisco19/cactus-app-client-service?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Krystian19/cactus-app-client-service&amp;utm_campaign=Badge_Grade) [![Test Coverage](https://codecov.io/gh/Krystian19/cactus-app-client-service/branch/master/graph/badge.svg)](https://codecov.io/gh/Krystian19/cactus-app-client-service)
+[![Build Status](https://travis-ci.org/Krystian19/cactus-app-client-service.svg?branch=master)](https://travis-ci.org/Krystian19/cactus-app-client-service) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/13cae8df73d54af1b59af877141de2f6)](https://www.codacy.com/gh/Krystian19/cactus-app-client-service/dashboard?utm_source=github.com&utm_medium=referral&utm_content=Krystian19/cactus-app-client-service&utm_campaign=Badge_Grade) [![Test Coverage](https://codecov.io/gh/Krystian19/cactus-app-client-service/branch/master/graph/badge.svg)](https://codecov.io/gh/Krystian19/cactus-app-client-service)
 
 Cactus app web client service repo.
 
